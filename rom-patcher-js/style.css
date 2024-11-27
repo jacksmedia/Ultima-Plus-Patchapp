@@ -7,6 +7,10 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300');
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 
+body {
+	background: linear-gradient(#408, #000);
+	color: #e4e4e6;
+}
 
 /* Rom Patcher JS - container */
 #rom-patcher-container {
