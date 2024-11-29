@@ -16,7 +16,8 @@
 		const FF2_CHECKSUM_V10 = 0x65D0A825 ; // FF4Ultima_v2024_Plus_RC08_(v1.0).ips
 		const FF2_CHECKSUM_V11 = 0x23084FCD ; // FF4Ultima_v2024_Plus_RC08_(v1.1).ips
 		// both inside of RC08.zip
-		const FF2_CHECKSUMS_INVALID = [] // Japanese roms, no patches for them at this time
+		const FF2_CHECKSUMS_INVALID = [0x21027C5D,0xCAA15E97] // Japanese roms, no patches for them at this time
+
 			try {
 				RomPatcherWeb.initialize({
 					language: 'en', //default: en
@@ -32,7 +33,7 @@
 					},
 					onvalidaterom: function (romFile, isRomValid) {
 						const crc32 = romFile.hashCRC32();
-						/* if ROM is a known SML2 revision that is not compatible with the patch */
+						/* if ROM is a known (J) version that is incompatible with these patches */
 						if (!isRomValid && FF2_CHECKSUMS_INVALID.indexOf(crc32) !== -1)
 							RomPatcherWeb.setErrorMessage('Please provide a v1.0 or v1.1 English language FF2 rom file.');
 					}
@@ -84,7 +85,7 @@
 			This tool & patches current as of 28 Nov 2024
 		</p>
 		<h5>(Verify rom has no header: feature to remove header coming soon)</h5>
-		<h3>The CRC32 (checksums) that work at this time are <code style="color:gold;">23084FCD</code> and <code style="color:aqua;">65D0A825</code></h3>
+		<h3>The CRC32 (checksums) that work at this time are <code style="color:gold;">23084fcd</code> and <code style="color:aqua;">65d0a825</code></h3>
 	</header>
 
 
@@ -110,10 +111,14 @@
 		<div class="margin-bottom text-selectable text-mono text-muted" id="rom-patcher-rom-info">
 			<div class="rom-patcher-row">
 				<div class="text-right">
-					CRC32:
+					<h3 class="">
+						CRC32:
+					</h3>
 				</div>
 				<div class="text-truncate">
-					<span id="rom-patcher-span-crc32"></span>
+					<h2 class="">	
+						<code id="rom-patcher-span-crc32" style="text-transform: capitalize"></code>
+					</h2>
 				</div>
 			</div>
 			<div class="rom-patcher-row" id="rom-patcher-row-info-rom">
