@@ -13,17 +13,46 @@
 	<!-- Rom Patcher JS initialization -->
 	<script type="text/javascript">
 		window.addEventListener('load', function (evt) {
+		const FF2_CHECKSUM_V10 = 0x65D0A825 ; // FF4Ultima_v2024_Plus_RC08_(v1.0).ips
+		const FF2_CHECKSUM_V11 = 0x23084FCD ; // FF4Ultima_v2024_Plus_RC08_(v1.1).ips
+		// both inside of RC08.zip
+		const FF2_CHECKSUMS_INVALID = [] // Japanese roms, no patches for them at this time
 			try {
 				RomPatcherWeb.initialize({
 					language: 'en', //default: en
-					requireValidation: false
+					requireValidation: true, // needed for multipatch mode
+					onloadrom: function (romFile) {
+						const crc32 = romFile.hashCRC32();
+						/* if ROM version = 1.0 */
+						if (crc32 === FF2_CHECKSUM_V10)
+							RomPatcherWeb.pickEmbededFile('FF4Ultima_v2024_Plus_RC08_(v1.0).ips');
+						/* if ROM version = 1.1 */
+						else if (crc32 === FF2_CHECKSUM_V11)
+							RomPatcherWeb.pickEmbededFile('FF4Ultima_v2024_Plus_RC08_(v1.1).ips');
+					},
+					onvalidaterom: function (romFile, isRomValid) {
+						const crc32 = romFile.hashCRC32();
+						/* if ROM is a known SML2 revision that is not compatible with the patch */
+						if (!isRomValid && FF2_CHECKSUMS_INVALID.indexOf(crc32) !== -1)
+							RomPatcherWeb.setErrorMessage('Please provide a v1.0 or v1.1 English language FF2 rom file.');
+					}
 				}, {
-					file: './FF4Ultima_v2024_Plus_RC08_(v1.1).ips', //zip containing patches
-					name: 'Final Fantasy 4 Ultima Plus',
-					description: 'updates to battle formation, game script; adds more icons',
-					outputName: 'FF4Ultima Plus', //patched ROM name
-				});
-			} catch (err) {
+					file: 'RC08.zip',
+					patches: [
+						{
+							file: 'FF4Ultima_v2024_Plus_RC08_(v1.0).ips',
+							name: 'Final Fantasy 4 Ultima Plus (for rom v1.0)',
+							description: 'updates to battle formation, game script; adds more icons',
+							outputName: 'FF4Ultima Plus', //patched ROM name
+						},{
+							file: 'FF4Ultima_v2024_Plus_RC08_(v1.1).ips',
+							name: 'Final Fantasy 4 Ultima Plus (for rom v1.1)',
+							description: 'updates to battle formation, game script; adds more icons',
+							outputName: 'FF4Ultima Plus', //patched ROM name
+						}
+					]
+				}
+			);} catch (err) {
 				var message = err.message;
 				if (/incompatible browser/i.test(message) || /variable RomPatcherWeb/i.test(message))
 					message = 'Your browser is outdated and it is not compatible with this app.';
@@ -50,12 +79,12 @@
 	<header style="text-align: center;">
 		<h1>Ultima Plus Rom Patcher</h1>
 		<p>
-			Please upload a copy of 'Final Fantasy II (USA) (Rev 1)'<br />
+			Please upload a copy of 'Final Fantasy II (USA)' v1.0 or v1.1<br />
 			This app can patch it into Final Fantasy IV Ultima Plus v2024<br />
-			Current as of 28 Nov 2024
+			This tool & patches current as of 28 Nov 2024
 		</p>
 		<h5>(Verify rom has no header: feature to remove header coming soon)</h5>
-		<h3>The CRC32 expected on upload is <code style="color:gold;">23084fcd</code></h3>
+		<h3>The CRC32 (checksums) that work at this time are <code style="color:gold;">23084FCD</code> and <code style="color:aqua;">65D0A825</code></h3>
 	</header>
 
 
