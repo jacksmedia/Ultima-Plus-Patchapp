@@ -22,7 +22,13 @@
 				RomPatcherWeb.initialize({
 					language: 'en', //default: en
 					requireValidation: true, // needed for multipatch mode
-					onloadrom: function (romFile) {
+					onloadrom: function (romFile) {						
+						const SMC_HEADER_SIZE=512;
+						if(romFile.getExtension()==='smc' && ((romFile.fileSize - SMC_HEADER_SIZE) % 0x10000) === 0){
+							romFile.removeLeadingBytes(SMC_HEADER_SIZE);
+							romFile.setExtension('sfc');
+							console.log('removed SMC header');
+						}
 						const crc32 = romFile.hashCRC32();
 						/* if ROM version = 1.0 */
 						if (crc32 === FF2_CHECKSUM_V10)
@@ -50,6 +56,56 @@
 							name: 'Final Fantasy 4 Ultima Plus (for rom v1.1)',
 							description: 'updates to battle formation, game script; adds more icons',
 							outputName: 'FF4Ultima Plus', //patched ROM name
+						},{
+							file: '1-Luna.ips',
+							name: 'FF4 UP Luna Style',
+							description: 'Makes battle sprites Pixel Remaster style & portraits match battle sprites. Classic font.',
+							optional: true
+						},{
+							file: '2-Mercury.ips',
+							name: 'FF4 UP Mercury Style',
+							description: 'Makes battle sprites match portraits, changes some portraits. FF1 font.',
+							optional: true
+						},{
+							file: '3-Venus.ips',
+							name: 'FF4 UP Venus Style',
+							description: 'Makes battle sprites match portraits, map sprites PR style, changes some portraits. FF1 font.',
+							optional: true
+						},{
+							file: '4-Mars.ips',
+							name: 'FF4 UP Mars Style',
+							description: 'Makes battle sprites Record Keeper style, purple map sprites, changes some portraits. Stick Font.',
+							optional: true
+						},{
+							file: '5-Ceres.ips',
+							name: 'FF4 UP Ceres Style',
+							description: 'Makes battle sprites DS colors Pixel Remaster style, map sprites PR style, changes some portraits. Clean Font.',
+							optional: true
+						},{
+							file: '6-Jupiter.ips',
+							name: 'FF4 UP Jupiter Style',
+							description: 'Makes battle sprites Record Keeper style, changes portraits. Enhanced enemy graphics. Monocraft Font.',
+							optional: true
+						},{
+							file: '7-Saturn.ips',
+							name: 'FF4 UP Saturn Style',
+							description: 'Makes battle sprites alt Record Keeper styles, map sprites various styles, changes portraits. Enhanced enemy graphics. FF VI font',
+							optional: true
+						},{
+							file: '8-Uranus.ips',
+							name: 'FF4 UP Uranus Style',
+							description: 'Makes characters Stick Figure style (April Fools!). Stick Font.',
+							optional: true
+						},{
+							file: '9-Neptune.ips',
+							name: 'FF4 UP Neptune Style',
+							description: 'Makes battle sprites alt Record Keeper styles, purple map sprites various styles, changes some portraits. Enhanced enemy graphics. Clean Font.',
+							optional: true
+						},{
+							file: '10-Pluto.ips',
+							name: 'FF4 UP Pluto Style',
+							description: 'Makes battle sprites alt Pixel Remaster style, map sprites various styles, changes portraits. Enhanced enemy graphics. Ultima IV Font.',
+							optional: true
 						}
 					]
 				}
@@ -174,6 +230,12 @@
 			</noscript>
 		</div>
 	</div>
+
+
+
+
+
+
 </body>
 
 </html>
