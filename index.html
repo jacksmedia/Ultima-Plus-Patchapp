@@ -13,8 +13,8 @@
 	<!-- Rom Patcher JS initialization for main feature -->
 	<script type="text/javascript">
 		window.addEventListener('load', function (evt) {
-		const FF2_CHECKSUM_V10 = 0x65D0A825 ; // FF4Ultima_v2024_Plus_RC08_(v1.0).ips
-		const FF2_CHECKSUM_V11 = 0x23084FCD ; // FF4Ultima_v2024_Plus_RC08_(v1.1).ips
+		const FF2_CHECKSUM_V10 = 0x65D0A825 ; // FF II (v1.0).ips
+		const FF2_CHECKSUM_V11 = 0x23084FCD ; // FF 2 (v1.1).ips
 		// both inside of RC08.zip
 		const FF2_CHECKSUMS_INVALID = [0x21027C5D,0xCAA15E97] // Japanese roms, no patches for them at this time
 
@@ -24,7 +24,7 @@
 					requireValidation: true, // needed for multipatch mode
 					onloadrom: function (romFile) {						
 						const SMC_HEADER_SIZE=512;
-						if(romFile.getExtension()==='smc' && ((romFile.fileSize - SMC_HEADER_SIZE) % 0x10000) === 0){
+						if(romFile.getExtension()==='smc' && ((romFile.fileSize - SMC_HEADER_SIZE) % 0x20000) === 0){
 							romFile.removeLeadingBytes(SMC_HEADER_SIZE);
 							romFile.setExtension('sfc');
 							console.log('removed SMC header');
@@ -44,7 +44,7 @@
 							RomPatcherWeb.setErrorMessage('Please provide a v1.0 or v1.1 English language FF2 rom file.');
 					}
 				}, {
-					file: 'RC09.zip',
+					file: 'RC.zip',
 					patches: [
 						{
 							file: 'FF4Ultima_v2024_Plus_(v1.0).ips',
@@ -56,56 +56,6 @@
 							name: 'Final Fantasy 4 Ultima Plus (for rom v1.1)',
 							description: 'updates to battle formation, game script; adds more icons',
 							outputName: 'FF4Ultima Plus', //patched ROM name
-						},{
-							file: '1-Luna.ips',
-							name: 'FF4 UP Luna Style',
-							description: 'Makes battle sprites Pixel Remaster style & portraits match battle sprites. Classic font.',
-							optional: true
-						},{
-							file: '2-Mercury.ips',
-							name: 'FF4 UP Mercury Style',
-							description: 'Makes battle sprites match portraits, changes some portraits. FF1 font.',
-							optional: true
-						},{
-							file: '3-Venus.ips',
-							name: 'FF4 UP Venus Style',
-							description: 'Makes battle sprites match portraits, map sprites PR style, changes some portraits. FF1 font.',
-							optional: true
-						},{
-							file: '4-Mars.ips',
-							name: 'FF4 UP Mars Style',
-							description: 'Makes battle sprites Record Keeper style, purple map sprites, changes some portraits. Stick Font.',
-							optional: true
-						},{
-							file: '5-Ceres.ips',
-							name: 'FF4 UP Ceres Style',
-							description: 'Makes battle sprites DS colors Pixel Remaster style, map sprites PR style, changes some portraits. Clean Font.',
-							optional: true
-						},{
-							file: '6-Jupiter.ips',
-							name: 'FF4 UP Jupiter Style',
-							description: 'Makes battle sprites Record Keeper style, changes portraits. Enhanced enemy graphics. Monocraft Font.',
-							optional: true
-						},{
-							file: '7-Saturn.ips',
-							name: 'FF4 UP Saturn Style',
-							description: 'Makes battle sprites alt Record Keeper styles, map sprites various styles, changes portraits. Enhanced enemy graphics. FF VI font',
-							optional: true
-						},{
-							file: '8-Uranus.ips',
-							name: 'FF4 UP Uranus Style',
-							description: 'Makes characters Stick Figure style (April Fools!). Stick Font.',
-							optional: true
-						},{
-							file: '9-Neptune.ips',
-							name: 'FF4 UP Neptune Style',
-							description: 'Makes battle sprites alt Record Keeper styles, purple map sprites various styles, changes some portraits. Enhanced enemy graphics. Clean Font.',
-							optional: true
-						},{
-							file: '10-Pluto.ips',
-							name: 'FF4 UP Pluto Style',
-							description: 'Makes battle sprites alt Pixel Remaster style, map sprites various styles, changes portraits. Enhanced enemy graphics. Ultima IV Font.',
-							optional: true
 						}
 					]
 				}
@@ -138,7 +88,7 @@
 		<p>
 			Please upload a copy of 'Final Fantasy II (USA)' v1.0 or v1.1<br />
 			This app can patch it into Final Fantasy IV Ultima Plus v2024<br />
-			This tool & patches current as of 29 Nov 2024
+			This tool & patches current as of 30 Nov 2024
 		</p>
 		<h5>(Verify rom has no header: feature to remove header coming soon)</h5>
 		<h3>The CRC32 (checksums) that work at this time are <code style="color:gold;">23084fcd</code> and <code style="color:aqua;">65d0a825</code></h3>
@@ -214,6 +164,14 @@
 			</div>
 			<button id="rom-patcher-button-apply" data-localize="yes" disabled>Apply patch</button>
 		</div>
+	</div>
+
+	<div style="text-align: center;" id="twin-site-link">
+		<h3 style="text-align: center;">
+			If you want custom graphics & fonts<br/>
+			apply patches from the<br/>
+			<h2><a href="ultima-plus-stylepacks.vercel.app">Ultima Plus Stylepacks</a>.</h2>
+		</h3>
 	</div>
 
 	<div id="rom-patcher-powered" class="text-center">
