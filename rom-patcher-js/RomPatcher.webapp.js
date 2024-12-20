@@ -35,7 +35,88 @@
 	- switch to ES6 classes and modules?
 */
 
+/*
+	Amended December 2024 by jacks.media (@xJ4cks)
+	to allow for multiple instances
+*/
+
 const ROM_PATCHER_JS_PATH = './rom-patcher-js/';
+
+// namespace (conceptual & logical sandbox)
+class RomPatcherInstance {
+    constructor(instanceId) {
+        this.instanceId = instanceId;
+        this.romFile = null;
+        this.patch = null;
+        this.currentEmbededPatches = null;
+        this.settings = {
+            language: 'en',
+            outputSuffix: true,
+            fixChecksum: false,
+            requireValidation: false,
+            allowDropFiles: false,
+            oninitialize: null,
+            onloadrom: null,
+            onvalidaterom: null,
+            onloadpatch: null,
+            onpatch: null
+        };
+        this.htmlElements = this.getHtmlElements();
+        this.isInitialized = false;
+
+        this.initialize();
+    }
+
+    // Gets HTML elements with numbers in their ID values
+    getHtmlElements() {
+        const suffix = `${this.instanceId}`;
+		// Scoped to all elements whose id ends in `{instanceId}` 
+		const elements = document.querySelectorAll(`[id$='${suffix}']`);
+		
+		console.log('Elements selected for instance', this.instanceId, elements); // Log the elements to see what's being selected
+    
+		return htmlElements;
+    }
+
+    // Initializes the instance
+    initialize() {
+        if (this.isInitialized) {
+            throw new Error('Rom Patcher JS instance already initialized');
+        }
+        
+        // Adds setup process for instance
+        const inputFileRom = this.htmlElements.get('input-file-rom');
+        if (inputFileRom && inputFileRom.tagName === 'INPUT' && inputFileRom.type === 'file') {
+            inputFileRom.addEventListener('change', (evt) => {
+                if (this.romFile) {
+                    this.handleRomChange(evt);
+                }
+            });
+        }
+
+        // Initializes other elements like buttons, patches, etc.
+        this.htmlElements.setText('span-info', 'Rom Patcher Initialized for ' + this.instanceId);
+        this.isInitialized = true;
+    }
+
+    // Function to handle ROM file changes
+    handleRomChange(evt) {
+        if (this.romFile) {
+            // Handle the ROM change for this specific instance
+        }
+    }
+
+    // Method to apply patches (only for this instance, ofc)
+    applyPatch(patchFile, patchOptions) {
+        if (patchFile && patchOptions) {
+			console.log(`Applying patch: ${patchFile.getName()}`);
+			RomPatcherWeb.applyPatch(patchFile, patchOptions);
+		}
+    }
+
+}
+
+
 
 const RomPatcherWeb = (function () {
 	const SCRIPT_DEPENDENCIES = [
@@ -222,8 +303,6 @@ const RomPatcherWeb = (function () {
 			return currentEmbededPatches.find((embededPatchInfo) => embededPatchInfo.file === fileName);
 		return null;
 	}
-
-
 
 	const _padZeroes = function (intVal, nBytes) {
 		var hexString = intVal.toString(16);

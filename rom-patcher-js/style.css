@@ -1,13 +1,12 @@
 /* Rom Patcher JS template CSS stylesheet */
 /* customize it to your taste! */
 
-
 /* @FONT-FACES */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300');
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 
-
+/* Rom Patcher JS */
 html, body {
 	width: 100%;
 	height: 100%;
@@ -21,319 +20,31 @@ body {
 	color: #e4e4e6;
 }
 
-/* Rom Patcher JS - container */
-#rom-patcher-container {
-	-moz-user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	-o-user-select: none;
-	user-select: none;
-	line-height: 1.8;
-
-	background-color: #f9fafa;
-	padding: 30px 15px;
-	border-radius: 3px;
-	color: black;
-	max-width: 640px;
-	margin: 0 auto;
+/* Unique per <html> */
+#rom-patcher-powered {
+	margin-top: 16px;
+	font-size: 11px;
+	text-align: center;
 }
 
-/* Rom Pacher JS - text classes */
-#rom-patcher-container .text-mono {
-	font-family: 'Roboto Mono', monospace;
-	font-family: 'Pixelfy Sans';
-	font-size: 12px;
+#rom-patcher-powered a {
+	color: #cce;
+	padding: 4px 8px;
+	text-decoration: none;
+	opacity: .25;
 }
 
-#rom-patcher-container .text-muted {
-	color: #888;
-}
-
-#rom-patcher-container .text-center {
-	text-align: center
-}
-
-#rom-patcher-container .text-right {
-	text-align: right
-}
-
-#rom-patcher-container .text-truncate {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis
-}
-
-#rom-patcher-container .text-selectable {
-	-moz-user-select: text;
-	-webkit-user-select: text;
-	-ms-user-select: text;
-	-o-user-select: text;
-	user-select: text;
-	cursor: text;
-}
-
-/* Rom Patcher JS - rows */
-#rom-patcher-container .rom-patcher-row {
-	display: flex;
-	align-items: center;
-	justify-content: space-between
-}
-
-#rom-patcher-container .rom-patcher-row>div:first-child {
-	width: 25%
-}
-
-#rom-patcher-container .rom-patcher-row>div:last-child {
-	width: 73%
-}
-
-#rom-patcher-container .margin-bottom {
-	margin-bottom: 8px
-}
-
-
-
-#rom-patcher-container #rom-patcher-row-info-rom,
-#rom-patcher-container #rom-patcher-row-alter-header,
-#rom-patcher-container #rom-patcher-row-patch-description,
-#rom-patcher-container #rom-patcher-row-patch-requirements,
-#rom-patcher-container #rom-patcher-row-error-message {
-	display: none
-}
-
-#rom-patcher-container #rom-patcher-row-info-rom.show,
-#rom-patcher-container #rom-patcher-row-alter-header.show,
-#rom-patcher-container #rom-patcher-row-patch-description.show,
-#rom-patcher-container #rom-patcher-row-patch-requirements.show {
-	display: flex
-}
-
-#rom-patcher-container #rom-patcher-row-error-message.show {
-	display: block
-}
-
-#rom-patcher-patch-description {
-	font-size: 85%;
-}
-
-#rom-patcher-row-apply {
-	margin-top: 12px;
-}
-
-
-#rom-patcher-span-crc32 span.clickable {
-	text-decoration: underline
-}
-
-#rom-patcher-span-crc32 span.clickable:hover {
-	cursor: pointer;
-	color: black
-}
-
-#rom-patcher-error-message {
-	color: #ff0030;
-	padding-left: 20px;
-	background-image: url(assets/icon_x_circle_red.svg);
-	background-repeat: no-repeat;
-	background-position: left center;
-}
-#rom-patcher-error-message.warning {
-	color: #ff7800;
-	background-image: url(assets/icon_alert_orange.svg);
-}
-
-/* Rom Patcher JS - form elements */
-#rom-patcher-container input[type=file],
-#rom-patcher-container input[type=checkbox],
-#rom-patcher-container select {
-	box-sizing: border-box;
-	max-width: 100%;
-	font-family: inherit;
-	font-size: 100%;
-	outline: none;
-	border: none;
-	border-radius: 3px;
-	background-color: #edefef;
-}
-
-#rom-patcher-container input[type=file]:focus:not(:disabled),
-#rom-patcher-container select:focus:not(:disabled),
-#rom-patcher-container input[type=checkbox]:focus:not(:disabled) {
-	box-shadow: #a8fff3 0 0 0 2px;
-}
-
-#rom-patcher-container input[type=file] {
-	width: 100%;
-	padding: 6px 10px
-}
-
-#rom-patcher-container input[type=file].no-file-selector-button::file-selector-button {
-	display: none
-}
-
-#rom-patcher-container select {
-	width: 100%;
-	padding: 6px 18px 6px 10px;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	text-overflow: '';
-
-	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+");
-	background-position: 100% center;
-	background-repeat: no-repeat;
-}
-
-#rom-patcher-container select::-ms-expand {
-	display: none
-}
-
-#rom-patcher-container input[type=file]:hover:not(:disabled),
-#rom-patcher-container select:hover:not(:disabled) {
-	cursor: pointer;
-	background-color: #dee1e1
-}
-
-#rom-patcher-container input[type=file]:disabled,
-#rom-patcher-container select:disabled {
-	color: #888
-}
-
-
-
-
-
-
-#rom-patcher-container input[type=file].empty,
-#rom-patcher-container input[type=file]:not(:disabled):not(.empty):hover {
-	padding-left: 32px;
-	background-repeat: no-repeat;
-	background-position: 8px center;
-	background-size: 16px;
-	background-image: url(assets/icon_upload.svg);
-}
-
-#rom-patcher-container input[type=file].valid {
-	background-color: #d6ffc8;
-	padding-right: 28px;
-	background-repeat: no-repeat;
-	background-position: right 12px center;
-	background-size: 16px;
-	background-image: url(assets/icon_check_circle_green.svg);
-}
-
-#rom-patcher-container input[type=file].valid:not(:disabled):not(.empty):hover {
-	background-color: #adf795;
-	background-position: 8px center, right 12px center;
-	background-size: 16px, 16px;
-	background-image: url(assets/icon_upload.svg), url(assets/icon_check_circle_green.svg);
-}
-
-#rom-patcher-container input[type=file].invalid {
-	background-color: #ffc8c8;
-	padding-right: 28px;
-	background-repeat: no-repeat;
-	background-position: right 12px center;
-	background-size: 16px;
-	background-image: url(assets/icon_x_circle_red.svg);
-}
-
-#rom-patcher-container input[type=file].invalid:not(:disabled):not(.empty):hover {
-	background-color: #ffa3a3;
-	background-position: 8px center, right 12px center;
-	background-size: 16px, 16px;
-	background-image: url(assets/icon_upload.svg), url(assets/icon_x_circle_red.svg);
-}
-
-#rom-patcher-container input[type=file].icon-upload {
-	padding-left: 32px;
-	background-image: url(assets/app_icon_16.png);
-	background-repeat: no-repeat;
-	background-position: 8px center;
-}
-
-
-#rom-patcher-container input[type=checkbox] {
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	appearance: none;
-	width: 20px;
-	height: 20px;
-	background-color: transparent;
-	border-radius: 3px;
+#rom-patcher-powered a>img {
 	display: inline-block;
+	height: 16px;
 	vertical-align: middle;
-	position: relative;
-	border: 2px solid #2a9ca5;
-
-	background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMuMiIgZmlsbD0ibm9uZSIgZD0iTSAxLjE5LDcuMTAgNi4wNywxMi4wNiAxNC44OCwzLjMyIi8+PC9zdmc+');
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: 0px;
-	transition: background-color .2s, background-size .2s;
+	margin-right: 4px;
 }
 
-#rom-patcher-container input[type=checkbox]:hover:not(:disabled) {
-	cursor: pointer;
-	border-color: #3aacb5;
+#rom-patcher-powered a:hover {
+	text-decoration: underline;
+	opacity: 1;
 }
-
-#rom-patcher-container input[type=checkbox]:hover:checked:not(:disabled) {
-	background-color: #3aacb5;
-}
-
-#rom-patcher-container input[type=checkbox]:checked {
-	background-color: #2a9ca5;
-	background-size: 12px;
-}
-
-
-
-
-
-
-
-
-
-/* buttons */
-#rom-patcher-container button {
-	font-family: inherit;
-	font-size: 100%;
-	min-width: 120px;
-	border-radius: 3px;
-	border: 0;
-	outline: none;
-
-	padding: 10px 20px;
-	margin: 0 5px;
-
-	background-color: #2a9ca5;
-	color: white;
-
-	transition: background-color .15s;
-
-	box-sizing: border-box
-}
-
-#rom-patcher-container button:not(:disabled) {
-	cursor: pointer;
-}
-
-#rom-patcher-container button:disabled {
-	opacity: .35 !important;
-	cursor: not-allowed
-}
-
-#rom-patcher-container button:not(:disabled):hover {
-	background-color: #3aacb5;
-}
-
-#rom-patcher-container button:not(:disabled):active {
-	background-color: #297b81;
-	transform: translateY(1px)
-}
-
-
 
 /* loading spinner */
 @keyframes spin {
@@ -364,43 +75,331 @@ body {
 	margin-left: -3px;
 }
 
-#patch-builder-button-create .rom-patcher-spinner:before,
-#rom-patcher-button-apply .rom-patcher-spinner:before {
+/* PER INSTANCE STYLES */
+
+/* Replicate this set of container styling classes
+			from lines 88 thru 500
+	for each desired instance of the RomPatcher, &
+	change the ID's number suffix to match each instance;
+	optmization to allow for duplicated stylesheets
+	would be ideal, and is advised for next update.
+*/
+
+/*  BEGIN STYLING OF INSTANCE 1 */
+#rom-patcher-container-1 {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	line-height: 1.8;
+
+	background-color: #f9fafa;
+	padding: 30px 15px;
+	border-radius: 3px;
+	color: black;
+	max-width: 640px;
+	margin: 0 auto;
+}
+
+/* text classes */
+#rom-patcher-container-1 .text-mono {
+	font-size: 12px;
+}
+
+#rom-patcher-container-1 .text-muted {
+	color: #888;
+}
+
+#rom-patcher-container-1 .text-center {
+	text-align: center
+}
+
+#rom-patcher-container-1 .text-right {
+	text-align: right
+}
+
+#rom-patcher-container-1 .text-truncate {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis
+}
+
+#rom-patcher-container-1 .text-selectable {
+	-moz-user-select: text;
+	-webkit-user-select: text;
+	-ms-user-select: text;
+	-o-user-select: text;
+	user-select: text;
+	cursor: text;
+}
+
+/* layout rows */
+#rom-patcher-container-1 .rom-patcher-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between
+}
+
+#rom-patcher-container-1 .rom-patcher-row>div:first-child {
+	width: 25%
+}
+
+#rom-patcher-container-1 .rom-patcher-row>div:last-child {
+	width: 73%
+}
+
+#rom-patcher-container-1 .margin-bottom {
+	margin-bottom: 8px
+}
+
+#rom-patcher-container-1 #rom-patcher-row-info-rom-1,
+#rom-patcher-container-1 #rom-patcher-row-alter-header-1,
+#rom-patcher-container-1 #rom-patcher-row-patch-description-1,
+#rom-patcher-container-1 #rom-patcher-row-patch-requirements-1,
+#rom-patcher-container-1 #rom-patcher-row-error-message-1 {
+	display: none
+}
+
+#rom-patcher-container-1 #rom-patcher-row-info-rom-1.show,
+#rom-patcher-container-1 #rom-patcher-row-alter-header-1.show,
+#rom-patcher-container-1 #rom-patcher-row-patch-description-1.show,
+#rom-patcher-container-1 #rom-patcher-row-patch-requirements-1.show {
+	display: flex
+}
+
+#rom-patcher-container-1 #rom-patcher-row-error-message-1.show {
+	display: block
+}
+
+#rom-patcher-patch-description-1 {
+	font-size: 85%;
+}
+
+#rom-patcher-row-apply-1 {
+	margin-top: 12px;
+}
+
+#rom-patcher-span-crc32-1 span.clickable {
+	text-decoration: underline
+}
+
+#rom-patcher-span-crc32-1 span.clickable:hover {
+	cursor: pointer;
+	color: black
+}
+
+#rom-patcher-error-message-1 {
+	color: #ff0030;
+	padding-left: 20px;
+	background-image: url(assets/icon_x_circle_red.svg);
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+#rom-patcher-error-message-1.warning {
+	color: #ff7800;
+	background-image: url(assets/icon_alert_orange.svg);
+}
+
+/* Form elements */
+#rom-patcher-container-1 input[type=file],
+#rom-patcher-container-1 input[type=checkbox],
+#rom-patcher-container-1 select {
+	box-sizing: border-box;
+	max-width: 100%;
+	font-family: inherit;
+	font-size: 100%;
+	outline: none;
+	border: none;
+	border-radius: 3px;
+	background-color: #edefef;
+}
+
+#rom-patcher-container-1 input[type=file]:focus:not(:disabled),
+#rom-patcher-container-1 select:focus:not(:disabled),
+#rom-patcher-container-1 input[type=checkbox]:focus:not(:disabled) {
+	box-shadow: #a8fff3 0 0 0 2px;
+}
+
+#rom-patcher-container-1 input[type=file] {
+	width: 100%;
+	padding: 6px 10px
+}
+
+#rom-patcher-container-1 input[type=file].no-file-selector-button::file-selector-button {
+	display: none
+}
+
+#rom-patcher-container-1 select {
+	width: 100%;
+	padding: 6px 18px 6px 10px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	text-overflow: '';
+
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+");
+	background-position: 100% center;
+	background-repeat: no-repeat;
+}
+
+#rom-patcher-container-1 select::-ms-expand {
+	display: none
+}
+
+#rom-patcher-container-1 input[type=file]:hover:not(:disabled),
+#rom-patcher-container-1 select:hover:not(:disabled) {
+	cursor: pointer;
+	background-color: #dee1e1
+}
+
+#rom-patcher-container-1 input[type=file]:disabled,
+#rom-patcher-container-1 select:disabled {
+	color: #888
+}
+
+#rom-patcher-container-1 input[type=file].empty,
+#rom-patcher-container-1 input[type=file]:not(:disabled):not(.empty):hover {
+	padding-left: 32px;
+	background-repeat: no-repeat;
+	background-position: 8px center;
+	background-size: 16px;
+	background-image: url(assets/icon_upload.svg);
+}
+
+#rom-patcher-container-1 input[type=file].valid {
+	background-color: #d6ffc8;
+	padding-right: 28px;
+	background-repeat: no-repeat;
+	background-position: right 12px center;
+	background-size: 16px;
+	background-image: url(assets/icon_check_circle_green.svg);
+}
+
+#rom-patcher-container-1 input[type=file].valid:not(:disabled):not(.empty):hover {
+	background-color: #adf795;
+	background-position: 8px center, right 12px center;
+	background-size: 16px, 16px;
+	background-image: url(assets/icon_upload.svg), url(assets/icon_check_circle_green.svg);
+}
+
+#rom-patcher-container-1 input[type=file].invalid {
+	background-color: #ffc8c8;
+	padding-right: 28px;
+	background-repeat: no-repeat;
+	background-position: right 12px center;
+	background-size: 16px;
+	background-image: url(assets/icon_x_circle_red.svg);
+}
+
+#rom-patcher-container-1 input[type=file].invalid:not(:disabled):not(.empty):hover {
+	background-color: #ffa3a3;
+	background-position: 8px center, right 12px center;
+	background-size: 16px, 16px;
+	background-image: url(assets/icon_upload.svg), url(assets/icon_x_circle_red.svg);
+}
+
+#rom-patcher-container-1 input[type=file].icon-upload {
+	padding-left: 32px;
+	background-image: url(assets/app_icon_16.png);
+	background-repeat: no-repeat;
+	background-position: 8px center;
+}
+
+#rom-patcher-container-1 input[type=checkbox] {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	background-color: transparent;
+	border-radius: 3px;
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	border: 2px solid #2a9ca5;
+
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMuMiIgZmlsbD0ibm9uZSIgZD0iTSAxLjE5LDcuMTAgNi4wNywxMi4wNiAxNC44OCwzLjMyIi8+PC9zdmc+');
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 0px;
+	transition: background-color .2s, background-size .2s;
+}
+
+#rom-patcher-container-1 input[type=checkbox]:hover:not(:disabled) {
+	cursor: pointer;
+	border-color: #3aacb5;
+}
+
+#rom-patcher-container-1 input[type=checkbox]:hover:checked:not(:disabled) {
+	background-color: #3aacb5;
+}
+
+#rom-patcher-container-1 input[type=checkbox]:checked {
+	background-color: #2a9ca5;
+	background-size: 12px;
+}
+
+/* buttons */
+#rom-patcher-container-1 button {
+	font-family: inherit;
+	font-size: 100%;
+	min-width: 120px;
+	border-radius: 3px;
+	border: 0;
+	outline: none;
+	padding: 10px 20px;
+	margin: 0 5px;
+	background-color: #2a9ca5;
+	color: white;
+	transition: background-color .15s;
+	box-sizing: border-box
+}
+
+#rom-patcher-container-1 button:not(:disabled) {
+	cursor: pointer;
+}
+
+#rom-patcher-container-1 button:disabled {
+	opacity: .35 !important;
+	cursor: not-allowed
+}
+
+#rom-patcher-container-1 button:not(:disabled):hover {
+	background-color: #3aacb5;
+}
+
+#rom-patcher-container-1 button:not(:disabled):active {
+	background-color: #297b81;
+	transform: translateY(1px)
+}
+
+#patch-builder-button-create-1 .rom-patcher-spinner:before,
+#rom-patcher-button-apply-1 .rom-patcher-spinner:before {
 	background-color: #fff;
 }
 
-
-
-#rom-patcher-container  #rom-patcher-select-patch{
+#rom-patcher-container-1  #rom-patcher-select-patch-1{
 	display:none
 }
-#rom-patcher-container  #rom-patcher-select-patch.single{
+#rom-patcher-container-1  #rom-patcher-select-patch-1.single{
 	background-image: none;
 	background-color: transparent;
 	color: inherit !important;
 	padding-left: 0;
 }
 
-
-
-
-
-
-
-
-
-
-#rom-patcher-container .rom-patcher-container-input {
+#rom-patcher-container-1 .rom-patcher-container-1-input {
 	position: relative
 }
 
-#rom-patcher-container .rom-patcher-container-input input.loading,
-#rom-patcher-container .rom-patcher-container-input select.loading {
+#rom-patcher-container-1 .rom-patcher-container-1-input input.loading,
+#rom-patcher-container-1 .rom-patcher-container-1-input select.loading {
 	padding-left: 32px;
 }
 
-#rom-patcher-container .rom-patcher-container-input input.loading+.rom-patcher-spinner,
-#rom-patcher-container .rom-patcher-container-input select.loading+.rom-patcher-spinner {
+#rom-patcher-container-1 .rom-patcher-container-1-input input.loading+.rom-patcher-spinner,
+#rom-patcher-container-1 .rom-patcher-container-1-input select.loading+.rom-patcher-spinner {
 	position: absolute;
 	top: 50%;
 	margin-top: -10px;
@@ -408,15 +407,15 @@ body {
 }
 
 /* ZIP dialog */
-#rom-patcher-dialog-zip::backdrop,
-#rom-patcher-dialog-zip-backdrop {
+#rom-patcher-dialog-zip-1::backdrop,
+#rom-patcher-dialog-zip-backdrop-1 {
 	background-color: rgba(0, 0, 0, .75);
 	backdrop-filter: blur(3px);
 /*
 	transition: overlay 0.35s allow-discrete, display 0.35s allow-discrete, opacity 0.35s;
 	opacity: 0;
 }
-#rom-patcher-dialog-zip[open]::backdrop {
+#rom-patcher-dialog-zip-1[open]::backdrop {
 	opacity: 1;
 
 	@starting-style {
@@ -424,13 +423,13 @@ body {
 	}
 */
 }
-#rom-patcher-dialog-zip-backdrop {
+#rom-patcher-dialog-zip-backdrop-1 {
 	/* fallback for browsers not compatible with <dialog> */
 	justify-content: center;
 	align-items: center;
 }
 
-#rom-patcher-dialog-zip {
+#rom-patcher-dialog-zip-1 {
 	min-width: 420px;
 	vertical-align: middle;
 	margin: auto;
@@ -454,11 +453,11 @@ body {
 */
 }
 
-#rom-patcher-dialog-zip-message {
+#rom-patcher-dialog-zip-message-1 {
 	text-align: center
 }
 
-#rom-patcher-dialog-zip-file-list {
+#rom-patcher-dialog-zip-file-list-1 {
 	list-style: none;
 	padding: 0;
 	margin: 0;
@@ -466,7 +465,7 @@ body {
 	overflow-y: auto;
 }
 
-#rom-patcher-dialog-zip-file-list li {
+#rom-patcher-dialog-zip-file-list-1 li {
 	color: #3c3c3c;
 	padding: 4px 8px;
 	white-space: nowrap;
@@ -474,60 +473,438 @@ body {
 	text-overflow: ellipsis
 }
 
-#rom-patcher-dialog-zip-file-list li:hover {
+#rom-patcher-dialog-zip-file-list-1 li:hover {
 	background-color: #eee;
 	cursor: pointer;
 	color: black;
 	border-radius: 3px;
 }
 
-
-
-
-
 /* responsive */
 @media only screen and (max-width:641px) {
-	#rom-patcher-container {
+	#rom-patcher-container-1 {
 		font-size: 14px
 	}
 
-	#rom-patcher-rom-info {
+	#rom-patcher-rom-info-1 {
 		font-size: 11px
 	}
 
-	#rom-patcher-dialog-zip {
+	#rom-patcher-dialog-zip-1 {
 		min-width: auto;
 	}
 }
 
+/* END INSTANCE #1 */
 
+/*  BEGIN STYLING OF INSTANCE 2 */
+#rom-patcher-container-2 {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	line-height: 1.8;
 
-
-
-
-
-
-#rom-patcher-powered {
-	margin-top: 16px;
-	font-size: 11px;
-	text-align: center;
+	background-color: #f9fafa;
+	padding: 30px 15px;
+	border-radius: 3px;
+	color: black;
+	max-width: 640px;
+	margin: 0 auto;
 }
 
-#rom-patcher-powered a {
-	color: #cce;
-	padding: 4px 8px;
-	text-decoration: none;
-	opacity: .25;
+/* text classes */
+#rom-patcher-container-2 .text-mono {
+	font-size: 12px;
 }
 
-#rom-patcher-powered a>img {
+#rom-patcher-container-2 .text-muted {
+	color: #888;
+}
+
+#rom-patcher-container-2 .text-center {
+	text-align: center
+}
+
+#rom-patcher-container-2 .text-right {
+	text-align: right
+}
+
+#rom-patcher-container-2 .text-truncate {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis
+}
+
+#rom-patcher-container-2 .text-selectable {
+	-moz-user-select: text;
+	-webkit-user-select: text;
+	-ms-user-select: text;
+	-o-user-select: text;
+	user-select: text;
+	cursor: text;
+}
+
+/* layout rows */
+#rom-patcher-container-2 .rom-patcher-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between
+}
+
+#rom-patcher-container-2 .rom-patcher-row>div:first-child {
+	width: 25%
+}
+
+#rom-patcher-container-2 .rom-patcher-row>div:last-child {
+	width: 73%
+}
+
+#rom-patcher-container-2 .margin-bottom {
+	margin-bottom: 8px
+}
+
+#rom-patcher-container-2 #rom-patcher-row-info-rom-2,
+#rom-patcher-container-2 #rom-patcher-row-alter-header-2,
+#rom-patcher-container-2 #rom-patcher-row-patch-description-2,
+#rom-patcher-container-2 #rom-patcher-row-patch-requirements-2,
+#rom-patcher-container-2 #rom-patcher-row-error-message-2 {
+	display: none
+}
+
+#rom-patcher-container-2 #rom-patcher-row-info-rom-2.show,
+#rom-patcher-container-2 #rom-patcher-row-alter-header-2.show,
+#rom-patcher-container-2 #rom-patcher-row-patch-description-2.show,
+#rom-patcher-container-2 #rom-patcher-row-patch-requirements-2.show {
+	display: flex
+}
+
+#rom-patcher-container-2 #rom-patcher-row-error-message-2.show {
+	display: block
+}
+
+#rom-patcher-patch-description-2 {
+	font-size: 85%;
+}
+
+#rom-patcher-row-apply-2 {
+	margin-top: 12px;
+}
+
+#rom-patcher-span-crc32-2 span.clickable {
+	text-decoration: underline
+}
+
+#rom-patcher-span-crc32-2 span.clickable:hover {
+	cursor: pointer;
+	color: black
+}
+
+#rom-patcher-error-message-2 {
+	color: #ff0030;
+	padding-left: 20px;
+	background-image: url(assets/icon_x_circle_red.svg);
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+#rom-patcher-error-message-2.warning {
+	color: #ff7800;
+	background-image: url(assets/icon_alert_orange.svg);
+}
+
+/* Form elements */
+#rom-patcher-container-2 input[type=file],
+#rom-patcher-container-2 input[type=checkbox],
+#rom-patcher-container-2 select {
+	box-sizing: border-box;
+	max-width: 100%;
+	font-family: inherit;
+	font-size: 100%;
+	outline: none;
+	border: none;
+	border-radius: 3px;
+	background-color: #edefef;
+}
+
+#rom-patcher-container-2 input[type=file]:focus:not(:disabled),
+#rom-patcher-container-2 select:focus:not(:disabled),
+#rom-patcher-container-2 input[type=checkbox]:focus:not(:disabled) {
+	box-shadow: #a8fff3 0 0 0 2px;
+}
+
+#rom-patcher-container-2 input[type=file] {
+	width: 100%;
+	padding: 6px 10px
+}
+
+#rom-patcher-container-2 input[type=file].no-file-selector-button::file-selector-button {
+	display: none
+}
+
+#rom-patcher-container-2 select {
+	width: 100%;
+	padding: 6px 18px 6px 10px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	text-overflow: '';
+
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+");
+	background-position: 100% center;
+	background-repeat: no-repeat;
+}
+
+#rom-patcher-container-2 select::-ms-expand {
+	display: none
+}
+
+#rom-patcher-container-2 input[type=file]:hover:not(:disabled),
+#rom-patcher-container-2 select:hover:not(:disabled) {
+	cursor: pointer;
+	background-color: #dee1e1
+}
+
+#rom-patcher-container-2 input[type=file]:disabled,
+#rom-patcher-container-2 select:disabled {
+	color: #888
+}
+
+#rom-patcher-container-2 input[type=file].empty,
+#rom-patcher-container-2 input[type=file]:not(:disabled):not(.empty):hover {
+	padding-left: 32px;
+	background-repeat: no-repeat;
+	background-position: 8px center;
+	background-size: 16px;
+	background-image: url(assets/icon_upload.svg);
+}
+
+#rom-patcher-container-2 input[type=file].valid {
+	background-color: #d6ffc8;
+	padding-right: 28px;
+	background-repeat: no-repeat;
+	background-position: right 12px center;
+	background-size: 16px;
+	background-image: url(assets/icon_check_circle_green.svg);
+}
+
+#rom-patcher-container-2 input[type=file].valid:not(:disabled):not(.empty):hover {
+	background-color: #adf795;
+	background-position: 8px center, right 12px center;
+	background-size: 16px, 16px;
+	background-image: url(assets/icon_upload.svg), url(assets/icon_check_circle_green.svg);
+}
+
+#rom-patcher-container-2 input[type=file].invalid {
+	background-color: #ffc8c8;
+	padding-right: 28px;
+	background-repeat: no-repeat;
+	background-position: right 12px center;
+	background-size: 16px;
+	background-image: url(assets/icon_x_circle_red.svg);
+}
+
+#rom-patcher-container-2 input[type=file].invalid:not(:disabled):not(.empty):hover {
+	background-color: #ffa3a3;
+	background-position: 8px center, right 12px center;
+	background-size: 16px, 16px;
+	background-image: url(assets/icon_upload.svg), url(assets/icon_x_circle_red.svg);
+}
+
+#rom-patcher-container-2 input[type=file].icon-upload {
+	padding-left: 32px;
+	background-image: url(assets/app_icon_16.png);
+	background-repeat: no-repeat;
+	background-position: 8px center;
+}
+
+#rom-patcher-container-2 input[type=checkbox] {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	background-color: transparent;
+	border-radius: 3px;
 	display: inline-block;
-	height: 16px;
 	vertical-align: middle;
-	margin-right: 4px;
+	position: relative;
+	border: 2px solid #2a9ca5;
+
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMuMiIgZmlsbD0ibm9uZSIgZD0iTSAxLjE5LDcuMTAgNi4wNywxMi4wNiAxNC44OCwzLjMyIi8+PC9zdmc+');
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 0px;
+	transition: background-color .2s, background-size .2s;
 }
 
-#rom-patcher-powered a:hover {
-	text-decoration: underline;
-	opacity: 1;
+#rom-patcher-container-2 input[type=checkbox]:hover:not(:disabled) {
+	cursor: pointer;
+	border-color: #3aacb5;
 }
+
+#rom-patcher-container-2 input[type=checkbox]:hover:checked:not(:disabled) {
+	background-color: #3aacb5;
+}
+
+#rom-patcher-container-2 input[type=checkbox]:checked {
+	background-color: #2a9ca5;
+	background-size: 12px;
+}
+
+/* buttons */
+#rom-patcher-container-2 button {
+	font-family: inherit;
+	font-size: 100%;
+	min-width: 120px;
+	border-radius: 3px;
+	border: 0;
+	outline: none;
+	padding: 10px 20px;
+	margin: 0 5px;
+	background-color: #2a9ca5;
+	color: white;
+	transition: background-color .15s;
+	box-sizing: border-box
+}
+
+#rom-patcher-container-2 button:not(:disabled) {
+	cursor: pointer;
+}
+
+#rom-patcher-container-2 button:disabled {
+	opacity: .35 !important;
+	cursor: not-allowed
+}
+
+#rom-patcher-container-2 button:not(:disabled):hover {
+	background-color: #3aacb5;
+}
+
+#rom-patcher-container-2 button:not(:disabled):active {
+	background-color: #297b81;
+	transform: translateY(1px)
+}
+
+#patch-builder-button-create-2 .rom-patcher-spinner:before,
+#rom-patcher-button-apply-2 .rom-patcher-spinner:before {
+	background-color: #fff;
+}
+
+#rom-patcher-container-2  #rom-patcher-select-patch-2{
+	display:none
+}
+#rom-patcher-container-2  #rom-patcher-select-patch-2.single{
+	background-image: none;
+	background-color: transparent;
+	color: inherit !important;
+	padding-left: 0;
+}
+
+#rom-patcher-container-2 .rom-patcher-container-2-input {
+	position: relative
+}
+
+#rom-patcher-container-2 .rom-patcher-container-2-input input.loading,
+#rom-patcher-container-2 .rom-patcher-container-2-input select.loading {
+	padding-left: 32px;
+}
+
+#rom-patcher-container-2 .rom-patcher-container-2-input input.loading+.rom-patcher-spinner,
+#rom-patcher-container-2 .rom-patcher-container-2-input select.loading+.rom-patcher-spinner {
+	position: absolute;
+	top: 50%;
+	margin-top: -10px;
+	left: 8px;
+}
+
+/* ZIP dialog */
+#rom-patcher-dialog-zip-2::backdrop,
+#rom-patcher-dialog-zip-backdrop-2 {
+	background-color: rgba(0, 0, 0, .75);
+	backdrop-filter: blur(3px);
+/*
+	transition: overlay 0.35s allow-discrete, display 0.35s allow-discrete, opacity 0.35s;
+	opacity: 0;
+}
+#rom-patcher-dialog-zip-2[open]::backdrop {
+	opacity: 1;
+
+	@starting-style {
+		opacity: 0;
+	}
+*/
+}
+#rom-patcher-dialog-zip-backdrop-2 {
+	/* fallback for browsers not compatible with <dialog> */
+	justify-content: center;
+	align-items: center;
+}
+
+#rom-patcher-dialog-zip-2 {
+	min-width: 420px;
+	vertical-align: middle;
+	margin: auto;
+	background-color: white;
+	color: #999;
+	box-sizing: border-box;
+	box-shadow: rgba(0, 0, 0, .7) 0 0 24px;
+	padding: 20px;
+	border-radius: 3px;
+	border: none;
+/*
+	transition: overlay 0.35s allow-discrete, display 0.35s allow-discrete, opacity 0.35s;
+	opacity: 0;
+}
+#rom-patcher-dialog-zip[open] {
+	opacity: 1;
+
+	@starting-style {
+		opacity: 0;
+	}
+*/
+}
+
+#rom-patcher-dialog-zip-message-2 {
+	text-align: center
+}
+
+#rom-patcher-dialog-zip-file-list-2 {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	max-height: 300px;
+	overflow-y: auto;
+}
+
+#rom-patcher-dialog-zip-file-list-2 li {
+	color: #3c3c3c;
+	padding: 4px 8px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis
+}
+
+#rom-patcher-dialog-zip-file-list-2 li:hover {
+	background-color: #eee;
+	cursor: pointer;
+	color: black;
+	border-radius: 3px;
+}
+
+/* responsive */
+@media only screen and (max-width:641px) {
+	#rom-patcher-container-2 {
+		font-size: 14px
+	}
+
+	#rom-patcher-rom-info-2 {
+		font-size: 11px
+	}
+
+	#rom-patcher-dialog-zip-2 {
+		min-width: auto;
+	}
+}
+
+/* END INSTANCE #2 */

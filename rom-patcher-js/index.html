@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html translate="no">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
+  <title>Final Fantasy 4 Ultima Plus Patcher</title>
+  <meta http-equiv="content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  
+  <!-- Rom Patcher JS needed CSS/JS files -->
+  <link type="text/css" rel="stylesheet" href="./rom-patcher-js/style.css" media="all" />
+  <script type="text/javascript" src="./rom-patcher-js/RomPatcher.webapp.js"></script>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function() {
+      // Checksum constants for various ROM versions
+      const FFII_CHECKSUM_V10 = 0x65D0A825;
+      const FFII_CHECKSUM_V11 = 0x23084FCD;
+      const FFIV_CHECKSUM_ET = 0x6CDA700C;
+      const FFIV_CHECKSUM_REV11 = 0xCAA15E97;
+      const FF4ULTIMAPLUS_CHECKSUM = 0xF60BB7F7;
+
+      // Helper function to initialize RomPatcherWeb
+      function initializePatcher(patcherConfig, zipFile, patches) {
+        try {
+          RomPatcherWeb.initialize({
+            language: 'en',
+            requireValidation: patcherConfig.requireValidation,
+            onloadrom: function(romFile) {
+              const SMC_HEADER_SIZE = 512;
+              if (romFile.getExtension() === 'smc' && ((romFile.fileSize - SMC_HEADER_SIZE) % 0x20000) === 0) {
+                romFile.removeLeadingBytes(SMC_HEADER_SIZE);
+                romFile.setExtension('sfc');
+                console.log('removed SMC header');
+              }
+              const crc32 = romFile.hashCRC32();
+              // Selects the embedded patch based on the uploaded ROM's CRC32
+              if (crc32 === FFII_CHECKSUM_V10) RomPatcherWeb.pickEmbededFile('ff2 v1.0.ips');
+              else if (crc32 === FFII_CHECKSUM_V11) RomPatcherWeb.pickEmbededFile('ff2 v1.1.ips');
+              else if (crc32 === FFIV_CHECKSUM_ET) RomPatcherWeb.pickEmbededFile('ffiv easy.ips');
+              else if (crc32 === FFIV_CHECKSUM_REV11) RomPatcherWeb.pickEmbededFile('ffiv rev1.1.ips');
+            },
+            onvalidaterom: function(romFile, isRomValid) {
+              const crc32 = romFile.hashCRC32();
+              if (!isRomValid && [FF2_CHECKSUM_INVALID].includes(crc32)) {
+                RomPatcherWeb.setErrorMessage('Please provide a v1.0 or v1.1 English language FF2 rom file.');
+              }
+            }
+          }, {
+            file: zipFile, // ZIP file path
+            patches: patches
+          });
+        } catch (err) {
+          var message = err.message;
+          if (/incompatible browser/i.test(message) || /variable RomPatcherWeb/i.test(message))
+            message = 'Your browser is outdated and it is not compatible with this app.';
+
+          document.getElementById('rom-patcher-container').innerHTML = message;
+          document.getElementById('rom-patcher-container').style.color = 'red';
+        }
+      }
+
+    //   // Initialize the first patcher instance (FF4 Ultima Plus)
+    //   initializePatcher(
+    //     {
+    //       onloadpatch: function(patchFile, embededPatchInformation) {
+    //         // updateImageDisplay(patchFile.getName());
+    //       }
+    //     },
+    //     'FF4UP.zip',
+    const patches1 = [
+        {
+            file: 'ff2 v1.0.ips',
+            name: 'FF4 Ultima Plus (for FFII v1.0)',
+            description: 'updates to battle formation, game script; adds more icons & Reduced Mode',
+            outputName: 'FF4Ultima Plus'
+        },{
+			file: 'ff2 v1.1.ips',
+			name: 'FF4 Ultima Plus (for FFII v1.1)',
+			description: 'updates to battle formation, game script; adds more icons & Reduced Mode',
+			outputName: 'FF4Ultima Plus'
+		},{
+			file: 'ffiv easy.ips',
+			name: 'FF4 Ultima Plus (for FFIV EasyType)',
+			description: 'updates to battle formation, game script; adds more icons & Reduced Mode',
+			outputName: 'FF4Ultima Plus'
+		},{
+			file: 'ffiv rev1.1.ips',
+			name: 'FF4 Ultima Plus (for FFIV Rev1.1)',
+			description: 'updates to battle formation, game script; adds more icons & Reduced Mode',
+			outputName: 'FF4Ultima Plus'
+		}
+    ];
+      
+
+    //   // Initialize the second patcher instance (FF4UP Style-Packs)
+    //   initializePatcher(
+    //     {
+    //       onloadpatch: function(patchFile, embededPatchInformation) {
+    //         updateImageDisplay(patchFile.getName());
+    //       }
+    //     },
+    //     'FF4UP-Styles.zip',
+	const patches2 = [
+        {
+            file: '1-Luna.ips',
+            name: 'FF4 Ultima Plus Luna Style',
+            description: 'Makes portraits match battle sprites. Makes map sprites T-Edition style. Classic battle sprites.',
+            outputName: 'FF4Ultima Plus Luna',
+        },{
+			file: '2-Mercury.ips',
+			name: 'FF4 Ultima Plus Mercury Style',
+			description: 'Makes battle sprites match portraits, changes some portraits. FF1 font.',
+			outputName: 'FF4Ultima Plus Mercury', //patched ROM name
+		},{
+			file: '3-Venus.ips',
+			name: 'FF4 Ultima Plus Venus Style',
+			description: 'Makes battle sprites match portraits, map sprites PR style, changes some portraits. FF1 font.',
+			outputName: 'FF4Ultima Plus Venus', //patched ROM name
+		},{
+			file: '4-Mars.ips',
+			name: 'FF4 Ultima Plus Mars Style',
+			description: 'Makes battle sprites alt Pixel Remaster style, map sprites various styles, changes portraits. Enhanced enemy graphics. Ultima IV Font.',
+			outputName: 'FF4Ultima Plus Mars', //patched ROM name
+		},{
+			file: '5-Ceres.ips',
+			name: 'FF4 Ultima Plus Ceres Style',
+			description: 'Makes battle sprites DS colors Pixel Remaster style, map sprites PR style, changes some portraits. Clean Font.',
+			outputName: 'FF4Ultima Plus Ceres', //patched ROM name
+		},{
+			file: '6-Jupiter.ips',
+			name: 'FF4 Ultima Plus Jupiter Style',
+			description: 'Makes battle sprites Record Keeper style, changes portraits. Enhanced enemy graphics. Monocraft Font.',
+			outputName: 'FF4Ultima Plus Jupiter', //patched ROM name
+		},{
+			file: '7-Saturn.ips',
+			name: 'FF4 Ultima Plus Saturn Style',
+			description: 'Makes battle sprites alt Record Keeper styles, map sprites T-Edition style, changes portraits. Enhanced enemy graphics. FF VI font.',
+			outputName: 'FF4Ultima Plus Saturn', //patched ROM name
+		},{
+			file: '8-Uranus.ips',
+			name: 'FF4 Ultima Plus Uranus Style',
+			description: 'Makes characters Stick Figure style (April Fools!). Stick Font.',
+			outputName: 'FF4Ultima Plus Uranus', //patched ROM name
+		},{
+			file: '9-Neptune.ips',
+			name: 'FF4 Ultima Plus Neptune Style',
+			description: 'Makes battle sprites alt Record Keeper styles, purple map sprites various styles, changes some portraits. Enhanced enemy graphics. Clean Font.',
+			outputName: 'FF4Ultima Plus Neptune', //patched ROM name
+		},{
+			file: 'X-Pluto.ips',
+			name: 'FF4 Ultima Plus Pluto Style',
+			description: 'Makes battle sprites alt Record Keeper style, purple map sprites, changes some portraits. Stick Font.',
+			outputName: 'FF4Ultima Plus Pluto', //patched ROM name
+		}
+    ];
+	// Initialize each patcher instance with unique configurations
+	initializePatcher({
+        requireValidation: true
+    }, 'FF4UP.zip', patches1);
+
+    initializePatcher({
+        requireValidation: true
+    }, 'FF4UP-Styles.zip', patches2);
+	
+	// Function to update the displayed image based on patch name
+	function updateImageDisplay(patchName) {
+		const images = ['Luna', 'Mercury', 'Venus', 'Mars', 'Ceres', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
+		images.forEach(image => {
+			document.getElementById(`p-${image}`).style.display = (patchName === `${image}`) ? 'block' : 'none';
+		});
+	}
+
+    });
+  </script>
+
+</head>
+
+<body style="font: 15px 'Quattrocento Sans', sans-serif; text-align: center;">
+  <h1 style="font-family: Quattrocento;">FF4 Ultima Plus Rom Patcher</h1>
+  <header style="display: flex; text-align: center; justify-content: center;">
+    	<!-- begin left column -->
+		<div style="text-align: center; margin-right: 5vw;">		
+			<p>
+				Please upload a copy of <em>'Final Fantasy II (USA)'</em> or <em>FF IV(J)</em><br />
+				This app can patch it into <span style="color:gold;">Final Fantasy IV Ultima Plus</span> v2024<br />
+				This tool & patches current as of 13 Dec 2024
+			</p>
+		</div>
+		<!-- end left; begin right column -->
+		<div style="text-align: center; margin-right: 5vw;">
+			<h3>
+				If you want custom graphics & fonts<br/>
+				apply patches from the below<br/>
+				<h2 style="color:yellowgreen;">
+						Ultima Plus Style Patcher
+					</a>
+				</h2>
+			</h3>
+		</div>
+  </header>
+  <!-- message below the 2-column layout -->
+	<h3>The rom (checksums) that work at this time are
+		<span style="color:gold;">23084fcd</span>, <span style="color:gold;">65d0a825</span>
+		 and <span style="color:aqua;">6cda700c</span>, <span style="color:aqua;">caa15e97</span>
+	</h3>
+	
+	<div id="rom-patcher-container-1">
+		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-rom">
+			<div class="text-right">
+				<label for="rom-patcher-input-file-rom" data-localize="yes">
+					ROM file:
+				</label>
+			</div>
+			<div id="rom-patcher-container-input-1">
+				<input type="file" id="rom-patcher-input-file-rom-1" class="empty" disabled />
+			</div>
+		</div>
+		<div class="margin-bottom text-selectable text-mono text-muted" id="rom-patcher-rom-info-1">
+			<div class="rom-patcher-row">
+				<div class="text-right">
+					<h3 class="">
+						CRC32:
+					</h3>
+				</div>
+				<div class="text-truncate">
+					<h2 class="">	
+						<code id="rom-patcher-span-crc32-1"></code>
+					</h2>
+				</div>
+			</div>
+			<div class="rom-patcher-row" id="rom-patcher-row-info-rom-1">
+				<div class="text-right">
+					ROM:
+				</div>
+				<div class="text-truncate"><span id="rom-patcher-span-rom-info-1"></span></div>
+			</div>
+		</div>
+
+		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-patch-1">
+			<div class="text-right">
+				<label for="rom-patcher-input-file-patch" data-localize="yes">
+					Patch file:
+				</label>
+			</div>
+			<div id="rom-patcher-container-input-1">
+				<select id="rom-patcher-select-patch-1"></select>
+			</div>
+		</div>
+		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-patch-description-1">
+			<div class="text-right text-mono text-muted" data-localize="yes">
+				Description:
+			</div>
+			<div class="" id="rom-patcher-patch-description"></div>
+		</div>
+		<div class="text-center" id="rom-patcher-row-apply-1">
+			<div id="rom-patcher-row-error-message-1" class="margin-bottom"><span id="rom-patcher-error-message-1"></span>
+			</div>
+			<button id="rom-patcher-button-apply" data-localize="yes" disabled>Get Ultima Plus</button>
+		</div>
+	</div>
+
+	<h1 style="font-family: Quattrocento;">FF4 Ultima Plus Style Patcher</h1>
+	<div style="display: flex; text-align: center; justify-content: center;">
+		<div style="text-align: center; margin-right: 5vw;">
+			<p>
+				Please upload a copy of 'Final Fantasy 4 Ultima Plus.<br />
+				This app provides alternate graphics and font styles:<br />
+				<span style="color:gold;">Choose from one of 10 after uploading</span>.
+			</p>
+			<h3>The CRC32 (checksum) expcted is <code style="color:gold;">f60bb7f7</code></h3>
+
+			<!-- end left column -->
+		</div>
+		<!-- split point for 2-column layout -->
+
+		<!-- right column: 1/2 patch UI & preview images -->
+		<div style="text-align: center; margin-left: 5vw;">
+			<h3 style="color:gold;">
+				If you need a copy of<br/>
+				FF4 Ultima Plus,<br/>
+				use the rom patcher above
+			</h3>
+		</div>
+
+	</div>
+	<!-- begin patcher container -->
+	<div id="rom-patcher-container-2" style="min-width: 90vw;">
+		<!-- begin 2-column layout -->
+		<div style="display: flex;">
+			<!-- left column: 1/2 patch UI & title screen -->
+			<div style="justify-content: center; align-items: bottom; width: 45vw; max-width: 45vw;">
+
+				<div class="rom-patcher-row margin-bottom">
+					<div class="text-right">
+						<label for="rom-patcher-input-file-rom-2" data-localize="yes">
+							ROM file:
+						</label>
+					</div>
+					<div class="rom-patcher-container-2-input">
+						<input type="file" id="rom-patcher-input-file-rom-2" class="empty"  />
+					</div>
+				</div>
+				<div class="margin-bottom text-selectable text-mono text-muted" id="rom-patcher-rom-info-2">
+					<div class="rom-patcher-row">
+						<div class="text-right">
+							<h3 class="">
+								CRC32:
+							</h3>
+						</div>
+						<div class="text-truncate">
+							<h2 class="">	
+								<code id="rom-patcher-span-crc32-2"></code>
+							</h2>
+						</div>
+					</div>
+				</div>
+				<div>
+					<img style="width: 100%; max-width: 45vw;" src="Title.png" id="preview-Title" />
+				</div>
+			<!-- end left column -->
+			</div>
+			
+			<!-- split point for 2-column layout -->
+
+			<!-- right column: 1/2 patch UI & preview images -->
+			<div class="display: flex; justify-content: center; align-items: bottom; width: 45vw; max-width: 45vw;">
+				
+				<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-patch-2">
+					<div class="text-right">
+						<label for="rom-patcher-input-file-patch" data-localize="yes">
+							Patch file:
+						</label>
+					</div>
+					<div class="rom-patcher-container-input-2">
+						<select id="rom-patcher-select-patch-2"></select>
+					</div>
+				</div>
+	
+				<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-patch-description-2">
+					<div class="text-right" data-localize="yes">
+						Changes:
+					</div>
+					<div style="padding-left: 10px; width: 35vw; max-width: 35vw;" id="rom-patcher-patch-description-2"></div>
+				</div>
+
+				<div style="display: flex; justify-content: center; align-items: middle; padding-left: 10px;">
+					<!-- preview images, have new function to render -->
+				</div>
+			<!-- end right column -->
+			</div>
+
+		<!-- end 2-columns -->
+		</div> 
+
+		<div class="text-center" id="rom-patcher-row-apply-2">
+			<div id="rom-patcher-row-error-message-2" class="margin-bottom"><span id="rom-patcher-error-message-2"></span>
+			</div>
+			<button id="rom-patcher-button-apply-2" data-localize="yes" disabled>Apply patch</button>
+		</div>
+	</div>
+
+	<!-- battle sprites preview image -->
+	<div style="display: flex; justify-content: center;" >
+		<img src="battle-sprite-styles.png" style="width:95vw;" />
+	</div>
+
+
+	<div id="rom-patcher-powered" class="text-center">
+		<a href="https://github.com/marcrobledo/RomPatcher.js" target="_blank">
+			<img src="./rom-patcher-js/assets/powered_by_rom_patcher_js.png" loading="lazy" />
+			Powered by Rom Patcher JS
+		</a>
+		<div id="sfclh97eddmwgqxfk5uzfj8ayhb133pbdxn">
+			<script type="text/javascript" src="https://counter6.optistats.ovh/private/counter.js?c=lh97eddmwgqxfk5uzfj8ayhb133pbdxn&down=async" async></script>
+			<noscript>
+				<a href="https://www.freecounterstat.com" title="website counter code">
+					<img src="https://counter6.optistats.ovh/private/freecounterstat.php?c=lh97eddmwgqxfk5uzfj8ayhb133pbdxn" border="0" title="website counter code" alt="website counter code">
+				</a>
+			</noscript>
+		</div>
+	</div>
+
+
+</body>
+
+</html>
