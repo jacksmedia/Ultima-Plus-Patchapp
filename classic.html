@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html translate="no">
+
+<head>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
+	
+	<title>Final Fantasy 4 Ultima Classic Patcher</title>
+	<meta http-equiv="content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+	<!-- Rom Patcher JS needed CSS/JS files -->
+	<link type="text/css" rel="stylesheet" href="./rom-patcher-js/style.css" media="all" />
+	<script type="text/javascript" src="./rom-patcher-js/RomPatcher.webapp.js"></script>
+
+	<!-- Rom Patcher JS initialization for main feature -->
+	<script type="text/javascript">
+		window.addEventListener('load', function (evt) {
+		const FFII_CHECKSUM_V10 = 0x65D0A825 ; // ff2 v1.0.ips
+		const FFII_CHECKSUM_V11 = 0x23084FCD ; // ff2 v1.1.ips
+		const FFIV_CHECKSUM_ET = 0x6CDA700C ; // ffiv easy.ips
+		const FFIV_CHECKSUM_REV11 = 0xCAA15E97 ; // ffiv rev1.1).ips
+		// all above are inside of FF4UP.zip
+		const FF2_CHECKSUMS_INVALID = [0x21027C5D] // FFIV rev1 rom, no patch for it at this time
+
+			try {
+				RomPatcherWeb.initialize({
+					language: 'en', //default: en
+					requireValidation: true, // needed for multipatch mode
+					onloadrom: function (romFile) {						
+						const SMC_HEADER_SIZE=512;
+						if(romFile.getExtension()==='smc' && ((romFile.fileSize - SMC_HEADER_SIZE) % 0x20000) === 0){
+							romFile.removeLeadingBytes(SMC_HEADER_SIZE);
+							romFile.setExtension('sfc');
+							console.log('removed SMC header');
+						}
+						const crc32 = romFile.hashCRC32();
+						/* if ROM version = FFII v1.0 */
+						if (crc32 === FFII_CHECKSUM_V10)
+							RomPatcherWeb.pickEmbededFile('ff2 v1.0.ips');
+						/* if ROM version = FFII v1.1 */
+						else if (crc32 === FFII_CHECKSUM_V11)
+							RomPatcherWeb.pickEmbededFile('ff2 v1.1.ips');
+						/* if ROM version = FF IV Easy Type */
+						else if (crc32 === FFIV_CHECKSUM_ET)
+							RomPatcherWeb.pickEmbededFile('ffiv easy.ips');
+						/* if ROM version = FF IV rev1 not able to patch against this rom at this time */
+						// else if (crc32 === FFIV_CHECKSUM_REV1)
+						// 	RomPatcherWeb.pickEmbededFile('ffiv rev1.ips');
+						/* if ROM version = FF IV rev1.1 */
+						else if (crc32 === FFIV_CHECKSUM_REV11)
+							RomPatcherWeb.pickEmbededFile('ffiv rev1.1.ips');
+					},
+					onvalidaterom: function (romFile, isRomValid) {
+						const crc32 = romFile.hashCRC32();
+						/* if ROM is a known (J) version that is incompatible with these patches */
+						if (!isRomValid && FF2_CHECKSUMS_INVALID.indexOf(crc32) !== -1)
+							RomPatcherWeb.setErrorMessage('Please provide a v1.0 or v1.1 English language FF2 rom file.');
+					}
+				}, {
+					file: 'FF4U.zip',
+					patches: [
+						{
+							file: 'ff2 v1.0.ips',
+							name: 'FF4 Ultima Classic (for FFII v1.0)',
+							description: 'dozens of new weapons, monsters, maps, and challenges',
+							outputName: 'FF4Ultima Classic', //patched ROM name
+						},{
+							file: 'ff2 v1.1.ips',
+							name: 'FF4 Ultima Classic (for FFII v1.1)',
+							description: 'dozens of new weapons, monsters, maps, and challenges',
+							outputName: 'FF4Ultima Classic', //patched ROM name
+						},{
+							file: 'ffiv easy.ips',
+							name: 'FF4 Ultima Classic (for FFIV EasyType)',
+							description: 'dozens of new weapons, monsters, maps, and challenges',
+							outputName: 'FF4Ultima Classic', //patched ROM name
+						},{
+							file: 'ffiv rev1.1.ips',
+							name: 'FF4 Ultima Classic (for FFIV Rev1.1)',
+							description: 'dozens of new weapons, monsters, maps, and challenges',
+							outputName: 'FF4Ultima Classic', //patched ROM name
+						}
+					]
+				}
+			);} catch (err) {
+				var message = err.message;
+				if (/incompatible browser/i.test(message) || /variable RomPatcherWeb/i.test(message))
+					message = 'Your browser is outdated and it is not compatible with this app.';
+
+				document.getElementById('rom-patcher-container').innerHTML = message;
+				document.getElementById('rom-patcher-container').style.color = 'red';
+			}
+		});
+	</script>
+	
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-VGPQVGX8VD"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-VGPQVGX8VD');
+	</script>
+
+</head>
+
+<body style="font: 15px 'Quattrocento Sans', sans-serif; text-align: center; background: linear-gradient(#666, #000, #666);">
+	<h1 style="font-family: Quattrocento;">FF4 Ultima Classic Rom Patcher</h1>
+	<header style="display: flex; text-align: center; justify-content: center;">
+		<!-- begin left column -->
+		<div style="text-align: center; margin-right: 5vw;">		
+			<p>
+				Please upload a copy of <em>'Final Fantasy II (USA)'</em> or <em>FF IV(J)</em><br />
+				This app can patch it into <span style="color:gold;">Final Fantasy IV Ultima Classic</span> (rev25c)<br />
+				This tool & patches current as of 20 Dec 2024
+			</p>
+			<h5>(Verify rom has no header: feature to remove header coming soon)</h5>
+		</div>
+		<!-- end left; begin right column -->
+		<!-- right column: 1/2 patch UI & preview images -->
+		<div style="text-align: center; margin-left: 5vw;">
+			<h3 style="color:gold;">
+				If you need a copy of FF4 UP,<br/>
+				use our rom patcher at<br/>
+				<h2><a style="color:aqua;" href="index.html">FFF4 Ultima Plus Patcher</a></h2>
+			</h3>
+			<p>
+				This site & patches updated<br/>
+				20 Dec 2024
+			</p>
+		</div>
+	</header>
+<!-- 
+4 roms' CRC32s
+65D0A825
+23084FCD
+6CDA700C
+CAA15E97 -->
+	<!-- message below the 2-column layout -->
+	<h3>The rom (checksums) that work at this time are
+		 <span style="color:gold;">23084fcd</span>, <span style="color:gold;">65d0a825</span>
+		  and <span style="color:aqua;">6cda700c</span>, <span style="color:aqua;">caa15e97</span>
+		</h3>
+
+
+	<!-- Rom Patcher JS container -->
+	<!--
+		The following elements are required for Rom Patcher JS to work:
+			#rom-patcher-input-file-rom
+			#rom-patcher-select-patch
+			#rom-patcher-button-apply
+		The rest of elements are informative and can be removed, though it's recommended to keep them for a better user experience.
+	-->
+	<div id="rom-patcher-container">
+		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-rom">
+			<div class="text-right">
+				<label for="rom-patcher-input-file-rom" data-localize="yes">
+					ROM file:
+				</label>
+			</div>
+			<div class="rom-patcher-container-input">
+				<input type="file" id="rom-patcher-input-file-rom" class="empty" disabled />
+			</div>
+		</div>
+		<div class="margin-bottom text-selectable text-mono text-muted" id="rom-patcher-rom-info">
+			<div class="rom-patcher-row">
+				<div class="text-right">
+					<h3 class="">
+						CRC32:
+					</h3>
+				</div>
+				<div class="text-truncate">
+					<h2 class="">	
+						<code id="rom-patcher-span-crc32"></code>
+					</h2>
+				</div>
+			</div>
+			<div class="rom-patcher-row" id="rom-patcher-row-info-rom">
+				<div class="text-right">
+					ROM:
+				</div>
+				<div class="text-truncate"><span id="rom-patcher-span-rom-info"></span></div>
+			</div>
+		</div>
+
+		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-patch">
+			<div class="text-right">
+				<label for="rom-patcher-input-file-patch" data-localize="yes">
+					Patch file:
+				</label>
+			</div>
+			<div class="rom-patcher-container-input">
+				<select id="rom-patcher-select-patch"></select>
+			</div>
+		</div>
+		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-patch-description">
+			<div class="text-right text-mono text-muted" data-localize="yes">
+				Description:
+			</div>
+			<div class="" id="rom-patcher-patch-description"></div>
+		</div>
+		<div class="text-center" id="rom-patcher-row-apply">
+			<div id="rom-patcher-row-error-message" class="margin-bottom"><span id="rom-patcher-error-message"></span>
+			</div>
+			<button id="rom-patcher-button-apply" data-localize="yes" disabled>Apply patch</button>
+		</div>
+	</div>
+
+	<div id="rom-patcher-powered" class="text-center">
+		<a href="https://github.com/marcrobledo/RomPatcher.js" target="_blank">
+			<img src="./rom-patcher-js/assets/powered_by_rom_patcher_js.png" loading="lazy" />
+			Powered by Rom Patcher JS
+		</a>
+		<div id="sfclh97eddmwgqxfk5uzfj8ayhb133pbdxn">
+			<script type="text/javascript" src="https://counter6.optistats.ovh/private/counter.js?c=lh97eddmwgqxfk5uzfj8ayhb133pbdxn&down=async" async></script>
+			<noscript>
+				<a href="https://www.freecounterstat.com" title="website counter code">
+					<img src="https://counter6.optistats.ovh/private/freecounterstat.php?c=lh97eddmwgqxfk5uzfj8ayhb133pbdxn" border="0" title="website counter code" alt="website counter code">
+				</a>
+			</noscript>
+		</div>
+	</div>
+</body>
+
+</html>
