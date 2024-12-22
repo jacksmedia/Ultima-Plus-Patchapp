@@ -242,10 +242,10 @@
 	<h1 style="font-family: Quattrocento;">FF4 Ultima Plus Style Patcher</h1>
 	<header style="display: flex; text-align: center; justify-content: center;">
 		
-		<div style="text-align: center; margin-right: 5vw;">
+		<div style="text-align: center; margin-left: 1vw; margin-right: 1vw; max-width: 33vw;">
 			<p>
-				Please upload a copy of 'Final Fantasy 4 Ultima Plus.<br />
-				This app provides alternate graphics and font styles:<br />
+				Please upload a copy of 'Final Fantasy 4 Ultima Plus.
+				This app provides alternate graphics and font styles:
 				<span style="color:gold;">Choose from one of 10 after uploading</span>.
 			</p>
 			<h5>(Verify rom has no header: feature to remove header coming soon)</h5>
@@ -253,13 +253,15 @@
 
 			<!-- end left column -->
 		</div>
-		<!-- split point for 2-column layout -->
+		<!-- center image of title screen -->
+		<div>
+			<img style="width: 100%; max-width: 33vw;" src="Title.png" id="preview-Title" />
+		</div>
 
 		<!-- right column: 1/2 patch UI & preview images -->
-		<div style="text-align: center; margin-left: 5vw;">
+		<div style="text-align: center; margin-left: 1vw; margin-right: 1vw;">
 			<h3 style="color:gold;">
-				If you need a copy of FF4 UP,<br/>
-				use our rom patcher at<br/>
+				Need a copy of FF4 UP?<br/>use the<br/>
 				<h2><a style="color:aqua;" href="index.html">FFF4 Ultima Plus Patcher</a></h2>
 			</h3>
 			<p>
@@ -275,100 +277,74 @@
 
 	<div id="rom-patcher-container" style="min-width: 90vw;">
 
-	<!-- begin 2-column layout -->
-	 
-		<div style="display: flex;">
-
-		<!-- left column: 1/2 patch UI & title screen -->
-			<div style="width: 45vw; justify-content: center; align-items: bottom; width: 45vw; max-width: 45vw;">
-
-				<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-rom">
-					<div class="text-right">
-						<label for="rom-patcher-input-file-rom" data-localize="yes">
-							ROM file:
-						</label>
-					</div>
-					<div class="rom-patcher-container-input">
-						<input type="file" id="rom-patcher-input-file-rom" class="empty" disabled />
-					</div>
-				</div>
-				<div class="margin-bottom text-selectable text-mono text-muted" id="rom-patcher-rom-info">
-					<div class="rom-patcher-row">
-						<div class="text-right">
-							<h3 class="">
-								CRC32:
-							</h3>
-						</div>
-						<div class="text-truncate">
-							<h2 class="">	
-								<code id="rom-patcher-span-crc32"></code>
-							</h2>
-						</div>
-					</div>
-				</div>
-				
-				<div>
-					<img style="width: 100%; max-width: 45vw;" src="Title.png" id="preview-Title" />
-				</div>
-
-			<!-- end left column -->
+		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-rom">
+			<div class="text-right">
+				<label for="rom-patcher-input-file-rom" data-localize="yes">
+					ROM file:
+				</label>
 			</div>
+			<div class="rom-patcher-container-input">
+				<input type="file" id="rom-patcher-input-file-rom" class="empty" disabled />
+			</div>
+		</div>
+		<div class="margin-bottom text-selectable text-mono text-muted" id="rom-patcher-rom-info">
+			<div class="rom-patcher-row">
+				<div class="text-right">
+					<h3 class="">
+						CRC32:
+					</h3>
+				</div>
+				<div class="text-truncate">
+					<h2 class="">	
+						<code id="rom-patcher-span-crc32"></code>
+					</h2>
+				</div>
+			</div>
+		</div>
 			
-			<!-- split point for 2-column layout -->
 
-			<!-- right column: 1/2 patch UI & preview images -->
-			<div class="display: flex; justify-content: center; align-items: bottom; width: 45vw; max-width: 45vw;">
-				
-				<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-patch">
-					<div class="text-right">
-						<label for="rom-patcher-input-file-patch" data-localize="yes">
-							Patch file:
-						</label>
-					</div>
-					<div class="rom-patcher-container-input">
-						<select id="rom-patcher-select-patch"></select>
-					</div>
-				</div>
-	
-				<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-patch-description">
-					<div class="text-right" data-localize="yes">
-						Changes:
-					</div>
-					<div style="padding-left: 10px; width: 35vw; max-width: 35vw;" id="rom-patcher-patch-description"></div>
-				</div>
-
-				<div style="display: flex; justify-content: center; align-items: middle; padding-left: 10px;">
-					<!-- preview images -->
-					<img style="width: 45vw; max-width: 45vw;" src="p-Luna.gif" id="preview-Luna" />
-					<img style="width: 45vw; max-width: 45vw;" src="p-Mercury.gif" id="preview-Mercury" />
-					<img style="width: 45vw; max-width: 45vw;" src="p-Venus.gif" id="preview-Venus" />
-					<img style="width: 45vw; max-width: 45vw;" src="p-Mars.gif" id="preview-Mars" />
-					<img style="width: 45vw; max-width: 45vw;" src="p-Ceres.gif" id="preview-Ceres" />
-					<img style="width: 45vw; max-width: 45vw;" src="p-Jupiter.gif" id="preview-Jupiter" />
-					<img style="width: 45vw; max-width: 45vw;" src="p-Saturn.gif" id="preview-Saturn" />
-					<img style="width: 45vw; max-width: 45vw;" src="p-Uranus.gif" id="preview-Uranus" />
-					<img style="width: 45vw; max-width: 45vw;" src="p-Neptune.gif" id="preview-Neptune" />
-					<img style="width: 45vw; max-width: 45vw;" src="p-Pluto.gif" id="preview-Pluto" />
-				</div>
-			<!-- end right column -->
+		
+		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-patch">
+			<div class="text-right">
+				<label for="rom-patcher-input-file-patch" data-localize="yes">
+					Patch file:
+				</label>
 			</div>
+			<div class="rom-patcher-container-input">
+				<select id="rom-patcher-select-patch"></select>
+			</div>
+		</div>
 
-		<!-- end 2-columns -->
-		</div> 
+		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-patch-description">
+			<div class="text-right" data-localize="yes">
+				Changes:
+			</div>
+			<div style="padding-left: 10px;" id="rom-patcher-patch-description"></div>
+		</div>
+
+		<div style="display: flex; justify-content: center; align-items: middle; padding-left: 10px;">
+			<!-- preview images -->
+			<img style="width: 45vw; max-width: 45vw;" src="p-Luna.gif" id="preview-Luna" />
+			<img style="width: 45vw; max-width: 45vw;" src="p-Mercury.gif" id="preview-Mercury" />
+			<img style="width: 45vw; max-width: 45vw;" src="p-Venus.gif" id="preview-Venus" />
+			<img style="width: 45vw; max-width: 45vw;" src="p-Mars.gif" id="preview-Mars" />
+			<img style="width: 45vw; max-width: 45vw;" src="p-Ceres.gif" id="preview-Ceres" />
+			<img style="width: 45vw; max-width: 45vw;" src="p-Jupiter.gif" id="preview-Jupiter" />
+			<img style="width: 45vw; max-width: 45vw;" src="p-Saturn.gif" id="preview-Saturn" />
+			<img style="width: 45vw; max-width: 45vw;" src="p-Uranus.gif" id="preview-Uranus" />
+			<img style="width: 45vw; max-width: 45vw;" src="p-Neptune.gif" id="preview-Neptune" />
+			<img style="width: 45vw; max-width: 45vw;" src="p-Pluto.gif" id="preview-Pluto" />
+		</div>
 
 		<div class="text-center" id="rom-patcher-row-apply">
 			<div id="rom-patcher-row-error-message" class="margin-bottom"><span id="rom-patcher-error-message"></span>
 			</div>
 			<button id="rom-patcher-button-apply" data-localize="yes" disabled>Apply patch</button>
 		</div>
-	
+		<!-- end patcher container -->
 	</div>
 
-	<!-- first-round preview image -->
-	<div style="display: flex; justify-content: center;" >
-		<img src="battle-sprite-styles.png" style="width:95vw;" />
-	</div>
-
+	<!-- Bottom messages -->
 	<div id="rom-patcher-powered" class="text-center">
 		<a href="https://github.com/marcrobledo/RomPatcher.js" target="_blank">
 			<img src="./rom-patcher-js/assets/powered_by_rom_patcher_js.png" loading="lazy" />
