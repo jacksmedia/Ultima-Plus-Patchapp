@@ -111,21 +111,25 @@
 	<h1 style="font-family: Quattrocento;">FF4 Ultima Plus Rom Patcher</h1>
 	<header style="display: flex; text-align: center; justify-content: center;">
 		<!-- begin left column -->
-		<div style="text-align: center; margin-right: 5vw;">		
+		<div style="text-align: center; margin-left: 1vw; margin-right: 1vw; max-width: 33vw;">		
 			<p>
-				Please upload a copy of <em>'Final Fantasy II (USA)'</em> or <em>FF IV(J)</em><br />
-				This app can patch it into <span style="color:gold;">Final Fantasy IV Ultima Plus</span> v2024<br />
-				This tool & patches current as of 20 Dec 2024
+				Please upload a copy of <em>'Final Fantasy II (USA)'</em> or <em>FF IV(J)</em>.
+				This app can patch it into <span style="color:gold;">Final Fantasy IV Ultima Plus</span> v2024.
+				This tool & patches current as of 22 Dec 2024
 			</p>
 			<h5>(Verify rom has no header: feature to remove header coming soon)</h5>
 		</div>
-		<!-- end left; begin right column -->
-		<div style="text-align: center; margin-right: 5vw;">
+		<!-- center image of title screen -->
+		<div>
+			<img style="width: 100%; max-width: 33vw;" src="Title.png" id="preview-Title" />
+		</div>
+
+		<!-- begin right column -->
+		<div style="text-align: center; margin-left: 1vw; margin-right: 1vw;">
 			<h3>
-				If you want custom graphics & fonts<br/>
-				apply patches from the<br/>
+				If you want custom graphics & fonts, apply patches from the
 				<h2>
-					<a style="color:yellowgreen;" href="styles.html">
+					<a style="color:goldenrod;" href="styles.html">
 						Ultima Plus Stylepacks
 					</a>
 				</h2>
@@ -139,15 +143,6 @@
 6CDA700C
 CAA15E97 -->
 	<!-- messages below the 2-column layout -->
-	<div style="margin-left: 25vw; max-width: 50vw; background-color: black; padding: 6px; border-radius: 30px;">
-		<h3>If you want to play Ultima Classic instead of<br/>Ultima Plus, find those patches here:<br/>
-			<h2>
-				<a style="color:red;" href="classic.html">
-					FF4 Ultima Classic
-				</a>
-			</h2>
-		</h3>
-	</div>
 	<h3>The rom (checksums) that work at this time are
 		<span style="color:gold;">23084fcd</span>, <span style="color:gold;">65d0a825</span>
 		and <span style="color:aqua;">6cda700c</span>, <span style="color:aqua;">caa15e97</span>
@@ -215,6 +210,17 @@ CAA15E97 -->
 			</div>
 			<button id="rom-patcher-button-apply" data-localize="yes" disabled>Apply patch</button>
 		</div>
+	</div>
+
+	<!-- Ultima Classic link -->
+	<div style="margin-left: 25vw; max-width: 50vw; background-color: black; padding: 6px; border-radius: 30px;">
+		<h3>If you want to play Ultima Classic instead of<br/>Ultima Plus, find those patches here:<br/>
+			<h2>
+				<a style="color:red;" href="classic.html">
+					FF4 Ultima Classic
+				</a>
+			</h2>
+		</h3>
 	</div>
 
 	<div id="rom-patcher-powered" class="text-center">
