@@ -21,17 +21,19 @@
 		const FFII_CHECKSUM_V11 = 0x23084FCD ; // ff2 v1.1.ips
 		const FFIV_CHECKSUM_ET = 0x6CDA700C ; // ffiv easy.ips
 		const FFIV_CHECKSUM_REV11 = 0xCAA15E97 ; // ffiv rev1.1.ips
-		const FFII_CHECKSUM_V10_H = 0xE73564DB ; // ff2 v1.0.ips
-		const FFII_CHECKSUM_V11_H = 0xA1ED8333 ; // ff2 v1.1.ips
-		const FFIV_CHECKSUM_ET_H = 0xEE3FBCF2 ; // ffiv easy.ips
-		const FFIV_CHECKSUM_REV11_H = 0x48449269 ; // ffiv rev1.1.ips
+		const FFII_CHECKSUM_V10_H = 0xE73564DB ; // ff2 v1.0-H.ips
+		const FFII_CHECKSUM_V11_H = 0xA1ED8333 ; // ff2 v1.1-H.ips
+		const FFIV_CHECKSUM_ET_H = 0xEE3FBCF2 ; // ffiv easy-H.ips
+		const FFIV_CHECKSUM_REV11_H = 0x48449269 ; // ffiv rev1.1-H.ips
 		// all above are inside of FF4UP.zip
 		const FF2_CHECKSUMS_INVALID = [0x21027C5D] // FFIV rev1 rom, no patch for it at this time
 
 			try {
-				RomPatcherWeb.initialize({
-					language: 'en', //default: en
-					requireValidation: true, // needed for multipatch mode
+				RomPatcherWeb.initialize(
+				{
+					language: 'en', // FF4UP team is EFL
+					requireValidation: true, // nbd tbh
+					allowDropFiles: true, // just drop the file on the patcher!
 					onloadrom: function (romFile) {						
 						const SMC_HEADER_SIZE=512;
 						if(romFile.getExtension()==='smc' && ((romFile.fileSize - SMC_HEADER_SIZE) % 0x20000) === 0){
@@ -46,25 +48,30 @@
 						/* if ROM version = FFII v1.1 */
 						else if (crc32 === FFII_CHECKSUM_V11)
 							RomPatcherWeb.pickEmbededFile('ff2 v1.1.ips');
-						/* if ROM version = FF IV Easy Type */
+						/* if ROM version = FFIV Easy Type */
 						else if (crc32 === FFIV_CHECKSUM_ET)
 							RomPatcherWeb.pickEmbededFile('ffiv easy.ips');
+						/* if ROM version = FFIV rev1.1 */
 						else if (crc32 === FFIV_CHECKSUM_REV11)
 							RomPatcherWeb.pickEmbededFile('ffiv rev1.1.ips');
+						/* if ROM version = FFII v1.0 header */
 						else if (crc32 === FFII_CHECKSUM_V10_H)
-							RomPatcherWeb.pickEmbededFile('ff2 v1.0-H-.ips');
+							RomPatcherWeb.pickEmbededFile('ff2 v1.0-H.ips');
+						/* if ROM version = FFII v1.1 header */
 						else if (crc32 === FFII_CHECKSUM_V11_H)
-							RomPatcherWeb.pickEmbededFile('ff2 v1.1-H-.ips');
+							RomPatcherWeb.pickEmbededFile('ff2 v1.1-H.ips');
+						/* if ROM version = = FFIV Easy Type header */
 						else if (crc32 === FFIV_CHECKSUM_ET_H)
-							RomPatcherWeb.pickEmbededFile('ffiv easy-H-.ips');
+							RomPatcherWeb.pickEmbededFile('ffiv easy-H.ips');
+						/* if ROM version = FFIV rev1.1 header */
 						else if (crc32 === FFIV_CHECKSUM_REV11_H)
-							RomPatcherWeb.pickEmbededFile('ffiv rev1.1-H-.ips');
+							RomPatcherWeb.pickEmbededFile('ffiv rev1.1-H.ips');
 					},
 					onvalidaterom: function (romFile, isRomValid) {
 						const crc32 = romFile.hashCRC32();
 						/* if ROM is a known (J) version that is incompatible with these patches */
 						if (!isRomValid && FF2_CHECKSUMS_INVALID.indexOf(crc32) !== -1)
-							RomPatcherWeb.setErrorMessage('Please provide a v1.0 or v1.1 English language FF2 rom file.');
+							RomPatcherWeb.setErrorMessage('Please provide a valid FFII or FFIV rom file.');
 					}
 				}, {
 					file: 'FF4UP.zip',
@@ -89,28 +96,27 @@
 							name: 'FF4 Ultima Plus (for FFIV Rev1.1)',
 							description: 'updates to battle formation, game script; adds more icons & Easy Mode',
 							outputName: 'FF4Ultima Plus', //patched ROM name
+						},{
+							file: 'ff2 v1.0-H.ips',
+							name: 'FF4 Ultima Plus (for FFII v1.0 header)',
+							description: 'updates to battle formation, game script; adds more icons & Easy Mode',
+							outputName: 'FF4Ultima Plus', //patched ROM name
+						},{
+							file: 'ff2 v1.1-H.ips',
+							name: 'FF4 Ultima Plus (for FFII v1.1 header)',
+							description: 'updates to battle formation, game script; adds more icons & Easy Mode',
+							outputName: 'FF4Ultima Plus', //patched ROM name
+						},{
+							file: 'ffiv easy-H.ips',
+							name: 'FF4 Ultima Plus (for FFIV EasyType header)',
+							description: 'updates to battle formation, game script; adds more icons & Easy Mode',
+							outputName: 'FF4Ultima Plus', //patched ROM name
+						},{
+							file: 'ffiv rev1.1-H.ips',
+							name: 'FF4 Ultima Plus (for FFIV Rev1.1 header)',
+							description: 'updates to battle formation, game script; adds more icons & Easy Mode',
+							outputName: 'FF4Ultima Plus', //patched ROM name
 						}
-						// {
-						// 	file: 'ff2 v1.0-H-.ips',
-						// 	name: 'FF4 Ultima Plus (for FFII v1.0 header)',
-						// 	description: 'updates to battle formation, game script; adds more icons & Easy Mode',
-						// 	outputName: 'FF4Ultima Plus', //patched ROM name
-						// },{
-						// 	file: 'ff2 v1.1-H-.ips',
-						// 	name: 'FF4 Ultima Plus (for FFII v1.1 header)',
-						// 	description: 'updates to battle formation, game script; adds more icons & Easy Mode',
-						// 	outputName: 'FF4Ultima Plus', //patched ROM name
-						// },{
-						// 	file: 'ffiv easy-H-.ips',
-						// 	name: 'FF4 Ultima Plus (for FFIV EasyType header)',
-						// 	description: 'updates to battle formation, game script; adds more icons & Easy Mode',
-						// 	outputName: 'FF4Ultima Plus', //patched ROM name
-						// },{
-						// 	file: 'ffiv rev1.1-H-.ips',
-						// 	name: 'FF4 Ultima Plus (for FFIV Rev1.1 header)',
-						// 	description: 'updates to battle formation, game script; adds more icons & Easy Mode',
-						// 	outputName: 'FF4Ultima Plus', //patched ROM name
-						// }
 					]
 				}
 			);} catch (err) {
@@ -141,12 +147,11 @@
 	<header style="display: flex; text-align: center; justify-content: center;">
 		<!-- begin left column -->
 		<div style="text-align: center; margin-left: 1vw; margin-right: 1vw; max-width: 33vw;">		
-			<p>
+			<p style="line-height: 150%; font-size: 111%;">
 				Please upload a copy of <em>'Final Fantasy II (USA)'</em> or <em>FF IV(J)</em>.
 				This app can patch it into <span style="color:gold;">Final Fantasy IV Ultima Plus</span> v2024.
-				This tool & patches current as of 3 Jan 2025
+				This tool & patches current as of<br/>5 Jan 2025
 			</p>
-			<h5>(Roms with headers will not work! Please remove the header before patching.)</h5>
 		</div>
 		<!-- center image of title screen -->
 		<div>
@@ -183,9 +188,11 @@ EE3FBCF2
 	</h4>
 
 	<h3 style="width: 66vw; padding-left: 17vw;">
-		The rom (checksums) that work at this time are<br/>
+		The rom checksums (CRC32s) that work at this time are<br/>
 		<span style="color:gold;">23084fcd</span>, <span style="color:gold;">65d0a825</span>,
-		<span style="color:aqua;">6cda700c</span>, <span style="color:aqua;">caa15e97</span>
+		<span style="color:aqua;">6cda700c</span>, <span style="color:aqua;">caa15e97</span>,<br/>
+		<span style="color:gold;">e73564db</span>, <span style="color:gold;">a1ed8333</span>,
+		<span style="color:aqua;">ee3fbcf2</span>, <span style="color:aqua;">48449269</span>
 	</h3>
 
 
@@ -208,17 +215,15 @@ EE3FBCF2
 				<input type="file" id="rom-patcher-input-file-rom" class="empty" disabled />
 			</div>
 		</div>
-		<div class="margin-bottom text-selectable text-mono text-muted" id="rom-patcher-rom-info">
+		<div class="margin-bottom text-selectable" id="rom-patcher-rom-info">
 			<div class="rom-patcher-row">
 				<div class="text-right">
 					<h3 class="">
 						CRC32:
 					</h3>
 				</div>
-				<div class="text-truncate">
-					<h2 class="">	
-						<code id="rom-patcher-span-crc32"></code>
-					</h2>
+				<div style="font-size: 111%;">
+					<h2 id="rom-patcher-span-crc32"></h2>
 				</div>
 			</div>
 			<div class="rom-patcher-row" id="rom-patcher-row-info-rom">
@@ -267,7 +272,7 @@ EE3FBCF2
 	<div style="margin-left: 25vw; max-width: 50vw; background-color: black; padding: 6px; border-radius: 30px;">
 		<h3>If you want to play Ultima Classic instead of<br/>Ultima Plus, find those patches here:<br/>
 			<h2>
-				<a style="color:red;" href="classic.html">
+				<a style="color:tomato;" href="classic.html">
 					FF4 Ultima Classic
 				</a>
 			</h2>
