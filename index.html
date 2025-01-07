@@ -82,42 +82,42 @@
 						{
 							file: 'ff2 v1.0.ips',
 							name: 'FF4 Ultima Plus (for FFII v1.0)',
-							description: 'updates to battle formation, game script; adds more icons & Easy Mode',
+							description: 'updates to battle formation, game script; adds more icons, improved controls, Reduced Mode, Game Score',
 							outputName: 'FF4Ultima Plus', //patched ROM name
 						},{
 							file: 'ff2 v1.1.ips',
 							name: 'FF4 Ultima Plus (for FFII v1.1)',
-							description: 'updates to battle formation, game script; adds more icons & Easy Mode',
+							description: 'updates to battle formation, game script; adds more icons, improved controls, Reduced Mode, Game Score',
 							outputName: 'FF4Ultima Plus', //patched ROM name
 						},{
 							file: 'ffiv easy.ips',
 							name: 'FF4 Ultima Plus (for FFIV EasyType)',
-							description: 'updates to battle formation, game script; adds more icons & Easy Mode',
+							description: 'updates to battle formation, game script; adds more icons, improved controls, Reduced Mode, Game Score',
 							outputName: 'FF4Ultima Plus', //patched ROM name
 						},{
 							file: 'ffiv rev1.1.ips',
 							name: 'FF4 Ultima Plus (for FFIV Rev1.1)',
-							description: 'updates to battle formation, game script; adds more icons & Easy Mode',
+							description: 'updates to battle formation, game script; adds more icons, improved controls, Reduced Mode, Game Score',
 							outputName: 'FF4Ultima Plus', //patched ROM name
 						},{
 							file: 'ff2 v1.0-H.ips',
 							name: 'FF4 Ultima Plus (for FFII v1.0 header)',
-							description: 'updates to battle formation, game script; adds more icons & Easy Mode',
+							description: 'updates to battle formation, game script; adds more icons, improved controls, Reduced Mode, Game Score',
 							outputName: 'FF4Ultima Plus', //patched ROM name
 						},{
 							file: 'ff2 v1.1-H.ips',
 							name: 'FF4 Ultima Plus (for FFII v1.1 header)',
-							description: 'updates to battle formation, game script; adds more icons & Easy Mode',
+							description: 'updates to battle formation, game script; adds more icons, improved controls, Reduced Mode, Game Score',
 							outputName: 'FF4Ultima Plus', //patched ROM name
 						},{
 							file: 'ffiv easy-H.ips',
 							name: 'FF4 Ultima Plus (for FFIV EasyType header)',
-							description: 'updates to battle formation, game script; adds more icons & Easy Mode',
+							description: 'updates to battle formation, game script; adds more icons, improved controls, Reduced Mode, Game Score',
 							outputName: 'FF4Ultima Plus', //patched ROM name
 						},{
 							file: 'ffiv rev1.1-H.ips',
 							name: 'FF4 Ultima Plus (for FFIV Rev1.1 header)',
-							description: 'updates to battle formation, game script; adds more icons & Easy Mode',
+							description: 'updates to battle formation, game script; adds more icons, improved controls, Reduced Mode, Game Score',
 							outputName: 'FF4Ultima Plus', //patched ROM name
 						}
 					]
@@ -145,7 +145,7 @@
 
 </head>
 
-<body style="font: 1.3rem 'Quattrocento Sans', sans-serif;">
+<body style="font: 1.1rem 'Quattrocento Sans', sans-serif;">
 	<header class="container-fluid">
 		<!-- first row, page title -->
 		<div class="row justify-content-center">
@@ -175,14 +175,23 @@
 			<!-- begins right column -->
 			<div class="col-12 col-sm-4 d-flex-column justify-content-end align-items-center">
 				<p>
-					If you want custom graphics & fonts, apply patches from the
-					<h3>
-						<a style="color:goldenrod;" href="styles.html">
-							Ultima Plus Stylepacks
-						</a>
-					</h3>
-					<a href="Final Fantasy 4 Ultima Plus patch archive.zip"><span style="color: goldenrod;">The entire patch archive</span></a> is also available for download.
+					Like custom graphics & fonts? Apply patches from the
+					<!-- black btn styled div -->
+					<button class="d-flex justify-content-center align-items-center"
+					style="background: black; padding: 1rem; border-radius: 2rem;">
+						<h4>
+							<a style="color:goldenrod; text-decoration:none;" 
+							href="styles.html">
+								Ultima Plus Stylepacks
+							</a>
+						</h4>
+					</button>
+
+					<div class="mt-2">
+						<a href="Final Fantasy 4 Ultima Plus patch archive.zip"><span style="color: goldenrod;">The entire patch archive</span></a> is also available for download.
+					</div>
 				</p>
+				<!-- ends col -->
 			</div>
 			<!-- ends row -->
 		</div>
@@ -194,45 +203,22 @@
 	<div class="row justify-content-center">
 		<!-- begins single column -->
 		<div class="col d-flex justify-content-center">			
-			<!-- black box styled div -->
+			<!-- black btn styled div -->
 			<button class="d-flex justify-content-center align-items-center"
 			style="background: black; padding: 1.2rem; border-radius: 2rem;">
-				<h4 style="color: white;">
+				<h6 style="color: white;">
 					Join us in <a style="text-decoration:none;
-					 color:goldenrod;" 
+					 color:#f7dc6f;" 
 					 target="_blank" 
 					 href="https://discord.gg/ZpEfVMc8">Ultima Discord</a>!
-				</h4>
+				</h6>
 			</button>
 		<!-- ends col -->
 		</div>
 	<!-- ends row -->
 	</div>
-	
-
-											<!-- 
-											8 roms' CRC32s
-											65D0A825
-											23084FCD
-											6CDA700C
-											CAA15E97 
-											E73564DB
-											A1ED8333
-											EE3FBCF2
-											48449269
-											-->
-	
-	<p>The rom checksums (CRC32s) that work at this time are:</p>
-	<h4>
-		<span style="color:gold;">23084fcd</span>, <span style="color:gold;">65d0a825</span>,
-		<span style="color:aqua;">6cda700c</span>, <span style="color:aqua;">caa15e97</span>,<br/>
-		<span style="color:gold;">e73564db</span>, <span style="color:gold;">a1ed8333</span>,
-		<span style="color:aqua;">ee3fbcf2</span>, <span style="color:aqua;">48449269</span>
-	</h4>
-
-
-
-	<!-- main feature container, no BS classes -->
+											
+	<!-- main feature container, CSS layout classes -->
 	<div id="rom-patcher-container">
 		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-rom">
 			<div class="text-right">
@@ -262,7 +248,20 @@
 				<div class="text-truncate"><span id="rom-patcher-span-rom-info"></span></div>
 			</div>
 		</div>
-
+		<!-- BS styling for the 8 CRC32 numbers -->
+		<div class="container-fluid">
+			<div class="row w-100">
+				<div class="col-12 d-flex justify-content-center">
+					<h6>The rom checksums (CRC32s) that work at this time are:<br/>						
+						<span style="color:tomato;">23084fcd</span>, <span style="color:tomato;">65d0a825</span>,
+						<span style="color:blue;">6cda700c</span>, <span style="color:blue;">caa15e97</span>,<br/>
+						<span style="color:tomato;">e73564db</span>, <span style="color:tomato;">a1ed8333</span>,
+						<span style="color:blue;">ee3fbcf2</span>, <span style="color:blue;">48449269</span>
+					</h6>
+				</div>
+			</div>
+		</div> 
+		<!-- end BS styling -->
 		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-patch">
 			<div class="text-right">
 				<label for="rom-patcher-input-file-patch" data-localize="yes">
@@ -273,67 +272,67 @@
 				<select id="rom-patcher-select-patch"></select>
 			</div>
 		</div>
-		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-patch-description">
-			<div class="text-right text-mono text-muted" data-localize="yes">
-				Description:
-			</div>
-			<div class="" id="rom-patcher-patch-description"></div>
-		</div>
 		<div class="text-center" id="rom-patcher-row-apply">
 			<div id="rom-patcher-row-error-message" class="margin-bottom"><span id="rom-patcher-error-message"></span>
 			</div>
 			<button id="rom-patcher-button-apply" data-localize="yes" disabled>Apply patch</button>
 		</div>
 	</div>
-
-	<!-- Ultima Guides link -->
-	<div style="margin-left: 25vw; max-width: 50vw; background-color: black; padding: 6px; border-radius: 30px;">
-		<h3>Game guides available at<br/>
-			<h2>
-				<a style="color:aqua;" href="guides.html">
-					FF4 Ultima Guides
-				</a>
-			</h2>
-		</h3>
-	</div>
-
-	<!-- Ultima Classic link -->
-	<div style="margin-left: 25vw; max-width: 50vw; background-color: black; padding: 6px; border-radius: 30px;">
-		<h3>If you want to play Ultima Classic instead of<br/>Ultima Plus, find those patches here:<br/>
-			<h2>
-				<a style="color:tomato;" href="classic.html">
-					FF4 Ultima Classic
-				</a>
-			</h2>
-		</h3>
-	</div>
-
 	<div id="rom-patcher-powered" class="text-center">
 		<a href="https://github.com/marcrobledo/RomPatcher.js" target="_blank">
 			<img src="./rom-patcher-js/assets/powered_by_rom_patcher_js.png" loading="lazy" />
 			Powered by Rom Patcher JS
 		</a>
 	</div>
-	
-	<!-- final row, Discord invite -->
-	<div class="row justify-content-center">
-		<!-- begins single column -->
-		<div class="col d-flex justify-content-center">			
-			<!-- black box styled div -->
-			<button class="d-flex justify-content-center align-items-center"
-			style="background: black; padding: 1.2rem; border-radius: 2rem;">
-				<h4 style="color: white;">
-					Join us in <a style="text-decoration:none;
-					 color:goldenrod;" 
-					 target="_blank" 
-					 href="https://discord.gg/ZpEfVMc8">Ultima Discord</a>!
-				</h4>
-			</button>
-		<!-- ends col -->
-		</div>
-	<!-- ends row -->
-	</div>
+	<!-- end main feature white container -->
 
+
+	<!-- 3 column links: Guides, Discord, Classic -->
+
+	<div class="container-fluid">
+		<!-- only row; all 3 cols stack vertically on < md screens -->
+		<div class="row justify-content-center">
+			<!-- begins 1st column, Ultima Guides link -->
+			<div class="col-sm-4 d-flex align-items-center justify-content-center">
+				<div class="mr-2">Game guides available at &nbsp;&nbsp; </div>
+				<!-- black btn styled div -->
+				<button class="d-flex justify-content-center align-items-center"
+				style="background: black; padding: 1.2rem; border-radius: 2rem;">
+					<a style="color:aqua; text-decoration:none;" 
+					href="guides.html">
+						FF4 Ultima Guides
+					</a>
+				</button>		
+			</div>
+			<!-- 2nd col, for Ultima Classic -->
+			<div class="col-sm-4 d-flex align-items-center justify-content-center">
+				If you want to play Ultima Classic instead of Ultima Plus, find those patches here:
+				<!-- black btn styled div -->
+				<button class="d-flex justify-content-center align-items-center"
+				style="background: black; padding: 1.2rem; border-radius: 2rem;">
+					<a style="color:tomato; text-decoration:none;" 
+					href="classic.html">
+						FF4 Ultima Classic
+					</a>
+				</button>
+			</div>
+			<!-- 3rd col, moves below 1st & 2nd on md > screens
+			 for Discord Link -->
+			 <div class="col-sm-4 d-flex justify-content-center">			
+				<!-- black btn styled div -->
+				<button class="d-flex justify-content-center align-items-center"
+				style="background: black; padding: 1.2rem; border-radius: 2rem;">
+					<h6 style="color: white;">
+						Join us in <a style="text-decoration:none;
+						 color:#f7dc6f;" 
+						 target="_blank" 
+						 href="https://discord.gg/ZpEfVMc8">Ultima Discord</a>!
+					</h6>
+				</button>
+			<!-- ends col -->
+		</div>
+	</div>
+	<!-- by xJ4cks for Ultima Plus Team, 2024-2025 -->
 </body>
 
 </html>
