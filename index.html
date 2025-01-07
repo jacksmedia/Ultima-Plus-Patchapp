@@ -2,6 +2,9 @@
 <html translate="no">
 
 <head>
+	<!-- layout logic from Bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<!-- Font and traffic monitoring from Google -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
@@ -142,68 +145,94 @@
 
 </head>
 
-<body style="font: 15px 'Quattrocento Sans', sans-serif; text-align: center;">
-	<h1 style="font-family: Quattrocento;">FF4 Ultima Plus Rom Patcher</h1>
-	<header style="display: flex; text-align: center; justify-content: center;">
-		<!-- begin left column -->
-		<div style="text-align: center; margin-left: 1vw; margin-right: 1vw; max-width: 33vw;">		
-			<p style="line-height: 150%; font-size: 111%;">
-				Please upload a copy of <em>'Final Fantasy II (USA)'</em> or <em>FF IV(J)</em>.
-				This app can patch it into <span style="color:gold;">Final Fantasy IV Ultima Plus</span> v2024.
-				This tool & patches current as of<br/>5 Jan 2025
-			</p>
-		</div>
-		<!-- center image of title screen -->
-		<div>
-			<img style="width: 100%; max-width: 33vw;" src="Title.png" id="preview-Title" />
+<body style="font: 1.3rem 'Quattrocento Sans', sans-serif;">
+	<header class="container-fluid">
+		<!-- first row, page title -->
+		<div class="row justify-content-center">
+			<!-- begins single column -->
+			<div class="col d-flex justify-content-center">
+				<h1 style="font-family: Quattrocento;">
+					FF4 Ultima Plus Rom Patcher
+				</h1>
+			</div>
+		<!-- ends row -->
 		</div>
 
-		<!-- begin right column -->
-		<div style="text-align: center; margin-left: 1vw; margin-right: 1vw;">
-			<h3>
-				If you want custom graphics & fonts, apply patches from the
-				<h2>
-					<a style="color:goldenrod;" href="styles.html">
-						Ultima Plus Stylepacks
-					</a>
-				</h2>
-				<a href="Final Fantasy 4 Ultima Plus patch archive.zip"><span style="color: goldenrod;">The entire patch archive</span></a> is also available for download.
-			</h3>
+		<!-- 2nd row for, header content -->
+		<div class="row d-flex justify-content-center align-items-center">
+			<!-- begins left column -->
+			<div class="col-12 col-sm-4 d-flex justify-content-start align-items-center mx-auto">		
+				<p style="line-height: 150%; font-size: 111%;">
+					Please upload a copy of <em>'Final Fantasy II (USA)'</em> or <em>FF IV(J)</em>.
+					This app can patch it into <span style="color:gold;">Final Fantasy IV Ultima Plus</span> v2024.<br/>
+					This tool & patches current as of 6 Jan 2025
+				</p>
+			</div>
+			<!-- center col, for image of title screen -->
+			<div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">
+				<img style="width: 100%;" src="Title.png" id="preview-Title" />
+			</div>
+			<!-- begins right column -->
+			<div class="col-12 col-sm-4 d-flex-column justify-content-end align-items-center">
+				<p>
+					If you want custom graphics & fonts, apply patches from the
+					<h3>
+						<a style="color:goldenrod;" href="styles.html">
+							Ultima Plus Stylepacks
+						</a>
+					</h3>
+					<a href="Final Fantasy 4 Ultima Plus patch archive.zip"><span style="color: goldenrod;">The entire patch archive</span></a> is also available for download.
+				</p>
+			</div>
+			<!-- ends row -->
 		</div>
 	</header>
-<!-- 
-8 roms' CRC32s
-65D0A825
-23084FCD
-6CDA700C
-CAA15E97 
-E73564DB
-A1ED8333
-EE3FBCF2
-48449269
--->
-	<!-- messages below the 2-column layout -->
-	<h4>
-		Join us in <a style="color:goldenrod;" target="_blank" href="https://discord.gg/ZpEfVMc8">Ultima Discord</a> 
-	</h4>
 
-	<h3 style="width: 66vw; padding-left: 17vw;">
-		The rom checksums (CRC32s) that work at this time are<br/>
+	<!-- messages below the 3-column layout -->
+	
+	<!-- third row, Discord invite -->
+	<div class="row justify-content-center">
+		<!-- begins single column -->
+		<div class="col d-flex justify-content-center">			
+			<!-- black box styled div -->
+			<button class="d-flex justify-content-center align-items-center"
+			style="background: black; padding: 1.2rem; border-radius: 2rem;">
+				<h4 style="color: white;">
+					Join us in <a style="text-decoration:none;
+					 color:goldenrod;" 
+					 target="_blank" 
+					 href="https://discord.gg/ZpEfVMc8">Ultima Discord</a>!
+				</h4>
+			</button>
+		<!-- ends col -->
+		</div>
+	<!-- ends row -->
+	</div>
+	
+
+											<!-- 
+											8 roms' CRC32s
+											65D0A825
+											23084FCD
+											6CDA700C
+											CAA15E97 
+											E73564DB
+											A1ED8333
+											EE3FBCF2
+											48449269
+											-->
+	
+	<p>The rom checksums (CRC32s) that work at this time are:</p>
+	<h4>
 		<span style="color:gold;">23084fcd</span>, <span style="color:gold;">65d0a825</span>,
 		<span style="color:aqua;">6cda700c</span>, <span style="color:aqua;">caa15e97</span>,<br/>
 		<span style="color:gold;">e73564db</span>, <span style="color:gold;">a1ed8333</span>,
 		<span style="color:aqua;">ee3fbcf2</span>, <span style="color:aqua;">48449269</span>
-	</h3>
+	</h4>
 
 
-	<!-- Rom Patcher JS container -->
-	<!--
-		The following elements are required for Rom Patcher JS to work:
-			#rom-patcher-input-file-rom
-			#rom-patcher-select-patch
-			#rom-patcher-button-apply
-		The rest of elements are informative and can be removed, though it's recommended to keep them for a better user experience.
-	-->
+
+	<!-- main feature container, no BS classes -->
 	<div id="rom-patcher-container">
 		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-rom">
 			<div class="text-right">
@@ -286,9 +315,25 @@ EE3FBCF2
 		</a>
 	</div>
 	
-	<h4 style="padding-bottom: 10px;">
-		Join us in <a style="color:goldenrod;" target="_blank" href="https://discord.gg/ZpEfVMc8">Ultima Discord</a> 
-	</h4>
+	<!-- final row, Discord invite -->
+	<div class="row justify-content-center">
+		<!-- begins single column -->
+		<div class="col d-flex justify-content-center">			
+			<!-- black box styled div -->
+			<button class="d-flex justify-content-center align-items-center"
+			style="background: black; padding: 1.2rem; border-radius: 2rem;">
+				<h4 style="color: white;">
+					Join us in <a style="text-decoration:none;
+					 color:goldenrod;" 
+					 target="_blank" 
+					 href="https://discord.gg/ZpEfVMc8">Ultima Discord</a>!
+				</h4>
+			</button>
+		<!-- ends col -->
+		</div>
+	<!-- ends row -->
+	</div>
+
 </body>
 
 </html>
