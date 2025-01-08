@@ -17,11 +17,15 @@
 	<!-- Rom Patcher JS initialization for main feature -->
 	<script type="text/javascript">
 		window.addEventListener('load', function (evt) {
-		const FFII_CHECKSUM_V10 = 0x65D0A825 ; // ff2 v1.0.ips
-		const FFII_CHECKSUM_V11 = 0x23084FCD ; // ff2 v1.1.ips
-		const FFIV_CHECKSUM_ET = 0x6CDA700C ; // ffiv easy.ips
-		const FFIV_CHECKSUM_REV11 = 0xCAA15E97 ; // ffiv rev1.1).ips
-		// all above are inside of FF4UP.zip
+		const FFII_CHECKSUM_V10 = 0x65D0A825 ; // FF4UC_ff2_v1.0.ips
+		const FFII_CHECKSUM_V11 = 0x23084FCD ; // FF4UC_ff2_v1.1.ips
+		const FFIV_CHECKSUM_ET = 0x6CDA700C ; // FF4UC_ffiv_easy.ips
+		const FFIV_CHECKSUM_REV11 = 0xCAA15E97 ; // FF4UC_ffiv_rev1.1).ips
+		const FFII_CHECKSUM_V10_H = 0xE73564DB ; // FF4UC_ff2_v1.0-H.ips
+		const FFII_CHECKSUM_V11_H = 0xA1ED8333 ; // FF4UC_ff2_v1.1-H.ips
+		const FFIV_CHECKSUM_ET_H = 0xEE3FBCF2 ; // FF4UC_ffiv_easy-H.ips
+		const FFIV_CHECKSUM_REV11_H = 0x48449269 ; // FF4UC_ffiv_rev1.1-H.ips
+		// all above are inside of FF4UC.zip
 		const FF2_CHECKSUMS_INVALID = [0x21027C5D] // FFIV rev1 rom, no patch for it at this time
 
 			try {
@@ -38,47 +42,76 @@
 						const crc32 = romFile.hashCRC32();
 						/* if ROM version = FFII v1.0 */
 						if (crc32 === FFII_CHECKSUM_V10)
-							RomPatcherWeb.pickEmbededFile('ff2 v1.0.ips');
+							RomPatcherWeb.pickEmbededFile('FF4UC_ff2_v1.0.ips');
 						/* if ROM version = FFII v1.1 */
 						else if (crc32 === FFII_CHECKSUM_V11)
-							RomPatcherWeb.pickEmbededFile('ff2 v1.1.ips');
+							RomPatcherWeb.pickEmbededFile('FF4UC_ff2_v1.1.ips');
 						/* if ROM version = FF IV Easy Type */
 						else if (crc32 === FFIV_CHECKSUM_ET)
-							RomPatcherWeb.pickEmbededFile('ffiv easy.ips');
-						/* if ROM version = FF IV rev1 not able to patch against this rom at this time */
-						// else if (crc32 === FFIV_CHECKSUM_REV1)
-						// 	RomPatcherWeb.pickEmbededFile('ffiv rev1.ips');
+							RomPatcherWeb.pickEmbededFile('FF4UC_ffiv_easy.ips');
 						/* if ROM version = FF IV rev1.1 */
 						else if (crc32 === FFIV_CHECKSUM_REV11)
-							RomPatcherWeb.pickEmbededFile('ffiv rev1.1.ips');
+							RomPatcherWeb.pickEmbededFile('FF4UC_ffiv_rev1.1.ips');
+						/* if ROM version = FF IV rev1.1 */
+						else if (crc32 === FFIV_CHECKSUM_V10_H)
+							RomPatcherWeb.pickEmbededFile('FF4UC_ff2_v1.0-H.ips');
+						/* if ROM version = FF IV rev1.1 */
+						else if (crc32 === FFIV_CHECKSUM_V11_H)
+							RomPatcherWeb.pickEmbededFile('FF4UC_ff2_v1.1-H.ips');
+						/* if ROM version = FF IV rev1.1 */
+						else if (crc32 === FFIV_CHECKSUM_ET_H)
+							RomPatcherWeb.pickEmbededFile('FF4UC_ffiv_easy-H.ips');
+						/* if ROM version = FF IV rev1.1 */
+						else if (crc32 === FFIV_CHECKSUM_REV11_H)
+							RomPatcherWeb.pickEmbededFile('FF4UC_ffiv_rev1.1-H.ips');
 					},
 					onvalidaterom: function (romFile, isRomValid) {
 						const crc32 = romFile.hashCRC32();
 						/* if ROM is a known (J) version that is incompatible with these patches */
 						if (!isRomValid && FF2_CHECKSUMS_INVALID.indexOf(crc32) !== -1)
-							RomPatcherWeb.setErrorMessage('Please provide a v1.0 or v1.1 English language FF2 rom file.');
+							RomPatcherWeb.setErrorMessage('Please provide a valid FF2 of FFIV rom file.');
 					}
 				}, {
-					file: 'FF4U.zip',
+					file: 'FF4UC.zip',
 					patches: [
 						{
-							file: 'ff2 v1.0.ips',
+							file: 'FF4UC_ff2_v1.0.ips',
 							name: 'FF4 Ultima Classic (for FFII v1.0)',
 							description: 'dozens of new weapons, monsters, maps, and challenges',
 							outputName: 'FF4Ultima Classic', //patched ROM name
 						},{
-							file: 'ff2 v1.1.ips',
+							file: 'FF4UC_ff2_v1.1.ips',
 							name: 'FF4 Ultima Classic (for FFII v1.1)',
 							description: 'dozens of new weapons, monsters, maps, and challenges',
 							outputName: 'FF4Ultima Classic', //patched ROM name
 						},{
-							file: 'ffiv easy.ips',
+							file: 'FF4UC_ffiv_easy.ips',
 							name: 'FF4 Ultima Classic (for FFIV EasyType)',
 							description: 'dozens of new weapons, monsters, maps, and challenges',
 							outputName: 'FF4Ultima Classic', //patched ROM name
 						},{
-							file: 'ffiv rev1.1.ips',
+							file: 'FF4UC_ffiv_rev1.1.ips',
 							name: 'FF4 Ultima Classic (for FFIV Rev1.1)',
+							description: 'dozens of new weapons, monsters, maps, and challenges',
+							outputName: 'FF4Ultima Classic', //patched ROM name
+						},{
+							file: 'FF4UC_ff2_v1.0-H.ips',
+							name: 'FF4 Ultima Classic (for FFII v1.0 Header)',
+							description: 'dozens of new weapons, monsters, maps, and challenges',
+							outputName: 'FF4Ultima Classic', //patched ROM name
+						},{
+							file: 'FF4UC_ff2_v1.1-H.ips',
+							name: 'FF4 Ultima Classic (for FFII v1.1 Header)',
+							description: 'dozens of new weapons, monsters, maps, and challenges',
+							outputName: 'FF4Ultima Classic', //patched ROM name
+						},{
+							file: 'FF4UC_ffiv_easy-H.ips',
+							name: 'FF4 Ultima Classic (for for FFIV EasyType Header)',
+							description: 'dozens of new weapons, monsters, maps, and challenges',
+							outputName: 'FF4Ultima Classic', //patched ROM name
+						},{
+							file: 'FF4UC_ffiv_rev1.1-H.ips',
+							name: 'FF4 Ultima Classic (for FFIV Rev1.1 Header)',
 							description: 'dozens of new weapons, monsters, maps, and challenges',
 							outputName: 'FF4Ultima Classic', //patched ROM name
 						}
@@ -115,7 +148,7 @@
 			<p>
 				Please upload a copy of <em>'Final Fantasy II (USA)'</em> or <em>FF IV(J)</em><br />
 				This app can patch it into <span style="color:gold;">Final Fantasy IV Ultima Classic</span> (rev25c)<br />
-				This tool & patches current as of 20 Dec 2024
+				This tool & patches current as of 8 Jan 2025
 			</p>
 			<h5>(Verify rom has no header: feature to remove header coming soon)</h5>
 		</div>
