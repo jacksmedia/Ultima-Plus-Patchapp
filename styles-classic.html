@@ -6,7 +6,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
 	
-	<title>FF4 Ultima Plus Style Packs</title>
+	<title>FF4 Ultima Classic Style Packs</title>
 	<meta http-equiv="content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
@@ -36,11 +36,11 @@
 						// }
 						const crc32 = romFile.hashCRC32();
 						/* if ROM = FF4UP */
-						if (crc32 === FF4ULTIMAPLUS_CHECKSUM)
-							RomPatcherWeb.pickEmbededFile('5-UltimaPlus-Ceres.ips');
+						if (crc32 === FF4ULTIMACLASSIC_CHECKSUM)
+							RomPatcherWeb.pickEmbededFile('5-UltimaClassic-Ceres.ips');
 						/* if ROM anything else */
-						else if (crc32 !== FF4ULTIMAPLUS_CHECKSUM)
-							RomPatcherWeb.pickEmbededFile('6-UltimaPlus-Jupiter.ips');
+						else if (crc32 !== FF4ULTIMACLASSIC_CHECKSUM)
+							RomPatcherWeb.pickEmbededFile('6-UltimaClassic-Jupiter.ips');
 					},
 					onvalidaterom: function (romFile, isRomValid) {
 						const crc32 = romFile.hashCRC32();
@@ -273,55 +273,55 @@
 					file: 'FF4U-Styles.zip',
 					patches: [
 						{
-							file: '1-UltimaPlus-Luna.ips',
-							name: 'FF4 Ultima Plus Luna Style',
+							file: '1-UltimaClassic-Luna.ips',
+							name: 'FF4 Ultima Classic Luna Style',
 							description: 'Makes portraits match battle sprites (by xJ4cks & FlamePurge). Totally classic battle sprites. Mostly classic map sprites (some work by xJ4cks). Classic font.',
-							outputName: 'FF4Ultima Plus Luna', //patched ROM name
+							outputName: 'FF4Ultima Classic Luna', //patched ROM name
 						},{
-							file: '2-UltimaPlus-Mercury.ips',
-							name: 'FF4 Ultima Plus Mercury Style',
+							file: '2-UltimaClassic-Mercury.ips',
+							name: 'FF4 Ultima Classic Mercury Style',
 							description: 'Makes battle sprites match portraits (by xJ4cks & tsushiy). Changes some portraits (by xJ4cks, tsushiy, & FlamePurge). Map sprites either T-Edition style (by tsushiy) or PR style (by xJ4cks). \'I-NES\' FF1 font (by FlamePurge).',
-							outputName: 'FF4Ultima Plus Mercury', //patched ROM name
+							outputName: 'FF4Ultima Classic Mercury', //patched ROM name
 						},{
-							file: '3-UltimaPlus-UltimaPlus-Venus.ips',
-							name: 'FF4 Ultima Plus Venus Style',
+							file: '3-UltimaClassic-Venus.ips',
+							name: 'FF4 Ultima Classic Venus Style',
 							description: 'Makes battle sprites match portraits (by xJ4cks). Map sprites PR style (by MObreck & xJ4cks). Changes some portraits (by xJ4cks & FlamePurge). Wide Advance font (by Dragonsbrethren).',
-							outputName: 'FF4Ultima Plus Venus', //patched ROM name
+							outputName: 'FF4Ultima Classic Venus', //patched ROM name
 						},{
-							file: '4-UltimaPlus-UltimaPlus-Mars.ips',
-							name: 'FF4 Ultima Plus Mars Style',
+							file: '4-UltimaClassic-Mars.ips',
+							name: 'FF4 Ultima Classic Mars Style',
 							description: 'Makes battle sprites alt Pixel Remaster style (by Nicoc1991, MObreck, & xJ4cks). Map sprites various styles (by MObreck, xJ4cks, & Nicoc1991). Changes some portraits (by xJ4cks & FlamePurge). Enhanced enemy graphics (by Gedankenschild). mrBrawndo\'s Ultima IV Font.',
-							outputName: 'FF4Ultima Plus Mars', //patched ROM name
+							outputName: 'FF4Ultima Classic Mars', //patched ROM name
 						},{
-							file: '5-UltimaPlus-UltimaPlus-Ceres.ips',
-							name: 'FF4 Ultima Plus Ceres Style',
+							file: '5-UltimaClassic-Ceres.ips',
+							name: 'FF4 Ultima Classic Ceres Style',
 							description: 'Makes battle sprites DS colors Pixel Remaster style (by xJ4cks, Nicoc1991, & MObreck). Map sprites PR style (by xJ4cks & MObreck). Changes some portraits (by xJ4cks & Nicoc1991). Enhanced enemy graphics (by Gedankenschild). Clean Font (by xJ4cks).',
-							outputName: 'FF4Ultima Plus Ceres', //patched ROM name
+							outputName: 'FF4Ultima Classic Ceres', //patched ROM name
 						},{
-							file: '6-UltimaPlus-UltimaPlus-Jupiter.ips',
-							name: 'FF4 Ultima Plus Jupiter Style',
+							file: '6-UltimaClassic-Jupiter.ips',
+							name: 'FF4 Ultima Classic Jupiter Style',
 							description: 'Makes battle sprites Record Keeper style (by T92). Map sprites classic style. Portraits classic style. Enhanced enemy graphics (by Gedankenschild). Monocraft Font.',
-							outputName: 'FF4Ultima Plus Jupiter', //patched ROM name
+							outputName: 'FF4Ultima Classic Jupiter', //patched ROM name
 						},{
-							file: '7-UltimaPlus-UltimaPlus-Saturn.ips',
-							name: 'FF4 Ultima Plus Saturn Style',
+							file: '7-UltimaClassic-Saturn.ips',
+							name: 'FF4 Ultima Classic Saturn Style',
 							description: 'Makes battle sprites alt Record Keeper styles (by xJ4cks, T92, Nicoc1991, tsushiy). Map sprites T-Edition style (by tsushiy & xJ4cks). Changes portraits (by xJ4cks, FlamePurge). Enhanced enemy graphics (by Gedankenschild). Chicago6 Font.',
-							outputName: 'FF4Ultima Plus Saturn', //patched ROM name
+							outputName: 'FF4Ultima Classic Saturn', //patched ROM name
 						},{
-							file: '8-UltimaPlus-UltimaPlus-Uranus.ips',
-							name: 'FF4 Ultima Plus Uranus Style',
+							file: '8-UltimaClassic-Uranus.ips',
+							name: 'FF4 Ultima Classic Uranus Style',
 							description: 'Makes characters Stick Figure style & assigns a Stick Font (April Fools! both by chillyfeez).',
-							outputName: 'FF4Ultima Plus Uranus', //patched ROM name
+							outputName: 'FF4Ultima Classic Uranus', //patched ROM name
 						},{
-							file: '9-UltimaPlus-UltimaPlus-Neptune.ips',
-							name: 'FF4 Ultima Plus Neptune Style',
+							file: '9-UltimaClassic-Neptune.ips',
+							name: 'FF4 Ultima Classic Neptune Style',
 							description: 'Makes battle sprites alt Record Keeper styles (by Nicoc1991, xJ4cks, & T92). Purple vs blue map sprites in various styles (by Nicoc1991, MObreck, xJ4cks, tsushiy). Changes some portraits (by Nicoc1991, xJ4cks, FlamePurge, tsushiy). Enhanced enemy graphics (by Gedankenschild). Chicago6 Font.',
-							outputName: 'FF4Ultima Plus Neptune', //patched ROM name
+							outputName: 'FF4Ultima Classic Neptune', //patched ROM name
 						},{
-							file: 'X-UltimaPlus-UltimaPlus-Pluto.ips',
-							name: 'FF4 Ultima Plus Pluto Style',
+							file: 'X-UltimaClassic-Pluto.ips',
+							name: 'FF4 Ultima Classic Pluto Style',
 							description: 'Makes battle sprites mainly Record Keeper styles (by xJ4cks, Nicoc1991, T92, MObreck). Purple vs blue map sprites in various style (by xJ4cks, MObreck, Nicoc1991, tsushiy). Changes some portraits (by xJ4cks, Nicoc1991, FlamePurge, tsushiy). Stick Font (by chillyfeez).',
-							outputName: 'FF4Ultima Plus Pluto', //patched ROM name
+							outputName: 'FF4Ultima Classic Pluto', //patched ROM name
 						}
 					]
 				}
@@ -348,13 +348,13 @@
 
 </head>
 
-<body style="font: 1rem 'Quattrocento Sans', sans-serif; text-align: center;">
+<body style="font: 1rem 'Quattrocento Sans', sans-serif; text-align: center; background: linear-gradient(#666, #000, #666)">
 	<h1 style="font-family: Quattrocento;">FF4 Ultima Plus Style Patcher</h1>
 	<header style="display: flex; text-align: center; justify-content: center;">
 		
 		<div style="text-align: center; margin-left: 1vw; margin-right: 1vw; max-width: 33vw;">
 			<p>
-				Please upload a copy of 'Final Fantasy 4 Ultima Plus.
+				Please upload a copy of 'Final Fantasy 4 Ultima Classic'.
 				This app provides alternate graphics and font styles:
 				<span style="color:gold;">Choose from one of 10 after uploading</span>.
 			</p>
@@ -366,7 +366,7 @@
 				
 				</a>
 			</p>
-			<h3>The CRC32 (checksum) expcted is <code style="color:gold;">210f70b1</code></h3>
+			<h3>The CRC32 (checksum) expcted is <code style="color:gold;">1A13A227</code></h3>
 
 			<!-- end left column -->
 		</div>
