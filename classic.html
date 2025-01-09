@@ -2,6 +2,9 @@
 <html translate="no">
 
 <head>
+	<!-- layout logic from Bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<!-- Font and traffic monitoring from Google -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
@@ -140,53 +143,66 @@
 
 </head>
 
-<body style="font: 15px 'Quattrocento Sans', sans-serif; text-align: center; background: linear-gradient(#666, #000, #666);">
-	<h1 style="font-family: Quattrocento;">FF4 Ultima Classic Rom Patcher</h1>
-	<header style="display: flex; text-align: center; justify-content: center;">
-		<!-- begin left column -->
-		<div style="text-align: center; margin-right: 5vw;">		
-			<p>
-				Please upload a copy of <em>'Final Fantasy II (USA)'</em> or <em>FF IV(J)</em><br />
-				This app can patch it into <span style="color:gold;">Final Fantasy IV Ultima Classic</span> (rev25c)<br />
-				This tool & patches current as of 8 Jan 2025
-			</p>
-			<p>Why play FF4 Ultma Classic vs Ultima Plus?<br/>The reason we hear the most is that people want this version's RetroAchievements support, and Ultima Plus doesn't offer them yet!</p>
-
+<body style="font: 1.1rem 'Quattrocento Sans', sans-serif; background: linear-gradient(#666, #000, #666);">
+	<header class="container-fluid">
+		<!-- first row, page title -->
+		<div class="row justify-content-center">
+			<!-- begins single column -->
+			<div class="col d-flex justify-content-center">
+				<h1 style="font-family: Quattrocento;">
+					FF4 Ultima Classic Rom Patcher
+				</h1>
+			</div>
+		<!-- ends row -->
 		</div>
-		<!-- end left; begin right column -->
-		 		<!-- center image of title screen -->
-		<div>
-			<img style="width: 100%; max-width: 33vw;" src="classicTitle.png" id="preview-Title" />
-		</div>
-		<!-- right column: 1/2 patch UI & preview images -->
-		<div style="text-align: center; margin: 1vw;">
-			<h3 style="color:gold;">
-				If you need a copy of FF4 UP,</h3>
+		<!-- 2nd row for, header content -->
+		<div class="row d-flex justify-content-center align-items-center">
+			<!-- begins left column -->
+			<div class="col-12 col-sm-4 d-flex justify-content-center align-items-center mx-auto">		
+				<p style="line-height: 150%; font-size: 111%;">
+					Please upload a copy of <em>'Final Fantasy II (USA)'</em> or <em>'FF IV(J)'.</em>
+					This app can patch it into <span style="color:gold;">Final Fantasy IV Ultima Classic</span> (rev25c).<br/>
+					This tool & patches current as of 9 Jan 2025.
+				</p>
+			</div>
+			<!-- center col, for image of title screen -->
+			<div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">
+				<img style="width: 100%;" src="classicTitle.png" id="preview-Title" />
+			</div>
+			<!-- begins right column -->
+			<div class="col-12 col-sm-4 d-flex-column justify-content-end align-items-center">
+				<h3 style="color:gold;">
+				If you need a copy of FF4 Ultima Plus,</h3>
 				<p>use the</p>
-				<h2><a style="color:aqua;" href="index.html">FFF4 Ultima Plus Patcher</a></h2>
+				<a href="index.html" style="text-decoration:none;">
+					<button class="d-flex justify-content-center align-items-center"
+					style="background: black; padding: 1rem; border-radius: 2rem;">
+						<h4 style="color:aqua;">
+							Ultima Plus Patcher
+						</h4>
+					</button>
+				</a>
+			</div>
+			<!-- ends col -->
 		</div>
+		<!-- ends row -->
 	</header>
-<!-- 
-4 roms' CRC32s
-65D0A825
-23084FCD
-6CDA700C
-CAA15E97 -->
-	<!-- message below the 2-column layout -->
-	<h3>The rom (checksums) that work at this time are
-		 <span style="color:gold;">23084fcd</span>, <span style="color:gold;">65d0a825</span>
-		  and <span style="color:aqua;">6cda700c</span>, <span style="color:aqua;">caa15e97</span>
-		</h3>
 
+	<!-- messages below the 3-column layout -->
+	<div class="row justify-content-center">
+		<!-- begins single column -->
+		<div class="col d-flex justify-content-center">
+			<h5>
+				Why play FF4 Ultima Classic vs Ultima Plus?<br/>
+				The reason we hear most often is that people want this version's RetroAchievements support,<br/>
+				and Ultima Plus doesn't offer it yet!
+			</h5>
+		<!-- ends col -->
+		</div>
+	<!-- ends row -->
+	</div>
 
-	<!-- Rom Patcher JS container -->
-	<!--
-		The following elements are required for Rom Patcher JS to work:
-			#rom-patcher-input-file-rom
-			#rom-patcher-select-patch
-			#rom-patcher-button-apply
-		The rest of elements are informative and can be removed, though it's recommended to keep them for a better user experience.
-	-->
+	<!-- main feature container, CSS layout classes -->
 	<div id="rom-patcher-container">
 		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-rom">
 			<div class="text-right">
@@ -218,7 +234,20 @@ CAA15E97 -->
 				<div class="text-truncate"><span id="rom-patcher-span-rom-info"></span></div>
 			</div>
 		</div>
-
+		<!-- BS styling for the 8 CRC32 numbers -->
+		<div class="container-fluid">
+			<div class="row w-100">
+				<div class="col-12 d-flex justify-content-center">
+					<h6>The rom checksums (CRC32s) that work at this time are:<br/>						
+						<span style="color:tomato;">23084fcd</span>, <span style="color:tomato;">65d0a825</span>,
+						<span style="color:blue;">6cda700c</span>, <span style="color:blue;">caa15e97</span>,<br/>
+						<span style="color:tomato;">e73564db</span>, <span style="color:tomato;">a1ed8333</span>,
+						<span style="color:blue;">ee3fbcf2</span>, <span style="color:blue;">48449269</span>
+					</h6>
+				</div>
+			</div>
+		</div> 
+		<!-- end BS styling -->
 		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-patch">
 			<div class="text-right">
 				<label for="rom-patcher-input-file-patch" data-localize="yes">
@@ -248,6 +277,59 @@ CAA15E97 -->
 			Powered by Rom Patcher JS
 		</a>
 	</div>
+
+<!-- 3 column links: Guides, Discord, Classic -->
+
+	<div class="container-fluid">
+		<!-- only row; all 3 cols stack vertically on <md screens -->
+		<div class="row justify-content-center">
+			<!-- begins 1st column, Ultima Guides link -->
+			<div class="col-sm-4 d-flex align-items-center justify-content-center">
+				<div class="d-flex align-items-center">Game guides available at &nbsp;&nbsp; </div>
+				<!-- black btn styled div -->
+				<a href="guides.html" style="text-decoration:none;">
+				<button class="d-flex justify-content-center align-items-center"
+				style="background: black; padding: 1.2rem; border-radius: 2rem;">
+					<span style="color:aqua;">
+						FF4 Ultima Guides
+					</span>
+				</button>
+				</a>		
+			</div>
+			<!-- 2nd col, for Ultima Classic -->
+			<div class="col-sm-4 d-flex align-items-center justify-content-center">
+				If you want to apply some custom graphics and fonts to Ultima Classic, try the style packs:
+				<!-- black btn styled div -->
+				<a href="styles-classic.html" style="text-decoration:none;">
+				<button class="d-flex justify-content-center align-items-center"
+				style="background: black; padding: 1.2rem; border-radius: 2rem;">
+					<span style="color:tomato; text-decoration:none;">
+						FF4 Ultima Classic Styles
+					</span>
+				</button>
+				</a>
+			</div>
+			<!-- 3rd col, moves below 1st & 2nd on md > screens
+			 for Discord Link -->
+			<div class="col-sm-4 d-flex justify-content-center align-items-center">			
+				<!-- black btn styled link-->
+				<a href="https://discord.gg/ZpEfVMc8" 
+				target="_blank"
+				style="text-decoration:none;">
+				<button class="d-flex justify-content-center align-items-center"
+				style="background: black; padding: 1.2rem; border-radius: 2rem;">
+					<h6 style="color: white;">Join us in
+					<span style="color:#f7dc6f;">
+						Ultima Discord
+					</h6>!
+				</button>
+				</a>
+			<!-- ends col -->
+			</div>
+		</div>
+	</div>
+	<!-- by xJ4cks for Ultima Plus Team, 2024-2025 -->
+
 </body>
 
 </html>
