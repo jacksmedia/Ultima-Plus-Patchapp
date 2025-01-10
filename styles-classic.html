@@ -2,6 +2,9 @@
 <html translate="no" style="margin: 0; padding: 0;">
 
 <head>
+	<!-- layout logic from Bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<!-- Font and traffic monitoring from Google -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
@@ -146,53 +149,63 @@
 
 </head>
 
-<body style="font: 1rem 'Quattrocento Sans', sans-serif; text-align: center; background: linear-gradient(#666, #000, #666)">
-	<h1 style="font-family: Quattrocento;">FF4 Ultima Classic Style Patcher</h1>
-	<header style="display: flex; text-align: center; justify-content: center;">
-		
-		<div style="text-align: center; margin-left: 1vw; margin-right: 1vw; max-width: 33vw;">
-			<p>
+<body style="font: 1.1rem 'Quattrocento Sans', sans-serif; background: linear-gradient(#666, #000, #666)">
+	<header class="container-fluid">
+		<!-- first row, page title -->
+		<div class="row justify-content-center">
+			<!-- begins single column -->
+			<div class="col d-flex justify-content-center">
+				<h1 style="font-family: Quattrocento;">
+					FF4 Ultima Classic Style Patcher
+				</h1>
+			</div>
+			<!-- ends row -->
+		</div>
+
+		<!-- 2nd row for, header content -->
+		<div class="row d-flex justify-content-center align-items-center">
+			<!-- begins left column -->
+			<div class="col-12 col-sm-4 d-flex justify-content-center align-items-center mx-auto">		
+				<p style="line-height: 150%; font-size: 111%;">
 				Please upload a copy of 'Final Fantasy 4 Ultima Classic'.
 				This app provides alternate graphics and font styles:
 				<span style="color:gold;">Choose from one of 10 after uploading</span>.
 			</p>
-			<p>
-				<a target="_blank"
-				 href="https://www.notion.so/xj4cks/FF4-Alt-Sprites-11e6bad3142980a3808ee8790c463039"
-				 style="color:tomato;">
-						View previews of individual patches
-				
-				</a>
-			</p>
-			<h3>The CRC32 (checksum) expcted is <code style="color:gold;">1A13A227</code></h3>
-
 			<!-- end left column -->
-		</div>
-		<!-- center image of title screen -->
-		<div>
-			<img style="width: 100%; max-width: 33vw;" src="Title.png" id="preview-Title" />
-		</div>
-
-		<!-- right column: 1/2 patch UI & preview images -->
-		<div style="text-align: center; margin-left: 1vw; margin-right: 1vw;">
-			<h3 style="color:gold;">
-				Need a copy of FF4 UP?
-			</h3>
-				use the
-			<h2>
-				<a style="color:aqua;" href="index.html">FFF4 Ultima Plus Patcher</a>
-			</h2>
-			<p>
-				This site & patches updated<br/>
-				8 Jan 2025
-			</p>
 			</div>
 
+			<!-- center col, for image of title screen -->
+			<div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">
+				<img style="width: 100%;" src="classicTitle.png" id="preview-Title" />
+			</div>
+
+			<!-- begins right column -->
+			<div class="col-12 col-sm-4 d-flex-column justify-content-end align-items-center">
+				<h3 style="color:gold;">
+					Need a copy of FF4 UP?
+				</h3>
+					use the
+					<!-- black btn styled div -->
+					<a href="index.html" style="text-decoration:none;">
+						<button class="d-flex justify-content-center align-items-center"
+						style="background: black; padding: 1rem; border-radius: 2rem;">
+							<h4 style="color:aqua;">
+								FFF4 Ultima Plus Patcher
+							</h4>
+						</button>
+					</a>
+				<p>
+					This site & patches updated<br/>
+					9 Jan 2025
+				</p>
+				<!-- ends col -->
+			</div>
+			<!-- ends row -->
+		</div>
 	</header>
 
 
 	<!-- begin patcher container -->
-
 	<div id="rom-patcher-container" style="min-width: 90vw;">
 
 		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-rom">
@@ -219,8 +232,18 @@
 				</div>
 			</div>
 		</div>
-			
-
+		
+		<!-- BS styling for the 8 CRC32 numbers -->
+		<div class="container-fluid">
+			<div class="row w-100">
+				<div class="col-12 d-flex justify-content-center">
+				<h6>
+					The CRC32 (checksum) expcted is <code style="color:purple;">1a13a227</code>
+				</h6>
+				</div>
+			</div>
+		</div> 
+		<!-- end BS styling -->
 		
 		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-patch">
 			<div class="text-right">
@@ -296,6 +319,12 @@
 			<li>mrBrawndo</li>
 			<li>Dragonsbrethren</li>
 		</ul>
+		<br/>
+		<a target="_blank"
+		href="https://www.notion.so/xj4cks/FF4-Alt-Sprites-11e6bad3142980a3808ee8790c463039"
+		style="color:tomato;">
+			   View previews of individual patches
+	   </a>
 	</div>
 
 </body>
