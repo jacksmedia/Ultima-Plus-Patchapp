@@ -48,229 +48,27 @@
 						if (!isRomValid && FF2_CHECKSUMS_INVALID.indexOf(crc32) !== -1)
 							RomPatcherWeb.setErrorMessage('Please provide a v1.0 or v1.1 English language FF2 rom file.');
 					},
-					// nearly functional refactor for the below lasanga code
-					// 	onloadpatch: function (patchFile, embededPatchInformation) {
-				// 		const images = ['Luna', 'Mercury', 'Venus', 'Mars', 'Ceres', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
-				// 		images.forEach(image => {
-				// 			document.getElementById(`preview-${image}`).style.display = (patchFile.getName() === `${image}`) ? 'block' : 'none'});
-				// 	}
-				// },
-								// need to refactor TF out of this XD
-					onloadpatch: function (patchFile, embededPatchInformation) { // would be nice to refactor this into select loop
-						if (patchFile.getName() === '1-Luna') {
-							document.getElementById('preview-gif-Luna').style.display = 'block';
-							document.getElementById('preview-gif-Mercury').style.display = 'none';
-							document.getElementById('preview-gif-Venus').style.display = 'none';
-							document.getElementById('preview-gif-Mars').style.display = 'none';
-							document.getElementById('preview-gif-Ceres').style.display = 'none';
-							document.getElementById('preview-gif-Jupiter').style.display = 'none';
-							document.getElementById('preview-gif-Saturn').style.display = 'none';
-							document.getElementById('preview-gif-Uranus').style.display = 'none';
-							document.getElementById('preview-gif-Neptune').style.display = 'none';
-							document.getElementById('preview-gif-Pluto').style.display = 'none';
-							document.getElementById('preview-png-Luna').style.display = 'block';
-							document.getElementById('preview-png-Mercury').style.display = 'none';
-							document.getElementById('preview-png-Venus').style.display = 'none';
-							document.getElementById('preview-png-Mars').style.display = 'none';
-							document.getElementById('preview-png-Ceres').style.display = 'none';
-							document.getElementById('preview-png-Jupiter').style.display = 'none';
-							document.getElementById('preview-png-Saturn').style.display = 'none';
-							document.getElementById('preview-png-Uranus').style.display = 'none';
-							document.getElementById('preview-png-Neptune').style.display = 'none';
-							document.getElementById('preview-png-Pluto').style.display = 'none';
-						}else if(patchFile.getName() === '2-Mercury'){
-							document.getElementById('preview-gif-Luna').style.display = 'none';
-							document.getElementById('preview-gif-Mercury').style.display = 'block';
-							document.getElementById('preview-gif-Venus').style.display = 'none';
-							document.getElementById('preview-gif-Mars').style.display = 'none';
-							document.getElementById('preview-gif-Ceres').style.display = 'none';
-							document.getElementById('preview-gif-Jupiter').style.display = 'none';
-							document.getElementById('preview-gif-Saturn').style.display = 'none';
-							document.getElementById('preview-gif-Uranus').style.display = 'none';
-							document.getElementById('preview-gif-Neptune').style.display = 'none';
-							document.getElementById('preview-gif-Pluto').style.display = 'none';
-							document.getElementById('preview-png-Luna').style.display = 'none';
-							document.getElementById('preview-png-Mercury').style.display = 'block';
-							document.getElementById('preview-png-Venus').style.display = 'none';
-							document.getElementById('preview-png-Mars').style.display = 'none';
-							document.getElementById('preview-png-Ceres').style.display = 'none';
-							document.getElementById('preview-png-Jupiter').style.display = 'none';
-							document.getElementById('preview-png-Saturn').style.display = 'none';
-							document.getElementById('preview-png-Uranus').style.display = 'none';
-							document.getElementById('preview-png-Neptune').style.display = 'none';
-							document.getElementById('preview-png-Pluto').style.display = 'none';
-						}else if(patchFile.getName() === '3-Venus'){
-							document.getElementById('preview-gif-Luna').style.display = 'none';
-							document.getElementById('preview-gif-Mercury').style.display = 'none';
-							document.getElementById('preview-gif-Venus').style.display = 'block';
-							document.getElementById('preview-gif-Mars').style.display = 'none';
-							document.getElementById('preview-gif-Ceres').style.display = 'none';
-							document.getElementById('preview-gif-Jupiter').style.display = 'none';
-							document.getElementById('preview-gif-Saturn').style.display = 'none';
-							document.getElementById('preview-gif-Uranus').style.display = 'none';
-							document.getElementById('preview-gif-Neptune').style.display = 'none';
-							document.getElementById('preview-gif-Pluto').style.display = 'none';
-							document.getElementById('preview-png-Luna').style.display = 'none';
-							document.getElementById('preview-png-Mercury').style.display = 'none';
-							document.getElementById('preview-png-Venus').style.display = 'block';
-							document.getElementById('preview-png-Mars').style.display = 'none';
-							document.getElementById('preview-png-Ceres').style.display = 'none';
-							document.getElementById('preview-png-Jupiter').style.display = 'none';
-							document.getElementById('preview-png-Saturn').style.display = 'none';
-							document.getElementById('preview-png-Uranus').style.display = 'none';
-							document.getElementById('preview-png-Neptune').style.display = 'none';
-							document.getElementById('preview-png-Pluto').style.display = 'none';
-						}else if(patchFile.getName() === '4-Mars'){
-							document.getElementById('preview-gif-Luna').style.display = 'none';
-							document.getElementById('preview-gif-Mercury').style.display = 'none';
-							document.getElementById('preview-gif-Venus').style.display = 'none';
-							document.getElementById('preview-gif-Mars').style.display = 'block';
-							document.getElementById('preview-gif-Ceres').style.display = 'none';
-							document.getElementById('preview-gif-Jupiter').style.display = 'none';
-							document.getElementById('preview-gif-Saturn').style.display = 'none';
-							document.getElementById('preview-gif-Uranus').style.display = 'none';
-							document.getElementById('preview-gif-Neptune').style.display = 'none';
-							document.getElementById('preview-gif-Pluto').style.display = 'none';
-							document.getElementById('preview-png-Luna').style.display = 'none';
-							document.getElementById('preview-png-Mercury').style.display = 'none';
-							document.getElementById('preview-png-Venus').style.display = 'none';
-							document.getElementById('preview-png-Mars').style.display = 'block';
-							document.getElementById('preview-png-Ceres').style.display = 'none';
-							document.getElementById('preview-png-Jupiter').style.display = 'none';
-							document.getElementById('preview-png-Saturn').style.display = 'none';
-							document.getElementById('preview-png-Uranus').style.display = 'none';
-							document.getElementById('preview-png-Neptune').style.display = 'none';
-							document.getElementById('preview-png-Pluto').style.display = 'none';
-						}else if(patchFile.getName() === '5-Ceres'){
-							document.getElementById('preview-gif-Luna').style.display = 'none';
-							document.getElementById('preview-gif-Mercury').style.display = 'none';
-							document.getElementById('preview-gif-Venus').style.display = 'none';
-							document.getElementById('preview-gif-Mars').style.display = 'none';
-							document.getElementById('preview-gif-Ceres').style.display = 'block';
-							document.getElementById('preview-gif-Jupiter').style.display = 'none';
-							document.getElementById('preview-gif-Saturn').style.display = 'none';
-							document.getElementById('preview-gif-Uranus').style.display = 'none';
-							document.getElementById('preview-gif-Neptune').style.display = 'none';
-							document.getElementById('preview-gif-Pluto').style.display = 'none';
-							document.getElementById('preview-png-Luna').style.display = 'none';
-							document.getElementById('preview-png-Mercury').style.display = 'none';
-							document.getElementById('preview-png-Venus').style.display = 'none';
-							document.getElementById('preview-png-Mars').style.display = 'none';
-							document.getElementById('preview-png-Ceres').style.display = 'block';
-							document.getElementById('preview-png-Jupiter').style.display = 'none';
-							document.getElementById('preview-png-Saturn').style.display = 'none';
-							document.getElementById('preview-png-Uranus').style.display = 'none';
-							document.getElementById('preview-png-Neptune').style.display = 'none';
-							document.getElementById('preview-png-Pluto').style.display = 'none';
-						}else if(patchFile.getName() === '6-Jupiter'){
-							document.getElementById('preview-gif-Luna').style.display = 'none';
-							document.getElementById('preview-gif-Mercury').style.display = 'none';
-							document.getElementById('preview-gif-Venus').style.display = 'none';
-							document.getElementById('preview-gif-Mars').style.display = 'none';
-							document.getElementById('preview-gif-Ceres').style.display = 'none';
-							document.getElementById('preview-gif-Jupiter').style.display = 'block';
-							document.getElementById('preview-gif-Saturn').style.display = 'none';
-							document.getElementById('preview-gif-Uranus').style.display = 'none';
-							document.getElementById('preview-gif-Neptune').style.display = 'none';
-							document.getElementById('preview-gif-Pluto').style.display = 'none';
-							document.getElementById('preview-png-Luna').style.display = 'none';
-							document.getElementById('preview-png-Mercury').style.display = 'none';
-							document.getElementById('preview-png-Venus').style.display = 'none';
-							document.getElementById('preview-png-Mars').style.display = 'none';
-							document.getElementById('preview-png-Ceres').style.display = 'none';
-							document.getElementById('preview-png-Jupiter').style.display = 'block';
-							document.getElementById('preview-png-Saturn').style.display = 'none';
-							document.getElementById('preview-png-Uranus').style.display = 'none';
-							document.getElementById('preview-png-Neptune').style.display = 'none';
-							document.getElementById('preview-png-Pluto').style.display = 'none';
-						}else if(patchFile.getName() === '7-Saturn'){
-							document.getElementById('preview-gif-Luna').style.display = 'none';
-							document.getElementById('preview-gif-Mercury').style.display = 'none';
-							document.getElementById('preview-gif-Venus').style.display = 'none';
-							document.getElementById('preview-gif-Mars').style.display = 'none';
-							document.getElementById('preview-gif-Ceres').style.display = 'none';
-							document.getElementById('preview-gif-Jupiter').style.display = 'none';
-							document.getElementById('preview-gif-Saturn').style.display = 'block';
-							document.getElementById('preview-gif-Uranus').style.display = 'none';
-							document.getElementById('preview-gif-Neptune').style.display = 'none';
-							document.getElementById('preview-gif-Pluto').style.display = 'none';
-							document.getElementById('preview-png-Luna').style.display = 'none';
-							document.getElementById('preview-png-Mercury').style.display = 'none';
-							document.getElementById('preview-png-Venus').style.display = 'none';
-							document.getElementById('preview-png-Mars').style.display = 'none';
-							document.getElementById('preview-png-Ceres').style.display = 'none';
-							document.getElementById('preview-png-Jupiter').style.display = 'none';
-							document.getElementById('preview-png-Saturn').style.display = 'block';
-							document.getElementById('preview-png-Uranus').style.display = 'none';
-							document.getElementById('preview-png-Neptune').style.display = 'none';
-							document.getElementById('preview-png-Pluto').style.display = 'none';
-						}else if(patchFile.getName() === '8-Uranus'){
-							document.getElementById('preview-gif-Luna').style.display = 'none';
-							document.getElementById('preview-gif-Mercury').style.display = 'none';
-							document.getElementById('preview-gif-Venus').style.display = 'none';
-							document.getElementById('preview-gif-Mars').style.display = 'none';
-							document.getElementById('preview-gif-Ceres').style.display = 'none';
-							document.getElementById('preview-gif-Jupiter').style.display = 'none';
-							document.getElementById('preview-gif-Saturn').style.display = 'none';
-							document.getElementById('preview-gif-Uranus').style.display = 'block';
-							document.getElementById('preview-gif-Neptune').style.display = 'none';
-							document.getElementById('preview-gif-Pluto').style.display = 'none';
-							document.getElementById('preview-png-Luna').style.display = 'none';
-							document.getElementById('preview-png-Mercury').style.display = 'none';
-							document.getElementById('preview-png-Venus').style.display = 'none';
-							document.getElementById('preview-png-Mars').style.display = 'none';
-							document.getElementById('preview-png-Ceres').style.display = 'none';
-							document.getElementById('preview-png-Jupiter').style.display = 'none';
-							document.getElementById('preview-png-Saturn').style.display = 'none';
-							document.getElementById('preview-png-Uranus').style.display = 'block';
-							document.getElementById('preview-png-Neptune').style.display = 'none';
-							document.getElementById('preview-png-Pluto').style.display = 'none';
-						}else if(patchFile.getName() === '9-Neptune'){
-							document.getElementById('preview-gif-Luna').style.display = 'none';
-							document.getElementById('preview-gif-Mercury').style.display = 'none';
-							document.getElementById('preview-gif-Venus').style.display = 'none';
-							document.getElementById('preview-gif-Mars').style.display = 'none';
-							document.getElementById('preview-gif-Ceres').style.display = 'none';
-							document.getElementById('preview-gif-Jupiter').style.display = 'none';
-							document.getElementById('preview-gif-Saturn').style.display = 'none';
-							document.getElementById('preview-gif-Uranus').style.display = 'none';
-							document.getElementById('preview-gif-Neptune').style.display = 'block';
-							document.getElementById('preview-gif-Pluto').style.display = 'none';
-							document.getElementById('preview-png-Luna').style.display = 'none';
-							document.getElementById('preview-png-Mercury').style.display = 'none';
-							document.getElementById('preview-png-Venus').style.display = 'none';
-							document.getElementById('preview-png-Mars').style.display = 'none';
-							document.getElementById('preview-png-Ceres').style.display = 'none';
-							document.getElementById('preview-png-Jupiter').style.display = 'none';
-							document.getElementById('preview-png-Saturn').style.display = 'none';
-							document.getElementById('preview-png-Uranus').style.display = 'none';
-							document.getElementById('preview-png-Neptune').style.display = 'block';
-							document.getElementById('preview-png-Pluto').style.display = 'none';
-						}else if(patchFile.getName() === 'X-Pluto'){
-							document.getElementById('preview-gif-Luna').style.display = 'none';
-							document.getElementById('preview-gif-Mercury').style.display = 'none';
-							document.getElementById('preview-gif-Venus').style.display = 'none';
-							document.getElementById('preview-gif-Mars').style.display = 'none';
-							document.getElementById('preview-gif-Ceres').style.display = 'none';
-							document.getElementById('preview-gif-Jupiter').style.display = 'none';
-							document.getElementById('preview-gif-Saturn').style.display = 'none';
-							document.getElementById('preview-gif-Uranus').style.display = 'none';
-							document.getElementById('preview-gif-Neptune').style.display = 'none';
-							document.getElementById('preview-gif-Pluto').style.display = 'block';
-							document.getElementById('preview-png-Luna').style.display = 'none';
-							document.getElementById('preview-png-Mercury').style.display = 'none';
-							document.getElementById('preview-png-Venus').style.display = 'none';
-							document.getElementById('preview-png-Mars').style.display = 'none';
-							document.getElementById('preview-png-Ceres').style.display = 'none';
-							document.getElementById('preview-png-Jupiter').style.display = 'none';
-							document.getElementById('preview-png-Saturn').style.display = 'none';
-							document.getElementById('preview-png-Uranus').style.display = 'none';
-							document.getElementById('preview-png-Neptune').style.display = 'none';
-							document.getElementById('preview-png-Pluto').style.display = 'block';
-						}
-					},
+					onloadpatch: function (patchFile, embededPatchInformation) {
+						const planets = ['Luna', 'Mercury', 'Venus', 'Mars', 'Ceres', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
+						
+						// extracts name from patchfile
+						const selectedPlanet = patchFile.getName().split('-')[2];
+						console.log(selectedPlanet);
+
+						// hides all image elements that don't match the selected patch
+						planets.forEach(planet => {
+							document.getElementById(`${planet}-preview-gif`).style.display = 'none';
+							document.getElementById(`${planet}-preview-png`).style.display = 'none';
+						});
+						
+						// shows the image element that matches the selected patch
+						planets.forEach(planet => {
+							document.getElementById(`${selectedPlanet}-preview-gif`).style.display = 'block';
+							document.getElementById(`${selectedPlanet}-preview-png`).style.display = 'block';
+						});
+					}
 				},{
-					file: 'FF4U-Styles.zip',
+					file: 'FF4UP-Styles.zip',
 					patches: [
 						{
 							file: '1-UltimaPlus-Luna.ips',
@@ -283,42 +81,42 @@
 							description: 'Makes battle sprites match portraits (by xJ4cks & tsushiy). Changes some portraits (by xJ4cks, tsushiy, & FlamePurge). Map sprites either T-Edition style (by tsushiy) or PR style (by xJ4cks). \'I-NES\' FF1 font (by FlamePurge).',
 							outputName: 'FF4Ultima Plus Mercury', //patched ROM name
 						},{
-							file: '3-UltimaPlus-UltimaPlus-Venus.ips',
+							file: '3-UltimaPlus-Venus.ips',
 							name: 'FF4 Ultima Plus Venus Style',
 							description: 'Makes battle sprites match portraits (by xJ4cks). Map sprites PR style (by MObreck & xJ4cks). Changes some portraits (by xJ4cks & FlamePurge). Wide Advance font (by Dragonsbrethren).',
 							outputName: 'FF4Ultima Plus Venus', //patched ROM name
 						},{
-							file: '4-UltimaPlus-UltimaPlus-Mars.ips',
+							file: '4-UltimaPlus-Mars.ips',
 							name: 'FF4 Ultima Plus Mars Style',
 							description: 'Makes battle sprites alt Pixel Remaster style (by Nicoc1991, MObreck, & xJ4cks). Map sprites various styles (by MObreck, xJ4cks, & Nicoc1991). Changes some portraits (by xJ4cks & FlamePurge). Enhanced enemy graphics (by Gedankenschild). mrBrawndo\'s Ultima IV Font.',
 							outputName: 'FF4Ultima Plus Mars', //patched ROM name
 						},{
-							file: '5-UltimaPlus-UltimaPlus-Ceres.ips',
+							file: '5-UltimaPlus-Ceres.ips',
 							name: 'FF4 Ultima Plus Ceres Style',
 							description: 'Makes battle sprites DS colors Pixel Remaster style (by xJ4cks, Nicoc1991, & MObreck). Map sprites PR style (by xJ4cks & MObreck). Changes some portraits (by xJ4cks & Nicoc1991). Enhanced enemy graphics (by Gedankenschild). Clean Font (by xJ4cks).',
 							outputName: 'FF4Ultima Plus Ceres', //patched ROM name
 						},{
-							file: '6-UltimaPlus-UltimaPlus-Jupiter.ips',
+							file: '6-UltimaPlus-Jupiter.ips',
 							name: 'FF4 Ultima Plus Jupiter Style',
 							description: 'Makes battle sprites Record Keeper style (by T92). Map sprites classic style. Portraits classic style. Enhanced enemy graphics (by Gedankenschild). Monocraft Font.',
 							outputName: 'FF4Ultima Plus Jupiter', //patched ROM name
 						},{
-							file: '7-UltimaPlus-UltimaPlus-Saturn.ips',
+							file: '7-UltimaPlus-Saturn.ips',
 							name: 'FF4 Ultima Plus Saturn Style',
 							description: 'Makes battle sprites alt Record Keeper styles (by xJ4cks, T92, Nicoc1991, tsushiy). Map sprites T-Edition style (by tsushiy & xJ4cks). Changes portraits (by xJ4cks, FlamePurge). Enhanced enemy graphics (by Gedankenschild). Chicago6 Font.',
 							outputName: 'FF4Ultima Plus Saturn', //patched ROM name
 						},{
-							file: '8-UltimaPlus-UltimaPlus-Uranus.ips',
+							file: '8-UltimaPlus-Uranus.ips',
 							name: 'FF4 Ultima Plus Uranus Style',
 							description: 'Makes characters Stick Figure style & assigns a Stick Font (April Fools! both by chillyfeez).',
 							outputName: 'FF4Ultima Plus Uranus', //patched ROM name
 						},{
-							file: '9-UltimaPlus-UltimaPlus-Neptune.ips',
+							file: '9-UltimaPlus-Neptune.ips',
 							name: 'FF4 Ultima Plus Neptune Style',
 							description: 'Makes battle sprites alt Record Keeper styles (by Nicoc1991, xJ4cks, & T92). Purple vs blue map sprites in various styles (by Nicoc1991, MObreck, xJ4cks, tsushiy). Changes some portraits (by Nicoc1991, xJ4cks, FlamePurge, tsushiy). Enhanced enemy graphics (by Gedankenschild). Chicago6 Font.',
 							outputName: 'FF4Ultima Plus Neptune', //patched ROM name
 						},{
-							file: 'X-UltimaPlus-UltimaPlus-Pluto.ips',
+							file: 'X-UltimaPlus-Pluto.ips',
 							name: 'FF4 Ultima Plus Pluto Style',
 							description: 'Makes battle sprites mainly Record Keeper styles (by xJ4cks, Nicoc1991, T92, MObreck). Purple vs blue map sprites in various style (by xJ4cks, MObreck, Nicoc1991, tsushiy). Changes some portraits (by xJ4cks, Nicoc1991, FlamePurge, tsushiy). Stick Font (by chillyfeez).',
 							outputName: 'FF4Ultima Plus Pluto', //patched ROM name
@@ -445,28 +243,28 @@
 		
 		<div style="display:flex; flex-direction:column; justify-content:center; align-items:center; background:#000;">
 			<!-- preview image pngs -->
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-1-Luna.png" id="preview-png-Luna" />
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-2-Mercury.png" id="preview-png-Mercury" />
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-3-Venus.png" id="preview-png-Venus" />
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-4-Mars.png" id="preview-png-Mars" />
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-5-Ceres.png" id="preview-png-Ceres" />
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-6-Jupiter.png" id="preview-png-Jupiter" />
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-7-Saturn.png" id="preview-png-Saturn" />
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-8-Uranus.png" id="preview-png-Uranus" />
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-9-Neptune.png" id="preview-png-Neptune" />
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-X-Pluto.png" id="preview-png-Pluto" />
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-1-Luna.png" id="Luna-preview-png" />
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-2-Mercury.png" id="Mercury-preview-png" />
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-3-Venus.png" id="Venus-preview-png" />
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-4-Mars.png" id="Mars-preview-png" />
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-5-Ceres.png" id="Ceres-preview-png" />
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-6-Jupiter.png" id="Jupiter-preview-png" />
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-7-Saturn.png" id="Saturn-preview-png" />
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-8-Uranus.png" id="Uranus-preview-png" />
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-9-Neptune.png" id="Neptune-preview-png" />
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-X-Pluto.png" id="Pluto-preview-png" />
 
 			<!-- preview image GIFs -->
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Luna.gif" id="preview-gif-Luna" />
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Mercury.gif" id="preview-gif-Mercury" />
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Venus.gif" id="preview-gif-Venus" />
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Mars.gif" id="preview-gif-Mars" />
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Ceres.gif" id="preview-gif-Ceres" />
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Jupiter.gif" id="preview-gif-Jupiter" />
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Saturn.gif" id="preview-gif-Saturn" />
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Uranus.gif" id="preview-gif-Uranus" />
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Neptune.gif" id="preview-gif-Neptune" />
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Pluto.gif" id="preview-gif-Pluto" />
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Luna.gif" id="Luna-preview-gif" />
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Mercury.gif" id="Mercury-preview-gif" />
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Venus.gif" id="Venus-preview-gif" />
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Mars.gif" id="Mars-preview-gif" />
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Ceres.gif" id="Ceres-preview-gif" />
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Jupiter.gif" id="Jupiter-preview-gif" />
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Saturn.gif" id="Saturn-preview-gif" />
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Uranus.gif" id="Uranus-preview-gif" />
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Neptune.gif" id="Neptune-preview-gif" />
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Pluto.gif" id="Pluto-preview-gif" />
 		</div>
 
 		<div class="text-center" id="rom-patcher-row-apply">
