@@ -55,7 +55,7 @@
 						const planets = ['Luna', 'Mercury', 'Venus', 'Mars', 'Ceres', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
 						
 						// extracts name from patchfile
-						const selectedPlanet = patchFile.getName().split('-')[2];
+						const selectedPlanet = patchFile.getName().split('-')[1];
 						console.log(selectedPlanet);
 
 						// hides all image elements that don't match the selected patch
@@ -74,52 +74,52 @@
 					file: 'FF4UP-Styles.zip',
 					patches: [
 						{
-							file: '1-UltimaPlus-Luna.ips',
+							file: '1-Luna-Plus.ips',
 							name: 'FF4 Ultima Plus Luna Style',
 							description: 'Makes portraits match battle sprites (by xJ4cks & FlamePurge). Totally classic battle sprites. Mostly classic map sprites (some work by xJ4cks). Classic font.',
 							outputName: 'FF4Ultima Plus Luna', //patched ROM name
 						},{
-							file: '2-UltimaPlus-Mercury.ips',
+							file: '2-Mercury-Plus.ips',
 							name: 'FF4 Ultima Plus Mercury Style',
 							description: 'Makes battle sprites match portraits (by xJ4cks & tsushiy). Changes some portraits (by xJ4cks, tsushiy, & FlamePurge). Map sprites either T-Edition style (by tsushiy) or PR style (by xJ4cks). \'I-NES\' FF1 font (by FlamePurge).',
 							outputName: 'FF4Ultima Plus Mercury', //patched ROM name
 						},{
-							file: '3-UltimaPlus-Venus.ips',
+							file: '3-Venus-Plus.ips',
 							name: 'FF4 Ultima Plus Venus Style',
 							description: 'Makes battle sprites match portraits (by xJ4cks). Map sprites PR style (by MObreck & xJ4cks). Changes some portraits (by xJ4cks & FlamePurge). Wide Advance font (by Dragonsbrethren).',
 							outputName: 'FF4Ultima Plus Venus', //patched ROM name
 						},{
-							file: '4-UltimaPlus-Mars.ips',
+							file: '4-Mars-Plus.ips',
 							name: 'FF4 Ultima Plus Mars Style',
 							description: 'Makes battle sprites alt Pixel Remaster style (by Nicoc1991, MObreck, & xJ4cks). Map sprites various styles (by MObreck, xJ4cks, & Nicoc1991). Changes some portraits (by xJ4cks & FlamePurge). Enhanced enemy graphics (by Gedankenschild). mrBrawndo\'s Ultima IV Font.',
 							outputName: 'FF4Ultima Plus Mars', //patched ROM name
 						},{
-							file: '5-UltimaPlus-Ceres.ips',
+							file: '5-Ceres-Plus.ips',
 							name: 'FF4 Ultima Plus Ceres Style',
 							description: 'Makes battle sprites DS colors Pixel Remaster style (by xJ4cks, Nicoc1991, & MObreck). Map sprites PR style (by xJ4cks & MObreck). Changes some portraits (by xJ4cks & Nicoc1991). Enhanced enemy graphics (by Gedankenschild). Clean Font (by xJ4cks).',
 							outputName: 'FF4Ultima Plus Ceres', //patched ROM name
 						},{
-							file: '6-UltimaPlus-Jupiter.ips',
+							file: '6-Jupiter-Plus.ips',
 							name: 'FF4 Ultima Plus Jupiter Style',
 							description: 'Makes battle sprites Record Keeper style (by T92). Map sprites classic style. Portraits classic style. Enhanced enemy graphics (by Gedankenschild). Monocraft Font.',
 							outputName: 'FF4Ultima Plus Jupiter', //patched ROM name
 						},{
-							file: '7-UltimaPlus-Saturn.ips',
+							file: '7-Saturn-Plus.ips',
 							name: 'FF4 Ultima Plus Saturn Style',
 							description: 'Makes battle sprites alt Record Keeper styles (by xJ4cks, T92, Nicoc1991, tsushiy). Map sprites T-Edition style (by tsushiy & xJ4cks). Changes portraits (by xJ4cks, FlamePurge). Enhanced enemy graphics (by Gedankenschild). Chicago6 Font.',
 							outputName: 'FF4Ultima Plus Saturn', //patched ROM name
 						},{
-							file: '8-UltimaPlus-Uranus.ips',
+							file: '8-Uranus-Plus.ips',
 							name: 'FF4 Ultima Plus Uranus Style',
 							description: 'Makes characters Stick Figure style & assigns a Stick Font (April Fools! both by chillyfeez).',
 							outputName: 'FF4Ultima Plus Uranus', //patched ROM name
 						},{
-							file: '9-UltimaPlus-Neptune.ips',
+							file: '9-Neptune-Plus.ips',
 							name: 'FF4 Ultima Plus Neptune Style',
 							description: 'Makes battle sprites alt Record Keeper styles (by Nicoc1991, xJ4cks, & T92). Purple vs blue map sprites in various styles (by Nicoc1991, MObreck, xJ4cks, tsushiy). Changes some portraits (by Nicoc1991, xJ4cks, FlamePurge, tsushiy). Enhanced enemy graphics (by Gedankenschild). Chicago6 Font.',
 							outputName: 'FF4Ultima Plus Neptune', //patched ROM name
 						},{
-							file: 'X-UltimaPlus-Pluto.ips',
+							file: 'X-Pluto-Plus.ips',
 							name: 'FF4 Ultima Plus Pluto Style',
 							description: 'Makes battle sprites mainly Record Keeper styles (by xJ4cks, Nicoc1991, T92, MObreck). Purple vs blue map sprites in various style (by xJ4cks, MObreck, Nicoc1991, tsushiy). Changes some portraits (by xJ4cks, Nicoc1991, FlamePurge, tsushiy). Stick Font (by chillyfeez).',
 							outputName: 'FF4Ultima Plus Pluto', //patched ROM name
@@ -149,53 +149,66 @@
 
 </head>
 
-<body style="font: 1rem 'Quattrocento Sans', sans-serif; text-align: center;">
-	<h1 style="font-family: Quattrocento;">FF4 Ultima Plus Style Patcher</h1>
-	<header style="display: flex; text-align: center; justify-content: center;">
+<body style="font: 1rem 'Quattrocento Sans', sans-serif;">
+	<header class="container-fluid">
+		<!-- first row, page title -->
+		<div class="row justify-content-center">
+			<!-- begins single column -->
+			<div class="col d-flex justify-content-center">
+				<h1 style="font-family: Quattrocento;">
+					FF4 Ultima Plus Style Patcher
+				</h1>
+			</div>
+			<!-- ends row -->
+		</div>
 		
-		<div style="text-align: center; margin-left: 1vw; margin-right: 1vw; max-width: 33vw;">
-			<p>
-				Please upload a copy of 'Final Fantasy 4 Ultima Plus.
-				This app provides alternate graphics and font styles:
+
+		<!-- 2nd row for, header content -->
+		<div class="row d-flex justify-content-center align-items-center">
+			<!-- begins left column -->
+			<div class="col-12 col-sm-4 d-flex justify-content-center align-items-center mx-auto">		
+				<p style="line-height: 150%; font-size: 111%;">
+					Please upload a copy of 'Final Fantasy 4 Ultima Plus.
+					This app provides alternate graphics and font styles:
 				<span style="color:gold;">Choose from one of 10 after uploading</span>.
-			</p>
-			<p>
-				<a target="_blank"
-				 href="https://www.notion.so/xj4cks/FF4-Alt-Sprites-11e6bad3142980a3808ee8790c463039"
-				 style="color:tomato;">
-						View previews of individual patches
-				
-				</a>
-			</p>
-			<h3>The CRC32 (checksum) expcted is <code style="color:gold;">210f70b1</code></h3>
-
+				</p>
 			<!-- end left column -->
-		</div>
-		<!-- center image of title screen -->
-		<div>
-			<img style="width: 100%; max-width: 33vw;" src="Title.png" id="preview-Title" />
+			</div>
+
+
+
+
+		<!-- center col, for image of title screen -->
+		<div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">
+			<img style="width: 100%;" src="Title.png" id="preview-Title" />
 		</div>
 
-		<!-- right column: 1/2 patch UI & preview images -->
-		<div style="text-align: center; margin-left: 1vw; margin-right: 1vw;">
+		<!-- begins right column -->
+		<div class="col-12 col-sm-4 d-flex-column justify-content-end align-items-center">
 			<h3 style="color:gold;">
 				Need a copy of FF4 UP?
 			</h3>
 				use the
-			<h2>
-				<a style="color:aqua;" href="index.html">FFF4 Ultima Plus Patcher</a>
-			</h2>
+			<!-- black btn styled div -->
+			<a href="index.html" style="text-decoration:none;">
+				<button class="d-flex justify-content-center align-items-center"
+				style="background: black; padding: 1rem; border-radius: 2rem;">
+					<h4 style="color:aqua;">
+						FFF4 Ultima Plus Patcher
+					</h4>
+				</button>
+			</a>
 			<p>
 				This site & patches updated<br/>
-				8 Jan 2025
+				9 Jan 2025
 			</p>
+			<!-- ends col -->
 			</div>
-
+		<!-- ends row -->
+		</div>
 	</header>
 
-
 	<!-- begin patcher container -->
-
 	<div id="rom-patcher-container" style="min-width: 90vw;">
 
 		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-rom">
@@ -223,6 +236,17 @@
 			</div>
 		</div>
 			
+		<!-- BS styling for the CRC32 number -->
+		<div class="container-fluid">
+			<div class="row w-100">
+				<div class="col-12 d-flex justify-content-center">
+				<h6>
+					The CRC32 (checksum) expcted is <code style="color:purple;">210f70b1</code>
+				</h6>
+				</div>
+			</div>
+		</div> 
+		<!-- end BS styling -->
 
 		
 		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-patch">
@@ -299,6 +323,12 @@
 			<li>mrBrawndo</li>
 			<li>Dragonsbrethren</li>
 		</ul>
+		<br/>
+		<a target="_blank"
+		href="https://www.notion.so/xj4cks/FF4-Alt-Sprites-11e6bad3142980a3808ee8790c463039"
+		style="color:tomato;">
+			   View previews of individual patches
+	   </a>
 	</div>
 
 </body>

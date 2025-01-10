@@ -55,7 +55,7 @@
 						const planets = ['Luna', 'Mercury', 'Venus', 'Mars', 'Ceres', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
 						
 						// extracts name from patchfile
-						const selectedPlanet = patchFile.getName().split('-')[2];
+						const selectedPlanet = patchFile.getName().split('-')[1];
 						console.log(selectedPlanet);
 
 						// hides all image elements that don't match the selected patch
@@ -74,52 +74,52 @@
 					file: 'FF4UC-Styles.zip',
 					patches: [
 						{
-							file: '1-UltimaClassic-Luna.ips',
+							file: '1-Luna-Classic.ips',
 							name: 'FF4 Ultima Classic Luna Style',
 							description: 'Makes portraits match battle sprites (by xJ4cks & FlamePurge). Totally classic battle sprites. Mostly classic map sprites (some work by xJ4cks). Classic font.',
 							outputName: 'FF4Ultima Classic Luna', //patched ROM name
 						},{
-							file: '2-UltimaClassic-Mercury.ips',
+							file: '2-Mercury-Classic.ips',
 							name: 'FF4 Ultima Classic Mercury Style',
 							description: 'Makes battle sprites match portraits (by xJ4cks & tsushiy). Changes some portraits (by xJ4cks, tsushiy, & FlamePurge). Map sprites either T-Edition style (by tsushiy) or PR style (by xJ4cks). \'I-NES\' FF1 font (by FlamePurge).',
 							outputName: 'FF4Ultima Classic Mercury', //patched ROM name
 						},{
-							file: '3-UltimaClassic-Venus.ips',
+							file: '3-Venus-Classic.ips',
 							name: 'FF4 Ultima Classic Venus Style',
 							description: 'Makes battle sprites match portraits (by xJ4cks). Map sprites PR style (by MObreck & xJ4cks). Changes some portraits (by xJ4cks & FlamePurge). Wide Advance font (by Dragonsbrethren).',
 							outputName: 'FF4Ultima Classic Venus', //patched ROM name
 						},{
-							file: '4-UltimaClassic-Mars.ips',
+							file: '4-Mars-Classic.ips',
 							name: 'FF4 Ultima Classic Mars Style',
 							description: 'Makes battle sprites alt Pixel Remaster style (by Nicoc1991, MObreck, & xJ4cks). Map sprites various styles (by MObreck, xJ4cks, & Nicoc1991). Changes some portraits (by xJ4cks & FlamePurge). Enhanced enemy graphics (by Gedankenschild). mrBrawndo\'s Ultima IV Font.',
 							outputName: 'FF4Ultima Classic Mars', //patched ROM name
 						},{
-							file: '5-UltimaClassic-Ceres.ips',
+							file: '5-Ceres-Classic.ips',
 							name: 'FF4 Ultima Classic Ceres Style',
 							description: 'Makes battle sprites DS colors Pixel Remaster style (by xJ4cks, Nicoc1991, & MObreck). Map sprites PR style (by xJ4cks & MObreck). Changes some portraits (by xJ4cks & Nicoc1991). Enhanced enemy graphics (by Gedankenschild). Clean Font (by xJ4cks).',
 							outputName: 'FF4Ultima Classic Ceres', //patched ROM name
 						},{
-							file: '6-UltimaClassic-Jupiter.ips',
+							file: '6-Jupiter-Classic.ips',
 							name: 'FF4 Ultima Classic Jupiter Style',
 							description: 'Makes battle sprites Record Keeper style (by T92). Map sprites classic style. Portraits classic style. Enhanced enemy graphics (by Gedankenschild). Monocraft Font.',
 							outputName: 'FF4Ultima Classic Jupiter', //patched ROM name
 						},{
-							file: '7-UltimaClassic-Saturn.ips',
+							file: '7-Saturn-Classic.ips',
 							name: 'FF4 Ultima Classic Saturn Style',
 							description: 'Makes battle sprites alt Record Keeper styles (by xJ4cks, T92, Nicoc1991, tsushiy). Map sprites T-Edition style (by tsushiy & xJ4cks). Changes portraits (by xJ4cks, FlamePurge). Enhanced enemy graphics (by Gedankenschild). Chicago6 Font.',
 							outputName: 'FF4Ultima Classic Saturn', //patched ROM name
 						},{
-							file: '8-UltimaClassic-Uranus.ips',
+							file: '8-Uranus-Classic.ips',
 							name: 'FF4 Ultima Classic Uranus Style',
 							description: 'Makes characters Stick Figure style & assigns a Stick Font (April Fools! both by chillyfeez).',
 							outputName: 'FF4Ultima Classic Uranus', //patched ROM name
 						},{
-							file: '9-UltimaClassic-Neptune.ips',
+							file: '9-Neptune-Classic.ips',
 							name: 'FF4 Ultima Classic Neptune Style',
 							description: 'Makes battle sprites alt Record Keeper styles (by Nicoc1991, xJ4cks, & T92). Purple vs blue map sprites in various styles (by Nicoc1991, MObreck, xJ4cks, tsushiy). Changes some portraits (by Nicoc1991, xJ4cks, FlamePurge, tsushiy). Enhanced enemy graphics (by Gedankenschild). Chicago6 Font.',
 							outputName: 'FF4Ultima Classic Neptune', //patched ROM name
 						},{
-							file: 'X-UltimaClassic-Pluto.ips',
+							file: 'X-Pluto-Classic.ips',
 							name: 'FF4 Ultima Classic Pluto Style',
 							description: 'Makes battle sprites mainly Record Keeper styles (by xJ4cks, Nicoc1991, T92, MObreck). Purple vs blue map sprites in various style (by xJ4cks, MObreck, Nicoc1991, tsushiy). Changes some portraits (by xJ4cks, Nicoc1991, FlamePurge, tsushiy). Stick Font (by chillyfeez).',
 							outputName: 'FF4Ultima Classic Pluto', //patched ROM name
@@ -149,7 +149,7 @@
 
 </head>
 
-<body style="font: 1.1rem 'Quattrocento Sans', sans-serif; background: linear-gradient(#666, #000, #666)">
+<body style="font: 1.1rem 'Quattrocento Sans', sans-serif; background: linear-gradient(#55b2d1, #000, #55b2d1)">
 	<header class="container-fluid">
 		<!-- first row, page title -->
 		<div class="row justify-content-center">
@@ -170,7 +170,7 @@
 				Please upload a copy of 'Final Fantasy 4 Ultima Classic'.
 				This app provides alternate graphics and font styles:
 				<span style="color:gold;">Choose from one of 10 after uploading</span>.
-			</p>
+				</p>
 			<!-- end left column -->
 			</div>
 
@@ -233,7 +233,7 @@
 			</div>
 		</div>
 		
-		<!-- BS styling for the 8 CRC32 numbers -->
+		<!-- BS styling for the CRC32 number -->
 		<div class="container-fluid">
 			<div class="row w-100">
 				<div class="col-12 d-flex justify-content-center">
