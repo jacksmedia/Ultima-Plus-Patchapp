@@ -13,23 +13,27 @@
   <style>
     body {
       font-family: "Quattrocento Sans", Arial, sans-serif;
-      background: lightskyblue;
+      color: antiquewhite;
     }
     h1 {
         font-family: "Quattrocento", serif;
+        color: antiquewhite;
     }
     h2 {
         font-family: "Quattrocento", serif;
+        color: antiquewhite;
     }
     h3 {
         font-family: "Quattrocento", serif;
+        color: antiquewhite;
     }
     h4 {
         font-family: "Quattrocento", serif;
+        color: antiquewhite;
     }
     .file-upload {
       margin-bottom: 10px;
-      background-color: turquoise;
+      background-color: #55b2d1;
     }
     #additional-uploads {
       margin-top: 10px;
@@ -42,19 +46,20 @@
     }
     #patch {
       background-color: #408;
-      font-family: "Rubik Mono One", serif;
+      color:antiquewhite;
+      font-family: "Quattrocento Sans", Arial, sans-serif;
     }
 /* adapted from https://stackoverflow.com/questions/23441060/how-to-animate-gradients-using-css */
     #gradient
 {
     height:100vh;
     width:100vw;
-    background: linear-gradient(115deg, #55b2d1, #ffffff, #408);
+    background: linear-gradient(90deg, #55b2d1,  #408,  #55b2d1);
     background-size: 200% 200%;
 
-    -webkit-animation: Animation 23s ease infinite;
-    -moz-animation: Animation 23s ease infinite;
-    animation: Animation 23s ease infinite;
+    -webkit-animation: Animation 65s ease infinite;
+    -moz-animation: Animation 65s ease infinite;
+    animation: Animation 65s ease infinite;
 }
 
 @-webkit-keyframes Animation {
@@ -76,50 +81,98 @@
 
   </style>
 </head>
-<body id="gradient">
-  <h1>Custom ROM Patcher</h1>
-  <h4>
-    by xJ4cks & ChatGPT4
-  </h4>
-  <p>Upload a rom of FF4 Ultima (Classic or Plus) and choose multiple patches to create a custom version.</p>
-  <p>CRC32 of the compatible Ultima Plus rom:&nbsp;<span></span></p>
-  <p>CRC32 of the compatible Ultima Classic rom:&nbsp;<span></span></p>
-
-  <!-- ROM Upload -->
-  <div class="file-upload">
-    <label for="rom">ROM File (.sfc):</label>
-    <input type="file" id="rom" accept=".sfc">
-  </div>
-
-  <!-- Initial IPS Upload Inputs -->
-  <div id="ips-uploads">
-    <div class="file-upload">
-      <label for="ips1">IPS Patch File 1:</label>
-      <input type="file" id="ips1" accept=".ips">
+<body id="gradient" class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h1>Custom ROM Patcher</h1>
+        </div>
     </div>
-    <div class="file-upload">
-      <label for="ips2">IPS Patch File 2:</label>
-      <input type="file" id="ips2" accept=".ips">
+    <div class="row">
+        <div class="col">
+            <h4>
+                by xJ4cks & ChatGPT4
+            </h4>        
+        </div>
     </div>
-    <div class="file-upload">
-      <label for="ips3">IPS Patch File 3:</label>
-      <input type="file" id="ips3" accept=".ips">
+
+    <div class="row">
+        <div class="col">
+            <p>Upload a rom of FF4 Ultima (Classic or Plus) and choose multiple patches to create a custom version.</p>
+            
+            <!-- ROM Upload -->
+            <div class="file-upload">
+                <label for="rom">ROM File (.sfc):</label>
+                <input type="file" id="rom" accept=".sfc">
+            </div>
+
+            <p>CRC32 of the compatible Ultima Plus rom:&nbsp;<span></span></p>
+            <p>CRC32 of the compatible Ultima Classic rom:&nbsp;<span></span></p>
+        </div>
     </div>
-    <div class="file-upload">
-      <label for="ips4">IPS Patch File 4:</label>
-      <input type="file" id="ips4" accept=".ips">
+
+    <div class="row">
+        <div class="col-5 d-flex-column">
+
+            <!-- ROM Upload
+            <div class="file-upload">
+                <label for="rom">ROM File (.sfc):</label>
+                <input type="file" id="rom" accept=".sfc">
+            </div> -->
+
+            <!-- Initial IPS Upload Inputs -->
+            <div id="ips-uploads">
+                <div class="file-upload">
+                <label for="ips1">IPS Patch File 1:</label>
+                <input type="file" id="ips1" accept=".ips">
+                </div>
+                <div class="file-upload">
+                <label for="ips2">IPS Patch File 2:</label>
+                <input type="file" id="ips2" accept=".ips">
+                </div>
+                <div class="file-upload">
+                <label for="ips3">IPS Patch File 3:</label>
+                <input type="file" id="ips3" accept=".ips">
+                </div>
+                <div class="file-upload">
+                <label for="ips4">IPS Patch File 4:</label>
+                <input type="file" id="ips4" accept=".ips">
+                </div>
+            </div>
+
+            <!-- Button to Add More Uploads -->
+            <button id="add-upload">Another Upload? Click me!</button>
+            <br><br>
+
+            <!-- Patch Button -->
+            <button id="patch">Apply Patches<br/>to Your Rom</button>
+        <!-- end col -->
+        </div>
+        
+        <div class="col-7 d-flex-column">
+            <!-- Manifest and Download -->
+            <div id="manifest"></div>
+        <!-- end col -->
+        </div>
+    <!-- end row -->
     </div>
-  </div>
 
-  <!-- Button to Add More Uploads -->
-  <button id="add-upload">Another Upload? Click me!</button>
-  <br><br>
-
-  <!-- Patch Button -->
-  <button id="patch">Apply Patches<br/>to Your Rom</button>
-
-  <!-- Manifest and Download -->
-  <div id="manifest"></div>
+    <div class="row">
+        <div class="col-12 col-sm-4 d-flex-column justify-content-end align-items-center">
+            <h3 style="color:black;">
+                Return to
+            </h3>
+                <!-- black btn styled div -->
+                <a href="index.html" style="text-decoration:none;">
+                    <button class="d-flex justify-content-center align-items-center"
+                    style="background: black; padding: 1rem; border-radius: 2rem;">
+                        <h4 style="color:aqua;">
+                            FFF4 Ultima Plus Patcher
+                        </h4>
+                    </button>
+                </a>
+            <!-- ends col -->
+        </div>
+    </div>
 
   <script>
     let uploadCount = 4; // Initial number of IPS upload fields
