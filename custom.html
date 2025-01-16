@@ -7,8 +7,9 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
-	
-  
+	<!-- early CDN load, provides unzipping -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
   <title>Custom ROM Patcher</title>
   <style>
     body {
@@ -113,11 +114,13 @@
     <div class="row">
         <div class="col-5 d-flex-column">
 
-            <!-- ROM Upload
-            <div class="file-upload">
-                <label for="rom">ROM File (.sfc):</label>
-                <input type="file" id="rom" accept=".sfc">
-            </div> -->
+            <!-- test dropdown of patches fetched from GitHub -->
+            <h1>Select a Patch</h1>
+            <select id="patch-dropdown">
+                <option value="" disabled selected>Select a patch</option>
+            </select>    
+
+                <button id="applyPatch">Apply Patch</button>
 
             <!-- Initial IPS Upload Inputs -->
             <div id="ips-uploads">
@@ -298,6 +301,59 @@
 
     throw new Error("Invalid IPS file: Missing footer.");
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadLocalZip();
+    });
+    
+async function loadLocalZip() {
+    const zipFilePath = './Final Fantasy 4 Ultima Plus patch archive.zip';
+    try {
+        const response = await fetch(zipFilePath);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch ZIP file: ${response.statusText}`);
+        }
+
+        const zipBlob = await response.blob();
+        const zip = await JSZip.loadAsync(zipBlob);
+
+        console.log('ZIP file loaded successfully:', zip);
+
+        // Extract files from the specific directory
+        const patchFiles = Object.keys(zip.files).filter(relativePath =>
+            relativePath.startsWith('alternate graphics patches/') &&
+            !zip.files[relativePath].dir
+        );
+
+        console.log('Filtered patch files:', patchFiles);
+
+        populateDropdown(patchFiles);
+    } catch (error) {
+        console.error('Error loading or processing ZIP file:', error);
+    }
+}
+function populateDropdown(patchFiles) {
+    const patchDropdown = document.getElementById('patch-dropdown');
+    if (!patchDropdown) {
+        console.error('Dropdown element not found');
+        return;
+    }
+
+    // Clear existing options
+    patchDropdown.innerHTML = '';
+
+    // Populate dropdown
+    patchFiles.forEach(relativePath => {
+        const option = document.createElement("option");
+        option.value = relativePath;
+        option.textContent = relativePath.split('/').pop(); // Show only the file name
+        patchDropdown.appendChild(option);
+        console.log('Added to dropdown:', relativePath);
+    });
+
+    console.log('Dropdown options populated:', patchDropdown.options.length);
+}
+
   </script>
 </body>
 </html>
