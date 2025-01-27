@@ -102,7 +102,7 @@ h2 {
 {
     height:100vh;
     width:100vw;
-    background: linear-gradient(130deg,#408, #000, #408);
+    background: linear-gradient(177deg,#408, #000, #408);
     background-size: 200% 200%;
 
     -webkit-animation: Animation 23s ease infinite;
@@ -131,57 +131,90 @@ h2 {
 
 
 </head>
-<body id="gradient">
-  <h1>FF4 Ultima Fonts</h1>
-  <h3>
-    by xJ4cks & ChatGPT4
-  </h3>
-  <p>Upload your FF4 Ultima Plus ROM and choose a new font.</p>
-  <!-- ROM Upload -->
-  <div class="file-upload">
-    <label for="rom">ROM File (.sfc):</label>
-    <input type="file" id="rom" accept=".sfc">
-  </div>
-  <hr/>
-  <p>Fonts that are available:</p>
+<body id="gradient" style="font: 1rem 'Quattrocento Sans', sans-serif;">
+    <header class="container-fluid">
+    <!-- first row, page title -->
+    <div class="row justify-content-center">
+        <!-- begins single column -->
+        <div class="col d-flex justify-content-center">
+            <h1 style="font-family: Quattrocento;">
+                FF4 Ultima Fonts
+            </h1>
+            <h4 style="font-family: Quattrocento;">
+                by xJ4cks & ChatGPT4
+            </h4>
+        </div>
+    </div>
+    </header>
 
-  <ul>
-    <li>Chicago6</li>
-    <li>Clean Font by xJ4cks</li>
-    <li>Monocraft</li>
-    <li>mrBrawndo's Ultima IV Font</li>
-    <li>Stick Font</li>
-    <li>Wide Advance</li>
-  </ul>
-  
-
-  <ul>
-    <li>Chicago6 (SquishBGone)</li>
-    <li>Clean Font by xJ4cks (SquishBGone)</li>
-    <li>Monocraft (SquishBGone)</li>
-    <li>mrBrawndo's Ultima IV Font (SquishBGone)</li>
-    <li>Stick Font (SquishBGone)</li>
-    <li>Wide Advance (SquishBGone)</li>
-    <li>I-NES (SquishBGone)</li>
-  </ul>
-
-  <!-- UX element that shows during download then is removed -->
-  <div id="spinner-overlay" class="spinner-overlay">
+<!-- UX element that shows during download then is removed -->
+<div id="spinner-overlay" class="spinner-overlay">
     <div class="spinner"></div>
-  </div>
+</div>
 
-   <!-- test dropdown of patches -->
-   <h2>Choose the Features</h2>
-   <select id="patch-dropdown">
-       <option value="" disabled selected>Select a patch</option>
-   </select>    
+    <main class="container-fluid">
+    <!-- 2nd row, first interaction -->
+    <div class="grid gap-0 column-gap-3">
+        <!-- begins single column -->
+        <div class="col g-col-6">
+            <p>Upload your FF4 Ultima Plus ROM and choose a new font.</p>
+            <!-- ROM Upload -->
+        </div>
+        <div class="file-upload col g-col-6">
+            <label for="rom">ROM File (.sfc):</label>
+            <input type="file" id="rom" accept=".sfc">
+        </div>
+        <hr/>
+    </div>
 
-  <button id="applyPatch">Apply Patch</button>
-  <hr/>
-  <p>Fonts developed by</p>
-  <p>FlamePurge, mrBrawndo, xJ4cks, Dragonsbrethren, chillyfeez</p>
-  <p>FF4 Ultima Plus by 8-bit fan and Team Ultima</p>
-  <p>Final Fantasy IV by Squaresoft, 1991. Please obey all copyright laws and only use roms which you own the physical media of.</p>
+    <!-- 3rd row, first interaction -->
+    <div class="row">
+    <p>Fonts that are available:</p>
+        <!-- begins first column -->
+        <div class="col-12 col-sm-6">
+            <ul>
+            <li>Chicago6</li>
+            <li>Clean Font by xJ4cks</li>
+            <li>Monocraft</li>
+            <li>mrBrawndo's Ultima IV Font</li>
+            <li>Stick Font</li>
+            <li>Wide Advance</li>
+            </ul>
+            <ul>
+            <li>Chicago6 (SquishBGone)</li>
+            <li>Clean Font by xJ4cks (SquishBGone)</li>
+            <li>Monocraft (SquishBGone)</li>
+            <li>mrBrawndo's Ultima IV Font (SquishBGone)</li>
+            <li>Stick Font (SquishBGone)</li>
+            <li>Wide Advance (SquishBGone)</li>
+            <li>I-NES (SquishBGone)</li>
+            </ul>
+        </div>
+        <div class="col-12 col-sm-6">
+            GIF Space
+        </div>
+    </div>
+
+    <!-- 4th row, second interaction -->
+    <div class="grid gap-0 column-gap-3">
+        <!-- dropdown of patches -->
+        <h2>Choose a Custom Font</h2>
+        <select id="patch-dropdown">
+            <option value="" disabled selected>Select a patch</option>
+        </select>    
+
+        <button id="applyPatch">Apply Patch</button>
+    </div>
+    <hr/>
+    <!-- 5th row, attribution -->
+    <div class="grid gap-0 column-gap-3">
+    <p>Fonts developed by:</p>
+    <p>FlamePurge, mrBrawndo, xJ4cks, Dragonsbrethren, chillyfeez</p>
+    <p>FF4 Ultima Plus by 8-bit fan and Team Ultima</p>
+    <p>Final Fantasy IV by Squaresoft, 1991. Please obey all copyright laws and only use roms which you own the physical media of.</p>
+    </div>
+
+</main>
 
   <script>
     let romData = null; // Store the uploaded ROM file data
@@ -420,5 +453,6 @@ h2 {
 
   </script>    
 
-  </body>
+
+  
 </html>
