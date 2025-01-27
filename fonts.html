@@ -138,11 +138,8 @@ h2 {
         <!-- begins single column -->
         <div class="col d-flex justify-content-center">
             <h1 style="font-family: Quattrocento;">
-                FF4 Ultima Fonts
+                FF4 Ultima Plus Fonts
             </h1>
-            <h4 style="font-family: Quattrocento;">
-                by xJ4cks & ChatGPT4
-            </h4>
         </div>
     </div>
     </header>
@@ -168,10 +165,10 @@ h2 {
     </div>
 
     <!-- 3rd row, first interaction -->
-    <div class="row">
-    <p>Fonts that are available:</p>
+    <div class="row mx-auto" style="width: 87vw;">
         <!-- begins first column -->
         <div class="col-12 col-sm-6">
+        <p>Fonts that are available:</p>
             <ul>
             <li>Chicago6</li>
             <li>Clean Font by xJ4cks</li>
@@ -191,12 +188,15 @@ h2 {
             </ul>
         </div>
         <div class="col-12 col-sm-6">
-            GIF Space
+            <img src="./font-previews.gif" 
+            alt="previews of the 7 fonts available" 
+            style="width: 100%;"/>
         </div>
+        <p class="m-3">What are SquishBGone fonts? They rename some things in the game to use as few double letter "squish" tiles as possible. All "SquishBGone" work accomplished by FlamePurge.</p>
     </div>
 
     <!-- 4th row, second interaction -->
-    <div class="grid gap-0 column-gap-3">
+    <div class="grid gap-0 column-gap-0">
         <!-- dropdown of patches -->
         <h2>Choose a Custom Font</h2>
         <select id="patch-dropdown">
@@ -210,8 +210,9 @@ h2 {
     <div class="grid gap-0 column-gap-3">
     <p>Fonts developed by:</p>
     <p>FlamePurge, mrBrawndo, xJ4cks, Dragonsbrethren, chillyfeez</p>
-    <p>FF4 Ultima Plus by 8-bit fan and Team Ultima</p>
-    <p>Final Fantasy IV by Squaresoft, 1991. Please obey all copyright laws and only use roms which you own the physical media of.</p>
+    <p>FF4 Ultima Plus by 8-bit fan and Team Ultima.</p>
+    <p>This webapp coded by xJ4cks & ChatGPT4.</p>
+    <p>Final Fantasy IV by Squaresoft, 1991.<br/>Please obey all copyright laws and only use roms which you own the physical media of.</p>
     </div>
 
 </main>
@@ -393,7 +394,7 @@ h2 {
   
     // Initialize the dropdown with ZIP content
     async function loadLocalZip() {
-        const zipFilePath = './ff5rc.zip'; // Ensure this path is correct
+        const zipFilePath = './fonts.zip'; // Ensure this path is correct
         try {
             const response = await fetch(zipFilePath);
             if (!response.ok) {
@@ -407,7 +408,7 @@ h2 {
   
             // Extract `.ips` files from the `/ff5rc` directory
             const patchFiles = Object.keys(zip.files).filter(relativePath =>
-                relativePath.startsWith('ff5rc/') && // Ensure we are within the desired directory
+                relativePath.startsWith('') && // Ensure we are within the desired directory
                 relativePath.endsWith('.ips') && // Only include `.ips` files
                 !zip.files[relativePath].dir // Exclude directories
             );
