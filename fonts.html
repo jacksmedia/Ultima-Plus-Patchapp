@@ -259,13 +259,28 @@ h2 {
     }
 
 
-    // Handle ROM upload
+    // Handles ROM upload with CRC32 determination
     document.getElementById('rom').addEventListener('change', async (event) => {
         const file = event.target.files[0];
         if (file) {
             const arrayBuffer = await file.arrayBuffer();
-            romData = new Uint8Array(arrayBuffer); // Store ROM data in Uint8Array
+            romData = new Uint8Array(arrayBuffer); // Stores ROM data in Uint8Array
             console.log('ROM file uploaded and loaded into memory:', file.name);
+            const crc32 = computeCRC32(romData).toString(16).toUpperCase();
+            console.log(`ROM CRC32: ${crc32}`);
+
+            // If recommended patch exists, selects in dropdown
+            if (romPatchMap[crc32]) {
+                const patchDropdown = document.getElementById('patch-dropdown');
+                for (let option of patchDropdown.options) {
+                    if (option.value === romPatchMap[crc32]) {
+                        option.selected = true;
+                        console.log(`Auto-selected patch: ${option.value}`);
+                        break;
+                    }
+                }
+            }
+
         }
     });
   
