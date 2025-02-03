@@ -235,7 +235,7 @@ h2 {
 	</main>
 
 
-	<script>
+	<!-- <script>
 let romData = null; // Stores the uploaded ROM file data
 let zip = null; // Stores the loaded ZIP for later access
 
@@ -323,60 +323,64 @@ document.getElementById('romUpload').addEventListener('change', async (event) =>
 });
 
 
-// Apply IPS Patch Logic, with UX Spinner
-async function applySelectedPatch() {
-    if (!romData) {
-        alert('Please upload a ROM file first!');
-        return;
-    }
-
-    const patchDropdown = document.getElementById('patch-dropdown');
-    const selectedPatch = patchDropdown.value;
-    if (!selectedPatch) {
-        alert('Please select a patch to apply!');
-        return;
-    }
-
-    try {
-        showSpinner(); // Show spinner at the start
-
-        // Fetch the IPS file from the ZIP
-        const patchFile = zip.files[selectedPatch];
-        if (!patchFile) {
-            throw new Error('Patch file not found in ZIP!');
+    // Apply IPS Patch Logic, with UX Spinner
+    async function applySelectedPatch() {
+        if (!romData) {
+            alert('Please upload a ROM file first!');
+            return;
         }
 
-        const patchData = await patchFile.async('uint8array'); // Get patch data as Uint8Array
+        const patchDropdown = document.getElementById('patch-dropdown');
+        const selectedPatch = patchDropdown.value;
+        if (!selectedPatch) {
+            alert('Please select a patch to apply!');
+            return;
+        }
 
-        // Apply the IPS patch
-        const patchedRom = await applyIpsPatch(romData, patchData);
-        console.log('Patch applied successfully.');
+        try {
+            showSpinner(); // Show spinner at the start
 
-        // Trigger download of the patched ROM
-        downloadPatchedRom(patchedRom, 'patched_rom.sfc');
-    } catch (error) {
-        console.error('Error applying patch:', error);
-        alert(`Error applying patch: ${error.message}`);
-    } finally {
-        hideSpinner(); // Ensure spinner is hidden in all cases
+            // Fetch the IPS file from the ZIP
+            const patchFile = zip.files[selectedPatch];
+            if (!patchFile) {
+                throw new Error('Patch file not found in ZIP!');
+            }
+
+            const patchData = await patchFile.async('uint8array'); // Get patch data as Uint8Array
+
+            // Apply the IPS patch
+            const patchedRom = await applyIpsPatch(romData, patchData);
+            console.log('Patch applied successfully.');
+
+            // Trigger download of the patched ROM
+            downloadPatchedRom(patchedRom, 'patched_rom.sfc');
+        } catch (error) {
+            console.error('Error applying patch:', error);
+            alert(`Error applying patch: ${error.message}`);
+        } finally {
+            hideSpinner(); // Ensure spinner is hidden in all cases
+        }
     }
-}
 
-// Downloads the patched ROM
-function downloadPatchedRom(data, filename) {
-    const blob = new Blob([data], { type: 'application/octet-stream' });
-    const url = URL.createObjectURL(blob);
+    // Downloads the patched ROM
+    function downloadPatchedRom(data, filename) {
+        const blob = new Blob([data], { type: 'application/octet-stream' });
+        const url = URL.createObjectURL(blob);
 
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = filename;
-    link.click();
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = filename;
+        link.click();
 
-    URL.revokeObjectURL(url);
-    console.log('Patched ROM downloaded as:', filename);
-}
+        URL.revokeObjectURL(url);
+        console.log('Patched ROM downloaded as:', filename);
+    }
+    
 
-// Initializes dropdown with ZIP content
+
+// All of the below happen on page load
+
+// Opens ZIP of IPS files
 async function loadLocalZip() {
     const zipFilePath = 'FF4UP.zip'; // v1.02 patches
     try {
@@ -405,6 +409,7 @@ async function loadLocalZip() {
     }
 }
 
+// Initializes dropdown with ZIP content
 function populateDropdown(patchFiles) {
     const patchDropdown = document.getElementById('patch-dropdown');
     if (!patchDropdown) {
@@ -428,14 +433,14 @@ function populateDropdown(patchFiles) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Load ZIP and populate the dropdown when the page loads
+    // Load ZIP and populate the dropdown
     loadLocalZip();
 
     // Add event listener for the "Apply Patch" button
     document.getElementById('applyPatch').addEventListener('click', applySelectedPatch);
 });
 
-	</script>    
+	</script>     -->
 
 </body>
   
