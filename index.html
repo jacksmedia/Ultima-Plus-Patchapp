@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
-    <title>FF4 Ultima Plus Fonts</title>
+    <title>FF4 Ultima Plus Patcher</title>
     <style>
 .rubik-mono-one-regular {
     font-family: "Rubik Mono One", serif;
@@ -250,6 +250,28 @@ function hideSpinner() {
     spinnerOverlay?.classList.remove('show');
 }
 
+// Expands the ROM to 2MB (2048 KB) if it's only 1MB (1024 KB) (by ChatGPT4)
+function expandRomIfNeeded(romData) {
+    const originalSize = romData.length;
+    const targetSize = 2 * 1024 * 1024; // 2MB (2048 KB)
+
+    if (originalSize < targetSize) {
+        let expandedRom = new Uint8Array(targetSize);
+
+        // Copy original ROM exactly as-is
+        expandedRom.set(romData, 0);
+
+        // Only append additional bytes at the end (DO NOT overwrite original data)
+        expandedRom.fill(0x00, originalSize);
+
+        console.log(`ROM expanded from ${originalSize} bytes to ${targetSize} bytes`);
+        return expandedRom;
+    }
+
+    return romData; // If already correct size, return unchanged
+}
+
+
 // Accepted CRC32s for existing FF4UP patches
 const romPatchMap = {
     "65D0A825": "ff2 v1.0.ips",
@@ -375,8 +397,11 @@ async function applySelectedPatch() {
 
         const patchData = await patchFile.async('uint8array');
 
+        // Ensures ROM is the correct size before patching
+        let expandedRom = expandRomIfNeeded(romData);
+
         // Employs bytecode changing logic in 'applyIpsPatch()'
-        const patchedRom = await applyIpsPatch(romData, patchData);
+        const patchedRom = await applyIpsPatch(expandedRom, patchData);
         console.log('Patch applied successfully.');
 
         // Download patched ROM
