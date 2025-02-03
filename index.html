@@ -235,27 +235,19 @@ h2 {
 	</main>
 
 
-	<!-- <script>
+<script>
 let romData = null; // Stores the uploaded ROM file data
 let zip = null; // Stores the loaded ZIP for later access
 
-// bonus UX, to adjust CSS spinner
+// Spinner UX Functions
 function showSpinner() {
     const spinnerOverlay = document.getElementById('spinner-overlay');
-    if (spinnerOverlay) {
-        spinnerOverlay.classList.add('show');
-    } else {
-        console.error('Spinner element not found.');
-    }
+    spinnerOverlay?.classList.add('show');
 }
 
 function hideSpinner() {
     const spinnerOverlay = document.getElementById('spinner-overlay');
-    if (spinnerOverlay) {
-        spinnerOverlay.classList.remove('show');
-    } else {
-        console.error('Spinner element not found.');
-    }
+    spinnerOverlay?.classList.remove('show');
 }
 
 // Accepted CRC32s for existing FF4UP patches
@@ -270,19 +262,15 @@ const romPatchMap = {
     "48449269": "ffiv rev1.1-H.ips"
 };
 
-
-// Clever "Precompute CRC32 table" from ChatGPT4
-const crcTable = (function () {
-    let table = new Uint32Array(256);
-    for (let i = 0; i < 256; i++) {
-        let crc = i;
-        for (let j = 0; j < 8; j++) {
-            crc = (crc & 1) ? (0xEDB88320 ^ (crc >>> 1)) : (crc >>> 1);
-        }
-        table[i] = crc;
+// Precompute CRC32 Table (clever work by ChatpGPT4)
+const crcTable = new Uint32Array(256);
+for (let i = 0; i < 256; i++) {
+    let crc = i;
+    for (let j = 0; j < 8; j++) {
+        crc = (crc & 1) ? (0xEDB88320 ^ (crc >>> 1)) : (crc >>> 1);
     }
-    return table;
-})();
+    crcTable[i] = crc;
+}
 
 function computeCRC32(buffer) {
     let crc = 0xFFFFFFFF;
@@ -290,24 +278,22 @@ function computeCRC32(buffer) {
         let byte = buffer[i];
         crc = (crc >>> 8) ^ crcTable[(crc ^ byte) & 0xFF];
     }
-    return (crc ^ 0xFFFFFFFF) >>> 0; // Converts to unsigned 32-bit integer
+    return (crc ^ 0xFFFFFFFF) >>> 0;
 }
 
-
-// ROM upload, determines CRC32 using above logic
+// Handle ROM Upload & CRC Calculation
 document.getElementById('romUpload').addEventListener('change', async (event) => {
     let file = event.target.files[0];
     if (!file) return;
 
     let reader = new FileReader();
     reader.onload = function (e) {
-        let romData = new Uint8Array(e.target.result);
+        romData = new Uint8Array(e.target.result); // Use global `romData`
         let crc = computeCRC32(romData);
-        let crcHex = crc.toString(16).toUpperCase(); // Convert to hex for readability
-
+        let crcHex = crc.toString(16).toUpperCase();
         console.log("Computed CRC32:", crcHex);
 
-        // If matching patch exists, selects in dropdown
+        // Auto-select matching patch
         if (romPatchMap[crcHex]) {
             const patchDropdown = document.getElementById('patch-dropdown');
             for (let option of patchDropdown.options) {
@@ -323,66 +309,103 @@ document.getElementById('romUpload').addEventListener('change', async (event) =>
 });
 
 
-    // Apply IPS Patch Logic, with UX Spinner
-    async function applySelectedPatch() {
-        if (!romData) {
-            alert('Please upload a ROM file first!');
-            return;
-        }
+// Patching Logic (by ChatGPT4)
+function applyIpsPatch(romData, patchData) {
+    let patchedRom = new Uint8Array(romData); // Clone the original ROM data
+    let offset = 0;
 
-        const patchDropdown = document.getElementById('patch-dropdown');
-        const selectedPatch = patchDropdown.value;
-        if (!selectedPatch) {
-            alert('Please select a patch to apply!');
-            return;
-        }
+    while (offset < patchData.length) {
+        // Read 3-byte offset
+        let addr = (patchData[offset] << 16) | (patchData[offset + 1] << 8) | patchData[offset + 2];
+        offset += 3;
 
-        try {
-            showSpinner(); // Show spinner at the start
+        // Read 2-byte size
+        let size = (patchData[offset] << 8) | patchData[offset + 1];
+        offset += 2;
 
-            // Fetch the IPS file from the ZIP
-            const patchFile = zip.files[selectedPatch];
-            if (!patchFile) {
-                throw new Error('Patch file not found in ZIP!');
+        if (size === 0) {
+            // RLE Encoding
+            let rleSize = (patchData[offset] << 8) | patchData[offset + 1];
+            offset += 2;
+            let rleByte = patchData[offset];
+            offset += 1;
+
+            for (let i = 0; i < rleSize; i++) {
+                patchedRom[addr + i] = rleByte;
             }
-
-            const patchData = await patchFile.async('uint8array'); // Get patch data as Uint8Array
-
-            // Apply the IPS patch
-            const patchedRom = await applyIpsPatch(romData, patchData);
-            console.log('Patch applied successfully.');
-
-            // Trigger download of the patched ROM
-            downloadPatchedRom(patchedRom, 'patched_rom.sfc');
-        } catch (error) {
-            console.error('Error applying patch:', error);
-            alert(`Error applying patch: ${error.message}`);
-        } finally {
-            hideSpinner(); // Ensure spinner is hidden in all cases
+        } else {
+            // Normal Patch
+            for (let i = 0; i < size; i++) {
+                patchedRom[addr + i] = patchData[offset + i];
+            }
+            offset += size;
         }
     }
 
-    // Downloads the patched ROM
-    function downloadPatchedRom(data, filename) {
-        const blob = new Blob([data], { type: 'application/octet-stream' });
-        const url = URL.createObjectURL(blob);
+    return patchedRom;
+}
 
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = filename;
-        link.click();
-
-        URL.revokeObjectURL(url);
-        console.log('Patched ROM downloaded as:', filename);
+// Apply IPS Patch
+async function applySelectedPatch() {
+    if (!romData) {
+        alert('Please upload a ROM file first!');
+        return;
     }
-    
 
+    const patchDropdown = document.getElementById('patch-dropdown');
+    const selectedPatch = patchDropdown.value;
+    if (!selectedPatch) {
+        alert('Please select a patch to apply!');
+        return;
+    }
 
-// All of the below happen on page load
+    if (!zip) {
+        alert('Patch archive not loaded yet!');
+        return;
+    }
 
-// Opens ZIP of IPS files
+    try {
+        showSpinner();
+
+        // Fetch the IPS file from ZIP
+        const patchFile = zip.files[selectedPatch];
+        if (!patchFile) {
+            throw new Error('Patch file not found in ZIP!');
+        }
+
+        const patchData = await patchFile.async('uint8array');
+
+        // Employs bytecode changing logic in 'applyIpsPatch()'
+        const patchedRom = await applyIpsPatch(romData, patchData);
+        console.log('Patch applied successfully.');
+
+        // Download patched ROM
+        downloadPatchedRom(patchedRom, 'FF4 Ultima Plus.sfc');
+    } catch (error) {
+        console.error('Error applying patch:', error);
+        alert(`Error applying patch: ${error.message}`);
+    } finally {
+        hideSpinner();
+    }
+}
+
+// Download the patched ROM
+function downloadPatchedRom(data, filename) {
+    const blob = new Blob([data], { type: 'application/octet-stream' });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.click();
+
+    URL.revokeObjectURL(url);
+    console.log('Patched ROM downloaded as:', filename);
+}
+
+// Load IPS Patch ZIP File
 async function loadLocalZip() {
-    const zipFilePath = 'FF4UP.zip'; // v1.02 patches
+    const zipFilePath = 'FF4UP.zip';
     try {
         const response = await fetch(zipFilePath);
         if (!response.ok) {
@@ -394,22 +417,19 @@ async function loadLocalZip() {
 
         console.log('ZIP file loaded successfully:', zip);
 
-        // Extract .ips files from the zip
+        // Extract `.ips` files from ZIP
         const patchFiles = Object.keys(zip.files).filter(relativePath =>
-            relativePath.startsWith('') && // Ensure we are within the desired directory
-            relativePath.endsWith('.ips') && // Only include .ips files
-            !zip.files[relativePath].dir // Exclude directories
+            relativePath.endsWith('.ips') && !zip.files[relativePath].dir
         );
 
         console.log('Filtered patch files:', patchFiles);
-
         populateDropdown(patchFiles);
     } catch (error) {
-        console.error('Error loading or processing ZIP file:', error);
+        console.error('Error loading ZIP file:', error);
     }
 }
 
-// Initializes dropdown with ZIP content
+// Populate the Dropdown with Patch Files
 function populateDropdown(patchFiles) {
     const patchDropdown = document.getElementById('patch-dropdown');
     if (!patchDropdown) {
@@ -417,14 +437,12 @@ function populateDropdown(patchFiles) {
         return;
     }
 
-    // Clear existing options
-    patchDropdown.innerHTML = '';
+    patchDropdown.innerHTML = ''; // Clear previous entries
 
-    // Populate dropdown with the filtered `.ips` files
     patchFiles.forEach(relativePath => {
         const option = document.createElement("option");
-        option.value = relativePath; // Set the full path as the value
-        option.textContent = relativePath.split('/').pop(); // Show only the file name
+        option.value = relativePath;
+        option.textContent = relativePath.split('/').pop();
         patchDropdown.appendChild(option);
         console.log('Added to dropdown:', relativePath);
     });
@@ -432,15 +450,15 @@ function populateDropdown(patchFiles) {
     console.log('Dropdown options populated:', patchDropdown.options.length);
 }
 
+// Initialize WebApp
 document.addEventListener('DOMContentLoaded', () => {
-    // Load ZIP and populate the dropdown
     loadLocalZip();
-
-    // Add event listener for the "Apply Patch" button
     document.getElementById('applyPatch').addEventListener('click', applySelectedPatch);
 });
+</script>
+        
 
-	</script>     -->
+
 
 </body>
   
