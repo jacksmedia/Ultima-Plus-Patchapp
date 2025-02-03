@@ -251,25 +251,52 @@ function hideSpinner() {
 }
 
 // Expands the ROM to 2MB (2048 KB) if it's only 1MB (1024 KB) (by ChatGPT4)
-function expandRomIfNeeded(romData) {
-    const originalSize = romData.length;
-    const targetSize = 2 * 1024 * 1024; // 2MB (2048 KB)
+// function expandRomIfNeeded(romData) {
+//     const originalSize = romData.length;
+//     const targetSize = 2 * 1024 * 1024; // 2MB (2048 KB)
 
-    if (originalSize < targetSize) {
-        let expandedRom = new Uint8Array(targetSize);
+//     if (originalSize < targetSize) {
+//         let expandedRom = new Uint8Array(targetSize);
 
-        // Copy original ROM exactly as-is
-        expandedRom.set(romData, 0);
+//         // Copy original ROM exactly as-is
+//         expandedRom.set(romData, 0);
 
-        // Only append additional bytes at the end (DO NOT overwrite original data)
-        expandedRom.fill(0x00, originalSize);
+//         // Only append additional bytes at the end (DO NOT overwrite original data)
+//         expandedRom.fill(0x00, originalSize);
 
-        console.log(`ROM expanded from ${originalSize} bytes to ${targetSize} bytes`);
-        return expandedRom;
-    }
+//         console.log(`ROM expanded from ${originalSize} bytes to ${targetSize} bytes`);
+//         return expandedRom;
+//     }
 
-    return romData; // If already correct size, return unchanged
-}
+//     return romData; // If already correct size, return unchanged
+// }
+
+// // Expands the ROM to twice input size (by Copilot)
+// function expandRomIfNeeded(romData, bytecode = 0x00) {
+//     const originalSize = romData.length;
+//     const targetSize = 2 * 1024 * 1024; // 2MB (2048 KB)
+//     const headerSize = 512; // Typical size of an SMC header
+
+//     if (originalSize < targetSize) {
+//         // Ensure we have enough space for the header
+//         const expandedRom = new Uint8Array(targetSize + headerSize);
+
+//         // Copy the header to the beginning of the expanded ROM
+//         expandedRom.set(romData.subarray(0, headerSize), 0);
+
+//         // Copy the rest of the ROM data
+//         expandedRom.set(romData.subarray(headerSize), headerSize);
+
+//         // Fill the remaining space with the specified bytecode
+//         expandedRom.fill(bytecode, headerSize + originalSize);
+
+//         console.log(`ROM expanded from ${originalSize} bytes to ${targetSize} bytes with bytecode ${bytecode.toString(16)}`);
+//         return expandedRom;
+//     }
+
+//     return romData; // If already the correct size, return unchanged
+// }
+
 
 
 // Accepted CRC32s for existing FF4UP patches
@@ -331,12 +358,18 @@ document.getElementById('romUpload').addEventListener('change', async (event) =>
 });
 
 
-// Patching Logic (by ChatGPT4)
+// Patching Logic w dynamic ROM expansion (by ChatGPT4)
 function applyIpsPatch(romData, patchData) {
     let patchedRom = new Uint8Array(romData); // Clone the original ROM data
     let offset = 0;
 
     while (offset < patchData.length) {
+        // Check for EOF marker
+        if (patchData[offset] === 0x45 && patchData[offset + 1] === 0x4F && patchData[offset + 2] === 0x46) {
+            console.log("IPS EOF reached.");
+            break;
+        }
+
         // Read 3-byte offset
         let addr = (patchData[offset] << 16) | (patchData[offset + 1] << 8) | patchData[offset + 2];
         offset += 3;
@@ -352,20 +385,35 @@ function applyIpsPatch(romData, patchData) {
             let rleByte = patchData[offset];
             offset += 1;
 
-            for (let i = 0; i < rleSize; i++) {
-                patchedRom[addr + i] = rleByte;
+            // Ensure expansion only to required size
+            let requiredSize = addr + rleSize;
+            if (requiredSize > patchedRom.length) {
+                let expandedRom = new Uint8Array(requiredSize);
+                expandedRom.set(patchedRom);
+                patchedRom = expandedRom;
             }
+
+            // Apply RLE patch
+            patchedRom.fill(rleByte, addr, addr + rleSize);
         } else {
-            // Normal Patch
-            for (let i = 0; i < size; i++) {
-                patchedRom[addr + i] = patchData[offset + i];
+            // Ensure expansion only to required size
+            let requiredSize = addr + size;
+            if (requiredSize > patchedRom.length) {
+                let expandedRom = new Uint8Array(requiredSize);
+                expandedRom.set(patchedRom);
+                patchedRom = expandedRom;
             }
+
+            // Apply normal patch
+            patchedRom.set(patchData.subarray(offset, offset + size), addr);
             offset += size;
         }
     }
 
     return patchedRom;
 }
+
+
 
 // Apply IPS Patch
 async function applySelectedPatch() {
@@ -398,10 +446,10 @@ async function applySelectedPatch() {
         const patchData = await patchFile.async('uint8array');
 
         // Ensures ROM is the correct size before patching
-        let expandedRom = expandRomIfNeeded(romData);
+        // let expandedRom = expandRomIfNeeded(romData);
 
         // Employs bytecode changing logic in 'applyIpsPatch()'
-        const patchedRom = await applyIpsPatch(expandedRom, patchData);
+        const patchedRom = await applyIpsPatch(romData, patchData);
         console.log('Patch applied successfully.');
 
         // Download patched ROM
