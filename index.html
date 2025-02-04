@@ -95,6 +95,31 @@ h2 {
   opacity: 1;
 }
 
+@keyframes guide-text {
+  0% {color: #80a;}
+  50% {color: #f0f;}
+  100% {color: #80a;}
+}
+.lilytext {
+  color: #80a;
+  animation-name: guide-text;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
+.core-btn {
+  color: gold;
+  background-color: #333;
+  padding: 6px;
+  border-radius: 10px;
+}
+
+input::file-selector-button {
+  color: gold;
+  background-color: #333;
+  padding: 6px;
+  border-radius: 10px;   
+}
 
 /* adapted from https://stackoverflow.com/questions/23441060/how-to-animate-gradients-using-css */
     #gradient
@@ -175,7 +200,7 @@ h2 {
                         <option value="" disabled selected>Select a patch</option>
                     </select>    
         
-                    <button id="applyPatch">Apply Patch</button>
+                    <button id="applyPatch" class="core-btn">Apply Patch</button>
                 </div>
 
 			</div>
@@ -190,11 +215,11 @@ h2 {
 
 		<!-- 3rd row, optionals -->
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-6 d-flex justify-content-center">
 
-                <h4 style="color:gold;">
-                    If you want custom graphics...
-                </h4>
+                <h5 style="color:#eff;">
+                    If you want custom <span style="color:aqua;">graphics...</span>
+                </h5>
                 <!-- black btn styled div -->
                 <a href="styles.html" style="text-decoration:none;">
                     <button class="d-flex justify-content-center align-items-center"
@@ -206,10 +231,10 @@ h2 {
                 </a>
             </div>
 
-            <div class="col-sm-6">
-                <h4 style="color:gold;">
-                    If you want custom fonts...
-                </h4>
+            <div class="col-sm-6 d-flex justify-content-center">
+                <h5 style="color:#eff;">
+                    If you want custom <span style="color:tomato;">fonts...</span>
+                </h5>
                 <!-- black btn styled div -->
                 <a href="fonts.html" style="text-decoration:none;">
                     <button class="d-flex justify-content-center align-items-center"
@@ -221,8 +246,38 @@ h2 {
                 </a>
             </div>
 
+            
+        <!-- 4th row for Guides, Classic, and Discord link -->
 
-            <div class="col-sm-6 d-flex justify-content-center">			
+            <div class="col-sm-4 d-flex align-items-center justify-content-center">
+                <!-- black btn styled div -->
+                <a href="guides.html" style="text-decoration:none;">
+                <button class="d-flex justify-content-center align-items-center"
+                style="background: black; padding: 1.2rem; border-radius: 2rem;">
+                    <span class="lilytext">
+                        FF4 Ultima Guides
+                    </span>
+                </button>
+                </a>		
+            </div>
+            
+
+
+            <div class="col-sm-4 d-flex align-items-center justify-content-center">
+                <p>If you want to play Ultima with RetroAchievements, find the <span style="color:palegoldenrod;">Classic Edition</span> patches here:</p>
+                <!-- black btn styled div -->
+                <a href="classic.html" style="text-decoration:none;">
+                <button class="d-flex justify-content-center align-items-center"
+                style="background: black; padding: 1.2rem; border-radius: 2rem;">
+                    <span style="color:palegoldenrod; text-decoration:none;">
+                        FF4 Ultima Classic
+                    </span>
+                </button>
+                </a>
+            </div>
+
+
+            <div class="col-sm-4 d-flex justify-content-center align-items-center">			
                 <!-- black btn styled link -->
                 <a href="https://discord.gg/ZpEfVMc8" 
                 target="_blank"
@@ -239,12 +294,12 @@ h2 {
 
         </div>
 
-        <!-- 4th row for guides and Discord link -->
+        <hr/>
 
 		<!-- 5th row, attribution -->
 		<div class="grid gap-0 column-gap-3">
-			<p>FF4 Ultima Plus by 8-bit fan and Team Ultima.</p>
-			<p>This webapp coded by xJ4cks & ChatGPT4.</p>
+			<p>FF4 Ultima Plus by <a href="http://ff4ultima.com/">8-bit fan</a> and Team Ultima.</p>
+			<p>This webapp coded by <a href="https://jacks.media">xJ4cks</a> & ChatGPT4.</p>
 			<p>Final Fantasy IV by Squaresoft, 1991.<br/>Please obey all copyright laws and only use roms which you own the physical media of.</p>
 		</div>
 
