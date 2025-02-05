@@ -57,6 +57,22 @@ h2 {
     font-family: "Rubik Mono One", serif;
 }
 
+.core-btn {
+  color: gold;
+  background-color: #333;
+  padding: 6px;
+  border-radius: 10px;
+}
+
+input::file-selector-button {
+  color: gold;
+  background-color: #333;
+  padding: 6px;
+  border-radius: 10px;   
+}
+
+
+
 #spinner-overlay {
   position: fixed;
   top: 0;
@@ -102,7 +118,7 @@ h2 {
 {
     height:100vh;
     width:100vw;
-    background: linear-gradient(177deg,#408, #000, #408);
+    background: linear-gradient(177deg,maroon, #000, maroon);
     background-size: 200% 200%;
 
     -webkit-animation: Animation 23s ease infinite;
@@ -203,7 +219,7 @@ h2 {
             <option value="" disabled selected>Select a patch</option>
         </select>    
 
-        <button id="applyPatch">Apply Patch</button>
+        <button id="applyPatch" class="core-btn">Apply Patch</button>
     </div>
     <hr/>
     <!-- 5th row, attribution -->
@@ -215,7 +231,7 @@ h2 {
     <a href="index.html" style="text-decoration:none;">
         <button class="d-flex justify-content-center align-items-center"
         style="background: black; padding: 1rem; border-radius: 2rem;">
-            <h4 style="color:aqua;">
+            <h4 style="color:#80a;">
                 FF4 Ultima Plus Patcher
             </h4>
         </button>
@@ -227,10 +243,11 @@ h2 {
             Fonts developed by:
         </h4>
         <p>FlamePurge, mrBrawndo, xJ4cks, Dragonsbrethren, chillyfeez</p>
-        <p>FF4 Ultima Plus by 8-bit fan and Team Ultima.</p>
-        <p>This webapp coded by xJ4cks & ChatGPT4.</p>
-        <p>Final Fantasy IV by Squaresoft, 1991.<br/>Please obey all copyright laws and only use roms which you own the physical media of.</p>
+        <p>FF4 Ultima Plus by <a href="http://ff4ultima.com/">8-bit fan</a> and Team Ultima.</p>
+        <p>This webapp coded by <a href="https://jacks.media">xJ4cks</a> & ChatGPT4.</p>
+        <p>Final Fantasy IV by Squaresoft, 1991.<br/>Please obey all copyright laws and only use roms<br/>which you own the physical media of.</p>
     </div>
+
 
 </main>
 
@@ -259,13 +276,28 @@ h2 {
     }
 
 
-    // Handle ROM upload
+    // Handles ROM upload with CRC32 determination
     document.getElementById('rom').addEventListener('change', async (event) => {
         const file = event.target.files[0];
         if (file) {
             const arrayBuffer = await file.arrayBuffer();
-            romData = new Uint8Array(arrayBuffer); // Store ROM data in Uint8Array
+            romData = new Uint8Array(arrayBuffer); // Stores ROM data in Uint8Array
             console.log('ROM file uploaded and loaded into memory:', file.name);
+            const crc32 = computeCRC32(romData).toString(16).toUpperCase();
+            console.log(`ROM CRC32: ${crc32}`);
+
+            // If recommended patch exists, selects in dropdown
+            if (romPatchMap[crc32]) {
+                const patchDropdown = document.getElementById('patch-dropdown');
+                for (let option of patchDropdown.options) {
+                    if (option.value === romPatchMap[crc32]) {
+                        option.selected = true;
+                        console.log(`Auto-selected patch: ${option.value}`);
+                        break;
+                    }
+                }
+            }
+
         }
     });
   
