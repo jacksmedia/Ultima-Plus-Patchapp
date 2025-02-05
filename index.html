@@ -321,54 +321,6 @@ function hideSpinner() {
     spinnerOverlay?.classList.remove('show');
 }
 
-// Expands the ROM to 2MB (2048 KB) if it's only 1MB (1024 KB) (by ChatGPT4)
-// function expandRomIfNeeded(romData) {
-//     const originalSize = romData.length;
-//     const targetSize = 2 * 1024 * 1024; // 2MB (2048 KB)
-
-//     if (originalSize < targetSize) {
-//         let expandedRom = new Uint8Array(targetSize);
-
-//         // Copy original ROM exactly as-is
-//         expandedRom.set(romData, 0);
-
-//         // Only append additional bytes at the end (DO NOT overwrite original data)
-//         expandedRom.fill(0x00, originalSize);
-
-//         console.log(`ROM expanded from ${originalSize} bytes to ${targetSize} bytes`);
-//         return expandedRom;
-//     }
-
-//     return romData; // If already correct size, return unchanged
-// }
-
-// // Expands the ROM to twice input size (by Copilot)
-// function expandRomIfNeeded(romData, bytecode = 0x00) {
-//     const originalSize = romData.length;
-//     const targetSize = 2 * 1024 * 1024; // 2MB (2048 KB)
-//     const headerSize = 512; // Typical size of an SMC header
-
-//     if (originalSize < targetSize) {
-//         // Ensure we have enough space for the header
-//         const expandedRom = new Uint8Array(targetSize + headerSize);
-
-//         // Copy the header to the beginning of the expanded ROM
-//         expandedRom.set(romData.subarray(0, headerSize), 0);
-
-//         // Copy the rest of the ROM data
-//         expandedRom.set(romData.subarray(headerSize), headerSize);
-
-//         // Fill the remaining space with the specified bytecode
-//         expandedRom.fill(bytecode, headerSize + originalSize);
-
-//         console.log(`ROM expanded from ${originalSize} bytes to ${targetSize} bytes with bytecode ${bytecode.toString(16)}`);
-//         return expandedRom;
-//     }
-
-//     return romData; // If already the correct size, return unchanged
-// }
-
-
 
 // Accepted CRC32s for existing FF4UP patches
 const romPatchMap = {
@@ -512,7 +464,6 @@ async function applyIpsPatch(romData, ipsData) {
         hideSpinner();
     }
 }
-
 
 // Apply the Patch <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 async function applySelectedPatch() {
