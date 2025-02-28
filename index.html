@@ -192,7 +192,16 @@ input::file-selector-button {
                     <input type="file" id="romUpload" accept=".sfc,.smc" />
     
                 </div>
-
+                <div>Valid CRC32 values:
+                    65D0A825,
+                    23084FCD,
+                    6CDA700C,
+                    CAA15E97,
+                    E73564DB,
+                    A1ED8333,
+                    EE3FBCF2,
+                    48449269</div>
+                <div id="crc-display" style="color:gold;">Your rom's CRC: (waiting for upload...)</div>
                 <div class="grid gap-0 column-gap-0">
                     <!-- dropdown of patches -->
                     <h3>The patch will show on upload</h3>
@@ -202,7 +211,7 @@ input::file-selector-button {
         
                     <button id="applyPatch" class="core-btn">Apply Patch</button>
                     <p>&nbsp;</p>
-                    <p>Current version of Ultima Plus is 1.04</p>
+                    <p>Current version of Ultima Plus is 1.05</p>
                 </div>
 
 			</div>
@@ -343,7 +352,7 @@ const romPatchMap = {
     "48449269": "ffiv rev1.1-H.ips"
 };
 
-// Precompute CRC32 Table (clever work by ChatpGPT4)
+// Precomputes CRC32 Table (clever work by ChatpGPT4)
 const crcTable = new Uint32Array(256);
 for (let i = 0; i < 256; i++) {
     let crc = i;
@@ -362,7 +371,17 @@ function computeCRC32(buffer) {
     return (crc ^ 0xFFFFFFFF) >>> 0;
 }
 
-// Handle ROM Upload & CRC Calculation
+// Prints CRC to the webpage
+function displayCrc(crcHex) {
+    const crcElement = document.getElementById('crc-display');
+    if (crcElement) {
+        crcElement.textContent = `Your rom's CRC: ${crcHex}`;
+    } else {
+        console.error('CRC display element not found in DOM...')
+    }
+}
+
+// Handles ROM Upload & CRC Calculation
 document.getElementById('romUpload').addEventListener('change', async (event) => {
     let file = event.target.files[0];
     if (!file) return;
@@ -373,6 +392,7 @@ document.getElementById('romUpload').addEventListener('change', async (event) =>
         let crc = computeCRC32(romData);
         let crcHex = crc.toString(16).toUpperCase();
         console.log("Computed CRC32:", crcHex);
+        displayCrc(crcHex); // updates webapp
 
         // Auto-select matching patch
         if (romPatchMap[crcHex]) {
@@ -396,31 +416,31 @@ async function applyIpsPatch(romData, ipsData) {
 
     let offset = 0;
 
-    // Show spinner at the start
+    // Shows spinner at the start
     showSpinner();
 
     try {
-        // Verify header
+        // Verifies header
         const header = new TextDecoder().decode(ipsData.slice(0, 5));
         if (header !== IPS_HEADER) throw new Error("Invalid IPS file: Incorrect header.");
         offset += 5;
 
         while (offset < ipsData.length) {
-            // Check for footer
+            // Checks for footer
             if (offset + 3 <= ipsData.length) {
                 const footer = new TextDecoder().decode(ipsData.slice(offset, offset + 3));
                 if (footer === IPS_FOOTER) {
-                    // Valid footer, end processing
+                    // Valid footer, end of process
                     return romData;
                 }
             }
 
-            // Read patch address
+            // Reads patch address
             if (offset + 3 > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data while reading address.");
             const address = (ipsData[offset] << 16) | (ipsData[offset + 1] << 8) | ipsData[offset + 2];
             offset += 3;
 
-            // Read patch size
+            // Reads patch size
             if (offset + 2 > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data while reading size.");
             const size = (ipsData[offset] << 8) | ipsData[offset + 1];
             offset += 2;
@@ -432,7 +452,7 @@ async function applyIpsPatch(romData, ipsData) {
                 const value = ipsData[offset + 2];
                 offset += 3;
 
-                // Check and expand ROM size if necessary
+                // Checks and expands ROM size if necessary
                 const endAddress = address + rleSize;
                 if (endAddress > romData.length) {
                     console.warn(`Expanding ROM size to accommodate address: ${endAddress}`);
@@ -441,7 +461,7 @@ async function applyIpsPatch(romData, ipsData) {
                     romData = expandedRom;
                 }
 
-                // Apply RLE to ROM data
+                // Applies RLE to ROM data
                 for (let i = 0; i < rleSize; i++) {
                     romData[address + i] = value;
                 }
@@ -451,7 +471,7 @@ async function applyIpsPatch(romData, ipsData) {
                 const patchData = ipsData.slice(offset, offset + size);
                 offset += size;
 
-                // Check and expand ROM size if necessary
+                // Checks and expands ROM size if necessary
                 const endAddress = address + size;
                 if (endAddress > romData.length) {
                     console.warn(`Expanding ROM size to accommodate address: ${endAddress}`);
