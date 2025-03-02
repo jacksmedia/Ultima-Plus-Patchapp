@@ -41,6 +41,7 @@ h2 {
     background-color: black;
     color: white;
 }
+/*
 #additional-uploads {
     margin-top: 10px;
 }
@@ -54,7 +55,9 @@ h2 {
     background-color: black;
     color: white;
     font-family: "Rubik Mono One", serif;
-}
+} */
+
+/* "Please Wait Donut" animation effect (throbbing annular) */
 
 #spinner-overlay {
   position: fixed;
@@ -95,6 +98,8 @@ h2 {
   opacity: 1;
 }
 
+/* button styling */
+
 @keyframes guide-text {
   0% {color: #80a;}
   50% {color: #f0f;}
@@ -104,14 +109,38 @@ h2 {
   color: #80a;
   animation-name: guide-text;
   animation-duration: 3s;
+  -moz-animation-duration: 3s;
+  -webkit-animation-duration: 3s;
   animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
 }
 
-.core-btn {
-  color: gold;
-  background-color: #333;
+
+@keyframes apply-text {
+  0% {color: white;}
+  50% {color: red;}
+  100% {color: white;}
+}
+.lfg-text {
+  animation-name: apply-text;
+  animation-duration: 2.5s;
+  -moz-animation-duration: 2.5s;
+  -webkit-animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  background-color: #408;
+}
+
+button {
   padding: 6px;
-  border-radius: 10px;
+  border-radius: 10px; /*
+}
+
+.core-btn { */
+  color: #999;
+  background-color: #333;
 }
 
 input::file-selector-button {
@@ -391,9 +420,20 @@ function displayCrc(crcHex) {
     }
 }
 
+// UI magic, makes "Apply Patch" core-btn text change color when active
+function textChange() {
+    const button = document.getElementById('applyPatch');
+    button.classList.remove('core-btn');
+    button.classList.add('lfg-text');
+}
+
 // UI magic, highlights entry in romPatchMap when it matches the crcHex
 function crcHighlighter(crcHex) {
     console.log("Checking CRC:", crcHex);
+    
+    // removes styling in case present
+    const button = document.getElementById('applyPatch');
+    button.classList.remove('lfg-text'); // reverses textChange()
 
     const spans = document.querySelectorAll('.possible-match');
 
@@ -406,6 +446,7 @@ function crcHighlighter(crcHex) {
             span.classList.remove('highlight'); // Clear previous just in case
             void span.offsetWidth; // Forces a repaint
             span.classList.add('highlight');
+            textChange(); // calls another UI change, not working as expected
         } else {
             span.classList.remove('highlight');
         }
@@ -440,8 +481,6 @@ document.getElementById('romUpload').addEventListener('change', async (event) =>
     };
     reader.readAsArrayBuffer(file);
 });
-
-// crcHighlighter();
 
 async function applyIpsPatch(romData, ipsData) {
     const IPS_HEADER = "PATCH";
