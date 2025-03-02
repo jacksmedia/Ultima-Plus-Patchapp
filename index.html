@@ -133,12 +133,14 @@ h2 {
   background-color: #408;
 }
 
-button {
-  padding: 6px;
-  border-radius: 10px; /*
+#crc-display {
+    margin-top: 6px;
+    margin-bottom: 6px;
 }
 
-.core-btn { */
+button {
+  padding: 6px;
+  border-radius: 10px;
   color: #999;
   background-color: #333;
 }
@@ -242,12 +244,12 @@ input::file-selector-button {
                 <div id="crc-display" style="color:gold;">Your rom's CRC: (waiting for upload...)</div>
                 <div class="grid gap-0 column-gap-0">
                     <!-- dropdown of patches -->
-                    <h3>The patch will show on upload</h3>
+                    <!-- <h3>The patch will show on upload</h3> -->
                     <select id="patch-dropdown">
                         <option value="" disabled selected>Select a patch</option>
                     </select>    
         
-                    <button id="applyPatch" class="core-btn">Apply Patch</button>
+                    <button id="applyPatch" class="">Apply Patch</button>
                     <p>&nbsp;</p>
                     <p>Current version of Ultima Plus is 1.05</p>
                 </div>
@@ -390,7 +392,6 @@ const romPatchMap = {
     "48449269": "ffiv rev1.1-H.ips"
 };
 
-
 // Precomputes CRC32 Table (clever work by ChatpGPT4)
 const crcTable = new Uint32Array(256);
 for (let i = 0; i < 256; i++) {
@@ -410,47 +411,72 @@ function computeCRC32(buffer) {
     return (crc ^ 0xFFFFFFFF) >>> 0;
 }
 
-// Prints CRC to the webpage
-function displayCrc(crcHex) {
-    const crcElement = document.getElementById('crc-display');
-    if (crcElement) {
-        crcElement.textContent = `Your rom's CRC: ${crcHex}`;
-    } else {
-        console.error('CRC display element not found in DOM...')
-    }
-}
-
 // UI magic, makes "Apply Patch" core-btn text change color when active
 function textChange() {
     const button = document.getElementById('applyPatch');
-    button.classList.remove('core-btn');
-    button.classList.add('lfg-text');
+    // Ensures styles are applied only as needed
+    if (!button.classList.contains('lfg-text')) {
+        button.classList.remove('core-btn');
+        void button.offsetWidth; // Forces a repaint to trigger CSS animations
+        button.classList.add('lfg-text');
+        console.log("Apply Patch button activated!"); // Debugging
+    }
 }
 
-// UI magic, highlights entry in romPatchMap when it matches the crcHex
+//// Prints CRC to the webpage
+//function displayCrc(crcHex) {
+//    const crcElement = document.getElementById('crc-display');
+//    if (crcElement) {
+//        crcElement.textContent = `Your rom's CRC: ${crcHex}`;
+//    } else {
+//        console.error('CRC display element not found in DOM...');
+//        crcElement.textContent = `This rom won't work with this patcher. Try another!`;
+//    }
+//}
+
+// --UI magic--
+// highlights entry in romPatchMap on match
+// changes button styling
+// changes display message
 function crcHighlighter(crcHex) {
     console.log("Checking CRC:", crcHex);
     
-    // removes styling in case present
+    const crcElement = document.getElementById('crc-display');
     const button = document.getElementById('applyPatch');
-    button.classList.remove('lfg-text'); // reverses textChange()
-
     const spans = document.querySelectorAll('.possible-match');
+
+    // general layout test
+    if (!crcElement || !button) {
+        console.error('One or more required UI elements not found.');
+        return;
+    }
+
+    // Update CRC text display
+    crcElement.textContent = `Your rom's CRC: ${crcHex}`;
+
+    let matchFound = false;
 
     spans.forEach(span => {
         const spanText = span.textContent.trim().toUpperCase();
-        console.log("Comparing with:", spanText);
 
         if (spanText === crcHex.toUpperCase()) {
             console.log("Match found! Applying highlight.");
             span.classList.remove('highlight'); // Clear previous just in case
             void span.offsetWidth; // Forces a repaint
             span.classList.add('highlight');
-            textChange(); // calls another UI change, not working as expected
+
+            button.classList.add('lfg-text'); // Main feature active now
+            matchFound = true;
         } else {
             span.classList.remove('highlight');
         }
     });
+
+    if (!matchFound) {
+        console.log("CRC not matched. Displaying invalid rom msg.")
+        crcElement.textContent = `This rom won't work with this patcher. Try another!`;
+        button.classList.remove('lfg-text'); // Rolls back activation styling
+    }
 }
 
 // Handles ROM Upload & CRC Calculation
@@ -464,7 +490,6 @@ document.getElementById('romUpload').addEventListener('change', async (event) =>
         let crc = computeCRC32(romData);
         let crcHex = crc.toString(16).toUpperCase();
         console.log("Computed CRC32:", crcHex);
-        displayCrc(crcHex); // updates webapp
         crcHighlighter(crcHex); // updates webapp
 
         // Auto-select matching patch
