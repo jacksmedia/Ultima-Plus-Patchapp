@@ -121,6 +121,14 @@ input::file-selector-button {
   border-radius: 10px;   
 }
 
+.highlight {
+    font-weight: bold;
+    background-color: white;
+    border-radius: 3px;
+    padding: 2px;
+    color: blue;
+}
+
 /* adapted from https://stackoverflow.com/questions/23441060/how-to-animate-gradients-using-css */
     #gradient
 {
@@ -193,14 +201,15 @@ input::file-selector-button {
     
                 </div>
                 <div>Valid CRC32 values:
-                    65D0A825,
-                    23084FCD,
-                    6CDA700C,
-                    CAA15E97,
-                    E73564DB,
-                    A1ED8333,
-                    EE3FBCF2,
-                    48449269</div>
+                    <span class="possible-match">65D0A825</span>,
+                    <span class="possible-match">23084FCD</span>,
+                    <span class="possible-match">6CDA700C</span>,
+                    <span class="possible-match">CAA15E97</span>,
+                    <span class="possible-match">E73564DB</span>,
+                    <span class="possible-match">A1ED8333</span>,
+                    <span class="possible-match">EE3FBCF2</span>,
+                    <span class="possible-match">48449269</span>
+                </div>
                 <div id="crc-display" style="color:gold;">Your rom's CRC: (waiting for upload...)</div>
                 <div class="grid gap-0 column-gap-0">
                     <!-- dropdown of patches -->
@@ -352,6 +361,7 @@ const romPatchMap = {
     "48449269": "ffiv rev1.1-H.ips"
 };
 
+
 // Precomputes CRC32 Table (clever work by ChatpGPT4)
 const crcTable = new Uint32Array(256);
 for (let i = 0; i < 256; i++) {
@@ -381,6 +391,27 @@ function displayCrc(crcHex) {
     }
 }
 
+// UI magic, highlights entry in romPatchMap when it matches the crcHex
+function crcHighlighter(crcHex) {
+    console.log("Checking CRC:", crcHex);
+
+    const spans = document.querySelectorAll('.possible-match');
+
+    spans.forEach(span => {
+        const spanText = span.textContent.trim().toUpperCase();
+        console.log("Comparing with:", spanText);
+
+        if (spanText === crcHex.toUpperCase()) {
+            console.log("Match found! Applying highlight.");
+            span.classList.remove('highlight'); // Clear previous just in case
+            void span.offsetWidth; // Forces a repaint
+            span.classList.add('highlight');
+        } else {
+            span.classList.remove('highlight');
+        }
+    });
+}
+
 // Handles ROM Upload & CRC Calculation
 document.getElementById('romUpload').addEventListener('change', async (event) => {
     let file = event.target.files[0];
@@ -393,6 +424,7 @@ document.getElementById('romUpload').addEventListener('change', async (event) =>
         let crcHex = crc.toString(16).toUpperCase();
         console.log("Computed CRC32:", crcHex);
         displayCrc(crcHex); // updates webapp
+        crcHighlighter(crcHex); // updates webapp
 
         // Auto-select matching patch
         if (romPatchMap[crcHex]) {
@@ -409,6 +441,7 @@ document.getElementById('romUpload').addEventListener('change', async (event) =>
     reader.readAsArrayBuffer(file);
 });
 
+// crcHighlighter();
 
 async function applyIpsPatch(romData, ipsData) {
     const IPS_HEADER = "PATCH";
