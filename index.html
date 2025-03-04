@@ -41,6 +41,7 @@ h2 {
     background-color: black;
     color: white;
 }
+/*
 #additional-uploads {
     margin-top: 10px;
 }
@@ -54,7 +55,9 @@ h2 {
     background-color: black;
     color: white;
     font-family: "Rubik Mono One", serif;
-}
+} */
+
+/* "Please Wait Donut" animation effect (throbbing annular) */
 
 #spinner-overlay {
   position: fixed;
@@ -95,6 +98,8 @@ h2 {
   opacity: 1;
 }
 
+/* button styling */
+
 @keyframes guide-text {
   0% {color: #80a;}
   50% {color: #f0f;}
@@ -104,14 +109,40 @@ h2 {
   color: #80a;
   animation-name: guide-text;
   animation-duration: 3s;
+  -moz-animation-duration: 3s;
+  -webkit-animation-duration: 3s;
   animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
 }
 
-.core-btn {
-  color: gold;
-  background-color: #333;
+
+@keyframes apply-text {
+  0% {color: white;}
+  50% {color: red;}
+  100% {color: white;}
+}
+.lfg-text {
+  animation-name: apply-text;
+  animation-duration: 2.5s;
+  -moz-animation-duration: 2.5s;
+  -webkit-animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  background-color: #408;
+}
+
+#crc-display {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+button {
   padding: 6px;
   border-radius: 10px;
+  color: #999;
+  background-color: #333;
 }
 
 input::file-selector-button {
@@ -119,6 +150,14 @@ input::file-selector-button {
   background-color: #333;
   padding: 6px;
   border-radius: 10px;   
+}
+
+.highlight {
+    font-weight: bold;
+    background-color: white;
+    border-radius: 3px;
+    padding: 2px;
+    color: blue;
 }
 
 /* adapted from https://stackoverflow.com/questions/23441060/how-to-animate-gradients-using-css */
@@ -192,17 +231,27 @@ input::file-selector-button {
                     <input type="file" id="romUpload" accept=".sfc,.smc" />
     
                 </div>
-
+                <div>Valid CRC32 values:
+                    <span class="possible-match">65D0A825</span>,
+                    <span class="possible-match">23084FCD</span>,
+                    <span class="possible-match">6CDA700C</span>,
+                    <span class="possible-match">CAA15E97</span>,
+                    <span class="possible-match">E73564DB</span>,
+                    <span class="possible-match">A1ED8333</span>,
+                    <span class="possible-match">EE3FBCF2</span>,
+                    <span class="possible-match">48449269</span>
+                </div>
+                <div id="crc-display" style="color:gold;">Your rom's CRC: (waiting for upload...)</div>
                 <div class="grid gap-0 column-gap-0">
                     <!-- dropdown of patches -->
-                    <h3>The patch will show on upload</h3>
+                    <!-- <h3>The patch will show on upload</h3> -->
                     <select id="patch-dropdown">
                         <option value="" disabled selected>Select a patch</option>
                     </select>    
         
-                    <button id="applyPatch" class="core-btn">Apply Patch</button>
+                    <button id="applyPatch" class="">Apply Patch</button>
                     <p>&nbsp;</p>
-                    <p>Current version of Ultima Plus is 1.04</p>
+                    <p>Current version of Ultima Plus is 1.05 (🌪️)</p>
                 </div>
 
 			</div>
@@ -343,7 +392,7 @@ const romPatchMap = {
     "48449269": "ffiv rev1.1-H.ips"
 };
 
-// Precompute CRC32 Table (clever work by ChatpGPT4)
+// Precomputes CRC32 Table (clever work by ChatpGPT4)
 const crcTable = new Uint32Array(256);
 for (let i = 0; i < 256; i++) {
     let crc = i;
@@ -362,7 +411,75 @@ function computeCRC32(buffer) {
     return (crc ^ 0xFFFFFFFF) >>> 0;
 }
 
-// Handle ROM Upload & CRC Calculation
+// UI magic, makes "Apply Patch" core-btn text change color when active
+function textChange() {
+    const button = document.getElementById('applyPatch');
+    // Ensures styles are applied only as needed
+    if (!button.classList.contains('lfg-text')) {
+        button.classList.remove('core-btn');
+        void button.offsetWidth; // Forces a repaint to trigger CSS animations
+        button.classList.add('lfg-text');
+        console.log("Apply Patch button activated!"); // Debugging
+    }
+}
+
+//// Prints CRC to the webpage
+//function displayCrc(crcHex) {
+//    const crcElement = document.getElementById('crc-display');
+//    if (crcElement) {
+//        crcElement.textContent = `Your rom's CRC: ${crcHex}`;
+//    } else {
+//        console.error('CRC display element not found in DOM...');
+//        crcElement.textContent = `This rom won't work with this patcher. Try another!`;
+//    }
+//}
+
+// --UI magic--
+// highlights entry in romPatchMap on match
+// changes button styling
+// changes display message
+function crcHighlighter(crcHex) {
+    console.log("Checking CRC:", crcHex);
+    
+    const crcElement = document.getElementById('crc-display');
+    const button = document.getElementById('applyPatch');
+    const spans = document.querySelectorAll('.possible-match');
+
+    // general layout test
+    if (!crcElement || !button) {
+        console.error('One or more required UI elements not found.');
+        return;
+    }
+
+    // Update CRC text display
+    crcElement.textContent = `Your rom's CRC: ${crcHex}`;
+
+    let matchFound = false;
+
+    spans.forEach(span => {
+        const spanText = span.textContent.trim().toUpperCase();
+
+        if (spanText === crcHex.toUpperCase()) {
+            console.log("Match found! Applying highlight.");
+            span.classList.remove('highlight'); // Clear previous just in case
+            void span.offsetWidth; // Forces a repaint
+            span.classList.add('highlight');
+
+            button.classList.add('lfg-text'); // Main feature active now
+            matchFound = true;
+        } else {
+            span.classList.remove('highlight');
+        }
+    });
+
+    if (!matchFound) {
+        console.log("CRC not matched. Displaying invalid rom msg.")
+        crcElement.textContent = `This rom won't work with this patcher. Try another!`;
+        button.classList.remove('lfg-text'); // Rolls back activation styling
+    }
+}
+
+// Handles ROM Upload & CRC Calculation
 document.getElementById('romUpload').addEventListener('change', async (event) => {
     let file = event.target.files[0];
     if (!file) return;
@@ -373,6 +490,7 @@ document.getElementById('romUpload').addEventListener('change', async (event) =>
         let crc = computeCRC32(romData);
         let crcHex = crc.toString(16).toUpperCase();
         console.log("Computed CRC32:", crcHex);
+        crcHighlighter(crcHex); // updates webapp
 
         // Auto-select matching patch
         if (romPatchMap[crcHex]) {
@@ -389,38 +507,37 @@ document.getElementById('romUpload').addEventListener('change', async (event) =>
     reader.readAsArrayBuffer(file);
 });
 
-
 async function applyIpsPatch(romData, ipsData) {
     const IPS_HEADER = "PATCH";
     const IPS_FOOTER = "EOF";
 
     let offset = 0;
 
-    // Show spinner at the start
+    // Shows spinner at the start
     showSpinner();
 
     try {
-        // Verify header
+        // Verifies header
         const header = new TextDecoder().decode(ipsData.slice(0, 5));
         if (header !== IPS_HEADER) throw new Error("Invalid IPS file: Incorrect header.");
         offset += 5;
 
         while (offset < ipsData.length) {
-            // Check for footer
+            // Checks for footer
             if (offset + 3 <= ipsData.length) {
                 const footer = new TextDecoder().decode(ipsData.slice(offset, offset + 3));
                 if (footer === IPS_FOOTER) {
-                    // Valid footer, end processing
+                    // Valid footer, end of process
                     return romData;
                 }
             }
 
-            // Read patch address
+            // Reads patch address
             if (offset + 3 > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data while reading address.");
             const address = (ipsData[offset] << 16) | (ipsData[offset + 1] << 8) | ipsData[offset + 2];
             offset += 3;
 
-            // Read patch size
+            // Reads patch size
             if (offset + 2 > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data while reading size.");
             const size = (ipsData[offset] << 8) | ipsData[offset + 1];
             offset += 2;
@@ -432,7 +549,7 @@ async function applyIpsPatch(romData, ipsData) {
                 const value = ipsData[offset + 2];
                 offset += 3;
 
-                // Check and expand ROM size if necessary
+                // Checks and expands ROM size if necessary
                 const endAddress = address + rleSize;
                 if (endAddress > romData.length) {
                     console.warn(`Expanding ROM size to accommodate address: ${endAddress}`);
@@ -441,7 +558,7 @@ async function applyIpsPatch(romData, ipsData) {
                     romData = expandedRom;
                 }
 
-                // Apply RLE to ROM data
+                // Applies RLE to ROM data
                 for (let i = 0; i < rleSize; i++) {
                     romData[address + i] = value;
                 }
@@ -451,7 +568,7 @@ async function applyIpsPatch(romData, ipsData) {
                 const patchData = ipsData.slice(offset, offset + size);
                 offset += size;
 
-                // Check and expand ROM size if necessary
+                // Checks and expands ROM size if necessary
                 const endAddress = address + size;
                 if (endAddress > romData.length) {
                     console.warn(`Expanding ROM size to accommodate address: ${endAddress}`);
