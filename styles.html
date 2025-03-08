@@ -356,6 +356,7 @@ function populateDropdown(patchFiles) {
 // Initialize WebApp
 document.addEventListener('DOMContentLoaded', () => {
     loadLocalZip();
+	imageUpdate();
     document.getElementById('applyPatch').addEventListener('click', applySelectedPatch);
 });
 </script>
@@ -446,55 +447,63 @@ document.addEventListener('DOMContentLoaded', () => {
 		<hr/>
 
 		<!-- 2nd row, first interaction -->
-		<div class="row mx-auto" style="width: 87vw;">
+		<div class="row mx-auto" style="width: 87vw; background:#222; border-radius: 1rem; padding: 1rem; margin: 0.5rem;">
 			<!-- begins first column -->
 			<div class="col-12 col-sm-6">
 
-                <div class="col g-col-6">
+                <div class="col">
 					<h6>
 						The CRC32 (checksum) expected is <code style="color:gold;">781a3a36</code>
 					</h6>
                     <!-- ROM Upload -->
                 </div>
-                <div class="file-upload col g-col-6">
+                <div class="file-upload col">
                     <label for="rom">Ultima Plus ROM File:</label>
                     <input type="file" id="romUpload" accept=".sfc,.smc" />
                 </div>
+				<div id="crc-display" style="color:gold;">Your rom's CRC: (waiting for upload...)</div>
+                <div class="grid gap-0 column-gap-0">
+                    <!-- dropdown of patches -->
+                    <select id="patch-dropdown">
+                        <option value="" disabled selected>Select a patch</option>
+                    </select>    
+                    <button id="applyPatch" class="">Apply Patch</button>
+                </div>
+
 			</div>
 		</div>
-		
-		<div style="display:flex; flex-direction:column; justify-content:center; align-items:center; background:#000;">
-			<!-- preview image pngs -->
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-1-Luna.png" id="Luna-preview-png" />
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-2-Mercury.png" id="Mercury-preview-png" />
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-3-Venus.png" id="Venus-preview-png" />
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-4-Mars.png" id="Mars-preview-png" />
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-5-Ceres.png" id="Ceres-preview-png" />
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-6-Jupiter.png" id="Jupiter-preview-png" />
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-7-Saturn.png" id="Saturn-preview-png" />
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-8-Uranus.png" id="Uranus-preview-png" />
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-9-Neptune.png" id="Neptune-preview-png" />
-			<img style="width:85vw; max-width:85vw; display:none;" src="previews-X-Pluto.png" id="Pluto-preview-png" />
+		<div class="row mx-auto" style="width: 87vw;"></div>
+			<div style="display:flex; flex-direction:column; justify-content:center; align-items:center; background:#000; border-radius: 1rem; padding: 1rem; margin: 0.5rem;">
+				<!-- preview image pngs -->
+				<img style="width:85vw; max-width:85vw; display:block;" src="previews-1-Luna.png" id="Luna-preview-png" />
+				<img style="width:85vw; max-width:85vw; display:none;" src="previews-2-Mercury.png" id="Mercury-preview-png" />
+				<img style="width:85vw; max-width:85vw; display:none;" src="previews-3-Venus.png" id="Venus-preview-png" />
+				<img style="width:85vw; max-width:85vw; display:none;" src="previews-4-Mars.png" id="Mars-preview-png" />
+				<img style="width:85vw; max-width:85vw; display:none;" src="previews-5-Ceres.png" id="Ceres-preview-png" />
+				<img style="width:85vw; max-width:85vw; display:none;" src="previews-6-Jupiter.png" id="Jupiter-preview-png" />
+				<img style="width:85vw; max-width:85vw; display:none;" src="previews-7-Saturn.png" id="Saturn-preview-png" />
+				<img style="width:85vw; max-width:85vw; display:none;" src="previews-8-Uranus.png" id="Uranus-preview-png" />
+				<img style="width:85vw; max-width:85vw; display:none;" src="previews-9-Neptune.png" id="Neptune-preview-png" />
+				<img style="width:85vw; max-width:85vw; display:none;" src="previews-X-Pluto.png" id="Pluto-preview-png" />
 
-			<!-- preview image GIFs -->
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Luna.gif" id="Luna-preview-gif" />
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Mercury.gif" id="Mercury-preview-gif" />
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Venus.gif" id="Venus-preview-gif" />
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Mars.gif" id="Mars-preview-gif" />
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Ceres.gif" id="Ceres-preview-gif" />
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Jupiter.gif" id="Jupiter-preview-gif" />
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Saturn.gif" id="Saturn-preview-gif" />
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Uranus.gif" id="Uranus-preview-gif" />
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Neptune.gif" id="Neptune-preview-gif" />
-			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Pluto.gif" id="Pluto-preview-gif" />
-		</div>
+				<!-- preview image GIFs -->
+				<img style="width:45vw; max-width:45vw; display:block; padding-top: 3vh;" src="p-Luna.gif" id="Luna-preview-gif" />
+				<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Mercury.gif" id="Mercury-preview-gif" />
+				<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Venus.gif" id="Venus-preview-gif" />
+				<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Mars.gif" id="Mars-preview-gif" />
+				<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Ceres.gif" id="Ceres-preview-gif" />
+				<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Jupiter.gif" id="Jupiter-preview-gif" />
+				<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Saturn.gif" id="Saturn-preview-gif" />
+				<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Uranus.gif" id="Uranus-preview-gif" />
+				<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Neptune.gif" id="Neptune-preview-gif" />
+				<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Pluto.gif" id="Pluto-preview-gif" />
+			</div>
 
-		<div class="text-center">
-			<button id="rom-patcher-button-apply" data-localize="yes" disabled>Apply patch</button>
 		</div>
 
 		<div>
-			Space for manifest scroll
+			<hr/>
+			Credits<br/>Space for manifest scroll
 		</div>
 		<!-- end patcher container -->
 	</main>
