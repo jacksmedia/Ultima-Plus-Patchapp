@@ -229,8 +229,8 @@ input::file-selector-button {
                 <div class="file-upload col g-col-6">
                     <label for="rom">ROM File (.sfc or .smc):</label>
                     <input type="file" id="romUpload" accept=".sfc,.smc" />
-    
                 </div>
+
                 <div>Valid CRC32 values:
                     <span class="possible-match">65D0A825</span>,
                     <span class="possible-match">23084FCD</span>,
@@ -257,7 +257,7 @@ input::file-selector-button {
 			</div>
 			<div class="col-12 col-sm-6">
 				<img src="./Title.png" 
-				alt="previews of title screen of Final Fantasy 4 Ultima Plus" 
+				alt="preview of title screen of Final Fantasy 4 Ultima Plus" 
 				style="width: 100%;"/>
 			</div>
 		</div>
@@ -423,16 +423,6 @@ function textChange() {
     }
 }
 
-//// Prints CRC to the webpage
-//function displayCrc(crcHex) {
-//    const crcElement = document.getElementById('crc-display');
-//    if (crcElement) {
-//        crcElement.textContent = `Your rom's CRC: ${crcHex}`;
-//    } else {
-//        console.error('CRC display element not found in DOM...');
-//        crcElement.textContent = `This rom won't work with this patcher. Try another!`;
-//    }
-//}
 
 // --UI magic--
 // highlights entry in romPatchMap on match

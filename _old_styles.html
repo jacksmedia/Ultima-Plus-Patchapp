@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html translate="no" style="margin: 0; padding: 0;">
+
+<head>
+	<!-- layout logic from Bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<!-- Font and traffic monitoring from Google -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
+	
+	<title>FF4 Ultima Plus Style Packs</title>
+	<meta http-equiv="content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+	<!-- Rom Patcher JS needed CSS/JS files -->
+	<link type="text/css" rel="stylesheet" href="./rom-patcher-js/style.css" media="all" />
+	<script type="text/javascript" src="./rom-patcher-js/RomPatcher.webapp.js"></script>
+
+	<!-- Rom Patcher JS initialization for main feature -->
+	<script type="text/javascript">
+		window.addEventListener('load', function (evt) {
+		const FF4ULTIMAPLUS_CHECKSUM = 0x781A3A36 ; // FF4 Ultima Plus current version
+		const FF4ULTIMACLASSIC_CHECKSUM = 0x1A13A227; // FF4 Ultima Classic checksum
+		const FF2_CHECKSUMS_INVALID = [0x21027C5D,0xCAA15E97] // original FFIV Japanese roms
+
+			try {
+				RomPatcherWeb.initialize(
+					{
+					language: 'en', //default: en
+					requireValidation: true, // needed for multipatch mode
+					onloadrom: function (romFile) {						
+						// does not work as advertised IDK why
+						// const SMC_HEADER_SIZE=512;
+						// if(romFile.getExtension()==='smc' && ((romFile.fileSize - SMC_HEADER_SIZE) % 0x20000) === 0){
+						// 	romFile.removeLeadingBytes(SMC_HEADER_SIZE);
+						// 	romFile.setExtension('sfc');
+						// 	console.log('removed SMC header');
+						// }
+						const crc32 = romFile.hashCRC32();
+						/* if ROM = FF4UP */
+						if (crc32 === FF4ULTIMAPLUS_CHECKSUM)
+							RomPatcherWeb.pickEmbededFile('5-UltimaPlus-Ceres.ips');
+						/* if ROM anything else */
+						else if (crc32 !== FF4ULTIMAPLUS_CHECKSUM)
+							RomPatcherWeb.pickEmbededFile('6-UltimaPlus-Jupiter.ips');
+					},
+					onvalidaterom: function (romFile, isRomValid) {
+						const crc32 = romFile.hashCRC32();
+						/* if ROM is a known (J) version that is incompatible with these patches */
+						if (!isRomValid && FF2_CHECKSUMS_INVALID.indexOf(crc32) !== -1)
+							RomPatcherWeb.setErrorMessage('Please provide a v1.0 or v1.1 English language FF2 rom file.');
+					},
+					onloadpatch: function (patchFile, embededPatchInformation) {
+						const planets = ['Luna', 'Mercury', 'Venus', 'Mars', 'Ceres', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
+						
+						// extracts name from patchfile
+						const selectedPlanet = patchFile.getName().split('-')[1];
+						console.log(selectedPlanet);
+
+						// hides all image elements that don't match the selected patch
+						planets.forEach(planet => {
+							document.getElementById(`${planet}-preview-gif`).style.display = 'none';
+							document.getElementById(`${planet}-preview-png`).style.display = 'none';
+						});
+						
+						// shows the image element that matches the selected patch
+						planets.forEach(planet => {
+							document.getElementById(`${selectedPlanet}-preview-gif`).style.display = 'block';
+							document.getElementById(`${selectedPlanet}-preview-png`).style.display = 'block';
+						});
+					}
+				},{
+					file: 'FF4UP-Styles.zip',
+					patches: [
+						{
+							file: '1-Luna-Plus.ips',
+							name: 'FF4 Ultima Plus Luna Style',
+							description: 'Makes portraits match battle sprites (by xJ4cks & FlamePurge). Totally classic battle sprites. Mostly classic map sprites (some work by xJ4cks).',
+							outputName: 'FF4Ultima Plus Luna', //patched ROM name
+						},{
+							file: '2-Mercury-Plus.ips',
+							name: 'FF4 Ultima Plus Mercury Style',
+							description: 'Makes battle sprites match portraits (by xJ4cks & tsushiy). Changes some portraits (by xJ4cks, tsushiy, & FlamePurge). Map sprites either T-Edition style (by tsushiy) or PR style (by xJ4cks & red man). Shown with \'I-NES\' FF1 font (by FlamePurge).',
+							outputName: 'FF4Ultima Plus Mercury', //patched ROM name
+						},{
+							file: '3-Venus-Plus.ips',
+							name: 'FF4 Ultima Plus Venus Style',
+							description: 'Makes battle sprites match portraits (by xJ4cks). Map sprites PR style (by MObreck & xJ4cks). Changes some portraits (by xJ4cks & FlamePurge). Shown with Wide Advance font (by Dragonsbrethren).',
+							outputName: 'FF4Ultima Plus Venus', //patched ROM name
+						},{
+							file: '4-Mars-Plus.ips',
+							name: 'FF4 Ultima Plus Mars Style',
+							description: 'Makes battle sprites alt Pixel Remaster style (by Nicoc1991, MObreck, & xJ4cks). Map sprites various styles (by MObreck, xJ4cks, & Nicoc1991). Changes some portraits (by xJ4cks & FlamePurge). Enhanced enemy graphics (by Gedankenschild). Shown with mrBrawndo\'s Ultima IV Font.',
+							outputName: 'FF4Ultima Plus Mars', //patched ROM name
+						},{
+							file: '5-Ceres-Plus.ips',
+							name: 'FF4 Ultima Plus Ceres Style',
+							description: 'Makes battle sprites DS colors Pixel Remaster style (by xJ4cks, Nicoc1991, MObreck, red man). Map sprites PR style (by xJ4cks & MObreck). Changes some portraits (by xJ4cks & Nicoc1991). Enhanced enemy graphics (by Gedankenschild). Shown with Clean Font (by xJ4cks).',
+							outputName: 'FF4Ultima Plus Ceres', //patched ROM name
+						},{
+							file: '6-Jupiter-Plus.ips',
+							name: 'FF4 Ultima Plus Jupiter Style',
+							description: 'Makes battle sprites Record Keeper style (by T92). Map sprites classic style. Portraits classic style. Enhanced enemy graphics (by Gedankenschild). Shown with Monocraft Font.',
+							outputName: 'FF4Ultima Plus Jupiter', //patched ROM name
+						},{
+							file: '7-Saturn-Plus.ips',
+							name: 'FF4 Ultima Plus Saturn Style',
+							description: 'Makes battle sprites alt Record Keeper styles (by xJ4cks, T92, red man, Nicoc1991, tsushiy). Map sprites T-Edition style (by tsushiy, gvdn, xJ4cks). Changes portraits (by xJ4cks, FlamePurge). Enhanced enemy graphics (by Gedankenschild). Shown with Chicago6 Font.',
+							outputName: 'FF4Ultima Plus Saturn', //patched ROM name
+						},{
+							file: '8-Uranus-Plus.ips',
+							name: 'FF4 Ultima Plus Uranus Style',
+							description: 'Makes characters Stick Figure style & assigns a Stick Font (April Fools! both by chillyfeez).',
+							outputName: 'FF4Ultima Plus Uranus', //patched ROM name
+						},{
+							file: '9-Neptune-Plus.ips',
+							name: 'FF4 Ultima Plus Neptune Style',
+							description: 'Makes battle sprites alt Record Keeper styles (by Nicoc1991, xJ4cks, & T92). Purple vs blue map sprites in various styles (by Nicoc1991, MObreck, xJ4cks, tsushiy, gvdn). Changes some portraits (by Nicoc1991, xJ4cks, FlamePurge, tsushiy). Enhanced enemy graphics (by Gedankenschild). Shown with Chicago6 Font.',
+							outputName: 'FF4Ultima Plus Neptune', //patched ROM name
+						},{
+							file: 'X-Pluto-Plus.ips',
+							name: 'FF4 Ultima Plus Pluto Style',
+							description: 'Makes battle sprites mainly Record Keeper styles (by xJ4cks, Nicoc1991, T92, MObreck, red man). Purple vs blue map sprites in various style (by xJ4cks, MObreck, Nicoc1991, tsushiy, gvdn). Changes some portraits (by xJ4cks, mrBrawndo, FlamePurge, tsushiy). Shown with Stick Font (by chillyfeez).',
+							outputName: 'FF4Ultima Plus Pluto', //patched ROM name
+						}
+					]
+				}
+			);} catch (err) {
+				var message = err.message;
+				if (/incompatible browser/i.test(message) || /variable RomPatcherWeb/i.test(message))
+					message = 'Your browser is outdated and it is not compatible with this app.';
+
+				document.getElementById('rom-patcher-container').innerHTML = message;
+				document.getElementById('rom-patcher-container').style.color = 'red';
+			}
+		});
+	</script>
+	
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-VGPQVGX8VD"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-VGPQVGX8VD');
+	</script>
+	<style>
+		body {
+			background: linear-gradient(#246, #000, #246);
+			color: #e4e4e6;
+		}
+	</style>
+</head>
+
+<body style="font: 1rem 'Quattrocento Sans', sans-serif;">
+	<header class="container-fluid">
+		<!-- first row, page title -->
+		<div class="row justify-content-center">
+			<!-- begins single column -->
+			<div class="col d-flex justify-content-center">
+				<h1 style="font-family: Quattrocento;">
+					FF4 Ultima Plus Style Patcher
+				</h1>
+			</div>
+			<!-- ends row -->
+		</div>
+		
+
+		<!-- 2nd row for, header content -->
+		<div class="row d-flex justify-content-center align-items-center">
+			<!-- begins left column -->
+			<div class="col-12 col-sm-4 d-flex justify-content-center align-items-center mx-auto">		
+				<p style="line-height: 150%; font-size: 111%;">
+					Please upload a copy of 'Final Fantasy 4 Ultima Plus.
+					This app provides alternate graphics and font styles:
+				<span style="color:gold;">Choose from one of 10 after uploading</span>.
+				<br/>(Download the full patch archive for custom fonts.)
+				</p>
+			<!-- end left column -->
+			</div>
+
+
+		<!-- center col, for image of title screen -->
+		<div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">
+			<img style="width: 100%;" src="Title.png" id="preview-Title" />
+		</div>
+
+		<!-- begins right column -->
+		<div class="col-12 col-sm-4 d-flex-column justify-content-end align-items-center">
+			<h3 style="color:gold;">
+				Need a copy of FF4 UP?
+			</h3>
+				use the
+			<!-- black btn styled div -->
+			<a href="index.html" style="text-decoration:none;">
+				<button class="d-flex justify-content-center align-items-center"
+				style="background: black; padding: 1rem; border-radius: 2rem;">
+					<h4 style="color:#80a;">
+						FF4 Ultima Plus Patcher
+					</h4>
+				</button>
+			</a>
+			<p>
+				This site & patches updated<br/>
+				Mar 2025
+			</p>
+			<!-- ends col -->
+			</div>
+		<!-- ends row -->
+		</div>
+	</header>
+
+	<!-- begin patcher container -->
+	<div id="rom-patcher-container" style="min-width: 90vw;">
+
+		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-rom">
+			<div class="text-right">
+				<label for="rom-patcher-input-file-rom" data-localize="yes">
+					ROM file:
+				</label>
+			</div>
+			<div class="rom-patcher-container-input">
+				<input type="file" id="rom-patcher-input-file-rom" class="empty" disabled />
+			</div>
+		</div>
+		<div class="margin-bottom text-selectable text-mono text-muted" id="rom-patcher-rom-info">
+			<div class="rom-patcher-row">
+				<div class="text-right">
+					<h3 class="">
+						CRC32:
+					</h3>
+				</div>
+				<div class="text-truncate">
+					<h2 class="">	
+						<code id="rom-patcher-span-crc32"></code>
+					</h2>
+				</div>
+			</div>
+		</div>
+			
+		<!-- BS styling for the CRC32 number -->
+		<div class="container-fluid">
+			<div class="row w-100">
+				<div class="col-12 d-flex justify-content-center">
+				<h6>
+					The CRC32 (checksum) expcted is <code style="color:purple;">781a3a36</code>
+				</h6>
+				</div>
+			</div>
+		</div> 
+		<!-- end BS styling -->
+
+		
+		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-patch">
+			<div class="text-right">
+				<label for="rom-patcher-input-file-patch" data-localize="yes">
+					Patch file:
+				</label>
+			</div>
+			<div class="rom-patcher-container-input">
+				<select id="rom-patcher-select-patch"></select>
+			</div>
+		</div>
+
+		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-patch-description">
+			<div class="text-right" data-localize="yes">
+				Changes:
+			</div>
+			<div style="padding-left: 10px;" id="rom-patcher-patch-description"></div>
+		</div>
+
+		
+		<div style="display:flex; flex-direction:column; justify-content:center; align-items:center; background:#000;">
+			<!-- preview image pngs -->
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-1-Luna.png" id="Luna-preview-png" />
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-2-Mercury.png" id="Mercury-preview-png" />
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-3-Venus.png" id="Venus-preview-png" />
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-4-Mars.png" id="Mars-preview-png" />
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-5-Ceres.png" id="Ceres-preview-png" />
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-6-Jupiter.png" id="Jupiter-preview-png" />
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-7-Saturn.png" id="Saturn-preview-png" />
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-8-Uranus.png" id="Uranus-preview-png" />
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-9-Neptune.png" id="Neptune-preview-png" />
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-X-Pluto.png" id="Pluto-preview-png" />
+
+			<!-- preview image GIFs -->
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Luna.gif" id="Luna-preview-gif" />
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Mercury.gif" id="Mercury-preview-gif" />
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Venus.gif" id="Venus-preview-gif" />
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Mars.gif" id="Mars-preview-gif" />
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Ceres.gif" id="Ceres-preview-gif" />
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Jupiter.gif" id="Jupiter-preview-gif" />
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Saturn.gif" id="Saturn-preview-gif" />
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Uranus.gif" id="Uranus-preview-gif" />
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Neptune.gif" id="Neptune-preview-gif" />
+			<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Pluto.gif" id="Pluto-preview-gif" />
+		</div>
+
+		<div class="text-center" id="rom-patcher-row-apply">
+			<div id="rom-patcher-row-error-message" class="margin-bottom"><span id="rom-patcher-error-message"></span>
+			</div>
+			<button id="rom-patcher-button-apply" data-localize="yes" disabled>Apply patch</button>
+		</div>
+		<!-- end patcher container -->
+	</div>
+
+	<!-- Bottom messages -->
+	<div id="rom-patcher-powered" class="text-center">
+		<a href="https://github.com/marcrobledo/RomPatcher.js" target="_blank">
+			<img src="./rom-patcher-js/assets/powered_by_rom_patcher_js.png" loading="lazy" />
+			Powered by Rom Patcher JS
+		</a>
+	</div>
+
+	<div class="text-center">
+		<ul style="list-style-type: none;"><u>Featuring sprite work and/or font work from:</u>
+			<li>Gedankenschild</li>
+			<li>xJ4cks</li>
+			<li>Nicoc1991</li>
+			<li>tsushiy</li>
+			<li>MObreck</li>
+			<li>T92</li>
+			<li>FlamePurge</li>
+			<li>mrBrawndo</li>
+			<li>red man</li>
+			<li>gvdn</li>
+			<li>chillyfeez</li>
+			<li>Dragonsbrethren</li>
+		</ul>
+		<br/>
+		<a target="_blank"
+		href="https://www.notion.so/xj4cks/FF4-Alt-Sprites-11e6bad3142980a3808ee8790c463039"
+		style="color:tomato;">
+			   View previews of individual patches
+	   </a>
+	</div>
+
+</body>
+
+</html>
