@@ -14,368 +14,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
 
-<!-- main features -->
-<script type="text/javascript">
+	<!-- for unzipping archives -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
 
-let romData = null; // Stores the uploaded ROM file data
-let zip = null; // Stores the loaded ZIP for later access
-
-// Spinner UX Functions
-function showSpinner() {
-	const spinnerOverlay = document.getElementById('spinner-overlay');
-	spinnerOverlay?.classList.add('show');
-}
-
-function hideSpinner() {
-	const spinnerOverlay = document.getElementById('spinner-overlay');
-	spinnerOverlay?.classList.remove('show');
-}
-
-// Only Accepted CRC32s for these patches
-const romPatchMap = {
-	"781A3A36": "1-Luna-Plus.ips" // Luna is the default style pack
-};
-
-// Precomputes CRC32 Table (clever work by ChatpGPT4)
-const crcTable = new Uint32Array(256);
-for (let i = 0; i < 256; i++) {
-	let crc = i;
-	for (let j = 0; j < 8; j++) {
-		crc = (crc & 1) ? (0xEDB88320 ^ (crc >>> 1)) : (crc >>> 1);
-	}
-	crcTable[i] = crc;
-}
-function computeCRC32(buffer) {
-	let crc = 0xFFFFFFFF;
-	for (let i = 0; i < buffer.length; i++) {
-		let byte = buffer[i];
-		crc = (crc >>> 8) ^ crcTable[(crc ^ byte) & 0xFF];
-	}
-	return (crc ^ 0xFFFFFFFF) >>> 0;
-}
-
-// UI magic, makes "Apply Patch" core-btn text change color when active
-function textChange() {
-	const button = document.getElementById('applyPatch');
-	// Ensures styles are applied only as needed
-	if (!button.classList.contains('lfg-text')) {
-		button.classList.remove('core-btn');
-		void button.offsetWidth; // Forces a repaint to trigger CSS animations
-		button.classList.add('lfg-text');
-		console.log("Apply Patch button activated!"); // Debugging
-	}
-}
-
-// --UI magic--
-// highlights entry in romPatchMap on match
-// changes button styling
-// changes display message
-function crcHighlighter(crcHex) {
-    console.log("Checking CRC:", crcHex);
-    
-    const crcElement = document.getElementById('crc-display');
-    const button = document.getElementById('applyPatch');
-    const spans = document.querySelectorAll('.possible-match');
-
-    // general layout test
-    if (!crcElement || !button) {
-        console.error('One or more required UI elements not found.');
-        return;
-    }
-
-    // Update CRC text display
-    crcElement.textContent = `Your rom's CRC: ${crcHex}`;
-
-    let matchFound = false;
-
-    spans.forEach(span => {
-        const spanText = span.textContent.trim().toUpperCase();
-
-        if (spanText === crcHex.toUpperCase()) {
-            console.log("Match found! Applying highlight.");
-            span.classList.remove('highlight'); // Clear previous just in case
-            void span.offsetWidth; // Forces a repaint
-            span.classList.add('highlight');
-
-            button.classList.add('lfg-text'); // Main feature active now
-            matchFound = true;
-        } else {
-            span.classList.remove('highlight');
-        }
-    });
-
-    if (!matchFound) {
-        console.log("CRC not matched. Displaying invalid rom msg.")
-        crcElement.textContent = `This rom won't work with this patcher. Try another!`;
-        button.classList.remove('lfg-text'); // Rolls back activation styling
-    }
-}
-
-// Handles ROM Upload & CRC Calculation
-document.getElementById('romUpload').addEventListener('change', async (event) => {
-    let file = event.target.files[0];
-    if (!file) return;
-
-    let reader = new FileReader();
-    reader.onload = function (e) {
-        romData = new Uint8Array(e.target.result); // Use global `romData`
-        let crc = computeCRC32(romData);
-        let crcHex = crc.toString(16).toUpperCase();
-        console.log("Computed CRC32:", crcHex);
-        crcHighlighter(crcHex); // updates webapp
-
-        // Auto-select matching patch
-        if (romPatchMap[crcHex]) {
-            const patchDropdown = document.getElementById('patch-dropdown');
-            for (let option of patchDropdown.options) {
-                if (option.value === romPatchMap[crcHex]) {
-                    option.selected = true;
-                    console.log(`Auto-selected patch: ${option.value}`);
-                    break;
-                }
-            }
-        }
-    };
-    reader.readAsArrayBuffer(file);
-});
-
-async function applyIpsPatch(romData, ipsData) {
-    const IPS_HEADER = "PATCH";
-    const IPS_FOOTER = "EOF";
-
-    let offset = 0;
-
-    // Shows spinner at the start
-    showSpinner();
-
-    try {
-        // Verifies header
-        const header = new TextDecoder().decode(ipsData.slice(0, 5));
-        if (header !== IPS_HEADER) throw new Error("Invalid IPS file: Incorrect header.");
-        offset += 5;
-
-        while (offset < ipsData.length) {
-            // Checks for footer
-            if (offset + 3 <= ipsData.length) {
-                const footer = new TextDecoder().decode(ipsData.slice(offset, offset + 3));
-                if (footer === IPS_FOOTER) {
-                    // Valid footer, end of process
-                    return romData;
-                }
-            }
-
-            // Reads patch address
-            if (offset + 3 > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data while reading address.");
-            const address = (ipsData[offset] << 16) | (ipsData[offset + 1] << 8) | ipsData[offset + 2];
-            offset += 3;
-
-            // Reads patch size
-            if (offset + 2 > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data while reading size.");
-            const size = (ipsData[offset] << 8) | ipsData[offset + 1];
-            offset += 2;
-
-            if (size === 0) {
-                // RLE (Run Length Encoding)
-                if (offset + 3 > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data in RLE encoding.");
-                const rleSize = (ipsData[offset] << 8) | ipsData[offset + 1];
-                const value = ipsData[offset + 2];
-                offset += 3;
-
-                // Checks and expands ROM size if necessary
-                const endAddress = address + rleSize;
-                if (endAddress > romData.length) {
-                    console.warn(`Expanding ROM size to accommodate address: ${endAddress}`);
-                    const expandedRom = new Uint8Array(endAddress);
-                    expandedRom.set(romData);
-                    romData = expandedRom;
-                }
-
-                // Applies RLE to ROM data
-                for (let i = 0; i < rleSize; i++) {
-                    romData[address + i] = value;
-                }
-            } else {
-                // Normal patch
-                if (offset + size > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data in normal patch.");
-                const patchData = ipsData.slice(offset, offset + size);
-                offset += size;
-
-                // Checks and expands ROM size if necessary
-                const endAddress = address + size;
-                if (endAddress > romData.length) {
-                    console.warn(`Expanding ROM size to accommodate address: ${endAddress}`);
-                    const expandedRom = new Uint8Array(endAddress);
-                    expandedRom.set(romData);
-                    romData = expandedRom;
-                }
-
-                // Apply patch to ROM data
-                for (let i = 0; i < size; i++) {
-                    romData[address + i] = patchData[i];
-                }
-            }
-        }
-
-        throw new Error("Invalid IPS file: Missing footer.");
-    } finally {
-        // Always hides spinner, whether successful or errored out
-        hideSpinner();
-    }
-}
-
-// Show preview images alignd w selected patch in Dropdown
-async function imageUpdate() {
-	const patchDropdown = document.getElementById('patch-dropdown');
-    const selectedPatch = patchDropdown.value;
-	const planets = ['Luna', 'Mercury', 'Venus', 'Mars', 'Ceres', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
-	
-	// extracts name from patchfile
-	const selectedPlanet = patchFile.getName().split('-')[1];
-	console.log(selectedPlanet);
-
-	// hides all image elements that don't match the selected patch
-	planets.forEach(planet => {
-		document.getElementById(`${planet}-preview-gif`).style.display = 'none';
-		document.getElementById(`${planet}-preview-png`).style.display = 'none';
-	});
-	
-	// shows the image element that matches the selected patch
-	planets.forEach(planet => {
-		document.getElementById(`${selectedPlanet}-preview-gif`).style.display = 'block';
-		document.getElementById(`${selectedPlanet}-preview-png`).style.display = 'block';
-	});
-}
-
-
-// Apply the Patch <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-async function applySelectedPatch() {
-    if (!romData) {
-        alert('Please upload a ROM file first!');
-        return;
-    }
-
-    const patchDropdown = document.getElementById('patch-dropdown');
-    const selectedPatch = patchDropdown.value;
-    if (!selectedPatch) {
-        alert('Please select a patch to apply!');
-        return;
-    }
-
-    if (!zip) {
-        alert('Patch archive not loaded yet!');
-        return;
-    }
-
-    try {
-        showSpinner();
-
-        // Fetches the IPS file from ZIP
-        const patchFile = zip.files[selectedPatch];
-        if (!patchFile) {
-            throw new Error('Patch file not found in ZIP!');
-        }
-
-        const patchData = await patchFile.async('uint8array');
-
-        // Employs bytecode changing logic
-        const patchedRom = await applyIpsPatch(romData, patchData);
-        console.log('Patch applied successfully.');
-
-        // Downloads patched ROM
-        downloadPatchedRom(patchedRom, 'FF4 Ultima Plus.sfc');
-    } catch (error) {
-        console.error('Error applying patch:', error);
-        alert(`Error applying patch: ${error.message}`);
-    } finally {
-        hideSpinner();
-    }
-}
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-// Download the patched ROM
-function downloadPatchedRom(data, filename) {
-    const blob = new Blob([data], { type: 'application/octet-stream' });
-    const url = URL.createObjectURL(blob);
-
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = filename;
-    link.click();
-
-    URL.revokeObjectURL(url);
-    console.log('Patched ROM downloaded as:', filename);
-}
-
-// Load IPS Patch ZIP File
-async function loadLocalZip() {
-    const zipFilePath = 'FF4UP-Styles.zip';
-    try {
-        const response = await fetch(zipFilePath);
-        if (!response.ok) {
-            throw new Error(`Failed to fetch ZIP file: ${response.statusText}`);
-        }
-
-        const zipBlob = await response.blob();
-        zip = await JSZip.loadAsync(zipBlob);
-
-        console.log('ZIP file loaded successfully:', zip);
-
-        // Extract `.ips` files from ZIP
-        const patchFiles = Object.keys(zip.files).filter(relativePath =>
-            relativePath.endsWith('.ips') && !zip.files[relativePath].dir
-        );
-
-        console.log('Filtered patch files:', patchFiles);
-        populateDropdown(patchFiles);
-    } catch (error) {
-        console.error('Error loading ZIP file:', error);
-    }
-}
-
-// Populate the Dropdown with Patch Files
-function populateDropdown(patchFiles) {
-    const patchDropdown = document.getElementById('patch-dropdown');
-    if (!patchDropdown) {
-        console.error('Dropdown element not found');
-        return;
-    }
-
-    patchDropdown.innerHTML = ''; // Clear previous entries
-
-    patchFiles.forEach(relativePath => {
-        const option = document.createElement("option");
-        option.value = relativePath;
-        option.textContent = relativePath.split('/').pop();
-        patchDropdown.appendChild(option);
-        console.log('Added to dropdown:', relativePath);
-    });
-
-    console.log('Dropdown options populated:', patchDropdown.options.length);
-}
-
-// Initialize WebApp
-document.addEventListener('DOMContentLoaded', () => {
-    loadLocalZip();
-	imageUpdate();
-    document.getElementById('applyPatch').addEventListener('click', applySelectedPatch);
-});
-</script>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VGPQVGX8VD"></script>
-<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-
-	gtag('config', 'G-VGPQVGX8VD');
-</script>
-<style>
-	body {
-		background: linear-gradient(#246, #000, #246);
-		color: #e4e4e6;
-	}
-</style>
+	<style>
+		body {
+			background: linear-gradient(#246, #000, #246);
+			color: #e4e4e6;
+		}
+	</style>
 </head>
 
 <body style="font: 1rem 'Quattrocento Sans', sans-serif;">
@@ -450,19 +97,16 @@ document.addEventListener('DOMContentLoaded', () => {
 		<div class="row mx-auto" style="width: 87vw; background:#222; border-radius: 1rem; padding: 1rem; margin: 0.5rem;">
 			<!-- begins first column -->
 			<div class="col-12 col-sm-6">
-
-                <div class="col">
-					<h6>
-						The CRC32 (checksum) expected is <code style="color:gold;">781a3a36</code>
-					</h6>
-                    <!-- ROM Upload -->
-                </div>
+                <!-- ROM Upload -->
                 <div class="file-upload col">
                     <label for="rom">Ultima Plus ROM File:</label>
                     <input type="file" id="romUpload" accept=".sfc,.smc" />
                 </div>
 				<div id="crc-display" style="color:gold;">Your rom's CRC: (waiting for upload...)</div>
-                <div class="grid gap-0 column-gap-0">
+                <h6>
+					The CRC32 (checksum) expected is <span class="possible-match">781a3a36</span>
+				</h6>
+				<div class="grid gap-0 column-gap-0">
                     <!-- dropdown of patches -->
                     <select id="patch-dropdown">
                         <option value="" disabled selected>Select a patch</option>
@@ -475,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		<div class="row mx-auto" style="width: 87vw;"></div>
 			<div style="display:flex; flex-direction:column; justify-content:center; align-items:center; background:#000; border-radius: 1rem; padding: 1rem; margin: 0.5rem;">
 				<!-- preview image pngs -->
-				<img style="width:85vw; max-width:85vw; display:block;" src="previews-1-Luna.png" id="Luna-preview-png" />
+				<img style="width:85vw; max-width:85vw; display:none;" src="previews-1-Luna.png" id="Luna-preview-png" />
 				<img style="width:85vw; max-width:85vw; display:none;" src="previews-2-Mercury.png" id="Mercury-preview-png" />
 				<img style="width:85vw; max-width:85vw; display:none;" src="previews-3-Venus.png" id="Venus-preview-png" />
 				<img style="width:85vw; max-width:85vw; display:none;" src="previews-4-Mars.png" id="Mars-preview-png" />
@@ -487,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				<img style="width:85vw; max-width:85vw; display:none;" src="previews-X-Pluto.png" id="Pluto-preview-png" />
 
 				<!-- preview image GIFs -->
-				<img style="width:45vw; max-width:45vw; display:block; padding-top: 3vh;" src="p-Luna.gif" id="Luna-preview-gif" />
+				<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Luna.gif" id="Luna-preview-gif" />
 				<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Mercury.gif" id="Mercury-preview-gif" />
 				<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Venus.gif" id="Venus-preview-gif" />
 				<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Mars.gif" id="Mars-preview-gif" />
@@ -498,43 +142,392 @@ document.addEventListener('DOMContentLoaded', () => {
 				<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Neptune.gif" id="Neptune-preview-gif" />
 				<img style="width:45vw; max-width:45vw; display:none; padding-top: 3vh;" src="p-Pluto.gif" id="Pluto-preview-gif" />
 			</div>
-
 		</div>
-
+		<!-- end patcher container -->
 		<div>
 			<hr/>
 			Credits<br/>Space for manifest scroll
 		</div>
-		<!-- end patcher container -->
+		<div class="text-center">
+			<ul style="list-style-type: none;"><u>Featuring sprite work from:</u>
+				<li>Nicoc1991</li>
+				<li>Gedankenschild</li>
+				<li>xJ4cks</li>
+				<li>tsushiy</li>
+				<li>MObreck</li>
+				<li>T92</li>
+				<li>FlamePurge</li>
+				<li>mrBrawndo</li>
+				<li>red man</li>
+				<li>gvdn</li>
+				<li>chillyfeez</li>
+				<li>Dragonsbrethren</li>
+			</ul>
+			<br/>
+			<a target="_blank"
+			href="https://www.notion.so/xj4cks/FF4-Alt-Sprites-11e6bad3142980a3808ee8790c463039"
+			style="color:tomato;">
+				View previews of many individual patches
+		</a>
+		</div>
+
 	</main>
+<!-- main app features -->
+<script type="text/javascript">
 
-
-
-
-
-	<div class="text-center">
-		<ul style="list-style-type: none;"><u>Featuring sprite work and/or font work from:</u>
-			<li>Nicoc1991</li>
-			<li>Gedankenschild</li>
-			<li>xJ4cks</li>
-			<li>tsushiy</li>
-			<li>MObreck</li>
-			<li>T92</li>
-			<li>FlamePurge</li>
-			<li>mrBrawndo</li>
-			<li>red man</li>
-			<li>gvdn</li>
-			<li>chillyfeez</li>
-			<li>Dragonsbrethren</li>
-		</ul>
-		<br/>
-		<a target="_blank"
-		href="https://www.notion.so/xj4cks/FF4-Alt-Sprites-11e6bad3142980a3808ee8790c463039"
-		style="color:tomato;">
-			   View previews of many individual patches
-	   </a>
-	</div>
-
+	let romData = null; // Stores the uploaded ROM file data
+	let zip = null; // Stores the loaded ZIP for later access
+	
+	// Spinner UX Functions
+	function showSpinner() {
+		const spinnerOverlay = document.getElementById('spinner-overlay');
+		spinnerOverlay?.classList.add('show');
+	}
+	
+	function hideSpinner() {
+		const spinnerOverlay = document.getElementById('spinner-overlay');
+		spinnerOverlay?.classList.remove('show');
+	}
+	
+	// Only Accepted CRC32s for these patches
+	const romPatchMap = {
+		"781A3A36": "1-Luna-Plus.ips" // Luna is the default style pack
+	};
+	
+	// Precomputes CRC32 Table (clever work by ChatpGPT4)
+	const crcTable = new Uint32Array(256);
+	for (let i = 0; i < 256; i++) {
+		let crc = i;
+		for (let j = 0; j < 8; j++) {
+			crc = (crc & 1) ? (0xEDB88320 ^ (crc >>> 1)) : (crc >>> 1);
+		}
+		crcTable[i] = crc;
+	}
+	function computeCRC32(buffer) {
+		let crc = 0xFFFFFFFF;
+		for (let i = 0; i < buffer.length; i++) {
+			let byte = buffer[i];
+			crc = (crc >>> 8) ^ crcTable[(crc ^ byte) & 0xFF];
+		}
+		return (crc ^ 0xFFFFFFFF) >>> 0;
+	}
+	
+	// UI magic, makes "Apply Patch" core-btn text change color when active
+	function textChange() {
+		const button = document.getElementById('applyPatch');
+		// Ensures styles are applied only as needed
+		if (!button.classList.contains('lfg-text')) {
+			button.classList.remove('core-btn');
+			void button.offsetWidth; // Forces a repaint to trigger CSS animations
+			button.classList.add('lfg-text');
+			console.log("Apply Patch button activated!"); // Debugging
+		}
+	}
+	
+	// --UI magic--
+	// highlights entry in romPatchMap on match
+	// changes button styling
+	// changes display message
+	function crcHighlighter(crcHex) {
+		console.log("Checking CRC:", crcHex);
+		
+		const crcElement = document.getElementById('crc-display');
+		const button = document.getElementById('applyPatch');
+		const spans = document.querySelectorAll('.possible-match');
+	
+		// general layout test
+		if (!crcElement || !button) {
+			console.error('One or more required UI elements not found.');
+			return;
+		}
+	
+		// Update CRC text display
+		crcElement.textContent = `Your rom's CRC: ${crcHex}`;
+	
+		let matchFound = false;
+	
+		spans.forEach(span => {
+			const spanText = span.textContent.trim().toUpperCase();
+	
+			if (spanText === crcHex.toUpperCase()) {
+				console.log("Match found! Applying highlight.");
+				span.classList.remove('highlight'); // Clear previous just in case
+				void span.offsetWidth; // Forces a repaint
+				span.classList.add('highlight');
+	
+				button.classList.add('lfg-text'); // Main feature active now
+				matchFound = true;
+			} else {
+				span.classList.remove('highlight');
+			}
+		});
+	
+		if (!matchFound) {
+			console.log("CRC not matched. Displaying invalid rom msg.")
+			crcElement.textContent = `This rom won't work with this patcher. Try another!`;
+			button.classList.remove('lfg-text'); // Rolls back activation styling
+		}
+	}
+	
+	// Handles ROM Upload & CRC Calculation
+	document.getElementById('romUpload').addEventListener('change', async (event) => {
+		let file = event.target.files[0];
+		if (!file) return;
+	
+		let reader = new FileReader();
+		reader.onload = function (e) {
+			romData = new Uint8Array(e.target.result); // Use global `romData`
+			let crc = computeCRC32(romData);
+			let crcHex = crc.toString(16).toUpperCase();
+			console.log("Computed CRC32:", crcHex);
+			crcHighlighter(crcHex); // updates webapp
+	
+			// Auto-select matching patch
+			if (romPatchMap[crcHex]) {
+				const patchDropdown = document.getElementById('patch-dropdown');
+				for (let option of patchDropdown.options) {
+					if (option.value === romPatchMap[crcHex]) {
+						option.selected = true;
+						console.log(`Auto-selected patch: ${option.value}`);
+						break;
+					}
+				}
+			}
+		};
+		reader.readAsArrayBuffer(file);
+	});
+	
+	async function applyIpsPatch(romData, ipsData) {
+		const IPS_HEADER = "PATCH";
+		const IPS_FOOTER = "EOF";
+	
+		let offset = 0;
+	
+		// Shows spinner at the start
+		showSpinner();
+	
+		try {
+			// Verifies header
+			const header = new TextDecoder().decode(ipsData.slice(0, 5));
+			if (header !== IPS_HEADER) throw new Error("Invalid IPS file: Incorrect header.");
+			offset += 5;
+	
+			while (offset < ipsData.length) {
+				// Checks for footer
+				if (offset + 3 <= ipsData.length) {
+					const footer = new TextDecoder().decode(ipsData.slice(offset, offset + 3));
+					if (footer === IPS_FOOTER) {
+						// Valid footer, end of process
+						return romData;
+					}
+				}
+	
+				// Reads patch address
+				if (offset + 3 > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data while reading address.");
+				const address = (ipsData[offset] << 16) | (ipsData[offset + 1] << 8) | ipsData[offset + 2];
+				offset += 3;
+	
+				// Reads patch size
+				if (offset + 2 > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data while reading size.");
+				const size = (ipsData[offset] << 8) | ipsData[offset + 1];
+				offset += 2;
+	
+				if (size === 0) {
+					// RLE (Run Length Encoding)
+					if (offset + 3 > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data in RLE encoding.");
+					const rleSize = (ipsData[offset] << 8) | ipsData[offset + 1];
+					const value = ipsData[offset + 2];
+					offset += 3;
+	
+					// Checks and expands ROM size if necessary
+					const endAddress = address + rleSize;
+					if (endAddress > romData.length) {
+						console.warn(`Expanding ROM size to accommodate address: ${endAddress}`);
+						const expandedRom = new Uint8Array(endAddress);
+						expandedRom.set(romData);
+						romData = expandedRom;
+					}
+	
+					// Applies RLE to ROM data
+					for (let i = 0; i < rleSize; i++) {
+						romData[address + i] = value;
+					}
+				} else {
+					// Normal patch
+					if (offset + size > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data in normal patch.");
+					const patchData = ipsData.slice(offset, offset + size);
+					offset += size;
+	
+					// Checks and expands ROM size if necessary
+					const endAddress = address + size;
+					if (endAddress > romData.length) {
+						console.warn(`Expanding ROM size to accommodate address: ${endAddress}`);
+						const expandedRom = new Uint8Array(endAddress);
+						expandedRom.set(romData);
+						romData = expandedRom;
+					}
+	
+					// Apply patch to ROM data
+					for (let i = 0; i < size; i++) {
+						romData[address + i] = patchData[i];
+					}
+				}
+			}
+	
+			throw new Error("Invalid IPS file: Missing footer.");
+		} finally {
+			// Always hides spinner, whether successful or errored out
+			hideSpinner();
+		}
+	}
+	
+	// Show preview images alignd w selected patch in Dropdown
+	async function imageUpdate() {
+		const patchDropdown = document.getElementById('patch-dropdown');
+		const selectedPatch = patchDropdown.value;
+		const planets = ['Luna', 'Mercury', 'Venus', 'Mars', 'Ceres', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
+		
+		// extracts name from patchfile
+		const selectedPlanet = selectedPatch.getName().split('-')[1];
+		console.log(selectedPlanet);
+	
+		// hides all image elements that don't match the selected patch
+		planets.forEach(planet => {
+			document.getElementById(`${planet}-preview-gif`).style.display = 'none';
+			document.getElementById(`${planet}-preview-png`).style.display = 'none';
+		});
+		
+		// shows the image element that matches the selected patch
+		planets.forEach(planet => {
+			document.getElementById(`${selectedPlanet}-preview-gif`).style.display = 'block';
+			document.getElementById(`${selectedPlanet}-preview-png`).style.display = 'block';
+		});
+	}
+	
+	
+	// Apply the Patch <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	async function applySelectedPatch() {
+		if (!romData) {
+			alert('Please upload a ROM file first!');
+			return;
+		}
+	
+		const patchDropdown = document.getElementById('patch-dropdown');
+		const selectedPatch = patchDropdown.value;
+		if (!selectedPatch) {
+			alert('Please select a patch to apply!');
+			return;
+		}
+	
+		if (!zip) {
+			alert('Patch archive not loaded yet!');
+			return;
+		}
+	
+		try {
+			showSpinner();
+	
+			// Fetches the IPS file from ZIP
+			const patchFile = zip.files[selectedPatch];
+			if (!patchFile) {
+				throw new Error('Patch file not found in ZIP!');
+			}
+	
+			const patchData = await patchFile.async('uint8array');
+	
+			// Employs bytecode changing logic
+			const patchedRom = await applyIpsPatch(romData, patchData);
+			console.log('Patch applied successfully.');
+	
+			// Downloads patched ROM
+			downloadPatchedRom(patchedRom, 'FF4 Ultima Plus.sfc');
+		} catch (error) {
+			console.error('Error applying patch:', error);
+			alert(`Error applying patch: ${error.message}`);
+		} finally {
+			hideSpinner();
+		}
+	}
+	// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	
+	// Download the patched ROM
+	function downloadPatchedRom(data, filename) {
+		const blob = new Blob([data], { type: 'application/octet-stream' });
+		const url = URL.createObjectURL(blob);
+	
+		const link = document.createElement('a');
+		link.href = url;
+		link.download = filename;
+		link.click();
+	
+		URL.revokeObjectURL(url);
+		console.log('Patched ROM downloaded as:', filename);
+	}
+	
+	// Load IPS Patch ZIP File
+	async function loadLocalZip() {
+		const zipFilePath = 'FF4UP-Styles.zip';
+		try {
+			const response = await fetch(zipFilePath);
+			if (!response.ok) {
+				throw new Error(`Failed to fetch ZIP file: ${response.statusText}`);
+			}
+	
+			const zipBlob = await response.blob();
+			zip = await JSZip.loadAsync(zipBlob);
+	
+			console.log('ZIP file loaded successfully:', zip);
+	
+			// Extract `.ips` files from ZIP
+			const patchFiles = Object.keys(zip.files).filter(relativePath =>
+				relativePath.endsWith('.ips') && !zip.files[relativePath].dir
+			);
+	
+			console.log('Filtered patch files:', patchFiles);
+			populateDropdown(patchFiles);
+		} catch (error) {
+			console.error('Error loading ZIP file:', error);
+		}
+	}
+	
+	// Populate the Dropdown with Patch Files
+	function populateDropdown(patchFiles) {
+		const patchDropdown = document.getElementById('patch-dropdown');
+		if (!patchDropdown) {
+			console.error('Dropdown element not found');
+			return;
+		}
+	
+		patchDropdown.innerHTML = ''; // Clear previous entries
+	
+		patchFiles.forEach(relativePath => {
+			const option = document.createElement("option");
+			option.value = relativePath;
+			option.textContent = relativePath.split('/').pop();
+			patchDropdown.appendChild(option);
+			console.log('Added to dropdown:', relativePath);
+		});
+	
+		console.log('Dropdown options populated:', patchDropdown.options.length);
+	}
+	
+	// Initialize WebApp
+	document.addEventListener('DOMContentLoaded', () => {
+		loadLocalZip();
+		imageUpdate();
+		document.getElementById('applyPatch').addEventListener('click', applySelectedPatch);
+	});
+	</script>
+	
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-VGPQVGX8VD"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+	
+		gtag('config', 'G-VGPQVGX8VD');
+	</script>
 </body>
 
 </html>
