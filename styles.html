@@ -22,6 +22,10 @@
 			background: linear-gradient(#246, #000, #246);
 			color: #e4e4e6;
 		}
+		.patch-btn {
+			padding: 6px;
+  			border-radius: 10px;
+		}
 	</style>
 </head>
 
@@ -96,7 +100,7 @@
 		<!-- 2nd row, first interaction -->
 		<div class="row mx-auto" style="width: 87vw; background:#222; border-radius: 1rem; padding: 1rem; margin: 0.5rem;">
 			<!-- begins first column -->
-			<div class="col-12 col-sm-6">
+			<div class="col-sm-6">
                 <!-- ROM Upload -->
                 <div class="file-upload col">
                     <label for="rom">Ultima Plus ROM File:</label>
@@ -111,10 +115,27 @@
                     <select id="patch-dropdown">
                         <option value="" disabled selected>Select a patch</option>
                     </select>    
-                    <button id="applyPatch" class="">Apply Patch</button>
+                    <button id="applyPatch" class="patch-btn">Apply Patch</button>
                 </div>
 
 			</div>
+
+			<div class="col-sm-6 d-flex justify-content-space-around align-items-center">
+                <h5 style="color:#eff;">
+                    If you want custom <span style="color:tomato;">fonts...</span> use the rom you make here at the Fonts patcher.
+                </h5>
+                <!-- black btn styled div -->
+                <a href="fonts.html" style="text-decoration:none;">
+                    <button class="d-flex justify-content-center align-items-center"
+                    style="background: black; padding: 0.7rem; border-radius: 2rem;">
+                        <h5 style="color:tomato;">
+                            FF4 Ultima Plus Fonts
+                        </h5>
+                    </button>
+                </a>
+            </div>
+
+
 		</div>
 		<div class="row mx-auto" style="width: 87vw;"></div>
 			<div style="display:flex; flex-direction:column; justify-content:center; align-items:center; background:#000; border-radius: 1rem; padding: 1rem; margin: 0.5rem;">
