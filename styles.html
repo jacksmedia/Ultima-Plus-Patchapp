@@ -104,7 +104,7 @@
                 </div>
 				<div id="crc-display" style="color:gold;">Your rom's CRC: (waiting for upload...)</div>
                 <h6>
-					The CRC32 (checksum) expected is <span class="possible-match">781a3a36</span>
+					The CRC32 (checksum) expected is <span class="possible-match">781A3A36</span>
 				</h6>
 				<div class="grid gap-0 column-gap-0">
                     <!-- dropdown of patches -->
@@ -381,27 +381,100 @@
 		}
 	}
 	
-	// Show preview images alignd w selected patch in Dropdown
-	async function imageUpdate() {
+	// Shows preview images aligned w selected patch in Dropdown
+	function imageUpdate() {
+		// Gets the dropdown element and its selected value
 		const patchDropdown = document.getElementById('patch-dropdown');
+		if (!patchDropdown || patchDropdown.options.length === 0) {
+			console.log("Dropdown not ready yet");
+			return; // Exit if dropdown isn't ready
+		}
+		
 		const selectedPatch = patchDropdown.value;
+		console.log("Selected patch value:", selectedPatch);
+		
+		// Gets just the filename without path and extension
+		const fileName = selectedPatch.split('/').pop().replace('.ips', '');
+		console.log("Extracted filename:", fileName);
+		
+		// Planet list to match IDs
 		const planets = ['Luna', 'Mercury', 'Venus', 'Mars', 'Ceres', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
 		
-		// extracts name from patchfile
-		const selectedPlanet = selectedPatch.getName().split('-')[1];
-		console.log(selectedPlanet);
-	
-		// hides all image elements that don't match the selected patch
+		// Tries to find which planet name is contained in the filename
+		let selectedPlanet = null;
+		for (const planet of planets) {
+			// Check if the planet name appears in the filename (case-insensitive)
+			if (fileName.toLowerCase().includes(planet.toLowerCase())) {
+				selectedPlanet = planet;
+				break;
+			}
+		}
+		
+		// If no planet was found in the selection, tries a number-based approach
+		// This handles cases where filenames might be like "1-Moon.ips" or "Style2.ips"
+		if (!selectedPlanet) {
+			const planetNumbers = {
+				'1': 'Luna',
+				'2': 'Mercury',
+				'3': 'Venus',
+				'4': 'Mars',
+				'5': 'Ceres',
+				'6': 'Jupiter',
+				'7': 'Saturn',
+				'8': 'Uranus',
+				'9': 'Neptune',
+				'X': 'Pluto',
+				'10': 'Pluto'
+			};
+			
+			// Checks for numbers in the filename
+			for (const [num, planet] of Object.entries(planetNumbers)) {
+				if (fileName.includes(num)) {
+					selectedPlanet = planet;
+					break;
+				}
+			}
+		}
+		
+		// If still no planet was found, just exit
+		if (!selectedPlanet) {
+			console.log("Could not determine planet from selection:", fileName);
+			return;
+		}
+		
+		console.log("Selected planet:", selectedPlanet);
+		
+		// Hides all preview images
 		planets.forEach(planet => {
-			document.getElementById(`${planet}-preview-gif`).style.display = 'none';
-			document.getElementById(`${planet}-preview-png`).style.display = 'none';
+			// PNG previews
+			const pngElement = document.getElementById(`${planet}-preview-png`);
+			if (pngElement) {
+				pngElement.style.display = 'none';
+			}
+			
+			// GIF previews
+			const gifElement = document.getElementById(`${planet}-preview-gif`);
+			if (gifElement) {
+				gifElement.style.display = 'none';
+			}
 		});
 		
-		// shows the image element that matches the selected patch
-		planets.forEach(planet => {
-			document.getElementById(`${selectedPlanet}-preview-gif`).style.display = 'block';
-			document.getElementById(`${selectedPlanet}-preview-png`).style.display = 'block';
-		});
+		// Shows only the selected planet's previews
+		const selectedPngElement = document.getElementById(`${selectedPlanet}-preview-png`);
+		if (selectedPngElement) {
+			selectedPngElement.style.display = 'block';
+			console.log(`Showing PNG for ${selectedPlanet}`);
+		} else {
+			console.log(`PNG element for ${selectedPlanet} not found`);
+		}
+		
+		const selectedGifElement = document.getElementById(`${selectedPlanet}-preview-gif`);
+		if (selectedGifElement) {
+			selectedGifElement.style.display = 'block';
+			console.log(`Showing GIF for ${selectedPlanet}`);
+		} else {
+			console.log(`GIF element for ${selectedPlanet} not found`);
+		}
 	}
 	
 	
@@ -509,12 +582,21 @@
 		});
 	
 		console.log('Dropdown options populated:', patchDropdown.options.length);
+		setTimeout(imageUpdate, 500); // Small delay to ensure dropdown is populated
 	}
 	
 	// Initialize WebApp
 	document.addEventListener('DOMContentLoaded', () => {
+		const dropdown = document.getElementById('patch-dropdown');
+		if (dropdown) {
+			dropdown.addEventListener('change', imageUpdate);
+			
+			// This will be called once the ZIP has been loaded and dropdown populated
+			setTimeout(imageUpdate, 500); // Small delay to ensure dropdown is populated
+		} else {
+			console.error("Dropdown element with ID 'patch-dropdown' not found");
+		}
 		loadLocalZip();
-		imageUpdate();
 		document.getElementById('applyPatch').addEventListener('click', applySelectedPatch);
 	});
 	</script>

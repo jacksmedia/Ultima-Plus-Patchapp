@@ -1,0 +1,29 @@
+_map sprites FF4-T style (by tsushiy).ips
+classic map pal03 restore.ips
+Decil (classic, portrait colors, by xJ4cks).ips
+Edge (classic, portrait colors, by xJ4cks).ips
+Edward (classic, portrait colors, by xJ4cks).ips
+Final Fantasy IV Ultima - Sylph-Bloodfeast Fix.ips
+FuSoYa (classic, lunar magic, by xJ4cks).ips
+Golbez (classic, Alt Colors, by tsushiy).ips
+Kain (classic, portrait colors, by xJ4cks).ips
+Kydia (classic, portrait colors, pink magic, by xJ4cks).ips
+map Pecil (PR, by xJ4cks).ips
+map Yang (Red Pants, by xJ4cks and red man).ips
+Palom & Porom original map colors fix.ips
+Pecil (classic, portrait colors, by xJ4cks).ips
+Porom (classic, brighter, by xJ4cks).ips
+portrait Cid (better, by xJ4cks).ips
+portrait Edge (better, by xJ4cks).ips
+portrait FuSoYa (battle color, by xJ4cks).ips
+portrait Golbez (alt, red gold, by tsushiy).ips
+portrait Palom (RK, battle color, by xJ4cks).ips
+portrait Pecil (better, by xJ4cks).ips
+portrait Porom (RK, battle color, by xJ4cks).ips
+portrait Rosa (PR ponytail, by FlamePurge).ips
+portrait Rydia (better, by xJ4cks).ips
+portrait Tellah (better, by xJ4cks).ips
+Rosa (classic, pink armor, by tsushiy).ips
+Rydia (classic, portrait colors, pink magic, by xJ4cks).ips
+sp-Mercury.ips
+Yang (classic, portrait colors, by xJ4cks).ips
