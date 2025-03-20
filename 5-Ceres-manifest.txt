@@ -39,6 +39,6 @@ portrait Tellah (better, by xJ4cks).ips
 portrait Yang (DS colors, by xJ4cks).ips
 Rosa (PR, by MObreck).ips
 Rydia (PR, DS colors, by xJ4cks).ips
-sp-Ceres.ips
 Tellah (PR, by xJ4cks).ips
+window-color-Ceres.ips
 Yang (PR, DS colors, by xJ4cks, Nicoc1991, red man).ips

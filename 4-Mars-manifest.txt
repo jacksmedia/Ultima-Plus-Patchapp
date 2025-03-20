@@ -34,6 +34,6 @@ portrait Tellah (battle color, by xJ4cks).ips
 portrait Yang (battle color, by xJ4cks).ips
 Rosa (PR, by MObreck and red man).ips
 Rydia (PR, by MObreck).ips
-sp-Mars.ips
 Tellah (PR, by xJ4cks).ips
+window-color-Mars.ips
 Yang (PR, by Nicoc1991).ips

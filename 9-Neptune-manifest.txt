@@ -35,5 +35,5 @@ portrait Tellah (better, by xJ4cks).ips
 portrait Yang (better, by xJ4cks).ips
 Rosa (RK, DS colors + big cape, by T92).ips
 Rydia (RK, pink magic by xJ4cks).ips
-window-darkteal.ips
+window-color-darkteal.ips
 Yang (RK, better, by xJ4cks).ips

@@ -14,4 +14,4 @@ portrait Rosa (PR ponytail, by FlamePurge).ips
 portrait Rydia (battle color, by xJ4cks).ips
 portrait Tellah (battle color, by xJ4cks).ips
 portrait Yang (battle color, by xJ4cks).ips
-sp-Luna.ips
+window-color-Luna.ips

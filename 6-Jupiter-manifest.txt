@@ -5,4 +5,4 @@ Kain (RK portrait colors, by xJ4cks).ips
 map Edward (better, by xJ4cks).ips
 Palom & Porom original map colors fix.ips
 Pecil (RK, Cosmic, by T92).ips
-sp-Jupiter.ips
+window-color-Jupiter.ips

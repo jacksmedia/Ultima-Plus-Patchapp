@@ -37,6 +37,6 @@ portrait Tellah (battle color, by xJ4cks).ips
 portrait Yang (battle color, by xJ4cks).ips
 Rosa (RK, DS colors + big cape, by T92).ips
 Rydia (RK, Festival, by red man & Nicoc1991).ips
-sp-Pluto.ips
 Tellah (RK, from T92).ips
+window-color-Pluto.ips
 Yang (RK, better, by xJ4cks).ips

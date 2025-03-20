@@ -29,5 +29,5 @@ portrait Rosa (PR ponytail, by FlamePurge).ips
 portrait Rydia (better, by xJ4cks).ips
 portrait Tellah (better, by xJ4cks).ips
 Rydia (classic, portrait colors, pink magic, by xJ4cks).ips
-sp-Venus.ips
+window-color-Venus.ips
 Yang (classic, portrait colors, by xJ4cks).ips
