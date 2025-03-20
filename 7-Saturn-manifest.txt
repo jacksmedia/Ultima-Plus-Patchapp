@@ -1,11 +1,12 @@
-_All Characters RK Battle Sprites v1.3, from T92.ips
 _map sprites FF4-T style (by tsushiy).ips
+Cid (RK, from T92).ips
 Decil (RK, darkest, by tsushiy).ips
 Edge (RK, better, by xJ4cks).ips
 Edward (RK, portrait colors, by xJ4cks).ips
 FF4 Ultima Enemy Graphics 4bpp upgrade v2 (SNES-size enemies), by Gedankenschild.ips
 Final Fantasy IV Ultima - Sylph-Bloodfeast Fix.ips
 FuSoYa (RK, lunar magic, by xJ4cks).ips
+Golbez + Anna (RK, by T92).ips
 Kain (RK, dark teal, by Nicoc1991).ips
 Kydia (RK, pink magic, by xJ4cks).ips
 map Edge (T style, purple, by tsushiy & xJ4cks).ips
@@ -26,5 +27,6 @@ portrait Tellah (battle color, by xJ4cks).ips
 portrait Yang (better, by xJ4cks).ips
 Rosa (RK, DS colors + big cape, by T92).ips
 Rydia (RK, pink magic by xJ4cks).ips
+Tellah (RK, from T92).ips
 window-color-Saturn.ips
 Yang (RK, better, by xJ4cks).ips

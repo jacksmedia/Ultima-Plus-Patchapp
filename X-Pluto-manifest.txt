@@ -1,4 +1,3 @@
-_All Characters RK Battle Sprites v1.3, from T92.ips
 Cid (RK, gold + PURPLE, by xJ4cks).ips
 Decil (RK, darkest, by Nicoc1991).ips
 Edge (RK, better, by xJ4cks).ips
@@ -6,7 +5,7 @@ Edward (RK, portrait colors, by xJ4cks).ips
 FF4 Ultima Enemy Graphics 4bpp upgrade v2 (SNES-size enemies), by Gedankenschild.ips
 FF4Ultima v2024 Plus RC05 - deep purple pal0.ips
 FuSoYa (RK, lunar magic, by xJ4cks).ips
-Golbez (PR battle + map sprites, by MObreck).ips
+Golbez + Anna (RK, by T92).ips
 Kain (RK, green, by xJ4cks).ips
 Kydia (RK, pink magic, by xJ4cks).ips
 map Cid (PURPLE + gold, by xJ4cks).ips
