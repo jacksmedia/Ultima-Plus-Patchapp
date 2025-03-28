@@ -108,7 +108,7 @@
                 </div>
 				<div id="crc-display" style="color:gold;">Your rom's CRC: (waiting for upload...)</div>
                 <h6>
-					The CRC32 (checksum) expected is <span class="possible-match">D0E597CE</span>
+					The CRC32 (checksum) expected is <span class="possible-match">CA5A60C3</span>
 				</h6>
 				<div class="grid gap-0 column-gap-0">
                     <!-- dropdown of patches -->
@@ -183,15 +183,14 @@
 				<span class="badge bg-light text-dark">Nicoc1991</span>
 				<span class="badge bg-light text-dark">Gedankenschild</span>
 				<span class="badge bg-light text-dark">xJ4cks</span>
-				<span class="badge bg-light text-dark">tsushiy</span>
 				<span class="badge bg-light text-dark">MObreck</span>
-				<span class="badge bg-light text-dark">T92</span>
-				<span class="badge bg-light text-dark">FlamePurge</span>
+				<span class="badge bg-light text-dark">tsushiy</span>
 				<span class="badge bg-light text-dark">mrBrawndo</span>
+				<span class="badge bg-light text-dark">T92</span>
 				<span class="badge bg-light text-dark">red man</span>
 				<span class="badge bg-light text-dark">gvdn</span>
+				<span class="badge bg-light text-dark">FlamePurge</span>
 				<span class="badge bg-light text-dark">chillyfeez</span>
-				<span class="badge bg-light text-dark">Dragonsbrethren</span>
 		</div>
 
 	</main>
@@ -214,7 +213,7 @@
 	
 	// Only Accepted CRC32s for these patches
 	const romPatchMap = {
-		"D0E597CE": "1-Luna-Plus.ips" // Luna is the default style pack
+		"CA5A60C3": "1-Luna-Plus.ips" // Luna is the default style pack
 	};
 	
 	// Precomputes CRC32 Table (clever work by ChatpGPT4)
@@ -446,8 +445,7 @@
 				'7': 'Saturn',
 				'8': 'Uranus',
 				'9': 'Neptune',
-				'X': 'Pluto',
-				'10': 'Pluto'
+				'X': 'Pluto'
 			};
 			
 			// Checks for numbers in the filename
@@ -633,6 +631,15 @@
 		try {
 			showSpinner();
 	
+			// Parses the style name from the filename
+			const cleanFilename = (selectedPatch) => {
+				// Filters everything between the '-' characters
+				const matches = selectedPatch.match(/^[^-]*-([^-]*)-.*$/);
+				return matches ? matches[1] : '';
+			} 
+			// Gets the cleaned style name
+			const styleName = cleanFilename(selectedPatch);
+
 			// Fetches the IPS file from ZIP
 			const patchFile = zip.files[selectedPatch];
 			if (!patchFile) {
@@ -646,7 +653,7 @@
 			console.log('Patch applied successfully.');
 	
 			// Downloads patched ROM
-			downloadPatchedRom(patchedRom, 'FF4 Ultima Plus.sfc');
+			downloadPatchedRom(patchedRom, `FF4 Ultima Plus ${styleName}.sfc`);
 		} catch (error) {
 			console.error('Error applying patch:', error);
 			alert(`Error applying patch: ${error.message}`);

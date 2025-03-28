@@ -2,13 +2,22 @@ Final Fantasy IV - Ultima Plus Changelog
 ------------
    v2025
 ------------
-v1.06 recovers these changes without bugs
+
+v1.06 
+- adds new Holy elemental icon (white diamond, matches FF4:TAY icon)
+- improves "Star" icon
+- "Add" becomes the more obvious "With" in Bestiary
+- removes Float icon from elemental weakness dude msg in training room
+- reverts names of tier 2 elemental attack items to Ultima Classic style, per everyone's recommendation (IceBlast became IceShard since it sounds cooler)
+- reverts Bloodsip to VampFang as a result of above
+- recovers the other v1.05 changes (Wind icon, 2 new magic attack items) without bugs
+
 v1.05 (bugged) 
 - New Wind icon (yellow/green whirlwind)
 - Names of 4 magic attack items, "Fangs", were changed to be more distinct
 
 v1.04b
-- Bugfix as suggested by reference docs to address "empty dialog" can than occur at certain moments such as when learning spells
+- Bugfix as suggested by reference docs to address "empty dialog" that can occur at certain moments such as when learning spells
 
 v1.04
 - Grammatical correction in a character ability side quest
