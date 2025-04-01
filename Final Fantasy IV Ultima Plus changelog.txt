@@ -2,8 +2,10 @@ Final Fantasy IV - Ultima Plus Changelog
 ------------
    v2025
 ------------
+v1.06b
+- icon bugfix in Icon Key
 
-v1.06 
+v1.06
 - adds new Holy elemental icon (white diamond, matches FF4:TAY icon)
 - improves "Star" icon
 - "Add" becomes the more obvious "With" in Bestiary
