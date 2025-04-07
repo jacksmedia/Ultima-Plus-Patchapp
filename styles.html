@@ -110,7 +110,7 @@
                 </div>
 				<div id="crc-display" style="color:gold;">Your rom's CRC: (waiting for upload...)</div>
                 <h6>
-					The CRC32 (checksum) expected is <span class="possible-match">8FA1DF1F</span>
+					The CRC32 (checksum) expected is <span class="possible-match">0258C4F7</span>
 				</h6>
 				<div class="grid gap-0 column-gap-0">
                     <!-- dropdown of patches -->
@@ -302,7 +302,7 @@
 		reader.onload = function (e) {
 			romData = new Uint8Array(e.target.result); // Use global `romData`
 			let crc = computeCRC32(romData);
-			let crcHex = crc.toString(16).toUpperCase();
+			let crcHex = crc.toString(16).toUpperCase().padStart(8, '0');;
 			console.log("Computed CRC32:", crcHex);
 			crcHighlighter(crcHex); // updates webapp
 	
