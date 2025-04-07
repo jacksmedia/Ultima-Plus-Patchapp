@@ -4,6 +4,7 @@ Final Fantasy IV - Ultima Plus Changelog
 ------------
 v1.07
 - bugfix: Edward equipment retained on New Game +
+- Star icon fixed in Load Menu
 
 v1.06b
 - Float icon bugfix in Icon Key
