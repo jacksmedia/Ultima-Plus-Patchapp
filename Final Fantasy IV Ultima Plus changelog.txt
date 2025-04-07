@@ -2,8 +2,11 @@ Final Fantasy IV - Ultima Plus Changelog
 ------------
    v2025
 ------------
+v1.07
+- bugfix: Edward equipment retained on New Game +
+
 v1.06b
-- icon bugfix in Icon Key
+- Float icon bugfix in Icon Key
 
 v1.06
 - adds new Holy elemental icon (white diamond, matches FF4:TAY icon)
