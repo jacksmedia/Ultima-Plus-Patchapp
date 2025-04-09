@@ -10,9 +10,9 @@ Golbez + Anna (RK, by T92).ips
 Kain (RK, dark teal, by Nicoc1991).ips
 Kydia (RK, pink magic, by xJ4cks).ips
 map Edge (T style, purple, by tsushiy & xJ4cks).ips
-Palom (RK, Messy Hair, by red man & Nicoc1991).ips
+Palom (URK, Messy, by red man and Nicoc1991).ips
 Pecil (RK, Cosmic w Cape Cheer, by T92).ips
-Porom (RK, Messy Hair, by red man).ips
+Porom (URK, Messy, by red man and Nicoc1991).ips
 portrait Cid (battle color, by xJ4cks).ips
 portrait Decil (battle color, evil eyes, by xJ4cks).ips
 portrait Edge (better, by xJ4cks).ips
@@ -29,4 +29,4 @@ Rosa (RK, DS colors + big cape, by T92).ips
 Rydia (RK, pink magic by xJ4cks).ips
 Tellah (RK, from T92).ips
 window-color-Saturn.ips
-Yang (RK, better, by xJ4cks).ips
+Yang (URK, by xJ4cks).ips

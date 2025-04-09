@@ -2,6 +2,9 @@ Final Fantasy IV - Ultima Plus Changelog
 ------------
    v2025
 ------------
+v1.07a
+- Training room dialogue updated to reflect new row mechanics in Ultima Plus
+
 v1.07
 - bugfix: Edward equipment retained on New Game +
 - Star icon fixed in Load Menu

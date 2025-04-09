@@ -38,4 +38,4 @@ Rosa (RK, DS colors + big cape, by T92).ips
 Rydia (RK, Festival, by red man & Nicoc1991).ips
 Tellah (RK, from T92).ips
 window-color-Pluto.ips
-Yang (RK, better, by xJ4cks).ips
+Yang (URK, by xJ4cks).ips
