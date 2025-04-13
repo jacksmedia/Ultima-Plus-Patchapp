@@ -1,4 +1,4 @@
-_map sprites FF4-T style (by tsushiy).ips
+_map sprites FF4-WS (by tsushiy, gvdn).ips
 Cid (RK, from T92).ips
 Decil (RK, darkest, by tsushiy).ips
 Edge (RK, better, by xJ4cks).ips

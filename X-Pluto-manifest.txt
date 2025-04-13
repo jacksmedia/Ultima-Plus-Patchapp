@@ -15,7 +15,7 @@ map Edge (PURPLE, by xJ4cks).ips
 map Edward (better, by xJ4cks).ips
 map Kain (PR, green, by xJ4cks).ips
 map Palom (PR, better, by xJ4cks).ips
-map Pecil (T style Cosmic, by tsushiy).ips
+map Pecil (WS, Cosmic, by gvdn).ips
 map Porom (PR, by MObreck).ips
 map Rosa (PR, by MObreck).ips
 map Yang (PURPLE, by xJ4cks).ips

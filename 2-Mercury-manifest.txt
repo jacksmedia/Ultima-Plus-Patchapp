@@ -1,4 +1,4 @@
-_map sprites FF4-T style (by tsushiy).ips
+_map sprites FF4-WS (by tsushiy, gvdn).ips
 classic map pal03 restore.ips
 Decil (classic, portrait colors, by xJ4cks).ips
 Edge (classic, portrait colors, by xJ4cks).ips
