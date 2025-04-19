@@ -1,0 +1,173 @@
+.rubik-mono-one-regular {
+    font-family: "Rubik Mono One", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.quattrocento-sans-regular {
+    font-family: "Quattrocento Sans", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+body {
+    font-family: "Quattrocento Sans", Arial, sans-serif;
+    color: #e4e4e6;
+    background: palegoldenrod;
+}
+h1 {
+    font-family: "Rubik Mono One", serif;
+}
+h2 {
+    font-family: "Rubik Mono One", serif;
+}
+.file-upload {
+    margin-bottom: 10px;
+    background-color: black;
+    color: white;
+}
+/*
+#additional-uploads {
+    margin-top: 10px;
+}
+#manifest {
+    white-space: pre-wrap;
+    margin-top: 20px;
+    margin-left: 20px;
+    background-color: antiquewhite;
+}
+#patch {
+    background-color: black;
+    color: white;
+    font-family: "Rubik Mono One", serif;
+} */
+
+/* "Please Wait Donut" animation effect (throbbing annular) */
+
+#spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  visibility: hidden; /* Hidden on load */
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s ease-in-out;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid orchid;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#spinner-overlay.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* button styling */
+
+@keyframes guide-text {
+  0% {color: #80a;}
+  50% {color: #f0f;}
+  100% {color: #80a;}
+}
+.lilytext {
+  color: #80a;
+  animation-name: guide-text;
+  animation-duration: 3s;
+  -moz-animation-duration: 3s;
+  -webkit-animation-duration: 3s;
+  animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+}
+
+
+@keyframes apply-text {
+  0% {color: white;}
+  50% {color: red;}
+  100% {color: white;}
+}
+.lfg-text {
+  animation-name: apply-text;
+  animation-duration: 2.5s;
+  -moz-animation-duration: 2.5s;
+  -webkit-animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  background-color: #408;
+}
+
+#crc-display {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+button {
+  padding: 6px;
+  border-radius: 10px;
+  color: #999;
+  background-color: #333;
+}
+
+input::file-selector-button {
+  color: gold;
+  background-color: #333;
+  padding: 6px;
+  border-radius: 10px;   
+}
+
+.highlight {
+    font-weight: bold;
+    background-color: white;
+    border-radius: 3px;
+    padding: 2px;
+    color: blue;
+}
+
+/* adapted from https://stackoverflow.com/questions/23441060/how-to-animate-gradients-using-css */
+    #gradient
+{
+    height:100vh;
+    width:100vw;
+    background: linear-gradient(177deg,#408, #000, #408);
+    background-size: 200% 200%;
+
+    -webkit-animation: Animation 23s ease infinite;
+    -moz-animation: Animation 23s ease infinite;
+    animation: Animation 23s ease infinite;
+}
+
+@-webkit-keyframes Animation {
+    0%{background-position:10% 0%}
+    50%{background-position:91% 100%}
+    100%{background-position:10% 0%}
+}
+@-moz-keyframes Animation {
+    0%{background-position:10% 0%}
+    50%{background-position:91% 100%}
+    100%{background-position:10% 0%}
+}
+@keyframes Animation { 
+    0%{background-position:10% 0%}
+    50%{background-position:91% 100%}
+    100%{background-position:10% 0%}
+}

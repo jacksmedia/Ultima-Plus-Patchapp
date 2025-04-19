@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import Header from './Header';
 import Spinner from './Spinner';
-import RomUploader from './RomUploader';
-import PatchDropdown from './PatchDropdown';
+// import RomUploader from './RomUploader';
+// import PatchDropdown from './PatchDropdown';
 import PatchInfo from './PatchInfo';
 import Promos from './Promos';
 import Footer from './Footer';

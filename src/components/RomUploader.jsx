@@ -1,4 +1,4 @@
-import PatchDropdown from PatchDropdown.jsx
+import PatchDropdown from './PatchDropdown'
 export default function RomUploader(props) {
     
 // Handles ROM Upload & CRC Calculation
