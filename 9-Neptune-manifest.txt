@@ -1,3 +1,4 @@
+_map Cecil n Rosa Cosmic Colors.ips
 Cid (RK, from T92).ips
 Decil (RK, closed helmet, by Nicoc1991).ips
 Edge (RK, better, by xJ4cks).ips
