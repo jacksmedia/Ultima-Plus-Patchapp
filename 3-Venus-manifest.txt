@@ -16,7 +16,7 @@ map Rosa (PR, by MObreck).ips
 map Rydia (PR, by MObreck).ips
 map Tellah (PR, by xJ4cks).ips
 map Yang (PR, High Monk, by xJ4cks).ips
-Palom (classic, better, by xJ4cks).ips
+Palom (Classic, Blue & Bronze, by xJ4cks).ips
 Pecil (classic, portrait colors, by xJ4cks).ips
 Porom (classic, better, by xJ4cks).ips
 portrait Cid (better, by xJ4cks).ips
