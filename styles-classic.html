@@ -54,7 +54,7 @@
 							RomPatcherWeb.setErrorMessage('Please provide a v1.0 or v1.1 English language FF2 rom file.');
 					},
 					onloadpatch: function (patchFile, embededPatchInformation) {
-						const planets = ['Luna', 'Mercury', 'Venus', 'Mars', 'Ceres', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
+						const planets = ['Mercury', 'Venus', 'Luna', 'Vesta', 'Ceres', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
 						
 						// extracts name from patchfile
 						const selectedPlanet = patchFile.getName().split('-')[1];
@@ -76,30 +76,35 @@
 					file: 'FF4UC-Styles.zip',
 					patches: [
 						{
-							file: '1-Luna-Classic.ips',
-							name: 'FF4 Ultima Classic Luna Style',
-							description: 'Makes portraits match battle sprites (by xJ4cks & FlamePurge). Totally classic battle sprites. Mostly classic map sprites (some work by xJ4cks).',
-							outputName: 'FF4Ultima Classic Luna', //patched ROM name
-						},{
-							file: '2-Mercury-Classic.ips',
+							file: '1-Mercury-Classic.ips',
 							name: 'FF4 Ultima Classic Mercury Style',
 							description: 'Makes battle sprites match portraits (by xJ4cks & tsushiy). Changes some portraits (by xJ4cks, tsushiy, & FlamePurge). Map sprites either T-Edition style (by tsushiy) or PR style (by xJ4cks & red man). Shown with \'I-NES\' FF1 font (by FlamePurge).',
 							outputName: 'FF4Ultima Classic Mercury', //patched ROM name
 						},{
-							file: '3-Venus-Classic.ips',
+							file: '2-Venus-Classic.ips',
 							name: 'FF4 Ultima Classic Venus Style',
 							description: 'Makes battle sprites match portraits (by xJ4cks). Map sprites PR style (by MObreck & xJ4cks). Changes some portraits (by xJ4cks & FlamePurge). SHown with Wide Advance font (by Dragonsbrethren).',
 							outputName: 'FF4Ultima Classic Venus', //patched ROM name
 						},{
-							file: '4-Mars-Classic.ips',
-							name: 'FF4 Ultima Classic Mars Style',
-							description: 'Makes battle sprites alt Pixel Remaster style (by Nicoc1991, MObreck, & xJ4cks). Map sprites various styles (by MObreck, xJ4cks, & Nicoc1991). Changes some portraits (by xJ4cks & FlamePurge). Enhanced enemy graphics (by Gedankenschild). Shown with mrBrawndo\'s Ultima IV Font.',
-							outputName: 'FF4Ultima Classic Mars', //patched ROM name
+							file: '3-Luna-Classic.ips',
+							name: 'FF4 Ultima Classic Luna Style',
+							description: 'Makes portraits match battle sprites (by xJ4cks & FlamePurge). Totally classic battle sprites. Mostly classic map sprites (some work by xJ4cks).',
+							outputName: 'FF4Ultima Classic Luna', //patched ROM name
 						},{
-							file: '5-Ceres-Classic.ips',
+							file: '4-Vesta-Classic.ips',
+							name: 'FF4 Ultima Classic Vesta Style',
+							description: 'Makes battle sprites DS colors classoc style (by xJ4cks, gvdn, tsushiy). Map sprites WS style (by tsushiy & gvdn). Changes some portraits (by xJ4cks & Nicoc1991). Enhanced enemy graphics (by Gedankenschild). Shown with Clean Font (by xJ4cks).',
+							outputName: 'FF4Ultima Classic Ceres', //patched ROM name
+						},{
+							file: '4-Ceres-Classic.ips',
 							name: 'FF4 Ultima Classic Ceres Style',
 							description: 'Makes battle sprites DS colors Pixel Remaster style (by xJ4cks, Nicoc1991, MObreck, red man). Map sprites PR style (by xJ4cks & MObreck). Changes some portraits (by xJ4cks & Nicoc1991). Enhanced enemy graphics (by Gedankenschild). Shown with Clean Font (by xJ4cks).',
 							outputName: 'FF4Ultima Classic Ceres', //patched ROM name
+						},{
+							file: '5-Mars-Classic.ips',
+							name: 'FF4 Ultima Classic Mars Style',
+							description: 'Makes battle sprites alt Pixel Remaster style (by Nicoc1991, MObreck, & xJ4cks). Map sprites various styles (by MObreck, xJ4cks, & Nicoc1991). Changes some portraits (by xJ4cks & FlamePurge). Enhanced enemy graphics (by Gedankenschild). Shown with mrBrawndo\'s Ultima IV Font.',
+							outputName: 'FF4Ultima Classic Mars', //patched ROM name
 						},{
 							file: '6-Jupiter-Classic.ips',
 							name: 'FF4 Ultima Classic Jupiter Style',

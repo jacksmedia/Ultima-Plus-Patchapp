@@ -440,11 +440,13 @@
 		// This handles cases where filenames might be like "1-Moon.ips" or "Style2.ips"
 		if (!selectedPlanet) {
 			const planetNumbers = {
-				'1': 'Luna',
-				'2': 'Mercury',
-				'3': 'Venus',
-				'4': 'Mars',
-				'5': 'Ceres',
+				'3': 'Luna',
+				'1': 'Mercury',
+				'2': 'Venus',
+				'3': 'Luna',
+				'4': 'Vesta',
+				'4': 'Ceres',
+				'5': 'Mars',
 				'6': 'Jupiter',
 				'7': 'Saturn',
 				'8': 'Uranus',
@@ -520,14 +522,15 @@
 		const fileName = selectedPatch.split('/').pop().replace('.ips', '');
 		
 		// Our planet list with correct capitalization matching your IDs
-		const planets = ['Luna', 'Mercury', 'Venus', 'Mars', 'Ceres', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
+		const planets = ['Mercury', 'Venus', 'Luna', 'Vesta', 'Ceres,', 'Mars','Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
 		// Planet number mapping
 		const planetNumbers = {
 			'Luna': '1',
 			'Mercury': '2',
 			'Venus': '3',
-			'Mars': '4',
-			'Ceres': '5',
+			'Vesta': '4',
+			'Ceres':'4',
+			'Mars': '5',
 			'Jupiter': '6',
 			'Saturn': '7',
 			'Uranus': '8',
