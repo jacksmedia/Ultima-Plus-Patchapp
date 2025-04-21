@@ -42,7 +42,7 @@
 						const crc32 = romFile.hashCRC32();
 						/* if ROM = FF4UP */
 						if (crc32 === FF4ULTIMACLASSIC_CHECKSUM)
-							RomPatcherWeb.pickEmbededFile('5-UltimaClassic-Ceres.ips');
+							RomPatcherWeb.pickEmbededFile('4-UltimaClassic-Ceres.ips');
 						/* if ROM anything else */
 						else if (crc32 !== FF4ULTIMACLASSIC_CHECKSUM)
 							RomPatcherWeb.pickEmbededFile('6-UltimaClassic-Jupiter.ips');
@@ -277,7 +277,7 @@
 			<img style="width:85vw; max-width:85vw; display:none;" src="previews-1-Mercury.png" id="Mercury-preview-png" />
 			<img style="width:85vw; max-width:85vw; display:none;" src="previews-2-Venus.png" id="Venus-preview-png" />
 			<img style="width:85vw; max-width:85vw; display:none;" src="previews-3-Luna.png" id="Luna-preview-png" />
-		
+			<img style="width:85vw; max-width:85vw; display:none;" src="previews-4-Vesta.png" id="Vesta-preview-png" />
 			<img style="width:85vw; max-width:85vw; display:none;" src="previews-4-Ceres.png" id="Ceres-preview-png" />
 			<img style="width:85vw; max-width:85vw; display:none;" src="previews-5-Mars.png" id="Mars-preview-png" />
 			<img style="width:85vw; max-width:85vw; display:none;" src="previews-6-Jupiter.png" id="Jupiter-preview-png" />
@@ -286,12 +286,16 @@
 			<img style="width:85vw; max-width:85vw; display:none;" src="previews-9-Neptune.png" id="Neptune-preview-png" />
 			<img style="width:85vw; max-width:85vw; display:none;" src="previews-X-Pluto.png" id="Pluto-preview-png" />
 
-			<!-- preview image GIFs -->
+			<div class="d-flex row" style="width:85vw;">
+			<!-- 2nd preview, animated GIFs -->
+			<div class="col-lg-7">
+
 			<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Mercury.gif" id="Mercury-preview-gif" />
 			<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Venus.gif" id="Venus-preview-gif" />
 			<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Luna.gif" id="Luna-preview-gif" />
-			<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Ceres.gif" id="Ceres-preview-gif" />
+			<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Luna.gif" id="Vesta-preview-gif" />
 
+			<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Ceres.gif" id="Ceres-preview-gif" />
 			<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Mars.gif" id="Mars-preview-gif" />
 			<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Jupiter.gif" id="Jupiter-preview-gif" />
 			<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Saturn.gif" id="Saturn-preview-gif" />
