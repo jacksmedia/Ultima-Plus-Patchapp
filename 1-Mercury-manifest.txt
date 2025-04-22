@@ -24,6 +24,6 @@ portrait Rosa (PR ponytail, by FlamePurge).ips
 portrait Rydia (better, by xJ4cks).ips
 portrait Tellah (better, by xJ4cks).ips
 Rosa (Classic, purple armor, by tsushiy).ips
-Rydia (classic, portrait colors, pink magic, by xJ4cks).ips
+Rydia (Classic, Menu colors, pink magic, by xJ4cks).ips
 window-color-Mercury.ips
 Yang (classic, portrait colors, by xJ4cks).ips

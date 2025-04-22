@@ -146,13 +146,13 @@
 				<img style="width:85vw; max-width:85vw; display:none;" src="previews-2-Venus.png" id="Venus-preview-png" />
 				<img style="width:85vw; max-width:85vw; display:none;" src="previews-3-Luna.png" id="Luna-preview-png" />
 				<img style="width:85vw; max-width:85vw; display:none;" src="previews-4-Vesta.png" id="Vesta-preview-png" />
-				<img style="width:85vw; max-width:85vw; display:none;" src="previews-4-Ceres.png" id="Ceres-preview-png" />
-				<img style="width:85vw; max-width:85vw; display:none;" src="previews-5-Mars.png" id="Mars-preview-png" />
-				<img style="width:85vw; max-width:85vw; display:none;" src="previews-6-Jupiter.png" id="Jupiter-preview-png" />
-				<img style="width:85vw; max-width:85vw; display:none;" src="previews-7-Saturn.png" id="Saturn-preview-png" />
-				<img style="width:85vw; max-width:85vw; display:none;" src="previews-8-Uranus.png" id="Uranus-preview-png" />
-				<img style="width:85vw; max-width:85vw; display:none;" src="previews-9-Neptune.png" id="Neptune-preview-png" />
-				<img style="width:85vw; max-width:85vw; display:none;" src="previews-X-Pluto.png" id="Pluto-preview-png" />
+				<img style="width:85vw; max-width:85vw; display:none;" src="previews-5-Ceres.png" id="Ceres-preview-png" />
+				<img style="width:85vw; max-width:85vw; display:none;" src="previews-6-Mars.png" id="Mars-preview-png" />
+				<img style="width:85vw; max-width:85vw; display:none;" src="previews-7-Jupiter.png" id="Jupiter-preview-png" />
+				<img style="width:85vw; max-width:85vw; display:none;" src="previews-8-Saturn.png" id="Saturn-preview-png" />
+				<img style="width:85vw; max-width:85vw; display:none;" src="previews-9-Uranus.png" id="Uranus-preview-png" />
+				<img style="width:85vw; max-width:85vw; display:none;" src="previews-10-Neptune.png" id="Neptune-preview-png" />
+				<img style="width:85vw; max-width:85vw; display:none;" src="previews-11-Pluto.png" id="Pluto-preview-png" />
 
 				<div class="d-flex row" style="width:85vw;">
 					<!-- 2nd preview, animated GIFs -->
@@ -427,7 +427,7 @@
 		console.log("Extracted filename:", fileName);
 		
 		// Planet list to match IDs
-		const planets = ['Luna', 'Mercury', 'Venus', 'Mars', 'Ceres', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
+		const planets = ['Mercury', 'Venus', 'Luna', 'Vesta', 'Ceres', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
 		
 		// Tries to find which planet name is contained in the filename
 		let selectedPlanet = null;
@@ -443,18 +443,17 @@
 		// This handles cases where filenames might be like "1-Moon.ips" or "Style2.ips"
 		if (!selectedPlanet) {
 			const planetNumbers = {
-				'3': 'Luna',
 				'1': 'Mercury',
 				'2': 'Venus',
 				'3': 'Luna',
 				'4': 'Vesta',
-				'4': 'Ceres',
-				'5': 'Mars',
-				'6': 'Jupiter',
-				'7': 'Saturn',
-				'8': 'Uranus',
-				'9': 'Neptune',
-				'X': 'Pluto'
+				'5': 'Ceres',
+				'6': 'Mars',
+				'7': 'Jupiter',
+				'8': 'Saturn',
+				'9': 'Uranus',
+				'10': 'Neptune',
+				'11': 'Pluto'
 			};
 			
 			// Checks for numbers in the filename
@@ -528,17 +527,17 @@
 		const planets = ['Mercury', 'Venus', 'Luna', 'Vesta', 'Ceres,', 'Mars','Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
 		// Planet number mapping
 		const planetNumbers = {
-			'Luna': '1',
-			'Mercury': '2',
-			'Venus': '3',
+			'Mercury': '1',
+			'Venus': '2',
+			'Luna': '3',
 			'Vesta': '4',
-			'Ceres':'4',
-			'Mars': '5',
-			'Jupiter': '6',
-			'Saturn': '7',
-			'Uranus': '8',
-			'Neptune': '9',
-			'Pluto': 'X'
+			'Ceres':'5',
+			'Mars': '6',
+			'Jupiter': '7',
+			'Saturn': '8',
+			'Uranus': '9',
+			'Neptune': '10',
+			'Pluto': '11'
 		};
 		
 		// Tries to find planet name in filename
