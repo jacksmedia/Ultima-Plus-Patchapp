@@ -2,6 +2,11 @@ Final Fantasy IV - Ultima Plus Changelog
 ------------
    v2025
 ------------
+v1.08
+- bugfix: Fixes a bug that caused a soft lock when reviving a character that began the battle KO'ed during a back attack
+- Fabul map improvement: Towers's names adjusted to "1F" vs both as "East Tower"
+- 2 dialog typo fixes in Bosh Rush room; 1 typo in SquishBGone (Sorcerer -> Magus)
+
 v1.07a
 - Training room dialogue updated to reflect new row mechanics in Ultima Plus
 
