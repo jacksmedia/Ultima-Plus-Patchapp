@@ -8,7 +8,6 @@ FuSoYa (classic, lunar magic, by xJ4cks).ips
 Golbez (classic, Alt Colors, by tsushiy).ips
 Kain (classic, portrait colors, by xJ4cks).ips
 Kydia (classic, portrait colors, pink magic, by xJ4cks).ips
-map Pecil (PR, by xJ4cks).ips
 map Yang (Red Pants, by xJ4cks and red man).ips
 Palom & Porom original map colors fix.ips
 Pecil (classic, portrait colors, by xJ4cks).ips
