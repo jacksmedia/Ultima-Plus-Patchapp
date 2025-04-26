@@ -9,9 +9,10 @@ Final Fantasy IV Ultima - Sylph-Bloodfeast Fix.ips
 FuSoYa (classic, lunar magic, by xJ4cks).ips
 Kain (Classic, DS, by xJ4cks).ips
 Kydia (classic, portrait colors, pink magic, by xJ4cks).ips
-map Edge (WS, purple, by tsushiy, gvdn, xJ4cks).ips
+map Decil (Custom, Cosmic, by xJ4cks & gvdn).ips
+map Edge (WS, Cosmic, by tsushiy, gvdn, xJ4cks).ips
 map Pecil (WS, Cosmic, by gvdn).ips
-map Yang (Red Pants, by xJ4cks and red man).ips
+map Yang (WS, Rose, by xJ4cks & tsushiy).ips
 Palom (Classic, DS, by xJ4cks).ips
 Pecil (Classic, DS colors, by xJ4cks).ips
 Porom (Classic, DS, by xJ4cks).ips
