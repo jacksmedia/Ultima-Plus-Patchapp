@@ -2,6 +2,9 @@ Final Fantasy IV - Ultima Plus Changelog
 ------------
    v2025
 ------------
+v1.09
+- bugfix: Fixes back attack bug seen in random encounters that caused soft lock
+
 v1.08
 - bugfix: Fixes a bug that caused a soft lock when reviving a character that began the battle KO'ed during a back attack
 - Fabul map improvement: Towers's names adjusted to "1F" vs both as "East Tower"
