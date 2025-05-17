@@ -32,5 +32,5 @@ portrait Yang (DS colors, by xJ4cks).ips
 Rosa (Classic, DS, by tsushiy & xJ4cks).ips
 Rydia (Classic, DS, by xJ4cks).ips
 Tellah (Classic, Darker, by xJ4cks).ips
-window-color-Ceres.ips
-Yang (Classic, DS, by xJ4cks).ips
+window-color-burgundy.ips
+Yang (Classic, Rose, by xJ4cks).ips
