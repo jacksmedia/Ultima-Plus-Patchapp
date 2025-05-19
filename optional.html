@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+    <title>Optional Patches</title>
+
+    <!-- layout logic from Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+  
+    <style>
+    .rubik-mono-one-regular {
+      font-family: "Rubik Mono One", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+    .quattrocento-sans-regular {
+      font-family: "Quattrocento Sans", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+    body {
+      font-family: "Quattrocento Sans", Arial, sans-serif;
+    }
+    h1 {
+        font-family: "Rubik Mono One", serif;
+    }
+    h2 {
+        font-family: "Rubik Mono One", serif;
+    }
+    .file-upload {
+      margin-bottom: 10px;
+      background-color: antiquewhite;
+      max-width: 66vw;
+    }
+    #additional-uploads {
+      margin-top: 10px;
+    }
+    #manifest {
+      white-space: pre-wrap;
+      margin-top: 20px;
+      margin-left: 20px;
+      background-color: antiquewhite;
+    }
+    #patch {
+      background-color: #80a;
+      font-family: "Rubik Mono One", serif;
+    }
+/* adapted from https://stackoverflow.com/questions/23441060/how-to-animate-gradients-using-css */
+    #gradient
+{
+    height:100vh;
+    width:100vw;
+    background: linear-gradient(90deg, antiquewhite, #80a);
+    background-size: 200% 200%;
+
+    -webkit-animation: Animation 23s ease infinite;
+    -moz-animation: Animation 23s ease infinite;
+    animation: Animation 23s ease infinite;
+}
+
+@-webkit-keyframes Animation {
+    0%{background-position:10% 0%}
+    50%{background-position:91% 100%}
+    100%{background-position:10% 0%}
+}
+@-moz-keyframes Animation {
+    0%{background-position:10% 0%}
+    50%{background-position:91% 100%}
+    100%{background-position:10% 0%}
+}
+@keyframes Animation { 
+    0%{background-position:10% 0%}
+    50%{background-position:91% 100%}
+    100%{background-position:10% 0%}
+}
+  </style>
+  <!-- for unzipping GitHub archives -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+</head>
+
+
+<body id="gradient" class="container-fluid">
+    <!-- header -->
+    <div class="d-flex row">
+    <h1>Optional Patches</h1>
+    <h4>by xJ4cks & ChatGPT4</h4>
+    <p>Upload your Ultima ROM and multiple IPS patches, then choose "Apply Patches". The new ROM will download to your device.</p>
+    <p>No servers are required, and future versions of this app will offer curated lists of patches.</p>
+    </div>
+
+    <!-- ROM Upload -->
+    <div class="file-upload">
+        <label for="rom">ROM File (.sfc):</label>
+        <input type="file" id="rom" accept=".sfc">
+    </div>
+
+  <!-- Dropdown
+  <div>
+    <h1>Select a Patch</h1>
+      <select id="patchDropdown">
+          <option value="" disabled selected>Select a patch...</option>
+      </select>
+      <button id="applyPatch">Apply Patch</button>
+  </div> -->
+
+    <script src="patch-selector.js"></script>
+
+    <!-- Initial IPS Upload Inputs -->
+    <div id="ips-uploads" class="card">
+        <div class="file-upload">
+        <label for="ips1">IPS Patch File 1:</label>
+        <input type="file" id="ips1" accept=".ips">
+        </div>
+        <div class="file-upload">
+        <label for="ips2">IPS Patch File 2:</label>
+        <input type="file" id="ips2" accept=".ips">
+        </div>
+        <div class="file-upload">
+        <label for="ips3">IPS Patch File 3:</label>
+        <input type="file" id="ips3" accept=".ips">
+        </div>
+        <div class="file-upload">
+        <label for="ips4">IPS Patch File 4:</label>
+        <input type="file" id="ips4" accept=".ips">
+        </div>
+    </div>
+
+  <!-- Button to Add More Uploads -->
+    <button id="add-upload">Another Upload? Click me!</button>
+  
+    <!-- Patch Button -->
+    <button id="patch">Apply Patches</button>
+
+    <!-- Manifest and Download -->
+    <div id="manifest"></div>
+</body>
+
+<!-- all patcher logic -->
+
+<script>
+    let uploadCount = 4; // Initial number of IPS upload fields
+
+    // Add another upload field
+    document.getElementById("add-upload").addEventListener("click", () => {
+      uploadCount++;
+      const div = document.createElement("div");
+      div.className = "file-upload";
+      div.innerHTML = `
+        <label for="ips${uploadCount}">IPS Patch File ${uploadCount}:</label>
+        <input type="file" id="ips${uploadCount}" accept=".ips">
+      `;
+      document.getElementById("ips-uploads").appendChild(div);
+    });
+
+    document.getElementById("patch").addEventListener("click", async () => {
+      const romFile = document.getElementById("rom").files[0];
+      if (!romFile) {
+        alert("Please upload a ROM file.");
+        return;
+      }
+
+      // Gather all IPS files
+      const ipsFiles = [];
+      for (let i = 1; i <= uploadCount; i++) {
+        const fileInput = document.getElementById(`ips${i}`);
+        if (fileInput && fileInput.files[0]) {
+          ipsFiles.push(fileInput.files[0]);
+        }
+      }
+
+      if (ipsFiles.length === 0) {
+        alert("Please upload at least one IPS file.");
+        return;
+      }
+
+      // Read ROM file
+      let romData = new Uint8Array(await romFile.arrayBuffer());
+      const manifest = [];
+
+      // Apply each IPS file sequentially
+      for (const ipsFile of ipsFiles) {
+        const ipsData = new Uint8Array(await ipsFile.arrayBuffer());
+        manifest.push(ipsFile.name);
+
+        // Apply patch and update the working copy
+        romData = applyIpsPatch(romData, ipsData);
+      }
+
+      // Display the manifest
+      document.getElementById("manifest").innerText = `Manifest:\n${manifest.join("\n")}`;
+
+      // Trigger the download for the patched ROM
+      const blob = new Blob([romData], { type: "application/octet-stream" });
+      const url = URL.createObjectURL(blob);
+      const downloadLink = document.createElement("a");
+      downloadLink.href = url;
+      downloadLink.download = "patched-rom.sfc";
+      downloadLink.textContent = "Download Patched ROM";
+      downloadLink.style.display = "block";
+
+      // Append the download link below the manifest
+      document.getElementById("manifest").appendChild(downloadLink);
+    });
+
+    function applyIpsPatch(romData, ipsData) {
+    const IPS_HEADER = "PATCH";
+    const IPS_FOOTER = "EOF";
+
+    let offset = 0;
+
+    // Verify header
+    const header = new TextDecoder().decode(ipsData.slice(0, 5));
+    if (header !== IPS_HEADER) throw new Error("Invalid IPS file: Incorrect header.");
+    offset += 5;
+
+    while (offset < ipsData.length) {
+        // Check for footer
+        if (offset + 3 <= ipsData.length) {
+        const footer = new TextDecoder().decode(ipsData.slice(offset, offset + 3));
+            if (footer === IPS_FOOTER) {
+                // Valid footer, end processing
+                return romData;
+            }
+        }
+
+        // Read patch address
+        if (offset + 3 > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data while reading address.");
+        const address = (ipsData[offset] << 16) | (ipsData[offset + 1] << 8) | ipsData[offset + 2];
+        offset += 3;
+
+        // Read patch size
+        if (offset + 2 > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data while reading size.");
+        const size = (ipsData[offset] << 8) | ipsData[offset + 1];
+        offset += 2;
+
+        if (size === 0) {
+        // RLE (Run Length Encoding)
+        if (offset + 3 > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data in RLE encoding.");
+        const rleSize = (ipsData[offset] << 8) | ipsData[offset + 1];
+        const value = ipsData[offset + 2];
+        offset += 3;
+
+        // Apply RLE to ROM data
+        for (let i = 0; i < rleSize; i++) {
+            if (address + i >= romData.length) throw new Error("Invalid IPS file: Address out of bounds during RLE.");
+            romData[address + i] = value;
+        }
+        } else {
+        // Normal patch
+        if (offset + size > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data in normal patch.");
+        const patchData = ipsData.slice(offset, offset + size);
+        offset += size;
+
+        // Apply patch to ROM data
+        for (let i = 0; i < size; i++) {
+            if (address + i >= romData.length) throw new Error("Invalid IPS file: Address out of bounds during normal patch.");
+            romData[address + i] = patchData[i];
+        }
+        }
+    }
+
+    throw new Error("Invalid IPS file: Missing footer.");
+      // Mockup: Replace this w a directory reading method
+    function fetchPatches() {
+        // Simulate patch filenames
+        return [
+            "1-UltimaPlus-Luna.ips",
+            "2-UltimaPlus-Mercury.ips",
+            "3-UltimaPlus-Venus.ips",
+            "4-UltimaPlus-Mars.ips",
+            "5-UltimaPlus-Ceres.ips",
+            "6-UltimaPlus-Jupiter.ips",
+            "7-UltimaPlus-Saturn.ips",
+            "8-UltimaPlus-Uranus.ips",
+            "9-UltimaPlus-Neptune.ips",
+            "X-UltimaPlus-Pluto.ips"
+        ];
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const patchDropdown = document.getElementById("patchDropdown");
+        const patches = fetchPatches(); // Fetches patch list
+
+        // Populatees dropdown menu with patch options
+        patches.forEach(patch => {
+            const option = document.createElement("option");
+            option.value = patch;
+            option.textContent = patch;
+            patchDropdown.appendChild(option);
+        });
+
+        // Adds event listener for the "Apply Patch" button
+        document.getElementById("applyPatch").addEventListener("click", () => {
+            const selectedPatch = patchDropdown.value;
+            if (selectedPatch) {
+                alert(`Applying patch: ${selectedPatch}`);
+                // Logic to apply the selected patch goes here; see above
+            } else {
+                alert("Please select a patch to apply!");
+            }
+        });
+    });
+
+    // fetching the zipfile from GitHub
+    document.addEventListener("DOMContentLoaded", async () => {
+    const patchDropdown = document.getElementById("patchDropdown");
+
+    async function fetchAndUnzipGitHubRepo() {
+        const zipUrl = 'https://github.com/jacksmedia/Ultima-Plus-Patchapp/blob/37a0f8c5b595c0c5c74259c885c9ef1b13e8784c/Final%20Fantasy%204%20Ultima%20Plus%20patch%20archive.zip'; // Replace with your repo's ZIP URL
+       // https://github.com/jacksmedia/Ultima-Plus-Patchapp/blob/main/Final%20Fantasy%204%20Ultima%20Plus%20patch%20archive.zip
+       // https://github.com/jacksmedia/Ultima-Plus-Patchapp/blob/37a0f8c5b595c0c5c74259c885c9ef1b13e8784c/Final%20Fantasy%204%20Ultima%20Plus%20patch%20archive.zip
+       try {
+            // Fetch ZIP file
+            const response = await fetch(zipUrl);
+            if (!response.ok) {
+                throw new Error(`Failed to fetch ZIP file: ${response.statusText}`);
+            }
+
+            const zipBlob = await response.blob();
+            const zip = await JSZip.loadAsync(zipBlob);
+
+            // Filter and extract files from a specific directory, e.g., "patches/"
+            const patchFiles = [];
+            zip.forEach((relativePath, file) => {
+                if (relativePath.startsWith("repository-name-main/patches/") && !file.dir) {
+                    patchFiles.push(relativePath.split('/').pop()); // Get the filename only
+                }
+            });
+
+            // Populate the dropdown
+            patchFiles.forEach(file => {
+                const option = document.createElement("option");
+                option.value = file;
+                option.textContent = file;
+                patchDropdown.appendChild(option);
+            });
+        } catch (error) {
+            console.error("Error fetching or unzipping:", error);
+            alert("Failed to load patches. Please try again later.");
+        }
+    }
+
+    // Fetch and unzip the repo
+    await fetchAndUnzipGitHubRepo();
+
+    // Add event listener for the "Apply Patch" button
+    document.getElementById("applyPatch").addEventListener("click", () => {
+        const selectedPatch = patchDropdown.value;
+        if (selectedPatch) {
+            alert(`Applying patch: ${selectedPatch}`);
+            // Add logic to apply the selected patch here
+        } else {
+            alert("Please select a patch to apply!");
+        }
+    });
+});
+
+    }
+</script>
+</html>
