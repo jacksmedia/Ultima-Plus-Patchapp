@@ -83,31 +83,53 @@
 <body id="gradient" class="container-fluid">
     <!-- header -->
     <div class="d-flex row">
-    <h1>Ultima Multi-Patcher</h1>
-    <h3>Create your own custom version of Ultima Plus!</h3>
-    <h4>by xJ4cks & ChatGPT4</h4>
-    <p>Upload your Ultima ROM, select some options, then choose "Apply Patches". You'll see a manifest of your choices, and a link to download to your device.</p>
-    <p>This is a demo feature, a work-in-progress. All patches are for Ultima Plus.</p>
+      <h1>Ultima Multi-Patcher</h1>
+      <h3>Create your own custom version of Ultima Plus!</h3>
+      <h4>by xJ4cks & ChatGPT4</h4>
+      <p>Upload your Ultima ROM, select some options, then choose "Apply Patches". You'll see a manifest of your choices, and a link to download to your device.</p>
+      <p>This is a demo feature, a work-in-progress. All patches are for Ultima Plus.</p>
     </div>
 
     <!-- ROM Upload -->
-    <div class="file-upload">
+    <div class="d-flex row">
+      <div class="col file-upload">
         <label for="rom">ROM File (.sfc):</label>
         <input type="file" id="rom" accept=".sfc">
+      </div>
     </div>
 
     <script src="patch-selector.js"></script>
 
+    <!-- options & previews -->
+    <div class="d-flex row">
+    
+      <!-- curated lists in dropdowns -->
+      <div class ="col">
+        <div id="select-container"></div>
+      </div>
+      
+      <!-- preview image, changes per choice -->
+      <div class ="col">
+        <div id="preview-container" style="width:45vw; height:60vh; border: 1px solid #333; background: #888; display: flex; align-items: center; justify-content: center;">
+          <img id="preview-image" src="" alt="Patch preview" style="width: 100%; height: 100%; max-width: 100%; max-height: 100%; display: none;">
+        </div>
+      </div>
 
-    <!-- new curated lists in dropdowns -->
-    <div id="select-container"></div>
-    <!-- Patch Button -->
-    <button id="patch">Apply Selected Patches</button>
-    <!-- Manifest and Download -->
-    <pre id="manifest"></pre>
+    </div>
 
-    <div class="row">
-      <div class="col-12 col-sm-4 d-flex-column justify-content-end align-items-center">
+    <div class="d-flex row">
+      <div class="col">
+        <!-- Patch Button -->
+        <button id="patch">Select These Patches</button>
+        <!-- Manifest and Download -->
+        <pre id="manifest"></pre>
+      </div>    
+    </div>
+
+
+    <!-- homepage button -->
+    <div class="d-flex row">
+      <div class="col-6 col-sm-4 d-flex-column justify-content-end align-items-center">
           <h3 style="color:black;">
               Return to
           </h3>
@@ -115,13 +137,28 @@
               <a href="index.html" style="text-decoration:none;">
                   <button class="d-flex justify-content-center align-items-center"
                   style="background: black; padding: 1rem; border-radius: 2rem;">
-                      <h4 style="color:aqua;">
+                      <h4 style="color:#b0f;">
                           FF4 Ultima Plus Patcher
                       </h4>
                   </button>
-              </a>
-          <!-- ends col -->
+              </a>        
       </div>
+      <!-- ends col -->
+             <div class="col-6 col-sm-4 d-flex-column justify-content-end align-items-center">
+          <h3 style="color:black;">
+              Premade styles?
+          </h3>
+              <!-- black btn styled div -->
+              <a href="styles.html" style="text-decoration:none;">
+                  <button class="d-flex justify-content-center align-items-center"
+                  style="background: black; padding: 1rem; border-radius: 2rem;">
+                      <h4 style="color:aqua;">
+                          FF4 Ultima Plus Stylpacks
+                      </h4>
+                  </button>
+              </a>        
+      </div>
+      <!-- ends col -->
     </div>
   </body>
 
@@ -129,16 +166,95 @@
 <!-- v3 patching logic, dynamic amount of select elements -->
 
 <script>
-const subfolders = ["stylepacks", "fonts", "windows", 
-"Decil", "Pecil", "Kain", "Rosa", 
-"Kydia", "Rydia", "Edge", "Edward", 
-"Yang", "Palom", "Porom", 
-"Tellah", "FuSoYa", "Cid", "Golbez"]; // Add folders as needed
+const subfolders = [
+  "fonts", 
+  "Decil", "Pecil", "Kain", "Rosa", 
+  "Kydia", "Rydia", "Edge", "Edward", 
+  "Yang", "Palom", "Porom", 
+  "Tellah", "FuSoYa", "Cid", "Golbez"
+];
 
-document.addEventListener("DOMContentLoaded", () => {
+// Utility: applies an IPS patch to ROM data
+function applyIpsPatch(romData, ipsData) {
+  const IPS_HEADER = "PATCH";
+  const IPS_FOOTER = "EOF";
+  let offset = 0;
+  const header = new TextDecoder().decode(ipsData.slice(0, 5));
+  if (header !== IPS_HEADER) throw new Error("Invalid IPS file: Incorrect header.");
+  offset += 5;
+
+  while (offset < ipsData.length) {
+    if (offset + 3 <= ipsData.length) {
+      const footer = new TextDecoder().decode(ipsData.slice(offset, offset + 3));
+      if (footer === IPS_FOOTER) return romData;
+    }
+
+    if (offset + 3 > ipsData.length) throw new Error("Unexpected end of data while reading address.");
+    const address = (ipsData[offset] << 16) | (ipsData[offset + 1] << 8) | ipsData[offset + 2];
+    offset += 3;
+
+    if (offset + 2 > ipsData.length) throw new Error("Unexpected end of data while reading size.");
+    const size = (ipsData[offset] << 8) | ipsData[offset + 1];
+    offset += 2;
+
+    if (size === 0) {
+      if (offset + 3 > ipsData.length) throw new Error("Unexpected end of data in RLE encoding.");
+      const rleSize = (ipsData[offset] << 8) | ipsData[offset + 1];
+      const value = ipsData[offset + 2];
+      offset += 3;
+      for (let i = 0; i < rleSize; i++) {
+        if (address + i >= romData.length) throw new Error("RLE write out of bounds.");
+        romData[address + i] = value;
+      }
+    } else {
+      if (offset + size > ipsData.length) throw new Error("Unexpected end of data in normal patch.");
+      const patchData = ipsData.slice(offset, offset + size);
+      offset += size;
+      for (let i = 0; i < size; i++) {
+        if (address + i >= romData.length) throw new Error("Patch write out of bounds.");
+        romData[address + i] = patchData[i];
+      }
+    }
+  }
+  throw new Error("Missing IPS footer.");
+}
+
+// Handles preview image loading
+function updatePreviewImage(selectedValue) {
+  const previewImg = document.getElementById('preview-image');
+  const container = document.getElementById('preview-container');
+
+  if (!selectedValue) {
+    previewImg.style.display = 'none';
+    container.style.background = '#888';
+    return;
+  }
+
+  const pngPath = selectedValue.replace(/\.ips$/i, '.png');
+  const previewUrl = `patches/${pngPath}`;
+  console.log(pngPath);
+
+  fetch(previewUrl, { method: 'HEAD' })
+    .then(response => {
+      if (response.ok) {
+        previewImg.src = previewUrl;
+        previewImg.style.display = 'block';
+        container.style.background = 'transparent';
+      } else {
+        previewImg.style.display = 'none';
+        container.style.background = '#888';
+      }
+    })
+    .catch(() => {
+      previewImg.style.display = 'none';
+      container.style.background = '#888';
+    });
+}
+
+// When DOM is ready, builds selectors
+window.addEventListener("DOMContentLoaded", () => {
   const selectContainer = document.getElementById("select-container");
 
-  // Create dropdowns for each subfolder
   subfolders.forEach((folder, index) => {
     const label = document.createElement("label");
     label.textContent = `Patch from "${folder}":`;
@@ -146,14 +262,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const select = document.createElement("select");
     select.id = `patch-select-${index}`;
     select.dataset.folder = folder;
+    select.classList.add("patch-select");
 
     const defaultOption = document.createElement("option");
     defaultOption.value = "";
-    defaultOption.textContent = "-- Select Patch --";
+    defaultOption.textContent = "-- Select Patch -- (Currently default)";
     select.appendChild(defaultOption);
 
-    // Load .ips files from the folder
-    fetch(`./patches/${folder}/manifest.json`) // Assumes each folder has a manifest
+    fetch(`./patches/${folder}/manifest.json`)
       .then(res => res.json())
       .then(patchList => {
         patchList.forEach(patch => {
@@ -165,6 +281,10 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch(err => console.error(`Failed to load ${folder} patches:`, err));
 
+    select.addEventListener('change', (e) => {
+      updatePreviewImage(e.target.value);
+    });
+
     const div = document.createElement("div");
     div.appendChild(label);
     div.appendChild(select);
@@ -173,16 +293,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("patch").addEventListener("click", async () => {
     const romFile = document.getElementById("rom").files?.[0];
-    if (!romFile) {
-      alert("Please upload a ROM file.");
-      return;
-    }
+    if (!romFile) return alert("Please upload a ROM file.");
 
-    // Read ROM file
     let romData = new Uint8Array(await romFile.arrayBuffer());
     const manifest = [];
 
-    // Collect all selected patches
     const selects = document.querySelectorAll("select[id^=patch-select-]");
     for (const select of selects) {
       const patchPath = select.value;
@@ -201,15 +316,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    if (manifest.length === 0) {
-      alert("No patches selected.");
-      return;
-    }
+    if (manifest.length === 0) return alert("No patches selected.");
 
-    // Show manifest
     document.getElementById("manifest").textContent = `Manifest:\n${manifest.join("\n")}`;
 
-    // Trigger download
     const blob = new Blob([romData], { type: "application/octet-stream" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -220,116 +330,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("manifest").appendChild(link);
   });
 });
-
-document.getElementById("patch").addEventListener("click", async () => {
-  const romFile = document.getElementById("rom").files[0];
-  if (!romFile) {
-    alert("Please upload a ROM file.");
-    return;
-  }
-
-  // Gather all IPS files
-  const ipsFiles = [];
-  for (let i = 1; i <= uploadCount; i++) {
-    const fileInput = document.getElementById(`ips${i}`);
-    if (fileInput && fileInput.files[0]) {
-      ipsFiles.push(fileInput.files[0]);
-    }
-  }
-
-  if (ipsFiles.length === 0) {
-    alert("Please upload at least one IPS file.");
-    return;
-  }
-
-  // Read ROM file
-  let romData = new Uint8Array(await romFile.arrayBuffer());
-  const manifest = [];
-
-  // Apply each IPS file sequentially
-  for (const ipsFile of ipsFiles) {
-    const ipsData = new Uint8Array(await ipsFile.arrayBuffer());
-    manifest.push(ipsFile.name);
-
-    // Apply patch and update the working copy
-    romData = applyIpsPatch(romData, ipsData);
-  }
-
-  // Display the manifest
-  document.getElementById("manifest").innerText = `Manifest:\n${manifest.join("\n")}`;
-
-  // Trigger the download for the patched ROM
-  const blob = new Blob([romData], { type: "application/octet-stream" });
-  const url = URL.createObjectURL(blob);
-  const downloadLink = document.createElement("a");
-  downloadLink.href = url;
-  downloadLink.download = "custom-Ultima.sfc";
-  downloadLink.textContent = "Download Patched Rom file";
-  downloadLink.style.display = "block";
-
-  // Append the download link below the manifest
-  document.getElementById("manifest").appendChild(downloadLink);
-});
-
-function applyIpsPatch(romData, ipsData) {
-const IPS_HEADER = "PATCH";
-const IPS_FOOTER = "EOF";
-
-let offset = 0;
-
-// Verify header
-const header = new TextDecoder().decode(ipsData.slice(0, 5));
-if (header !== IPS_HEADER) throw new Error("Invalid IPS file: Incorrect header.");
-offset += 5;
-
-while (offset < ipsData.length) {
-    // Check for footer
-    if (offset + 3 <= ipsData.length) {
-    const footer = new TextDecoder().decode(ipsData.slice(offset, offset + 3));
-        if (footer === IPS_FOOTER) {
-            // Valid footer, end processing
-            return romData;
-        }
-    }
-
-    // Read patch address
-    if (offset + 3 > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data while reading address.");
-    const address = (ipsData[offset] << 16) | (ipsData[offset + 1] << 8) | ipsData[offset + 2];
-    offset += 3;
-
-    // Read patch size
-    if (offset + 2 > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data while reading size.");
-    const size = (ipsData[offset] << 8) | ipsData[offset + 1];
-    offset += 2;
-
-    if (size === 0) {
-    // RLE (Run Length Encoding)
-    if (offset + 3 > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data in RLE encoding.");
-    const rleSize = (ipsData[offset] << 8) | ipsData[offset + 1];
-    const value = ipsData[offset + 2];
-    offset += 3;
-
-    // Apply RLE to ROM data
-    for (let i = 0; i < rleSize; i++) {
-        if (address + i >= romData.length) throw new Error("Invalid IPS file: Address out of bounds during RLE.");
-        romData[address + i] = value;
-    }
-    } else {
-    // Normal patch
-    if (offset + size > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data in normal patch.");
-    const patchData = ipsData.slice(offset, offset + size);
-    offset += size;
-
-    // Apply patch to ROM data
-    for (let i = 0; i < size; i++) {
-        if (address + i >= romData.length) throw new Error("Invalid IPS file: Address out of bounds during normal patch.");
-        romData[address + i] = patchData[i];
-    }
-    }
-}
-throw new Error("Invalid IPS file: Missing footer.");
-
-}
 </script>
 
 
