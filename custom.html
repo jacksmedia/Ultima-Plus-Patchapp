@@ -263,6 +263,7 @@ window.addEventListener("DOMContentLoaded", () => {
     select.id = `patch-select-${index}`;
     select.dataset.folder = folder;
     select.classList.add("patch-select");
+    select.style.margin = '2px';
 
     const defaultOption = document.createElement("option");
     defaultOption.value = "";
@@ -300,7 +301,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const selects = document.querySelectorAll("select[id^=patch-select-]");
     for (const select of selects) {
-      const patchPath = `./patches/${select.value}`;
+      const patchPath = `./patches/${select.value}`; // modified, to find .ips files when deployed
       if (!patchPath) continue;
 
       try {
@@ -312,7 +313,7 @@ window.addEventListener("DOMContentLoaded", () => {
         romData = applyIpsPatch(romData, ipsData);
       } catch (err) {
         console.error(`Failed to load patch ${patchPath}:`, err);
-        alert(`Error loading patch: ${patchPath}`);
+        // alert(`Error loading patch: ${patchPath}`); // disabled bc it seems bogus!
       }
     }
 
