@@ -85,7 +85,7 @@
     <div class="d-flex row">
       <h1>Ultima Multi-Patcher</h1>
       <h3>Create your own custom version of Ultima Plus!</h3>
-      <h4>by xJ4cks & ChatGPT4</h4>
+      <h4>by xJ4cks & ChatGPT4-t</h4>
       <p>Upload your Ultima ROM, select some options, then choose "Apply Patches". You'll see a manifest of your choices, and a link to download to your device.</p>
       <p>This is a demo feature, a work-in-progress. All patches are for Ultima Plus.</p>
     </div>
@@ -300,7 +300,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const selects = document.querySelectorAll("select[id^=patch-select-]");
     for (const select of selects) {
-      const patchPath = select.value;
+      const patchPath = `./patches/${select.value}`;
       if (!patchPath) continue;
 
       try {
