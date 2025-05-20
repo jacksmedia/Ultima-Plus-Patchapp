@@ -104,7 +104,7 @@
 
     <script src="patch-selector.js"></script>
 
-    <!-- Initial IPS Upload Inputs -->
+    <!-- Initial IPS Upload Inputs = original feature
     <div id="ips-uploads" class="">
         <div class="file-upload">
         <label for="ips1">IPS Patch File 1:</label>
@@ -124,9 +124,21 @@
         </div>
     </div>
 
-  <!-- Button to Add More Uploads -->
+    Button to Add More Uploads 
     <button id="add-upload">Another Upload? Click me!</button>
-  
+    -->
+
+    <!-- new curated lists in dropdown -->
+    <div id="ips-selects">
+      <label>Patch 1: <select class="patch-select"></select></label><br>
+      <label>Patch 2: <select class="patch-select"></select></label><br>
+      <label>Patch 3: <select class="patch-select"></select></label><br>
+      <label>Patch 4: <select class="patch-select"></select></label><br>
+    </div>
+
+
+
+
     <!-- Patch Button -->
     <button id="patch">Apply Patches</button>
 
@@ -134,8 +146,93 @@
     <div id="manifest"></div>
 </body>
 
-<!-- all patcher logic -->
+
+
 <script>
+const PATCH_LIST = [
+  "window-color-rust.ips",
+  "window-color-nightfall.ips",
+  "window-color-midnight.ips",
+  "window-color-leather.ips",
+  "window-color-iron.ips",
+  "window-color-grape.ips",
+  "window-color-darkteal.ips",
+  "window-color-darkpurple.ips",
+  "window-color-classicteal.ips",
+  "window-color-bloodstain.ips"
+];
+
+const PATCH_BASE_URL = "/patches1/"; // initial patch dir
+
+document.addEventListener("DOMContentLoaded", () => {
+  const selects = document.querySelectorAll(".patch-select");
+  selects.forEach(select => {
+    const empty = document.createElement("option");
+    empty.value = "";
+    empty.textContent = "— None —";
+    select.appendChild(empty);
+    PATCH_LIST.forEach(patch => {
+      const opt = document.createElement("option");
+      opt.value = patch;
+      opt.textContent = patch;
+      select.appendChild(opt);
+    });
+  });
+});
+
+document.getElementById("patch").addEventListener("click", async () => {
+  const romFile = document.getElementById("rom").files[0];
+  if (!romFile) {
+    alert("Please upload a ROM file.");
+    return;
+  }
+
+  let romData = new Uint8Array(await romFile.arrayBuffer());
+  const selectedPatches = Array.from(document.querySelectorAll(".patch-select"))
+    .map(select => select.value)
+    .filter(Boolean); // Filter out unselected
+
+  if (selectedPatches.length === 0) {
+    alert("Please select at least one patch.");
+    return;
+  }
+
+  const manifest = [];
+
+  for (const patchName of selectedPatches) {
+    try {
+      const response = await fetch(PATCH_BASE_URL + patchName);
+      if (!response.ok) throw new Error(`Failed to fetch ${patchName}`);
+      const ipsData = new Uint8Array(await response.arrayBuffer());
+      romData = applyIpsPatch(romData, ipsData);
+      manifest.push(patchName);
+    } catch (err) {
+      alert(`Error applying ${patchName}: ${err.message}`);
+      return;
+    }
+  }
+
+  // Show manifest
+  document.getElementById("manifest").innerText = `Manifest:\n${manifest.join("\n")}`;
+
+  // Trigger ROM download
+  const blob = new Blob([romData], { type: "application/octet-stream" });
+  const url = URL.createObjectURL(blob);
+  const downloadLink = document.createElement("a");
+  downloadLink.href = url;
+  downloadLink.download = "patched-rom.sfc";
+  downloadLink.textContent = "Download Patched ROM";
+  downloadLink.style.display = "block";
+  document.getElementById("manifest").appendChild(downloadLink);
+});
+</script>
+
+
+
+
+
+<script>
+  // v1 uploader patcher logic
 let uploadCount = 4; // Initial number of IPS upload fields
 
 // Add another upload field
@@ -284,4 +381,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 }
 </script>
+
+
+
 </html>
