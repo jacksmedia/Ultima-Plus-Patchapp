@@ -129,7 +129,11 @@
 <!-- v3 patching logic, dynamic amount of select elements -->
 
 <script>
-const subfolders = ["stylepacks", "fonts", "windows"]; // Add folders as needed
+const subfolders = ["stylepacks", "fonts", "windows", 
+"Decil", "Pecil", "Kain", "Rosa", 
+"Kydia", "Rydia", "Edge", "Edward", 
+"Yang", "Palom", "Porom", 
+"Tellah", "FuSoYa", "Cid", "Golbez"]; // Add folders as needed
 
 document.addEventListener("DOMContentLoaded", () => {
   const selectContainer = document.getElementById("select-container");
@@ -149,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
     select.appendChild(defaultOption);
 
     // Load .ips files from the folder
-    fetch(`./${folder}/manifest.json`) // Assumes each folder has a manifest
+    fetch(`./patches/${folder}/manifest.json`) // Assumes each folder has a manifest
       .then(res => res.json())
       .then(patchList => {
         patchList.forEach(patch => {
