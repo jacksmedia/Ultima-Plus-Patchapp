@@ -41,5 +41,5 @@ portrait Yang (DS colors, by xJ4cks).ips
 Rosa (PR, by MObreck).ips
 Rydia (PR, DS colors, by xJ4cks).ips
 Tellah (PR, by xJ4cks).ips
-window-color-Ceres.ips
+window-color-midnight.ips
 Yang (PR, DS colors, by xJ4cks, Nicoc1991, red man).ips

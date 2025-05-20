@@ -30,5 +30,5 @@ portrait Rydia (better, by xJ4cks).ips
 portrait Tellah (better, by xJ4cks).ips
 Rosa (classic, pink armor, by tsushiy).ips
 Rydia (Classic, Menu colors, pink magic, by xJ4cks).ips
-window-color-Venus.ips
+window-color-bloodstain.ips
 Yang (classic, portrait colors, by xJ4cks).ips

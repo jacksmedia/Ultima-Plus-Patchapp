@@ -35,5 +35,5 @@ portrait Yang (battle color, by xJ4cks).ips
 Rosa (PR, by MObreck and red man).ips
 Rydia (PR, by MObreck).ips
 Tellah (PR, by xJ4cks).ips
-window-color-Mars.ips
+window-color-rust.ips
 Yang (PR, by Nicoc1991).ips

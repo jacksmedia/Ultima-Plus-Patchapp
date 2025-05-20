@@ -1,7 +1,7 @@
 _map Cecil n Rosa Cosmic Colors.ips
 _map sprites FF4-WS (by tsushiy, gvdn).ips
 Cid (RK, from T92).ips
-Decil (RK, darkest, by tsushiy).ips
+Decil (RK, Darkest, by AerospaceCoot35).ips
 Edge (RK, better, by xJ4cks).ips
 Edward (RK, portrait colors, by xJ4cks).ips
 FF4 Ultima Enemy Graphics 4bpp upgrade v2 (SNES-size enemies), by Gedankenschild.ips
@@ -29,5 +29,5 @@ portrait Yang (better, by xJ4cks).ips
 Rosa (RK, DS colors + big cape, by T92).ips
 Rydia (RK, pink magic by xJ4cks).ips
 Tellah (RK, from T92).ips
-window-color-Saturn.ips
+window-color-darkpurple.ips
 Yang (URK, by xJ4cks).ips
