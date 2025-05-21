@@ -88,6 +88,8 @@
       <h4>by xJ4cks & ChatGPT4-t</h4>
       <p>Upload your Ultima ROM, select some options, then choose "Apply Patches". You'll see a manifest of your choices, and a link to download to your device.</p>
       <p>This is a demo feature, a work-in-progress. All patches are for Ultima Plus.</p>
+      <p>RK = "FF Record Keeper", PR = "FFIV Pixel Remaster", DS = Nintendo DS "FFIV"; SBG = "SquishBGone", alt names where needed to remove double "squish" letters</p>
+      <hr/>
     </div>
 
     <!-- ROM Upload -->
@@ -98,23 +100,34 @@
       </div>
     </div>
 
+
     <script src="patch-selector.js"></script>
 
+    <!--  -->
     <!-- options & previews -->
-    <div class="d-flex row">
+    <!--  -->
     
-      <!-- curated lists in dropdowns -->
-      <div class ="col">
-        <div id="select-container"></div>
-      </div>
-      
       <!-- preview image, changes per choice -->
-      <div class ="col">
-        <div id="preview-container" style="width:45vw; height:60vh; border: 1px solid #333; background: #888; display: flex; align-items: center; justify-content: center;">
-          <img id="preview-image" src="" alt="Patch preview" style="width: 100%; height: 100%; max-width: 100%; max-height: 100%; display: none;">
+      <!-- responsive sizing w BS classes -->
+    <div class="d-flex row">
+      <div class ="d-flex col justify-content-center">
+        <div id="preview-container" 
+        class=""
+        style="min-width: 256px; min-height: 110px; 
+        width: auto; height: auto;
+        max-width: 768px; max-height: 330px;
+        border: 1px solid #333; background: #888; 
+        display: flex; align-items: center; justify-content: center;">
+          <img id="preview-image" src="" alt="Patch preview" style="width: 200%; height: 200%; max-width: 100%; max-height: 100%; display: none;">
         </div>
       </div>
+    </div>
 
+    <!-- curated lists in dropdowns -->
+    <div class="d-flex row">
+      <div class ="col">
+        <div id="select-container"></div>
+      </div> 
     </div>
 
     <div class="d-flex row">
@@ -129,6 +142,7 @@
 
     <!-- homepage button -->
     <div class="d-flex row">
+      <hr/>
       <div class="col-6 col-sm-4 d-flex-column justify-content-end align-items-center">
           <h3 style="color:black;">
               Return to
