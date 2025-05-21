@@ -108,11 +108,9 @@
     <!--  -->
     
       <!-- preview image, changes per choice -->
-      <!-- responsive sizing w BS classes -->
     <div class="d-flex row">
       <div class ="d-flex col justify-content-center">
         <div id="preview-container" 
-        class=""
         style="min-width: 256px; min-height: 110px; 
         width: auto; height: auto;
         max-width: 768px; max-height: 330px;
@@ -124,10 +122,15 @@
     </div>
 
     <!-- curated lists in dropdowns -->
+    <!-- BOOTSTRAP CAROUSEL  -->
+    <!-- https://getbootstrap.com/docs/4.0/components/carousel/ -->
     <div class="d-flex row">
       <div class ="col">
-        <div id="select-container"></div>
-      </div> 
+        <div id="select-container1"></div>
+      </div>
+      <div class ="col">
+        <div id="select-container2"></div>
+      </div>
     </div>
 
     <div class="d-flex row">
@@ -167,7 +170,7 @@
                   <button class="d-flex justify-content-center align-items-center"
                   style="background: black; padding: 1rem; border-radius: 2rem;">
                       <h4 style="color:aqua;">
-                          FF4 Ultima Plus Stylpacks
+                          FF4 Ultima Plus Stylepacks
                       </h4>
                   </button>
               </a>        
@@ -180,12 +183,19 @@
 <!-- v3 patching logic, dynamic amount of select elements -->
 
 <script>
-const subfolders = [
+const subfolders1 = [
   "fonts", 
   "Decil", "Pecil", "Kain", "Rosa", 
-  "Kydia", "Rydia", "Edge", "Edward", 
-  "Yang", "Palom", "Porom", 
+  "Kydia", "Rydia", "Edge", 
+  "Edward", "Yang", "Palom", "Porom", 
   "Tellah", "FuSoYa", "Cid", "Golbez"
+];
+
+const subfolders2 = [
+  "m-Decil", "m-Pecil", "m-Kain", "m-Rosa", 
+  "m-Kydia", "m-Rydia", "m-Edge", 
+  "m-Edward", "m-Yang", "m-Palom", "m-Porom", 
+  "m-Tellah", "m-FuSoYa", "m-Cid", "m-Golbez"
 ];
 
 // Utility: applies an IPS patch to ROM data
@@ -267,9 +277,9 @@ function updatePreviewImage(selectedValue) {
 
 // When DOM is ready, builds selectors
 window.addEventListener("DOMContentLoaded", () => {
-  const selectContainer = document.getElementById("select-container");
-
-  subfolders.forEach((folder, index) => {
+  // 1st page of carousel of options
+  const selectContainer1 = document.getElementById("select-container1");
+  subfolders1.forEach((folder, index) => {
     const label = document.createElement("label");
     label.textContent = `Patch from "${folder}":`;
 
@@ -303,9 +313,53 @@ window.addEventListener("DOMContentLoaded", () => {
     const div = document.createElement("div");
     div.appendChild(label);
     div.appendChild(select);
-    selectContainer.appendChild(div);
+    selectContainer1.appendChild(div);
   });
 
+
+
+  // 2nd page of carousel of options
+  const selectContainer2 = document.getElementById("select-container2");
+  subfolders2.forEach((folder, index) => {
+    const label = document.createElement("label");
+    label.textContent = `Patch from "${folder}":`;
+
+    const select = document.createElement("select");
+    select.id = `patch-select-${index}`;
+    select.dataset.folder = folder;
+    select.classList.add("patch-select");
+    select.style.margin = '2px';
+
+    const defaultOption = document.createElement("option");
+    defaultOption.value = "";
+    defaultOption.textContent = "-- Select Patch -- (Currently default)";
+    select.appendChild(defaultOption);
+
+    fetch(`./patches/${folder}/manifest.json`)
+      .then(res => res.json())
+      .then(patchList => {
+        patchList.forEach(patch => {
+          const option = document.createElement("option");
+          option.value = `${folder}/${patch}`;
+          option.textContent = patch;
+          select.appendChild(option);
+        });
+      })
+      .catch(err => console.error(`Failed to load ${folder} patches:`, err));
+
+    select.addEventListener('change', (e) => {
+      updatePreviewImage(e.target.value);
+    });
+
+    const div = document.createElement("div");
+    div.appendChild(label);
+    div.appendChild(select);
+    selectContainer2.appendChild(div);
+  });
+
+
+  // duplicated the above function in order to test with a BS carousel ^_^
+  // flatfile dev FTW
   document.getElementById("patch").addEventListener("click", async () => {
     const romFile = document.getElementById("rom").files?.[0];
     if (!romFile) return alert("Please upload a ROM file.");
