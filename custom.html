@@ -133,7 +133,7 @@
     <!-- curated lists in dropdowns -->
     <!-- will become BOOTSTRAP CAROUSEL  -->
     <!-- https://getbootstrap.com/docs/4.0/components/carousel/ -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false">
       <!-- little preview bars -->
       <!-- <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -320,13 +320,16 @@ window.addEventListener("DOMContentLoaded", () => {
   const selectContainer1 = document.getElementById("select-container1");
   subfolders1.forEach((folder, index) => {
     const label = document.createElement("label");
-    label.textContent = `Patch from "${folder}":`;
+    label.textContent = `Patch for "${folder}":`;
 
     const select = document.createElement("select");
     select.id = `patch-select-${index}`;
     select.dataset.folder = folder;
     select.classList.add("patch-select");
     select.style.margin = '2px';
+    select.style.appearance = 'none';
+    select.style.background = 'transparent';
+    select.style.color = 'antiquewhite';
 
     const defaultOption = document.createElement("option");
     defaultOption.value = "";
@@ -360,13 +363,16 @@ window.addEventListener("DOMContentLoaded", () => {
   const selectContainer2 = document.getElementById("select-container2");
   subfolders2.forEach((folder, index) => {
     const label = document.createElement("label");
-    label.textContent = `Patch from "${folder}":`;
+    label.textContent = `Patch for "${folder}":`;
 
     const select = document.createElement("select");
     select.id = `patch-select-${index}`;
     select.dataset.folder = folder;
     select.classList.add("patch-select");
     select.style.margin = '2px';
+    select.style.appearance = 'none';
+    select.style.background = 'transparent';
+    select.style.color = 'antiquewhite';
 
     const defaultOption = document.createElement("option");
     defaultOption.value = "";
@@ -400,13 +406,16 @@ window.addEventListener("DOMContentLoaded", () => {
   const selectContainer3 = document.getElementById("select-container3");
   subfolders3.forEach((folder, index) => {
     const label = document.createElement("label");
-    label.textContent = `Patch from "${folder}":`;
+    label.textContent = `Patch for "${folder}":`;
 
     const select = document.createElement("select");
     select.id = `patch-select-${index}`;
     select.dataset.folder = folder;
     select.classList.add("patch-select");
     select.style.margin = '2px';
+    select.style.appearance = 'none';
+    select.style.background = 'transparent';
+    select.style.color = 'antiquewhite';
 
     const defaultOption = document.createElement("option");
     defaultOption.value = "";
