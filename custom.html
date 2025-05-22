@@ -113,12 +113,14 @@
         <div id="preview-container" 
         style="min-width: 256px; min-height: 110px; 
         width: 100%; height: auto;
-        max-width: 512px; max-height: 220px;
-        border: 1px solid #333; background: #888; 
+        max-width: 256px; max-height: 110px;
+        background: #888; 
+        margin-top: 30px; margin-bottom: 50px;
         display: flex; align-items: center; justify-content: center;">
           <img id="preview-image" src="" alt="Patch preview" 
-          style="object-fit: contain;
+          style="object-fit: contain; 
           width: 200%; height: auto; display: none;">
+          <!-- object-fit: contain; = top shelf CSS! -->
         </div>
       </div>
     </div>
@@ -136,6 +138,9 @@
         <div id="select-container2"></div>
       </div>
     
+      <div class ="col">
+        <div id="select-container3"></div>
+      </div>
     </div>
 
     <div class="d-flex row">
@@ -153,32 +158,32 @@
       <hr/>
       <div class="col-6 col-sm-4 d-flex-column justify-content-end align-items-center">
         <h3 style="color:black;">
-            Return to
+          Return to
         </h3>
-            <!-- black btn styled div -->
-            <a href="index.html" style="text-decoration:none;">
-                <button class="d-flex justify-content-center align-items-center"
-                style="background: black; padding: 1rem; border-radius: 2rem;">
-                    <h4 style="color:#b0f;">
-                        FF4 Ultima Plus Patcher
-                    </h4>
-                </button>
-            </a>        
+        <!-- black btn styled div -->
+        <a href="index.html" style="text-decoration: none;">
+            <button class="d-flex justify-content-center align-items-center"
+            style="background: black; padding: 1rem; border-radius: 2rem;">
+                <h4 style="color:#b0f;">
+                  FF4 Ultima Plus Patcher
+                </h4>
+            </button>
+        </a>        
       </div>
       <!-- ends col -->
-             <div class="col-6 col-sm-4 d-flex-column justify-content-end align-items-center">
-          <h3 style="color:black;">
-              Premade styles?
-          </h3>
-              <!-- black btn styled div -->
-              <a href="styles.html" style="text-decoration:none;">
-                  <button class="d-flex justify-content-center align-items-center"
-                  style="background: black; padding: 1rem; border-radius: 2rem;">
-                      <h4 style="color:aqua;">
-                          FF4 Ultima Plus Stylepacks
-                      </h4>
-                  </button>
-              </a>        
+      <div class="col-6 col-sm-4 d-flex-column justify-content-end align-items-center">
+        <h3 style="color:black;">
+            Premade styles?
+        </h3>
+        <!-- black btn styled div -->
+        <a href="styles.html" style="text-decoration: none;">
+            <button class="d-flex justify-content-center align-items-center"
+            style="background: black; padding: 1rem; border-radius: 2rem;">
+                <h4 style="color:aqua;">
+                  FF4 Ultima Plus Stylepacks
+                </h4>
+            </button>
+        </a>
       </div>
       <!-- ends col -->
     </div>
@@ -201,6 +206,13 @@ const subfolders2 = [
   "map-Kydia", "map-Rydia", "map-Edge", 
   "map-Edward", "map-Yang", "map-Palom", "map-Porom", 
   "map-Tellah", "map-FuSoYa", "map-Cid", "map-Golbez"
+];
+
+const subfolders3 = [
+  "portrait-Decil", "portrait-Pecil", "portrait-Kain", "portrait-Rosa", 
+  "portrait-Kydia", "portrait-Rydia", "portrait-Edge", 
+  "portrait-Edward", "portrait-Yang", "portrait-Palom", "portrait-Porom", 
+  "portrait-Tellah", "portrait-FuSoYa", "portrait-Cid", "portrait-Golbez"
 ];
 
 // Utility: applies an IPS patch to ROM data
@@ -252,8 +264,6 @@ function applyIpsPatch(romData, ipsData) {
 function updatePreviewImage(selectedValue) {
   const previewImg = document.getElementById('preview-image');
   const container = document.getElementById('preview-container'); // original version
-  // const containers = document.querySelectorAll("div[id^=preview-container-]")
-  // for (container of containers) { // loop to affect on both preview divs
     if (!selectedValue) {
       previewImg.style.display = 'none';
       container.style.background = '#888';
@@ -279,7 +289,6 @@ function updatePreviewImage(selectedValue) {
         previewImg.style.display = 'none';
         container.style.background = '#888';
       });
-  // }
 }
 
 // When DOM is ready, builds selectors
@@ -324,7 +333,6 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
 
-
   // 2nd page of carousel of options
   const selectContainer2 = document.getElementById("select-container2");
   subfolders2.forEach((folder, index) => {
@@ -365,8 +373,48 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  // duplicated the above function in order to test with a BS carousel ^_^
+  // 3rd page of carousel of options ^_^
+  const selectContainer3 = document.getElementById("select-container3");
+  subfolders3.forEach((folder, index) => {
+    const label = document.createElement("label");
+    label.textContent = `Patch from "${folder}":`;
+
+    const select = document.createElement("select");
+    select.id = `patch-select-${index}`;
+    select.dataset.folder = folder;
+    select.classList.add("patch-select");
+    select.style.margin = '2px';
+
+    const defaultOption = document.createElement("option");
+    defaultOption.value = "";
+    defaultOption.textContent = "-- Select Patch -- (Currently default)";
+    select.appendChild(defaultOption);
+
+    fetch(`./patches/${folder}/manifest.json`)
+      .then(res => res.json())
+      .then(patchList => {
+        patchList.forEach(patch => {
+          const option = document.createElement("option");
+          option.value = `${folder}/${patch}`;
+          option.textContent = patch;
+          select.appendChild(option);
+        });
+      })
+      .catch(err => console.error(`Failed to load ${folder} patches:`, err));
+
+    select.addEventListener('change', (e) => {
+      updatePreviewImage(e.target.value);
+    });
+
+    const div = document.createElement("div");
+    div.appendChild(label);
+    div.appendChild(select);
+    selectContainer3.appendChild(div);
+  });
+
+  // multiplied the above function in order to build a BS carousel ^_^
   // flatfile dev FTW
+
   document.getElementById("patch").addEventListener("click", async () => {
     const romFile = document.getElementById("rom").files?.[0];
     if (!romFile) return alert("Please upload a ROM file.");
