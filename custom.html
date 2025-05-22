@@ -107,30 +107,35 @@
     <!-- options & previews -->
     <!--  -->
     
-      <!-- preview image, changes per choice -->
+      <!-- original preview image, changes per choice -->
     <div class="d-flex row">
       <div class ="d-flex col justify-content-center">
         <div id="preview-container" 
         style="min-width: 256px; min-height: 110px; 
-        width: auto; height: auto;
-        max-width: 768px; max-height: 330px;
+        width: 100%; height: auto;
+        max-width: 512px; max-height: 220px;
         border: 1px solid #333; background: #888; 
         display: flex; align-items: center; justify-content: center;">
-          <img id="preview-image" src="" alt="Patch preview" style="width: 200%; height: 200%; max-width: 100%; max-height: 100%; display: none;">
+          <img id="preview-image" src="" alt="Patch preview" 
+          style="object-fit: contain;
+          width: 200%; height: auto; display: none;">
         </div>
       </div>
     </div>
 
     <!-- curated lists in dropdowns -->
-    <!-- BOOTSTRAP CAROUSEL  -->
+    <!-- will become BOOTSTRAP CAROUSEL  -->
     <!-- https://getbootstrap.com/docs/4.0/components/carousel/ -->
     <div class="d-flex row">
+      
       <div class ="col">
         <div id="select-container1"></div>
       </div>
+
       <div class ="col">
         <div id="select-container2"></div>
       </div>
+    
     </div>
 
     <div class="d-flex row">
@@ -147,18 +152,18 @@
     <div class="d-flex row">
       <hr/>
       <div class="col-6 col-sm-4 d-flex-column justify-content-end align-items-center">
-          <h3 style="color:black;">
-              Return to
-          </h3>
-              <!-- black btn styled div -->
-              <a href="index.html" style="text-decoration:none;">
-                  <button class="d-flex justify-content-center align-items-center"
-                  style="background: black; padding: 1rem; border-radius: 2rem;">
-                      <h4 style="color:#b0f;">
-                          FF4 Ultima Plus Patcher
-                      </h4>
-                  </button>
-              </a>        
+        <h3 style="color:black;">
+            Return to
+        </h3>
+            <!-- black btn styled div -->
+            <a href="index.html" style="text-decoration:none;">
+                <button class="d-flex justify-content-center align-items-center"
+                style="background: black; padding: 1rem; border-radius: 2rem;">
+                    <h4 style="color:#b0f;">
+                        FF4 Ultima Plus Patcher
+                    </h4>
+                </button>
+            </a>        
       </div>
       <!-- ends col -->
              <div class="col-6 col-sm-4 d-flex-column justify-content-end align-items-center">
@@ -192,10 +197,10 @@ const subfolders1 = [
 ];
 
 const subfolders2 = [
-  "m-Decil", "m-Pecil", "m-Kain", "m-Rosa", 
-  "m-Kydia", "m-Rydia", "m-Edge", 
-  "m-Edward", "m-Yang", "m-Palom", "m-Porom", 
-  "m-Tellah", "m-FuSoYa", "m-Cid", "m-Golbez"
+  "map-Decil", "map-Pecil", "map-Kain", "map-Rosa", 
+  "map-Kydia", "map-Rydia", "map-Edge", 
+  "map-Edward", "map-Yang", "map-Palom", "map-Porom", 
+  "map-Tellah", "map-FuSoYa", "map-Cid", "map-Golbez"
 ];
 
 // Utility: applies an IPS patch to ROM data
@@ -246,33 +251,35 @@ function applyIpsPatch(romData, ipsData) {
 // Handles preview image loading
 function updatePreviewImage(selectedValue) {
   const previewImg = document.getElementById('preview-image');
-  const container = document.getElementById('preview-container');
-
-  if (!selectedValue) {
-    previewImg.style.display = 'none';
-    container.style.background = '#888';
-    return;
-  }
-
-  const pngPath = selectedValue.replace(/\.ips$/i, '.png');
-  const previewUrl = `patches/${pngPath}`;
-  console.log(pngPath);
-
-  fetch(previewUrl, { method: 'HEAD' })
-    .then(response => {
-      if (response.ok) {
-        previewImg.src = previewUrl;
-        previewImg.style.display = 'block';
-        container.style.background = 'transparent';
-      } else {
-        previewImg.style.display = 'none';
-        container.style.background = '#888';
-      }
-    })
-    .catch(() => {
+  const container = document.getElementById('preview-container'); // original version
+  // const containers = document.querySelectorAll("div[id^=preview-container-]")
+  // for (container of containers) { // loop to affect on both preview divs
+    if (!selectedValue) {
       previewImg.style.display = 'none';
       container.style.background = '#888';
-    });
+      return;
+    }
+
+    const pngPath = selectedValue.replace(/\.ips$/i, '.png');
+    const previewUrl = `patches/${pngPath}`;
+    console.log(pngPath);
+
+    fetch(previewUrl, { method: 'HEAD' })
+      .then(response => {
+        if (response.ok) {
+          previewImg.src = previewUrl;
+          previewImg.style.display = 'block';
+          container.style.background = 'transparent';
+        } else {
+          previewImg.style.display = 'none';
+          container.style.background = '#888';
+        }
+      })
+      .catch(() => {
+        previewImg.style.display = 'none';
+        container.style.background = '#888';
+      });
+  // }
 }
 
 // When DOM is ready, builds selectors
