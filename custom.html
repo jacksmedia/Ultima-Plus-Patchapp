@@ -42,6 +42,8 @@
       margin-left: 20px;
       background-color: #555;
       max-width: 60vw;
+      padding: 10px;
+      border-radius: 10px;
     }
     #patch {
       background-color: #80a;
@@ -483,6 +485,9 @@ window.addEventListener("DOMContentLoaded", () => {
     link.download = "FF4 Ultima Plus Custom.sfc";
     link.textContent = "Download Custom Ultima";
     link.style.display = "block";
+    link.style.color = "#f0f";
+    link.style.fontSize = "2rem";
+    link.style.fontWeight = "bold";
     document.getElementById("manifest").appendChild(link);
   });
 });
