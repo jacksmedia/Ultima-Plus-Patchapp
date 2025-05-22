@@ -1,0 +1,1679 @@
+Final Fantasy IV - Ultima Plus Changelog
+------------
+   v2025
+------------
+v1.08
+- bugfix: 'Dancing Ambush' no longer possible
+- Fabul map name improvement
+- two dialog typo fixes
+
+v1.07a
+- Training room dialogue updated to reflect new row mechanics in Ultima Plus
+
+v1.07
+- bugfix: Edward equipment retained on New Game +
+- Star icon fixed in Load Menu
+
+v1.06b
+- Float icon bugfix in Icon Key
+
+v1.06
+- adds new Holy elemental icon (white diamond, matches FF4:TAY icon)
+- improves "Star" icon
+- "Add" becomes the more obvious "With" in Bestiary
+- removes Float icon from elemental weakness dude msg in training room
+- reverts names of tier 2 elemental attack items to Ultima Classic style, per everyone's recommendation (IceBlast became IceShard since it sounds cooler)
+- reverts Bloodsip to VampFang as a result of above
+- recovers the other v1.05 changes (Wind icon, 2 new magic attack items) without bugs
+
+v1.05 (bugged) 
+- New Wind icon (yellow/green whirlwind)
+- Names of 4 magic attack items, "Fangs", were changed to be more distinct
+
+v1.04b
+- Bugfix as suggested by reference docs to address "empty dialog" that can occur at certain moments such as when learning spells
+
+v1.04
+- Grammatical correction in a character ability side quest
+- Title screen year changed to 2025
+
+
+Optional Content Patches
+------------------------
+- 'SquishBGone' patch by FlamePurge: Corrected dialogue that incorrectly referenced 2 ability spellings for Standard Ultima Plus
+
+
+-- Transferring Older Save Files --
+
+Saves from FF4 Ultima Plus v2024(v1.00 through 1.05) and from FF4 Ultima Classic v2022(rev19 through 25, 25a, 25b, 25c) will work perfectly without any issues.
+
+Saves from FF4 Ultima Classic v2022(rev14 through 18) will work fine without any issues, except:
+1) If Kain in your save is before level 20, your save will work 100% without any issues.
+2) If Kain is after level 20 but before 40, you will miss his Blink spell.
+3) If Kain is after level 40 but before 52, you will also miss his Protect spell.
+4) If Kain is after level 52, you will also miss Shell in his spell list.
+*In scenarios 2 3 or 4, starting NG+ will clear the bug.
+
+Saves from versions 2022(rev12 through 13) will work fine without any issues, except:
+1) If your save is before defeating Ultima Buster, your save will work 100% without any issues.
+2) If your save is after defeating Ultima Buster, Darkness for DKC will not get upgraded. In this scenario, starting NG+ will clear the bug.
+
+Saves from versions 2022(rev6 through 11) should work without any issues with a few caveats:
+1) If your save is before using the Magma Stone, your save will work 100% without any issues.
+2) If your save is after using the Magma Stone, speaking to the well in Agart and/or dropping the Stone again will cause all sorts of glitches! Do so at your own risk! In this scenario, starting NG+ will clear the bug.
+
+Saves from versions 2022 2022(rev1-5) 2022(rev2):
+1) If the save is before the battle with the CPU, it will work perfectly without any issues.
+2) If the save is after the CPU, the newest recruitable character will miss 1 of 3 obtainable spells. In this scenario, starting NG+ will clear the bug.
+
+For more info, please reach out to us on the FF4Ultima discord: https://discord.gg/4MqjwJt
+
+--> Saves from versions before 2022 will absolutely GLITCH. Please start a new game and enjoy! :)
+
+
+
+--------------
+Changelog 2024
+--------------
+v1.03
+- Icon Key menu overhaul by chillyfeez; now includes more stats
+
+------------------------
+
+v1.02
+- Typo correction in Fabul story dialogue
+- Removed stutter from Fabul NPC uttering a character name label
+- VampFang -> Bloodsip
+
+------------------------
+
+v1.01
+- Blind icon display in "Icon Key" menu label fixed by xJ4cks
+
+------------------------
+
+v1.00
+- Custom battle formation
+- Added Easy Mode
+- 100% overhauled script!
+- Edward promoted to retain equipment
+- All items have icons
+- Icons for all elements
+- Multiple uses of items and spells from menu
+- L + R allow quick Equip menu navigation
+- Endgame score report
+- Many new custom fonts & graphics added (see details below)
+
+
+Optional Content Patches
+------------------------
+Alternate Fonts
+---------------
+- New 'FF4SR Monocraft Font Pack 1.0' by mrBrawndo, a thin font sourced from Minecraft
+- New 'FF4SR Font Pack U-IV 1.0' by mrBrawndo, a stylized bold font created for Ultima IV
+- New 'Clean Font' by xJ4cks, adapted from an open-source asset
+- Dragonsbrethren's 'Wide Advance' font imported
+- New 'SquishBGone' patch by FlamePurge that removes "squish tiles," font characters that consist of 2 or more letters condensed: this renames some items and spells, see 'SquishBGone' readme.
+
+- Also by FlamePurge, 'SquishBGone' versions of:
+-- mrBrawndo's 'FF4SR Monocraft' and 'FF4SR U-IV' fonts
+-- xJ4cks's 'Clean Font'
+- Dragonsbrethren's 'Wide Advance' font
+-- as well as an the New 'FFI-NES Font', inspired by Final Fantasy on the NES
+
+
+Alternate Battle Sprites
+------------------------
+- New character sprites in the 'classic style', 'Record Keeper style', and 'Pixel Remaster style' by many contributors (all artists are credited in the patch filenames)
+
+
+Alternate Menu Portraits
+------------------------
+- New Amano-inspired, and other portraits, by mrBrawndo
+- Modified classic portraits by xJ4cks
+- New portraits by Nicoc1991
+- Portraits adapted from the PSP FFIV game by tsushiy
+- Alternate Rosa portrait by FlamePurge
+
+
+Alternate Map Sprites
+---------------------
+- 'FF4 Pixel Remaster' map sprites ported over and adapted by MObreck & xJ4cks
+- New color options adapated from the classic game by xJ4cks & Nicoc1991
+- Some entirely new ones by tsushiy & gvdn!
+
+
+Comprehensive Style Packs = map sprites + portraits + battle sprites
+---------------------------------------------------------------------------
+All of the above graphic options curated across 10 different Style Pack options for "FF4 Ultima Plus" (by xJ4cks).
+
+Optional patches from earlier versions of "FF4 Ultima" were retained (see below) and refiled alongside the new content in this release, for ease of use.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Final Fantasy IV - Ultima: Legacy Changelog
+
+v2022(rev25c) Changes
+---------------------
+Minor Adjustments:
+Chicken Knife - Buffed to make it a more unique endgame weapon.
+Octomamm - Buffed slightly again.
+Updated 1 chest in the Lunar Subterrane.
+Toad no longer works on Jelly.
+
+Optional Patches:
+--- New additions to Record Keeper sprites by T29 ---
+
+
+v2022(rev25b) Changes
+---------------------
+Minor Adjustments:
+Glass Mask - Slightly buffed.
+Octomamm - Rebalanced. It was nerfed way too much in the previous update.
+
+Optional Patches:
+--- Pixel Remaster and All the Bravest graphical upgrade patches by MObreck ---
+
+
+v2022(rev25a) Changes
+---------------------
+Bug Fixes:
+Door to the Omega Corridor no longer unlocks on its own.
+Fixed bug that triggers if you die in the fight vs Rydia/Titan before Quake happens.
+
+Others:
+Fixed prices for Artemis and Perseus Arrows.
+Added an extra shop in Hummingway Land for convenience.
+Rune Ring is now bought in Eblan instead of Dwarf.
+Minor update to several chest item placements.
+Update to various enemy drop tables.
+Minor balance update for various weapons.
+General polish and other minor updates/adjustments.
+
+Optional Patches:
+Super Remaster Portrait Pack by mrBrawndo - updated to v1.2.2
+Enemy Graphics 4bpp upgrade by Gedankenschild - included a new v2 update
+
+
+v2022(rev25) Changes
+--------------------
+Flame Spear has been changed to the Rune Axe so more characters can use it.
+New axe sprites.
+Fixed Odin Esper - no longer usable on certain enemy formations with bosses.
+Moved/updated some chest item placements in Cave Eblan, etc.
+Added a save point in Cave Eblan settlement.
+Minor update for various enemy drops and drop tables.
+Minor balance for various weapons.
+Fixed battle background on Island Peak.
+Various minor polish to texts/map tiles.
+
+
+v2022(rev24) Changes
+--------------------
+Fixed the 'Charge' attack for TunnelA., Yeti, Gilgamesh.
+Also fixed/updated the Dark attack for Selene.
+
+
+v2022(rev23) Changes
+--------------------
+Bug Fix - Game would freeze if player used the Cry or Dark commands with the optional patch 'Enemy Graphics 4bpp upgrade by Gedankenschild'. This is now fixed.
+
+
+v2022(rev22) Changes
+--------------------
+-New optional patch that upgrades Enemy Graphics to 4bpp!! Credit to Gedankenschild for the patch!
+-You can now swap your party between waves of the Boss Rush!
+-Pray bug fix. There was a vanilla bug that prevented Pray from working if the center slot in your party was empty.
+-Legend Sword and Rat Tail are now removed from your inventory when starting NG+. This is to prevent multiple copies of these clogging up the inventory, as they cannot be sold or discarded.
+-Rosa can now wear the Diamond Helm and Diamond Armor.
+-Added 1 more reward when you beat Neo Bahamut.
+
+Optional Patch:
+--- Final Fantasy IV - Ultima v2022 - Enemy Graphics 4bpp upgrade.ips ---
+
+
+v2022(rev21) Changes
+--------------------
+-Fixed an issue that prevented Kick from doing any damage to certain bosses.
+-Added arrows to the Bestiary to let the player know they can navigate using the D-Pad.
+-Swapped treasures between 2 chests in the Sealed Cave.
+
+Optional Patch:
+--- Final Fantasy IV - Ultima v2022 - Remove Bestiary Arrows.ips ---
+
+
+v2022(rev20) Changes
+--------------------
+-Fixed an AI script issue for the 2x/8xNeo Bahamut fight that prevented all but 1 of them from being healed.
+-Adjusted duration of Wall, LightVeil, LunarVeil, and Reflect.
+-Adjusted various drop tables for Super Bosses and other enemies. Added more drop/steal possibilities.
+-Lustrous Sword is no longer a treasure in the Ice Cave. However, it's been made an enemy drop.
+-Added more weapon and armor drops from various enemies.
+-Nerfed HP and MP for Ice D. and LiquidFlame.
+-Buffed HP for several Underworld enemies.
+-Increased MP consumption for Sylph from 25 to 35.
+-Increased MP consumption for Highwind from 25 to 40.
+-Polished various event sequences, background and weapon graphics, descriptions, Shadow Dragon Esper placement, etc.
+
+
+v2022(rev19) Changes
+--------------------
+-Weapons no longer proc when a character is in Piggy or Mute status. This was done in response to a graphical bug.
+-Fixed bug that allowed the opening of the Sealed Cave door without getting the Luca Necklace.
+-Reverted crystal next to Goddess to replay the scene showing the locations of the Super Bosses. The shop there was redundant anyway, because you can access the same shop at Kokkol's.
+-Kain now learns Blink, Protect, Shell by leveling instead of from events.
+-Edge now learns Confuse instead of Charm.
+
+Updates to Optional Patches:
+--- FF4SR_Font_Pack_VI_v1.1.ips ---
+--- FF4SR_Portraits_EX_1.2.1_NameWay_Alt_A.ips ---
+
+
+7-29-2022 zip Changes
+---------------------
+Added back optional patch to add revision # on title screen 
+--- Final Fantasy IV - Ultima v2022revXX - Revision in Title.ips ---
+
+Removed alternate portrait patch for Namingway due to glitched graphics. Will upload a fixed version in the future.
+
+
+v2022(rev18) Changes
+--------------------
+Fixed selling price of Ethers and Elixirs - they now correctly sell for 1GP.
+Marksman Bow now also sold in Silvera.
+Pink Tail now has an in-game description.
+Slight buff to Kain magically - He now has/gains more MP, and several added spells.
+Beginning Kain now has Brace instead of Focus.
+Lilith Rod and Aura Staff proc fix.
+Added several more shops in the Boss Rush room.
+Slight buff to Raiden and Leviathan Espers.
+Slight buff to Gladius.
+Other general polish/cleanup to texts, tiles, sounds, etc.
+
+Updates and NEW Optional Patches:
+--- Record Keeper Battle Sprites by T29 - updated to v1.3 ---
+--- Super Remaster Portrait Pack by mrBrawndo - updated to v1.2 ---
+--- Super Remaster Font Pack by mrBrawndo - NEW! ---
+
+
+v2022(rev17) Changes
+--------------------
+Fixed a problematic tile on Mt. Hobs that caused glitches.
+Other general polish/cleanup.
+
+
+v2022(rev16) Changes
+--------------------
+Adjustment to various monsters' status resistance.
+Slight update to Overworld map area before Mist.
+
+
+v2022(rev15) Changes
+--------------------
+Updated Golbez's Dark command animation and sound effect.
+Fixed bugged dialog texts in Kaipo couple's house.
+Nerfed MistRage slightly.
+Buffed Antlion slightly.
+Other general polish/cleanup.
+
+New Optional Patches - Alternate Menu Portraits by mrBrawndo:
+--- Final Fantasy IV - Ultima v2022 - Super Remaster Portraits by mrBrawndo.ips ---
+--- Final Fantasy IV - Ultima v2022 - Super Remaster Alt Cecil Cosmic by mrBrawndo.ips ---
+Optional Patch - Adds Revision # in Title Screen:
+--- Final Fantasy IV - Ultima v2022rev15 - Revision in Title.ips ---
+
+
+v2022(rev14) Changes
+--------------------
+Buffed Chicken Knife slightly; +15 to VIT as well.
+DKC's Dark can now be upgraded to remove HP cost!
+Yang can now Kick while in Float status.
+Spoon now Strong vs. Flans.
+Fixed and cleaned up a bunch of weapons, including their magic cast.
+Nerfed Octomamm a little more.
+Updated event when you first encounter Gilgamesh to simulate his travel through the Void.
+Added fanfares when you receive rewards from Gilgamesh.
+Added themes when you speak with Cid at endgame and the Fat Chocobo.
+Updated music for the 'Final' Secret battles and one battle in Boss Rush.
+Updated/improved the fix for the potential softlock in NG+ between Edge and Rubicant.
+Various dialog and text fix/cleanup.
+
+Optional Patch to remove Multiple Hit Attack Animation:
+--- Final Fantasy IV - Ultima v2022 - Remove Multiple Hit Attack Animation.ips ---
+
+
+7-13-2022 zip Changes
+2 additional Optional Patches - Alternate Record Keeper battle sprites for Cecil and Rosa - by T29
+--- Final Fantasy IV - Ultima v2022 - Alt Cecil Record Keeper battle sprites by T29.ips ---
+--- Final Fantasy IV - Ultima v2022 - Alt Rosa Record Keeper battle sprites by T29.ips ---
+
+7-8-2022 zip Changes
+Optional Patch - Changes character battle sprites to ones from Record Keeper - by T29
+--- Final Fantasy IV - Ultima v2022 - Record Keeper battle sprites by T29.ips ---
+
+7-4-2022 zip Changes
+Included 6 Optional Graphical Patches - Alt Rosa portrait by FlamePurge
+--- Final Fantasy IV - Ultima v2022 - Rosa alt menu portrait by FlamePurge.ips ---
+--- Final Fantasy IV - Ultima v2022 - Rosa alt battle sprite old palette.ips ---
+--- Final Fantasy IV - Ultima v2022 - Rosa alt battle sprite new palette.ips ---
+--- Final Fantasy IV - Ultima v2022 - Golbez alt battle sprite palette.ips ---
+--- Final Fantasy IV - Ultima v2022 - Golbez alt menu portrait old palette.ips ---
+--- Final Fantasy IV - Ultima v2022 - Golbez alt menu portrait new palette.ips ---
+
+
+v2022(rev13) Changes
+--------------------
+Fixed a potential softlock bug in NG+ during the fight between Edge and Rubicant.
+Fixed a visual glitch involving projectile weapons.
+A slew of new Tools for Cid! Must start a new game or a NG+ in rev13 for this to take effect.
+Added 2 optional patches for new sprites/palette for Rosa and Golbez.
+Updated Cure5's animation to match other healing abilities.
+Renamed Edge's Ninja (Fast-All spell) to Haste.
+Gilbert Harp now strong vs. Dragon, also.
+New weapons to purchase at various Kokkol's shops. Great for Edge's Throw command!
+Added the magic shop in Mist.
+
+
+v2022(rev12) Changes
+--------------------
+Critical bug fix where the Magma Key was usable again after coming back from the Underworld.
+Update to the Underworld map that includes reverting to a landable Sealed Cave area.
+
+
+v2022(rev11) Changes
+--------------------
+Fixed a critical bug that freezes the game mid-battle when casting Twin involving Palom, Porom, and Golbez.
+Minor update to the Underworld map.
+
+
+v2022(rev10) Changes
+--------------------
+Fixed an issue with a door being unlocked automatically in NG+.
+Fixed several typos and map tiles.
+Buffed several weapons - Flandango, PiggyStick, Brigand Axe.
+Updated key item icons.
+Updated several chests in Cave Oasis.
+
+
+v2022(rev9) Changes
+-------------------
+Nerfed Octomamm slightly.
+
+Bug Fixes:
+Visual glitch when using item in middle of Stop status.
+Several incorrect numbers in the Bestiary.
+L.Mirrors not getting removed for NG+.
+Invisible damage when weapon procs with Aim, Bane, Jump, and Focus.
+Bane executing indefinitely with weapon proc.
+
+
+v2022(rev8) Changes
+-------------------
+Updated shoals around Silvera.
+Fixed an oversight of the Ice Cave entrance that allowed airship landing.
+Updated the formation of the 4th Gilgamesh battle.
+Minor adjustment to some Overworld encounters.
+
+
+v2022(rev7) Changes
+-------------------
+Fixed an issue with NPCs erroneously appearing/disappearing in NG+.
+Buffed the MagicDart.
+Fixed a map title typo.
+
+
+v2022(rev6) Changes
+-------------------
+Raiden can now be summoned by the newest recruitable character!
+Buffed an exclusive Esper for the newest recruitable character.
+Buffed Blue command for FuSoYa and the newest recruitable character.
+Minor text and event updates.
+
+
+v2022(rev5) Changes
+-------------------
+Fixed bug for Locke's Bandana - It now works properly and increases drop rate by 2x.
+
+
+v2022(rev4) Changes
+-------------------
+Fixed bug for Salve - Elixir and Grimoire are now correctly not Salvable.
+
+
+v2022(rev3) Changes
+-------------------
+Balanced encounters in Zot.
+Updated encounters in a certain Overworld area.
+Updated various fonts, names, and one dialog text.
+
+
+v2022(rev2) Changes
+-------------------
+Fixed typos for some spells.
+Fixed AI for some bosses.
+Updated a battle message and credits.
+
+
+v2022(rev1) Changes
+-------------------
+Fixed typo for Hermes Sandals.
+Fixed weapon spell for Triton Hammer.
+Updated credits for extra game sprites.
+
+
+v2022 Changes
+-------------
+-A full-featured bestiary, complete with descriptions, statistics, and item drops!
+-A new epic boss encounter with a classic Final Fantasy favorite!
+-Powerful new items, weapons, and spells for more gameplay options than ever before!
+-New/expanded areas and a chilling brand new area to explore!
+-Menu access to the Fat Chocobo from anywhere without a patch! No more full inventory woes!
+-Menu UI improvements for a better experience!
+-A brand new and animated title screen!
+-A familiar, yet questionable acharacter from IV will emerge from the past to form a new alliance. In the past he fought for evil, and then for himself to alleviate the burdens he cast upon others. Since he was last seen in action, he has mastered a host of new tricks making him extremely powerful. Where does his allegiance truly lie? You'll have to decide for yourself, as he will be fully playable...assuming you can find and recruit him! 
+
+Notable New Weapons: 
+Brave Blade - The more battles you win, the more powerful it gets!
+Chicken Knife - Same as Brave Blade, except the opposite! Get escapin'!
+Flandango - A slime's worst nightmare!
+Ultima Sword - Damage is now based on the character's current HP!
+Loki Harp - Now with special Sing!
+Nirvana - A staff for the enlightened.
+Nightbringer - Sword for... a Bringer of Night?
+And many more!
+
+New Armor:
+TigerMask - Put this on Yang and let it rip!
+MeritCap - Ever wanted to let Tellah equip the Gaea Hammer? This is for you!
+Exp Ring - Lets the wearer gain more EXP after each battle!
+GoldRing - Win more GP per battle!
+Thief Ring - Steal Uncommon and Rare items!!
+And more!
+
+New Items -
+MagicDart
+Time Egg - Cures Stop!!
+Item that revives, all plus full heal!
+Item that permanently increases stats!!
+And more!
+
+Achievements have now been added through a partnership with and courtesy of RetroAchievements.org!
+https://retroachievements.org/game/1072
+
+Excerpt from the site:
+"RetroAchievements.org is a zero profit community who collaborate and compete to earn custom-made achievements in classic games through emulation. Achievements are made by and for the community. We provide various custom-built emulators for you to use which will detect when you have completed various challenges. Once logged in, the emulators will post the achievements you've completed back to the site, so you can check and compare your progress to your friends."
+
+(FEB 5 2025: RetroAchievements do not work with Ultima Plus, just Ultima Classic.)
+
+
+v32k Changes
+------------
+Included a new optional patch that fixes the Sylph/Bloodfeast bug.
+Fixed the 'Press X to Skip' bug that uses multiple consumable items.
+Nerfed Octomamm's HP slightly.
+Buffed several regular enemies in the Lunar Subterrane.
+Minor map update in several areas.
+
+
+v31k+ Changes
+-------------
+Balance and polish update.
+Balanced several mid- to late-game weapons.
+Minor updates to several enemies' attributes.
+Minor map updates to fix some bad tiles.
+Added more in-game hints.
+
+
+v31k Changes
+------------
+Balance update.
+Buffed several existing weapons.
+Special Sing is now tied to the Ultimate Harp instead of the late game one.
+Buffed several weapons used as items in battle.
+Updated some enemy drops.
+Minor map and text updates.
+Minor updates to several bosses.
+Minor equip updates.
+Added more in-game hints.
+
+
+v30k++ Changes
+--------------
+Raiden is now thunder-elemental only. His wind-elemental has been removed.
+Fixed dialog bug when winning the Eclipse after defeating Selene.
+
+
+v30k+ Changes
+-------------
+New weapon sprites for the Flame Sword and the Apocalypse.
+Buffed Wind Spear's magic proc.
+Cleaned up several enemy names.
+
+
+v30k Changes
+------------
+New Super Boss.
+New ultimate weapon.
+New claw.
+New in-game text explaining advanced mechanics and other hints.
+The Bandit Blade is now the Brigand Axe.
+Moved various chest items around.
+Moved several enemy locations.
+Buffed many armor and weapons.
+Buffed various spells, such as DKC Scourge, Edge ABomb.
+Buffed various regular enemies.
+Renamed Edge Explosive to Flash Bomb.
+New selections in various shops.
+More throwable weapons for purchase at endgame.
+New drops for various monsters.
+New harp sprite on map.
+Nerfed several main story bosses and boss fights.
+New chests and healing pots.
+General polish to maps, events, texts, etc.
+
+
+v29k+ Changes
+-------------
+Added text telling the player that Edward will not gain EXP/LV's unless he's in the party.
+Moved, rearranged, and removed several trapped chests throughout the first 1/3 of the game.
+Other minor general game polish.
+
+
+v29k Changes
+------------
+Buffed and rebalanced many weapons and armor throughout the game, but mostly the ones at endgame.
+Rebalanced several enemies and items.
+Rebalanced the Boss Rush.
+DKC can now equip the Ragnarok.
+Switched around chest items and trapped chests at various locations and in the last dungeon.
+Improved rewards from defeating Gilgamesh 4 at various stage in the game.
+Improved rewards from the Boss Rush.
+New sprite for the Icebrand.
+Various map updates.
+Various bug fixes to gameplay, events, texts, etc.
+Various balance updates.
+
+
+v28k+ Changes
+-------------
+Fixed a bug that caused Wyvern to become much weaker.
+Slightly buffed and relocated Ultima W. (boss) along with the Apollo Harp.
+Fixed an error that caused Golbez to use Ice instead of Flare during the battle vs Zemus.
+
+
+v28k Changes
+------------
+Boss Rush room now contains a save point, so you can save your progress between waves!
+Update to several Boss Rush elements such as rewards, formations, etc.
+Also added a save point just before you go down to the room where Neo Bahamut resides.
+Nerfed Warmech slightly.
+Lowered price of a bunch of Edge's throwable weapons that you can purchase at endgame.
+New text in the Boss Rush room explaining the new details.
+Minor text and map update/polish.
+
+
+v27k+ Changes
+-------------
+-Melusine/Omega rewards have been slightly updated
+-Sleep is no longer removed upon being struck due to it not working properly
+-Slightly buffed DemonWall, Rubicant, MagmaGiant, and DrLugae
+-Slightly buffed Ultima W. (boss)'s magic defense and Ultima B.'s phyiscal defense
+-Crystal D.'s WallChange is now displayed more clearly
+-Added mechanism to negate Reflect-strat for several Super Bosses
+-Fixed bug where Ultima W. is able to be encountered in the Underworld
+-Fixed an error in the dialog in the 'secret ending'
+-Adamant/Grand Armor no longer negates Float
+-Other minor polish and bug fixes
+
+
+v27k Changes
+------------
+4 new bosses!
+New enemy and boss graphics!
+Omega has been upgraded to a Super Boss!
+New armor as reward for beating a Super Boss!
+New attack items!
+Upgraded several existing Attack items.
+Upgrade for Rosa's Aim command.
+New map area.
+New shops.
+Fixed scroll lag in the items menu.
+Several minor bug fixes.
+Updated stats to several enemies and bosses.
+Buffed the Dragon Lance.
+Buffed several other weapons and armor.
+
+
+v26k+ Changes
+-------------
+Several minor bug fixes.
+Updated several enemy stats.
+Buffed several weapons and armor.
+Minor map updates - save point added, etc.
+Polished texts and dialog.
+
+
+v26k Changes
+------------
+Revamped the Sing command. Sing should be much more useful throughout the game now.
+Buffed the Chocobo Feather helm slightly.
+Fixed a critical issue with Goddess's stats during her desperation phase, causing her to be invincible vs. any magical attacks.
+Edge can now equip the TigerFang and the Dragon Claw.
+Fixed map title error on one of the floors in the Tower of Babil.
+Various minor map polish and shop balance.
+
+
+v25k+ Changes
+-------------
+Various bug fixes to enemies' AI and corrections to typos.
+Balance update to several spells and gear.
+
+
+v25k Changes
+------------
+Brand new screens with DETAILED INFO on equipment and magic!!
+-Tap A twice on a piece of equipment in the inventory to view all of its details!
+-Tap A, and then tap X on a spell to view all of its info, as well!
+New and improved ATB gauge!! Now it works and looks just like the gauges later in the series!
+Updated the detailed equip screen!
+3 brand new areas!
+2 brand new armor with special attributes! 1 increases drop rates of enemies!!
+1 brand new enemy/boss!
+Edward now retain his stats when dismissed from the party!!
+DK Cecil now retains his gear during the endgame while transformed into Paladin!
+You can now leave the Yellow Chocobo on the world map, like other vehicles!
+Yellow Chocobo can now cross shallows and certain shores to reach new places!
+New weapon sprites!
+New sound effect for claws!
+Rebalanced experience gain and stat growth post-level 70 for all characters.
+New shop at late game!
+New spell for Kain. Buffed his critical rate and MP gain.
+Holy Lance has been buffed.
+Buffed and rebalanced several late game equipment.
+Extra room in Lunar Subterrane for earlier Ribbon access.
+Rebalanced several spells.
+Reworked several enemies and bosses to be more balanced.
+Added text in Training Room for new advanced menus for equipment and magic.
+Other general polish, spell adjustments, minor map updates, bug fixes, and balance updates.
+
+
+v22.2 Changes
+-------------
+Stats update for DKC and Yang. DKC gets more HP from leveling. Yang gets more AGL. DKC also gets some WIL post level 70; Yang will get some WIL and WIS post 70.
+Buffed Marksman, Elven, and Yoichi Bows slightly.
+Added text letting the player know how to access New Game+.
+Other general polish and balance update.
+
+
+v22.1 Changes
+-------------
+Fixed a glitch that prevented Yang from reaching 255 ATK in the normal game.
+Fixed a glitch that soft-locked the game when going to the dock before the Fabul battle.
+Fixed several typos.
+Other general polish and balance update.
+
+
+v22.0 Changes
+-------------
+New 'Face Color' for characters affected by the Stop status.
+New exclusive spells for Palom and DK Cecil!
+Flare (not Nuke) and Quasar are now Palom exclusives.
+Flare is now learned by leveling.
+Quasar is now learned from Shinryu instead of Crystal D.
+New and revamped existing spells for characters and enemies.
+Fixed a bug that crashed the game in NG+ if Cecil had a name consisting of 6 letters.
+Several other minor bug fixes.
+General polish to text, spell animation, game balance, map, etc.
+
+
+v21.5 Changes
+-------------
+Bug fix to saying 'No' in Fabul Castle when the King asks for help.
+Bug fix to an NPC in Dwarf Castle.
+Update to drop index, texts, cutscenes, one spell list, enemy and spell power, etc.
+
+
+v21.4 Changes
+-------------
+Critical bug fix to an event that broke several NPCs.
+Bug fix to Kaipo's weapon shop.
+
+
+v21.3 Changes
+-------------
+Black Chocobos no longer return to the forest on their own!
+Bug fix to several events.
+Various polish to maps, texts, etc.
+
+
+v21.2 Changes
+-------------
+Huge bug fix to several endgame Super Bosses' spell power that caused them deal a lot more damage than intended. This is now fixed and their damage output are now as intended.
+Grimoire updated to exclude Odin and other less desirable Espers.
+2 of the endgame command upgrades now require side quests to acquire.
+Spoon is now unmissable!
+Fixed an issue that caused the special AI battle to not show up in Boss Rush.
+Several minor fixes to events, maps, and texts.
+
+
+v21.1 Changes
+-------------
+2 new surprises at Boss Rush.
+Fixed a glitch that capped damage at 9999 when reflecting spells from multiple Walls to a single enemy.
+Fixed AtomicRay's glitched damage.
+Buffed several bows and arrows.
+
+
+v21k Changes
+------------
+Kain receives a new command - Soar! This allows him to Land on an enemy target at the player's discretion!
+4 new Espers!
+Reworked several Espers: Buffed Sylph; Leviathan is now ice-elemental; Odin now randomly dispathces enemies; Asura's 3rd spell is now Shell to party; and Chocobo's damage is now ATK-based and should make it viable throughout the game!
+Various game polish, balance, and bug fixes.
+
+
+v20k Changes
+------------
+To celebrate 20,000 downloads of this hack on RHDN, we are introducing a much requested feature of FF4Ultima: A brand new NEW GAME+ MODE!!
+Also new in version 20k is:
+New level cap at 149, and increased max stats in NG+!!
+Various new battle items!
+Various game polish, balance, and bug fixes.
+
+
+v12.1b Changes
+--------------
+Fixed a bug where you are erroneously able to fight Calofisteri in the Giant of Babil.
+
+
+v12.1a Changes
+--------------
+Removed a Tool from Cid's Tool list.
+
+
+v12.1 Changes
+-------------
+Rebalanced a battle in Boss Rush.
+Updated several boss and regular battles.
+Added more Tools for Cid.
+Minor updates to some weapons and armors.
+Minor texts update.
+
+
+v12.0 Changes
+-------------
+4 brand new bosses!!
+8 new maps and areas!!
+2 new upgraded commands!!
+Updated several existing bosses!
+New events and scenarios!
+New special enemy skills!
+New NPC palettes.
+Various text and map polish.
+Other gameplay and equipment balance and polish.
+
+
+v11.51 Changes
+--------------
+Fix to one of the post-game final battles.
+New weapon sprites for several late/endgame weapons.
+New hammer 'throwing' animation.
+Couple of endgame gears relocated for balance.
+Minor text polish.
+
+
+v11.5 Changes
+-------------
+Several major bug fixes, such as the Twin glitch, Tower of Babil warp glitch, etc.
+Added 3 new pieces of armor. 2 are for endgame Cecil, as he's the AGL anchor. The last is a bonus reward armor for those that are able to complete all of the post-game extra content.
+Balance updates to weapons, chests, shops, drops, etc.
+Updated Sing and Aim to be usable with any weapon type.
+Added a few more surprises at endgame.
+Several map, text polish.
+
+
+v11.21 Changes
+-------------
+Minor various text/map edits, bug fixes and balance updates.
+
+
+v11.2 Changes
+-------------
+Introducing 1 new weapon at endgame.
+Various text edits, bug fixes and balance updates.
+
+
+v11.13 Changes
+--------------
+Various balance updates.
+
+
+v11.12 Changes
+--------------
+Various bug fixes and balance changes.
+Various dialog fixes and updates.
+
+
+v11.11 Changes
+--------------
+Updated color of the Caladbolg.
+Various minor bug fixes and balance changes.
+
+
+v11.1 Changes
+-------------
+Brand new weapon for Dark Knight Cecil.
+New healing potion at endgame.
+Various bug fixes and balance changes.
+
+
+v11.01 Changes
+--------------
+Fixed a small issue with the heavy doors in castles.
+
+
+v11.0 Changes
+-------------
+HUGE update!
+At last, party swapping is now available, with up to 10 different characters at endgame!!!
+You can now even Solo Paladin OR Dark Knight Cecil at the endgame!!!
+New status 'aura' surrounding characters during battle!!
+2 new weapons! 2 new spells! 2 new attack items!! New areas!!
+Also introducing the formidable and EXTREMELY difficult BOSS RUSH MODE that can be unlocked at endgame!!
+New commands for party members, and Upgrades to existing ones!!
+Lots of other new surprises and easter eggs added!!
+General balance to characters, weapons and armor, spells, etc.
+General polish of maps, gameplay and dialog.
+
+
+v10.2 Changes
+-------------
+Fixed a bug that caused a glitch when using certain weapons as an item during battle.
+You can now be 'awakened' from Sleep status by being hit!
+Polish to several enemy formations.
+
+
+v10.1 Changes
+-------------
+Slight increase to Yang's critical hit rate.
+Various minor map polish.
+Would like to acknowledge that v10 was also made possible by Grimoire LD's "SNES Final Fantasy IV: Add 15 New Spell Slots" and "SNES Final Fantasy IV: Event Instruction Skip Hack" patches.
+
+
+v10.0 Changes
+-------------
+HUGE update!
+Party Swapping is now available at endgame with up to 6 different characters!! You can even Solo Cecil at the endgame!!
+4 new weapons! 6 new spells! 2 new bosses, including one at endgame that had a randomly-generated AI!!
+Magically-imbued weapons are now introduced to the game! Specific weapons will randomly cast a spell upon striking an enemy!
+New commands and upgradable commands!
+Damage limit has been raised to 14999!!
+New easter eggs added, such as connecting the Upper and Lower half of Tower of Babil via a Teleporter!
+New Blue Magic for FuSoYa!
+General balance to characters, weapons and armor, spells, etc.
+General polish of maps, gameplay and dialog.
+
+
+v9.0 Changes
+------------
+15 new spells and enemy skills! Huge thanks to GrimoireLD for the 15 Extra Spell Slots patch!
+1 new boss at endgame!
+New command for FuSoYa!
+Rebalanced existing weapons and armor.
+Rebalanced spells.
+General polish of maps, gameplay and dialog.
+
+
+v8.52 Changes
+-------------
+Fixed a CRITICAL, game-breaking bug that was introduced in v8.51. The battle with Golbez in Dwarf Castle was causing a soft lock preventing the game from progressing further. This is now fixed.
+
+
+v8.51 Changes
+-------------
+Random enemy encounters can now be toggled on or off in the Customizer Menu!!
+
+
+v8.50 Changes
+-------------
+2 new weapons!! The Illumina and Dragon Lance have been added to the game!
+New spell!! Mighty Guard has been added to the game!
+Rosa learns Regen (Pray)!
+Edward can now Steal! He will still auto-hide when low on HP, however.
+To accommodate for Edward's new Steal command, various bosses now have more interesting steals!
+Increased Mug rate!
+Updated and rebalanced various weapons, spells, and armor in the game.
+Fixed and added various dialog and text in the game.
+
+
+v8.35 Changes
+-------------
+Edge now recalls MORE spells from his youth!
+Minor tweaks to MP usage for some spells.
+Minor tweaks to the map of the Northern Cave.
+
+
+v8.30 Changes
+-------------
+Minor tweaks enemies, maps, texts, etc.
+Added a new area where you can encounter enemies from maps that are no longer accessible
+
+
+v8.25 Changes
+-------------
+Updated an enemy's name.
+Updated stats to AI Mk.1.
+
+
+v8.21 Changes
+-------------
+Nerfed AI Mk.1 some more.
+
+
+v8.20 Changes
+-------------
+Updated several boss scripts and stats.
+Moved one of the endgame bosses to a new location!
+Rubicant has been buffed slightly.
+Minor map edits.
+
+
+v8.12 Changes
+-------------
+Fixed an issue with a boss' script.
+
+
+v8.10 Changes
+-------------
+The Thief Knife has been added! When equipped, the character will randomly steal from the enemy during an attack!
+
+
+v8.01b Changes
+--------------
+Bug fix to Thunder Arrows allowing a player to perform 'Mug' as with the Thief Gloves.
+
+
+v8.01a Changes
+--------------
+Minor adjustment to Tellah's Recall command to make it more potent.
+
+
+v8.01 Changes
+-------------
+Buffed Tellah's Recall command to include some interesting spells!
+New abilities added to various weapons.
+Rebalanced various weapon abilities.
+Nerfed LiquidFlame's stats.
+Updated encounters to the new areas to make them more accessible.
+Various map polish.
+
+
+v8.0 Changes
+------------
+A new item has been added, the legendary Thief Gloves has been added!
+New enemies and bosses!
+New graphics!
+Some of the endgame bonuses are now available to the player at an earlier point in the game!
+Many new items and armor!
+Updates and new areas added!
+Balanced and polished many aspects of the game.
+Updated and added various dialog.
+Edits to various shops.
+General polish and refinement.
+
+
+v7.01 Changes
+-------------
+Minor bug fix to where you could travel to Mt. Heavensward Skyway from the Octomamm room. This was not supposed to happen.
+Nerfed Yang during the battle inside the Baron inn.
+Update to texts for some of the battles with Gilgamesh.
+
+
+v7.0f Changes
+-------------
+Minor edit to a glitched dialog. 
+
+
+v7.0d Changes
+-------------
+Minor edit to the Overworld map.
+Minor edit to the ending credits.
+Minor update to a battle background for an endgame boss.
+Minor update to a few chest contents on Mt. Hobs.
+Minor bug fix to the Iron Ring. It's now equipable by everyone.
+
+
+v7.0c Changes
+-------------
+Added the names of the people that have contributed to this hack to the endgame Credits!
+Minor palette adjustment for a couple of endgame bosses.
+
+
+v7.0b Changes
+-------------
+Major bug fix to one of the late-game spells learned by Rydia and Edge.
+
+
+v7.0a Changes
+-------------
+Minor bug fix to a trapped chest.
+Several minor edits/additions to various dialog.
+
+
+v7.0 Changes
+------------
+New item added, the Berserk Ring!
+MORE NEW ENEMY GRAPHICS!
+New areas!
+New bosses!
+New items!
+New armor!
+New command!
+Improved Odin Esper!
+Balanced and polished many items in the game.
+New and improved boss battles!
+New palettes for various enemies, spells, and weapons.
+Updated and added various dialog.
+Edits to various shops.
+General polish.
+
+
+v6.0b Changes
+-------------
+Critical bug fix to MagicMap and Scan, where they crashed the game when used to view world maps.
+
+
+v6.0a Changes
+-------------
+Minor texts update and polish.
+Minor map update.
+
+
+v6.0 Changes
+------------
+BRAND NEW ENEMY GRAPHICS!! Credit to chillyfeez for the help on this.
+3 brand new areas!!
+2 new bosses!!
+2 new items!!
+1 new armor!!
+New locations and updates to the world maps.
+Edge's Steal is now much more effective, making stealing much easier!
+Balanced and polished several items so they don't take up unnecessary space in the inventory.
+Carrots are now unlimited use, so call that Fat Chocobo as needed!
+Various edits to treasure chests and item drops.
+New and improved boss battles, especially the ones at endgame!
+New palettes for various enemies.
+Updated and added various dialog.
+Edits to various shops.
+General polish.
+
+
+v5.42 Changes
+-------------
+Minor change to a cutscene event.
+
+
+v5.41 Changes
+-------------
+Undated boss script for the AI Mk.I.
+Polished several maps and triggers in the Lunar Subterrane.
+
+
+v5.40 Changes
+-------------
+New boss in the Lunar Subterrane! This 'new' boss is the replacement for where the AI used to take place.
+Moved the location of one boss in the Lunar Subterrane.
+Edited several chest contents.
+
+
+v5.32! Changes
+--------------
+Edits to several bosses' stats for balance.
+Edits to several weapons' stats for balance.
+Edits to several enemies' drops for more meaningful drops at several points in the game.
+
+
+v5.32 Changes
+-------------
+Edits to several endgame bosses' scripts for balance.
+
+
+v5.31 Changes
+-------------
+Minor edits to several bosses.
+Additional script for one of the Super Bosses at endgame.
+
+
+v5.30 Changes
+-------------
+AI is no longer a required battle! The location of the fight with AI has been moved, and it is now an optional boss.
+Nerfed several bosses to make the main game more accessible to the general audience. However, optional bosses are just as tough as ever!
+Added new hints and dialog before some of the battles.
+Added and changed treasures locations.
+Various weapons balancing.
+Various map polish.
+Updated palette to a few enemies.
+
+
+v5.21f Changes
+--------------
+Minor texts polish and update.
+
+
+v5.20f Changes
+--------------
+Polished 3 of the endgame bosses' scripts due to the bug that was discovered and fixed in v5.14f.
+In doing the above, added a brand new spell for one of the optional bosses at endgame.
+Various edits to chest items for balance.
+Moved an endgame super secret shop to a new location. Also added a new cutscene showing the player of the new location of the shop.
+
+
+v5.14f Changes
+--------------
+Fixed a critical bug that caused one of the endgame spells to malfunction.
+Minor update to 2 endgame bosses' scripts.
+
+
+v5.13f Changes
+--------------
+Bug fix to 2 weapons: The Slaying Tail and the Apocalypse. The amount of status effect inflicted on an enemy caused an overflow during battle resulting in 255 messages being displayed. Not game-breaking as it doesn't softlock, but annoying nonetheless. Thanks to mathguy86 for discovering the bug!
+
+
+v5.12f Changes
+--------------
+Minor bug fix in Dwarf Castle, where you could get stuck if you tried to do the Warp Glitch.
+Updated sprites for the Ultima Sword and Apocalypse.
+Updated encounters in Lunar Subterrane and Lunar Core.
+
+
+v5.10f Changes
+--------------
+Brand new spell added that you can learn at endgame!
+Minor update and polish to maps/texts.
+Updates to a few boss scripts.
+
+
+v5.01f Changes
+--------------
+Minor update to armor equip and drop list.
+Scan now works on bosses!
+
+
+v5.0f Changes
+-------------
+3 brand new areas!
+3 new items! Including the legendary Megalixir!
+2 new spells!
+Lots of new updates to the world maps.
+Various edits to treasure chests and item drops.
+New and improved boss battles, especially the ones at endgame!
+New sprites and palettes for various weapons and enemies.
+Reverted name of 'Esperland' back to 'Feymarch'!
+Updated various dialog.
+Many edits to existing gears.
+New endgame super shop!!
+General polish.
+
+
+v4.32f Changes
+--------------
+Buffed Zeromus.
+Nerfed Illusions.
+Nerfed Ultima W. (boss)
+
+
+v4.31f Changes
+--------------
+Minor update to some dialog.
+Minor arrangements to some map tiles in one of the new areas.
+
+
+v4.21f Changes
+--------------
+I've added 1 new Super Boss, 1 new armor, several map additions and polish, and text updates.
+Rebalanced some existing gear and bosses.
+I've aimed to polish this hack as much as I could, and hope everyone will continue to enjoy it immensely!! :D
+
+
+v4.10f Changes
+--------------
+Balanced weapons, armor, spells and enemies stats.
+Polished maps and numerous dialog texts.
+Added a few new and very interesting areas. ;)
+It's been a blast and a super fun past year creating, updating and adding new stuff to this hack. I'd like to thank all those who's helped out with various things for this hack, and all those who supported me and the project throughout the year!
+Hope everyone will continue to enjoy this hack immensely!! :D
+
+
+v4.0 Changes
+------------
+2 new ultimate weapons at endgame!
+2 new endgame armor!
+3 new optional endgame Super Bosses!!
+5 new areas!!
+Buffed and nerfed various bosses throughout the game.
+More specifically, nerfed required boss battles in the Lunar Subterrane to make for casual playthroughs without the need for grinding. At the same time, optional boss battles have been buffed.
+Updated and polished various dialog.
+Updated several weapons stats.
+
+
+v3.40 Changes
+-------------
+Added a few minor scenarios after the events at Fabul.
+Updated a secret boss fight in the Lunar Subterrane.
+Fixed a freezing bug that can be triggered while fighting the Pale Dim from the previous versions.
+Updated and polished various dialog.
+Updated several weapons' stats.
+
+
+v3.21c Changes
+--------------
+Enhanced sprites for the Ultima Sword and the Apocalypse!
+
+
+v3.21b Changes
+--------------
+New sprites for the Ultima Sword!
+
+
+v3.21a Changes
+--------------
+Refined scripts for 2 Lunar Core bosses.
+Updated an enemy skill.
+
+
+v3.21 Changes
+-------------
+Buffed a weapon.
+Added a weapon in a chest to the Lunar Core.
+
+
+v3.20 Changes
+-------------
+New endgame side quests! Rewards are some very powerful weapons!!
+New weapons!
+Special NEW weapon graphics for an endgame ultimate weapon!
+Various weapon buffs.
+Fixed various texts.
+
+
+v3.10a Changes
+--------------
+Minor update to some random encounters in the Underworld and Overworld.
+
+
+v3.10 Changes
+-------------
+Updated the Multiple Swings Animation hack. Changed the amount of swings dependency from levels to the attack multiplier instead.
+
+
+v3.0d Changes
+-------------
+Buffed a mid-game weapon.
+
+
+v3.0c Changes
+-------------
+More balance adjustments to endgame gear.
+
+
+v3.0b Changes
+-------------
+Minor buffs to certain endgame weapons.
+
+
+v3.0a Changes
+-------------
+Minor update that fixes the immunity bug that affects characters who puts on, then removes the Adamant Armor and/or Glass Mask. This resulted in a PERMANENT extreme weakness to fire and ice! Thanks to GrimoireLD for the bug fix patch!
+
+
+v3.0 Changes
+------------
+Huge update!
+New attack animation! Characters now swing their weapons and attack multiple times depending on their level!
+3 new weapons! One of which is another endgame weapon that requires some discovering, and defeating a new Super Boss to acquire! Another one is a near-endgame weapon that also requires some searching to obtain.
+2 brand new boss fights!
+1 new endgame secret Super Boss!
+Updated sound effect for the Thunder Slash! This is an improvement over the original, where there's an awkward silence during its swing animation.
+Updates and buffs to various enemies and bosses.
+Updates to various dialogs.
+Brand new hidden secrets at endgame that contain new weapons and bosses!!
+New areas at endgame!
+Plus many more minor changes and edits.
+
+
+v2.20c Changes
+--------------
+Minor update to AI's script.
+
+
+v2.20b Changes
+--------------
+Updated initial equipment for Kain.
+Updated enemy drops for some bosses.
+
+
+v2.20a Changes
+--------------
+Child Rydia now has more interesting White spells to use for a limited time! :)
+Updated the Magma Giant's stats and boss fight.
+Updated some shop content at endgame.
+Updated some enemy drops.
+Updated and fixed various dialog.
+
+
+v2.20 Changes
+-------------
+Edge no longer able to equip the Dragon Whip for balance reasons.
+Updates to several enemy drops.
+Updated an area en route to the super secret boss and weapon.
+
+
+v2.10d Changes
+--------------
+Big thanks to chillyfeez and Myself086 for the improved SPRINTING function by holding the Y button in towns and dungeons!
+You can still toggle SPRINT on the world map and slow down airships by tapping the Y button while standing still.
+
+
+v2.10c Changes
+--------------
+Minor buffs to various weapons.
+
+
+v2.10b Changes
+--------------
+Minor updates to powers for weapons used as items.
+Minor buffs/nerfs to various weapons.
+Minor updates to weapons palettes.
+Minor texts updates.
+Minor spell animation update.
+
+
+v2.10a Changes
+--------------
+Updated several chests placements and enemy drops for game balance.
+Updated boss script for Illusion.
+
+
+v2.10 Changes
+-------------
+Big thanks to b0ardface for helping to fix the attack power overflow glitch! Now several endgame weapons have an attack power of 255 and do not overflow when equipping them!
+
+
+v2.0c Changes
+-------------
+Minor update to Cagnazzo's attacks and stats.
+Minor update to certain items drops.
+
+
+v2.0b Changes
+-------------
+Minor update to the Boss at the Tower of Babil entrance.
+
+
+v2.0a Changes
+-------------
+Updated boss fight at the Tower of Babil entrance to be more interesting and rewarding.
+Other minor bug fixes and edits.
+
+
+v2.0 Changes
+------------
+Huge update!
+Dark Knight Cecil now dual-wields and is 2-handed!! Have fun! :)
+3 new enemies! 2 bosses and 1 regular enemy.
+5 new boss fights! 1 just before half way and 4 at endgame.
+3 endgame weapons now obtainable in final hidden area of the game, instead of relying on ultra-rare drops.
+2 new shields!
+1 brand new ultimate endgame weapon that requires finding a hidden path, and defeating optional Super Boss to acquire.
+Brand new hidden areas at endgame that contain new weapons and bosses!!
+New areas at endgame!
+Certain characters can now equip more weapons!
+Plus many more minor changes and edits.
+
+
+v1.30 Changes
+-------------
+Equipment Screen Mod is now implemented. You can now see the equipment stats, much like in the later Final Fantasy games! Huge thanks to Crow! for help implementing this amazing feature!
+
+
+v1.20 Changes
+-------------
+Added an extra save point in Lunar Core.
+You are no longer required to battle the AI again after the initial fight.
+Buffed Ultima W. (boss)
+Added shortcut in Tower of Babil to make the escape after Yang less tedious.
+
+
+v1.10b Changes
+--------------
+Fixed several bugs that can cause players to permanently lose the ability to do critical hits. Special thanks to chillyfeez and Grimoire LD for indentifying and fixing the bug!
+Buff several endgame weapons.
+Fixed minor bugs and glitches.
+Updated text. Thanks to FlamePurge and chillyfeez for the help!
+
+
+v1.10a Changes
+--------------
+Removed the 'no critical' bit that was erroneously applied to a number of weapons. You can now do critical hits using ALL weapons, including the Ultima Sword!
+Minor update to some color palettes.
+
+
+v1.10 Changes
+-------------
+Added a brand new area!
+Lightbringer and Tempest now require a boss fight to obtain!
+Various map edits.
+Added new dialog.
+Updated an enemy's drop list.
+
+
+v1.0c Changes
+--------------
+Edge is now able to equip whips!
+You can now return from Zemus' room.
+Gave NPC hint on how to reach the Ultima Sword.
+Various minor map edits.
+Updated various texts.
+Updated various enemies' drop list.
+
+
+v1.0b Changes
+-------------
+Cat Claw - Added Curse and Stun effects.
+Fixed King Fabul dialog from Doom to Deathbringer to match the in-game weapon name.
+Vulture now always drops Cockatrice Esper.
+Updated various enemies' drop list. Improving them.
+
+
+v1.0a Changes
+-------------
+RisingSun - Buffed attack power from 50 to 52.
+Tempest - Buffed attack power from 70 to 80.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Other Notes
+-----------
+As the vanilla version was a very easy game, here's what I did with this hack's difficulty:
+-About 1/3 into the game, the difficulty starts to increase slightly from the vanilla game.
+-Around the events after the Sealed Cave, the game's difficulty ramps up.
+-Within the last dungeon, the game starts to become very challenging.
+...
+-(v5.30)After witnessing many players on streams having frustration at the last stretch of the game, I've added an extra save point. Plus, you are no longer required to battle the AI again after the initial fight. Hope this helps alleviate some of the frustrations at endgame!
+
+
+Different Difficulties
+----------------------
+-= Standard Mode =-
+------------------
+-This is the intended version and difficulty of this hack by the devs.
+-The Main Story parts of the game should be accessible to the general audience. The Optional and the Extra Endgame content, however, will see a spike in difficulty.
+
+-= Reduced Mode =-
+------------------
+-99% of the Main Story parts of the game remain the same as Normal Mode. The only changes are the Required Bosses in the Lunar Subterrane/Core, including Zeromus. They have been nerf'd.
+-All of the Optional and Endgame Super Bosses have been nerf'd! They are now much easier and the difficulty progression should be much more natural from the end of the Main Story game.
+-Saves are 100% compatible and transferable between the Normal/Novice Modes. So, if at any point in the Normal Mode becomes too difficult or overwhelming, simply move your saves over to the Novice Mode and you'll be good to go!
+-All other items, weapons, gears, spells and other aspects of the game remain the same as Normal Mode.
+
+******************************************************************************
+
+
+2018.9.3 v1.0 by 8.bit.fan
+2018.9.8 v1.0a by 8.bit.fan
+2018.9.15 v1.0b by 8.bit.fan
+2018.9.22 v1.0c by 8.bit.fan
+2018.10.5 v1.10 by 8.bit.fan
+2018.11.15 v1.10a by 8.bit.fan
+2018.12.5 v1.10b by 8.bit.fan
+2018.12.6 v1.20 by 8.bit.fan
+2019.1.20 v1.30 by 8.bit.fan
+2019.2.16 v2.0 by 8.bit.fan
+2019.2.19 v2.0a by 8.bit.fan
+2019.2.21 v2.0b by 8.bit.fan
+2019.2.23 v2.0c by 8.bit.fan
+2019.2.24 v2.10 by 8.bit.fan
+2019.2.28 v2.10a by 8.bit.fan
+2019.3.4 v2.10b by 8.bit.fan
+2019.3.6 v2.10c by 8.bit.fan
+2019.3.15 v2.10d by 8.bit.fan
+2019.4.15 v2.20 by 8.bit.fan
+2019.4.25 v2.20a by 8.bit.fan
+2019.4.26 v2.20b by 8.bit.fan
+2019.4.27 v2.20c by 8.bit.fan
+2019.5.22 v3.0 by 8.bit.fan
+2019.5.24 v3.0a by 8.bit.fan
+2019.5.28 v3.0b by 8.bit.fan
+2019.5.29 v3.0c by 8.bit.fan
+2019.5.31 v3.0d by 8.bit.fan
+2019.6.2 v3.10 by 8.bit.fan
+2019.6.4 v3.10a by 8.bit.fan
+2019.6.13 v3.20 by 8.bit.fan
+2019.6.14 v3.21 by 8.bit.fan
+2019.6.17 v3.21a by 8.bit.fan
+2019.6.18 v3.21b by 8.bit.fan
+2019.6.20 v3.21c by 8.bit.fan
+2019.6.25 v3.40 by 8.bit.fan
+2019.7.12 v4.0 by 8.bit.fan
+2019.7.25 v4.10f by 8.bit.fan
+2019.8.8 v4.21f by 8.bit.fan
+2019.8.22 v4.31f by 8.bit.fan
+2019.8.26 v4.32f by 8.bit.fan
+2019.10.8 v5.0f by 8.bit.fan
+2019.10.12 v5.01f by 8.bit.fan
+2019.10.14 v5.10f by 8.bit.fan
+2019.10.18 v5.12f by 8.bit.fan
+2019.10.28 v5.13f by 8.bit.fan
+2019.11.1 v5.14f by 8.bit.fan
+2019.11.2 v5.20f by 8.bit.fan
+2019.11.3 v5.21f by 8.bit.fan
+2019.11.7 v5.30 by 8.bit.fan
+2019.11.8 v5.31 by 8.bit.fan
+2019.11.9 v5.32 by 8.bit.fan
+2019.11.10 v5.32! by 8.bit.fan
+2019.11.13 v5.40 by 8.bit.fan
+2019.11.14 v5.41 by 8.bit.fan
+2019.11.22 v5.42 by 8.bit.fan
+2019.12.23 v6.0 by 8.bit.fan
+2019.12.24 v6.0a by 8.bit.fan
+2019.12.25 v6.0b by 8.bit.fan
+2020.1.22 v7.0 by 8.bit.fan
+2020.1.24 v7.0a by 8.bit.fan
+2020.1.25 v7.0b by 8.bit.fan
+2020.1.28 v7.0c by 8.bit.fan
+2020.1.31 v7.0d by 8.bit.fan
+2020.2.3 v7.0f by 8.bit.fan
+2020.2.5 v7.01 by 8.bit.fan
+2020.2.20 v8.0 by 8.bit.fan
+2020.2.29 v8.01 by 8.bit.fan
+2020.2.29 v8.01a by 8.bit.fan
+2020.2.29 v8.01b by 8.bit.fan
+2020.3.1 v8.10 by 8.bit.fan
+2020.3.2 v8.12 by 8.bit.fan
+2020.3.3 v8.20 by 8.bit.fan
+2020.3.4 v8.21 by 8.bit.fan
+2020.3.6 v8.25 by 8.bit.fan
+2020.3.8 v8.30 by 8.bit.fan
+2020.3.12 v8.35 by 8.bit.fan
+2020.3.31 v8.50 by 8.bit.fan
+2020.4.2 v8.51 by 8.bit.fan
+2020.4.3 v8.52 by 8.bit.fan
+2020.4.26 v9.0 by 8.bit.fan
+2020.5.29 v10.0 by 8.bit.fan
+2020.5.31 v10.1 by 8.bit.fan
+2020.6.1 v10.2 by 8.bit.fan
+2020.7.22 v11.0 by 8.bit.fan
+2020.7.24 v11.01 by 8.bit.fan
+2020.7.30 v11.1 by 8.bit.fan
+2020.7.31 v11.11 by 8.bit.fan
+2020.8.3 v11.12 by 8.bit.fan
+2020.8.4 v11.13 by 8.bit.fan
+2020.8.6 v11.2 by 8.bit.fan
+2020.8.8 v11.21 by 8.bit.fan
+2020.8.24 v11.5 by 8.bit.fan
+2020.9.16 v11.51 by 8.bit.fan
+2020.11.12 v12.0 by 8.bit.fan
+2020.11.21 v12.1 by 8.bit.fan
+2020.11.22 v12.1a by 8.bit.fan
+2020.11.23 v12.1b by 8.bit.fan
+2020.12.18 v20k by 8.bit.fan
+2021.1.10 v21k by 8.bit.fan
+2021.1.25 v21.1 by 8.bit.fan
+2021.1.31 v21.2 by 8.bit.fan
+2021.2.2 v21.3 by 8.bit.fan
+2021.2.4 v21.4 by 8.bit.fan
+2021.2.8 v21.5 by 8.bit.fan
+2021.3.3 v22.0 by 8.bit.fan
+2021.3.10 v22.1 by 8.bit.fan
+2021.3.18 v22.2 by 8.bit.fan
+2021.5.1 v25k by 8.bit.fan
+2021.5.4 v25k+ by 8.bit.fan
+2021.5.10 v26k by 8.bit.fan
+2021.5.25 v26k+ by 8.bit.fan
+2021.6.15 v27k by 8.bit.fan
+2021.7.4 v27k+ by 8.bit.fan
+2021.7.7 v28k by 8.bit.fan
+2021.7.9 v28k+ by 8.bit.fan
+2021.7.22 v29k by 8.bit.fan
+2021.7.30 v29k+ by 8.bit.fan
+2021.9.06 v30k by 8.bit.fan
+2021.9.12 v30k+ by 8.bit.fan
+2021.9.16 v30k++ by 8.bit.fan
+2021.10.5 v31k by 8.bit.fan
+2021.10.9 v31k+ by 8.bit.fan
+2021.11.13 v32k by 8.bit.fan
+2022.5.23 v2022 by 8.bit.fan
+2022.5.24 v2022(rev1) by 8.bit.fan
+2022.5.25 v2022(rev2) by 8.bit.fan
+2022.5.26 v2022(rev3) by 8.bit.fan
+2022.5.26 v2022(rev4) by 8.bit.fan
+2022.5.30 v2022(rev5) by 8.bit.fan
+2022.5.31 v2022(rev6) by 8.bit.fan
+2022.6.1 v2022(rev7) by 8.bit.fan
+2022.6.4 v2022(rev8) by 8.bit.fan
+2022.6.6 v2022(rev9) by 8.bit.fan
+2022.6.7 v2022(rev10) by 8.bit.fan
+2022.6.14 v2022(rev11) by 8.bit.fan
+2022.6.17 v2022(rev12) by 8.bit.fan
+2022.6.24 v2022(rev13) by 8.bit.fan
+2022.7.4 (added more optional patches in the zip) by 8.bit.fan
+2022.7.8 (added more optional patches in the zip) by 8.bit.fan
+2022.7.13 (added more optional patches in the zip) by 8.bit.fan
+2022.7.15 v2022(rev14) by 8.bit.fan
+2022.7.19 v2022(rev15) by 8.bit.fan
+2022.7.20 v2022(rev16) by 8.bit.fan
+2022.7.21 v2022(rev17) by 8.bit.fan
+2022.7.28 v2022(rev18) by 8.bit.fan
+2022.8.2 v2022(rev19) by 8.bit.fan
+2022.8.30 v2022(rev20) by 8.bit.fan
+2022.9.6 v2022(rev21) by 8.bit.fan
+2022.9.19 v2022(rev22) by 8.bit.fan
+2022.10.4 v2022(rev23) by 8.bit.fan
+2022.10.5 v2022(rev24) by 8.bit.fan
+2022.11.20 v2022(rev25) by 8.bit.fan
+2023.3.12 v2022(rev25a) by 8.bit.fan
+2023.5.29 v2022(rev25b) by 8.bit.fan
+2023.8.8 v2022(rev25c) by 8.bit.fan
+2025.1.5 v2024 Plus(v1.00) by 8.bit.fan
+2025.2.5 v2025 Plus(v1.04) by 8.bit.fan

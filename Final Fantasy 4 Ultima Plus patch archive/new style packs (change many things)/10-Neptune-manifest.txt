@@ -1,0 +1,42 @@
+_map Cecil n Rosa Cosmic Colors.ips
+Cid (RK, from T92).ips
+Decil (RK, closed helmet, by Nicoc1991).ips
+Edge (RK, better, by xJ4cks).ips
+Edward (RK, portrait colors by xJ4cks).ips
+FF4 Ultima deep purple pal0.ips
+FF4 Ultima Enemy Graphics 4bpp upgrade v2 (SNES-size enemies), by Gedankenschild.ips
+Final Fantasy IV Ultima - Sylph-Bloodfeast Fix.ips
+FuSoYa (RK, lunar magic, by xJ4cks).ips
+Golbez + Anna (RK, by T92).ips
+Kain (RK, plum armor, by Nicoc1991).ips
+Kydia (RK, pink magic, by xJ4cks).ips
+map Decil (PURPLE, closed helmet, by Nicoc1991).ips
+map Edge (PURPLE, by xJ4cks).ips
+map Edward (better, by xJ4cks).ips
+map Kain (PURPLE, by Nicoc1991).ips
+map Palom (PR, Blue, by xJ4cks).ips
+map Pecil (WS, Cosmic, by gvdn).ips
+map Porom (PR, by MObreck).ips
+map Rosa (PR, by MObreck).ips
+map Yang (red pants, moustache, by xJ4cks).ips
+Palom (URK, Messy Blue, by red man and Nicoc1991).ips
+Pecil (RK, Cosmic w Cape Cheer, by T92).ips
+Porom (URK, Messy, Red, by red man & Nicoc1991).ips
+portrait Cid (battle color, by xJ4cks).ips
+portrait Decil (closed helmet, by Nicoc1991).ips
+portrait Edge (better, by xJ4cks).ips
+portrait FuSoYa (battle color, by xJ4cks).ips
+portrait Golbez (alt, yellow gold, by tsushiy).ips
+portrait Kain (purple, by Nicoc1991).ips
+portrait Palom (RK, blue, by xJ4cks).ips
+portrait Pecil (better, by xJ4cks).ips
+portrait Porom (RK, battle color, by xJ4cks).ips
+portrait Rosa (PR ponytail, by FlamePurge).ips
+portrait Rydia (better, by xJ4cks).ips
+portrait Tellah (better, by xJ4cks).ips
+portrait Yang (better, by xJ4cks).ips
+Rosa (RK, DS colors + big cape, by T92).ips
+Rydia (RK, pink magic by xJ4cks).ips
+Tellah (RK, from T92).ips
+window-color-darkteal.ips
+Yang (URK, by xJ4cks).ips

@@ -1,0 +1,16 @@
+CHANGES: Menu text related to items and spells, as well as pieces of dialogue that reference those items and spells.
+
+EFFECT: Removes usage of most squish tiles (2-3+ letters shrunk together into 1-2+ letter's width, to circumvent letter limitations) through various means for a clean, appealing aesthetic. At times, this involved renaming items and spells; please see the "Name Differences" section in the Changelog for information.
+
+MAIN STYLE:
+- SquishBGone Classic Font
+
+VARIANTS:
+Apply these patches ON TOP of (after) the main "SquishBGone Classic Font.ips"
+- SquishBGone exclusive font 'I-NES', by FlamePurge
+- SquishBGone version of 'Monocraft'
+- SquishBGone version of 'Clean Font' by xJ4cks
+- SquishBGone version of 'ULTIMA IV', by mrBrawndo
+- SquishBGone version of 'Chicago'
+- SquishBGone version of 'Stick Font', by chillyfeez
+- SquishBGone version of 'Wide Advance', by Dragonsbrethren

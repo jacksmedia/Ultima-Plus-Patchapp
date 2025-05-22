@@ -1,0 +1,18 @@
+Revised Spell Names by @red man & @xJ4cks
+April 2025 - For FF4 Ultima Plus
+--------------------------------
+To standardize the spell lists,
+this patch makes the following changes:
+
+    Heal --> Esuna
+    Pearl --> Holy
+    White --> Holy2
+    Holy --> Holy3
+    Aero --> Wind1
+    HiWind --> Wind2
+    Psych --> Aspir
+
+Esuna, Aero, and Psych are changed where they occur in the game dialog.
+
+Please report bugs and/or share feedback in the Ultima Discord!
+https://discord.gg/PGMASbSnD9

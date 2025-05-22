@@ -1,0 +1,4 @@
+All patches and sprites by mrBrawndo.
+
+3bpp adaptations of FF4 Pixel Remaster portraits.
+For use with Final Fantasy II US, and FF 4 Ultima Plus roms.

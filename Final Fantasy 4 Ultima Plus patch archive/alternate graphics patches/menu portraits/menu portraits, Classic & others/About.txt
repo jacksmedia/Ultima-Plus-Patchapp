@@ -1,0 +1,9 @@
+CHANGES: Various characters' menu portraits.
+
+EFFECT: Redraws and recolors portraits so they better match each character's battle sprite.
+
+Key:
+RK = adapted from the "FF Record Keeper" game
+PR = adapted from "FF4 Pixel Remaster" by MObreck
+SR = mrBrawndo's Super Remaster style
+better = (lazy) description for xJ4cks's edits to vanilla portraits

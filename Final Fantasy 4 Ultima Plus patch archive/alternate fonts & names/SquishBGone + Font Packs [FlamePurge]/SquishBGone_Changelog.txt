@@ -1,0 +1,235 @@
+      FINAL FANTASY IV - ULTIMA
+     SQUISHBGONE v1.13 CHANGELOG
+           by FlamePurge
+
+
+CHANGELOG
+---------
+- v1.13   Compliant with altered Training Room tutorials.
+
+- v1.12   Compliant with restored Adamant Ring acquisition notice.
+
+- v1.11   Main patch and font packs are now compliant with new wind-elemental icon in v1.05.
+          Elemental fangs' names adjusted.
+
+- v1.09   Guard and Aegis description spill-overs fixed.
+
+- v1.08   Fenix Esper and attack now use SquishBGone spellings when obtained from its side quest.
+
+
+NAME DIFFERENCES
+----------------
+These were the used multi-letter tiles, or "squish tiles," originating from FF4 Ultima Plus.
+il, li, ll, ti, it
+
+The following squish tiles were invented for SquishBGone. (An oxymoron statement, I know, but I tried hard to make them look natural and readable.)
+tt ($CA), EG ($CD), lar ($D2D3), lemen ($D4D5D6D7)
+
+SWORDS:         12345678
+Deathbringer -> Death // "Deathbringer" IN DIALOGUE
+Nightbringer -> Helheim
+Flandango    -> Flandago // SHORT FOR "Flandango"
+Piggy Stick  -> Pig Stick // USES "ti" ICON
+Caladbolg    -> Caldbolg // "Caladbolg" IN DIALOGUE
+Lightbringer -> Asgard
+Apocalypse   -> Crusader
+
+SPEARS:         12345678
+WindSpear    -> Wind (Spear)
+HolyLance    -> Holy (Lance)
+
+CLAWS:          12345678
+Fire Claw    -> FireClaw
+Kaiser Claw  -> Kaiser (Claw)
+TigerFang    -> Tiger (Fang)
+
+WHIPS:          12345678
+FlameLash    -> FireLash
+SlayingTail  -> Slaying (Tail)
+
+FLAILS:         12345678
+Chain Flail  -> Flail
+MorningStar  -> MornStar // SHORT FOR "Morning Star"
+
+BOOMERANGS:     12345678
+Rising Sun   -> RisenSun
+Boomerang    -> Boomrang // SHORT FOR "Boomerang"
+Wing Edge    -> WingEdge
+
+KATANA:         12345678
+Tempest      -> Kazekiri
+Eclipse      -> Gesshoku
+
+SHURIKEN:       12345678
+Ninja Star   -> Ninja (Star)
+
+HELMETS:        12345678
+WizardHat    -> Wizard (Hat)
+GlassMask    -> Glass (Mask)
+GoldHairpin  -> Gold Pin // SHORT FOR "Gold Hairpin"
+TigerMask    -> Tiger (Mask)
+
+ARMOR:          12345678
+PrismRobe    -> Prism (Robe)
+Black Robe   -> Black (Robe)
+WhiteRobe    -> White (Robe)
+Black Belt   -> Blk.Belt // SHORT FOR "Black Belt"
+
+ARM-WEAR:       12345678
+ThiefRing    -> Thief (Ring)
+BerserkRing  -> Berserk (Ring)
+OmegaRing    -> Omega (Ring)
+Ruby Ring    -> RubyRing
+Silver Ring  -> Silver (Ring)
+Rune Ring    -> RuneRing
+
+HEALING ITEMS: 12345678
+Life        -> Phoenix   // SHORT FOR "Phoenix Down"
+Heal        -> BodyHeal
+Abilify     -> MindHeal
+
+ATTACK ITEMS:  12345678
+ArcticWind  -> Ice Wind
+Fire Bomb   -> Red Fang
+IceShard    -> BlueFang
+Lit-Fang    -> GoldFang
+Air Slash   -> DuskFang
+MagicDart   -> ManaDart
+M.Cannon    -> ManaShot
+Bloodfeast  -> Redfeast
+DrkMatter   -> Dk.Matter // USES CUSTOM "tt" ICON
+AntiMatter  -> SAME BUT NOW USES CUSTOM "tt" ICON AS WELL AS "ti" ICON
+VoidStone   -> VoidRock
+Globe 199   -> Globe199
+
+SUPPPORT ITEMS:12345678
+Light Veil  -> LightVeil // USES "il" ICON
+EthrMantle  -> Star Veil // USES "il" ICON
+Elf Cloak   -> ElfCloak
+SilverApple -> SilvrFruit // USES "it" ICON; "SilverFruit" IN DIALOGUE
+Gold Apple  -> GoldFruit // USES "it" ICON
+Lnr.Mirror  -> Mirror // "Lunarian Mirror" IN DIALOGUE
+
+ENEMIES:       12345678
+Float Eye   -> FloatEye
+Sword Rat   -> SwordRat
+Mini Mage   -> MiniMage
+Water Hag   -> WaterHag
+BlackLizard -> BlackLiz // SHORT FOR "Black Lizard"
+Cockatrice  -> Coctrice // SHORT FOR "Cockatrice"
+Water Bug   -> WaterBug
+Electrfish  -> BoltFish
+BlackKnight -> Warlord
+Ice Knight  -> IceBlade
+Tiny Toad   -> TinyToad
+Rock Moth   -> RockMoth
+Trap Door   -> TrapDoor
+Pink Puff   -> PinkPuff
+Fatal Eye   -> FatalEye
+IceLizard   -> Ice Liz. // SHORT FOR "Ice Lizard"
+
+BOSSES:
+Mist Rage   -> MistRage
+Calofisteri -> Calfstri // SHORT FOR "Calofisteri"
+LiquidFlame -> LiquFire // SHORT FOR "Liquid Fire"
+Crystal D.  -> CrystalD // SHORT FOR "Crystal Dragon"
+Dk.Knight   -> D.Knight // SHORT FOR "Dark Knight"
+Leviathan   -> Levithan // SHORT FOR "Leviathan"
+Ultima B.   -> Ultima // MATCHING FFIII US, WHERE THIS FOE IS KNOWN AS "Atma"
+ZeromusEG   -> SAME BUT NOW USES CUSTOM "EG" ICON
+
+WHT. MAGIC:12345
+Pearl   -> Holy
+White   -> Smite
+Holy    -> Judge // SHORT FOR "Judgment"
+Confs   -> Charm
+Charm   -> Entice // USES "ti" ICON
+Berserk -> Bserk // SHORT FOR "Berserk", DO NOT FEEL LIKE CHANGING ALL INSTANCES OF "Berserk" TO "Fury"
+
+BLK. MAGIC: 12345
+Virus    -> Bio
+Bio      -> Blight // USES "li" ICON
+Grvity   -> Demi
+Scrge    -> Razer
+Burst    -> Ruin
+Nuke     -> Flare
+Flare    -> Melt(down)
+SFlare   -> Solar(Flare) // LONG ATK NAME USES CUSTOM "lar" ICON 2x
+StFall   -> Star(fall)
+BlackHol -> Void
+SNova    -> Nova
+
+CALL MAGIC:12345
+Phnix   -> Fenix
+Raiden  -> Raidn // SHORT FOR "Raiden"
+NeoBh   -> Neo   // SHORT FOR "Neo Bahamut"
+
+TOOLS:     12345
+AtmRay  -> A.Ray // SHORT FOR "Atom Ray"
+Glance  -> Glare
+Xhaust  -> Smog
+Gossp   -> Sneer
+StnGn   -> Taser
+Blast   -> Bomb
+Powder  -> Blind(Dust)
+ElecMg  -> Shock
+Blaster -> Blast
+Adren   -> Boost
+Explod  -> BOOM!
+Needle  -> Thorn
+
+SPCL.MAGIC:12345
+HiWind  -> Talon
+BgGrd   -> Guard
+MtGrd   -> Aegis
+Rflect  -> Veil
+Illusn  -> Elude
+FBomb   -> Flash
+
+OTHER ATTACKS:
+Bursting Ballad -> Ruinous Rhapsody
+
+ESPER ATTACKS: 12345678
+RbirthFlame -> Rebirth
+Reinforce   -> Revivify
+Megaflare   -> SAME BUT NOW USES CUSTOM "lar" ICON
+Teraflare   -> SAME BUT NOW USES CUSTOM "lar" ICON
+
+LONG ATK NAMES:12345678
+Powder      -> BlindDust // USES "li" ICON
+Needle      -> Needler // TO JUSTIFY CHANGING CID'S "Needle" TO "Thorn"
+Sword Rain  -> Swordfall // USES "ll" ICON
+
+ENEMY ATTACKS: 12345678
+AtomicRay   -> Atom Ray
+Rock Beak   -> RockBeak
+Mind Blow   -> MindBlow
+Foul Odor   -> FoulOdor
+SnowStorm   -> IceStorm
+PoisonGas   -> VenomGas
+Whirlwind   -> Storm
+DragnBrth   -> Breath
+LightFlash  -> Glimmer
+Crystalize  -> Calcify
+Tidal Wave  -> TideWave
+Flame Gale  -> FireGale
+Overclock   -> De-limiter // USES "li" AND "it" ICONS
+ShortCirct  -> GlitchOut // USES "li" ICON
+AtomicBlast -> A-Blast
+AtomicFire  -> AtomFire
+DarkBlaze   -> DarkFire
+Gigaflare   -> SAME BUT NOW USES CUSTOM "lar" ICON
+
+COMMANDS:  12345
+Fortify -> Fort
+
+CLASSES:    1234567
+D.Knight -> DKnight
+Engineer -> Chief
+Sorcerer -> Magus
+
+STATUS MENU: 123456
+Element   -> SAME BUT NOW USES CUSTOM "lemen" ICON
+
+CONFIG MENU:  123456789
+Encounters -> Battles
