@@ -148,12 +148,6 @@
     <!-- will become BOOTSTRAP CAROUSEL  -->
     <!-- https://getbootstrap.com/docs/4.0/components/carousel/ -->
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false">
-      <!-- little preview bars -->
-      <!-- <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-      </ol> -->
 
       <div class="carousel-inner">
         <div class="carousel-item active">
@@ -179,20 +173,43 @@
       role="button" data-slide="next"
       style="border: 1px dotted black; border-radius:10px; background: rgba(100, 100, 100, 0.3);">
         <span class="carousel-control-next-icon" aria-hidden="true" style="color:black;"></span>
-        <span class="sr-only" style="color:black;">Next</span>
+        <span class="sr-only" style="color:black;">Next</span> -->
       </a>
 <!-- end carousel -->
     </div>
-
+<!-- arrow to control slides -->
     <div class="d-flex row">
-      <div class="col-12 justify-content-center">
+      <div class="col-4">
+        <!-- <a class="carousel-control-prev" href="#carouselExampleIndicators" 
+          role="button" data-slide="prev" 
+          style="border: 1px dotted black; border-radius:10px; background: rgba(100, 100, 100, 0.3);">
+          <span class="carousel-control-prev-icon" aria-hidden="true" style="color:black;"></span>
+          <span class="sr-only" style="color:black;">Previous</span>
+        </a> -->
+      </div>
+
+      <div class="col-4 justify-content-center">
         <!-- Patch Button -->
         <button id="patch">Select These Patches</button>
-        <!-- Manifest and Download -->
-        <pre id="manifest"></pre>
-      </div>    
-    </div>
+      </div>
+<!-- arrow to control slides -->
+      <div class="col-4">
+        <!-- <a class="carousel-control-next" href="#carouselExampleIndicators" 
+          role="button" data-slide="next"
+          style="border: 1px dotted black; border-radius:10px; background: rgba(100, 100, 100, 0.3);">
+          <span class="carousel-control-next-icon" aria-hidden="true" style="color:black;"></span>
+          <span class="sr-only" style="color:black;">Next</span>
+        </a> -->
+      </div>
 
+    </div>
+    
+    <!-- Manifest and Download -->
+    <div class="row">
+      <div class="col">
+        <pre id="manifest"></pre>
+      </div>
+    </div>
 
     <!-- homepage button -->
     <div class="d-flex row">
@@ -227,6 +244,7 @@
         </a>
       </div>
       <!-- ends col -->
+       <p class="mt-2">Ulti-patcher name coined by Steela Light-- thank you for the great branding</p>
     </div>
   </body>
 
@@ -338,7 +356,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const selectContainer1 = document.getElementById("select-container1");
   subfolders1.forEach((folder, index) => {
     const label = document.createElement("label");
-    label.textContent = `Patch for "${folder}":`;
+    label.textContent = `Style for "${folder}":`;
 
     const select = document.createElement("select");
     select.id = `patch-select-${index}`;
@@ -351,7 +369,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const defaultOption = document.createElement("option");
     defaultOption.value = "";
-    defaultOption.textContent = "-- Select Patch -- (Currently default)";
+    defaultOption.textContent = "(Choose patch) default";
     select.appendChild(defaultOption);
 
     fetch(`./patches/${folder}/manifest.json`)
@@ -381,7 +399,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const selectContainer2 = document.getElementById("select-container2");
   subfolders2.forEach((folder, index) => {
     const label = document.createElement("label");
-    label.textContent = `Patch for "${folder}":`;
+    label.textContent = `Style for "${folder}":`;
 
     const select = document.createElement("select");
     select.id = `patch-select-${index}`;
@@ -394,7 +412,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const defaultOption = document.createElement("option");
     defaultOption.value = "";
-    defaultOption.textContent = "-- Select Patch -- (Currently default)";
+    defaultOption.textContent = "(Choose patch) default";
     select.appendChild(defaultOption);
 
     fetch(`./patches/${folder}/manifest.json`)
@@ -424,7 +442,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const selectContainer3 = document.getElementById("select-container3");
   subfolders3.forEach((folder, index) => {
     const label = document.createElement("label");
-    label.textContent = `Patch for "${folder}":`;
+    label.textContent = `Style for "${folder}":`;
 
     const select = document.createElement("select");
     select.id = `patch-select-${index}`;
@@ -437,7 +455,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const defaultOption = document.createElement("option");
     defaultOption.value = "";
-    defaultOption.textContent = "-- Select Patch -- (Currently default)";
+    defaultOption.textContent = "(Choose patch) default";
     select.appendChild(defaultOption);
 
     fetch(`./patches/${folder}/manifest.json`)
