@@ -1,6 +1,0 @@
-CHANGES: Various characters' battle sprites.
-
-EFFECT: Original Record Keeper (RK) sprites,
-and Alternate takes on RK sprites based on concept art, other palettes, and more.
-
-BY: T92, xJ4cks, Nicoc1991, 

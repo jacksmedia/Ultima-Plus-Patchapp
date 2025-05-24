@@ -1,8 +1,0 @@
-All Characters RK Battle Sprites v1.3, from T92.ips
-FF4 Ultima Enemy Graphics 4bpp upgrade v2 (SNES-size enemies), by Gedankenschild.ips
-Final Fantasy IV Ultima - Sylph-Bloodfeast Fix.ips
-Kain (RK portrait colors, by xJ4cks).ips
-map Edward (better, by xJ4cks).ips
-Palom & Porom original map colors fix.ips
-Pecil (RK, Cosmic, by T92).ips
-window-color-Jupiter.ips

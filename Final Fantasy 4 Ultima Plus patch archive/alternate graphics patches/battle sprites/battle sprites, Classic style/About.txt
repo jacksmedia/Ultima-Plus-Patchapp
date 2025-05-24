@@ -1,5 +1,0 @@
-CHANGES: Any / all playable characters battle sprites.
-
-EFFECT: Alternate designs and colors, based on the original FF4 SNES "vanilla" battle sprites.
-
-BY: xJ4cks, Nicoc1991, tsushiy
