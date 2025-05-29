@@ -52,17 +52,16 @@
       font-family: "Quattrocentro", serif;
     }
 /* adapted from https://stackoverflow.com/questions/23441060/how-to-animate-gradients-using-css */
-    #gradient
-{
-    height:100vh;
-    width:100vw;
-    background: linear-gradient(90deg, #8df,  antiquewhite,  #8df);
-    background-size: 200% 200%;
+    #gradient {
+      height:100vh;
+      width:100vw;
+      background: linear-gradient(90deg, #8df,  antiquewhite,  #8df);
+      background-size: 200% 200%;
 
-    -webkit-animation: Animation 42s ease infinite;
-    -moz-animation: Animation 42s ease infinite;
-    animation: Animation 42s ease infinite;
-}
+      -webkit-animation: Animation 42s ease infinite;
+      -moz-animation: Animation 42s ease infinite;
+      animation: Animation 42s ease infinite;
+    }
 
 @-webkit-keyframes Animation {
     0%{background-position:10% 0%}
@@ -79,6 +78,9 @@
     50%{background-position:91% 100%}
     100%{background-position:10% 0%}
 }
+
+/* Text color animation */
+
   </style>
   <!-- for unzipping GitHub archives -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -89,8 +91,13 @@
 <body id="gradient" class="container-fluid">
     <!-- header -->
     <div class="d-flex row">
-      <h1>FF4 Ultima Ulti-Patcher</h1>
-      <h3>Create your own custom version of FF4 Ultima!</h3>
+      <div class="col-6">
+        <h1>FF4 Ultima Ulti-Patcher</h1>
+        <h3>Create your own custom version of FF4 Ultima!</h3>
+      </div>
+      <div class="col-6 w-50 mt-3 justify-content-center">
+        <p id="gimmick"></p>
+      </div>
     </div>
     <div class="d-flex row">
       <div class="col">
@@ -106,7 +113,6 @@
           <li>WS = "FFIV" on the WonderSwan</li>
           <li>SBG = "SquishBGone", alt names where needed to remove double "squish" letters</li>
         </ul>
-        <h5>"Hot sprites in your area" - Guysons, The Forgetful</h5>
       </div>
       <hr/>
     </div>
@@ -257,7 +263,6 @@
 
 <script>
 const subfolders1 = [
-  "fonts", 
   "Decil", "Pecil", "Kain", "Rosa", 
   "Kydia", "Rydia", "Edge", 
   "Edward", "Yang", "Palom", "Porom", 
@@ -356,6 +361,34 @@ function updatePreviewImage(selectedValue) {
 
 // When DOM is ready, builds selectors
 window.addEventListener("DOMContentLoaded", () => {
+  
+  // random message onLoad, aka "Terraria gimmick"
+  const messages = [
+  '"Hot sprites in your area"',
+  '"Gimmick shamelessly stolen from Terraria"',
+  '"Now with ???% more jokes"',
+  '"Gee, it sure is boring around here"',
+  '"Am I really going to monopolize these? – Asked Guysons"',
+  '"Guysons was here"',
+  '"This site is sponsored by the game-artwork channel in the FF4 Ultima Discord"',
+  '"As much fun as summoning every resident of Feymarch at once"',
+  '"Just as much QoL as a convenience store!"',
+  '"Also listen to Legião Urbana!"',
+  '"Join the FF4 Ultima Discord for fresh sprites and stale GIFs"',
+  '"Kain is a simp tho, fr"',
+  '"Unofficially endorsed by Dr. Lugae"'
+  ];
+  function getRandomMessage() {
+    const randomIndex = Math.floor(Math.random() * messages.length);
+    return messages[randomIndex];
+  }
+  function displayRandomMessage() {
+    const randomMessage = getRandomMessage();
+    const messageElement = document.getElementById("gimmick");
+    messageElement.textContent = randomMessage;
+  }
+  displayRandomMessage();
+
   // 1st page of carousel of options
   const selectContainer1 = document.getElementById("select-container1");
   subfolders1.forEach((folder, index) => {
