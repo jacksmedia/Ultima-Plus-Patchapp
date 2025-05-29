@@ -51,6 +51,11 @@
       padding: 1rem;;
       font-family: "Quattrocentro", serif;
     }
+    .card {
+      background-color: antiquewhite;
+      padding: 0.5rem;
+      border-radius: 1rem;
+    }
 /* adapted from https://stackoverflow.com/questions/23441060/how-to-animate-gradients-using-css */
     #gradient {
       height:100vh;
@@ -58,28 +63,48 @@
       background: linear-gradient(90deg, #8df,  antiquewhite,  #8df);
       background-size: 200% 200%;
 
-      -webkit-animation: Animation 42s ease infinite;
-      -moz-animation: Animation 42s ease infinite;
-      animation: Animation 42s ease infinite;
+      -webkit-animation: bgColorShift 42s ease infinite;
+      -moz-animation: bgColorShift 42s ease infinite;
+      animation: bgColorShift 42s ease infinite;
     }
 
-@-webkit-keyframes Animation {
+@-webkit-keyframes bgColorShift {
     0%{background-position:10% 0%}
     50%{background-position:91% 100%}
     100%{background-position:10% 0%}
 }
-@-moz-keyframes Animation {
+@-moz-keyframes bgColorShift {
     0%{background-position:10% 0%}
     50%{background-position:91% 100%}
     100%{background-position:10% 0%}
 }
-@keyframes Animation { 
+@keyframes bgColorShift { 
     0%{background-position:10% 0%}
     50%{background-position:91% 100%}
     100%{background-position:10% 0%}
 }
 
 /* Text color animation */
+    #colorful-text {
+      -webkit-animation: textColorChange 8s ease infinite;
+      -moz-animation: textColorChange 8s ease infinite;
+      animation: textColorChange 8s ease infinite;
+    }
+    @-webkit-keyframes textColorChange {
+      0%{color:black}
+      50%{color:red}
+      100%{color:black}
+    }
+    @-moz-keyframes textColorChange {
+      0%{color:black}
+      50%{color:red}
+      100%{color:black}
+    }
+    @keyframes textColorChange {
+      0%{color:black}
+      50%{color:red}
+      100%{color:black}
+    }
 
   </style>
   <!-- for unzipping GitHub archives -->
@@ -102,10 +127,11 @@
     <div class="d-flex row">
       <div class="col">
         <h4>by xJ4cks & ChatGPT4-t</h4>
-        <p>Upload your Ultima ROM, select some options, then choose "Apply Patches". You'll see a manifest of your choices, and a link to download to your device.</p>
-        <p>This is a demo feature, a work-in-progress.</p>
+        <p id="colorful-text" class="card">Upload your FF4 ROM, select some options, then choose "Apply Patches". You'll see a manifest of your choices, and a link to download the new ROM to your device.</p>
+        <p>This is a demo feature, a work-in-progress. Golbez battle sprites only work with FF4 Ultima.</p>
       </div>
       <div class="col">
+        <p>Some abbreviations used:</p>
         <ul>
           <li>RK = "FF Record Keeper"</li>
           <li>PR = "FFIV Pixel Remaster"</li>
