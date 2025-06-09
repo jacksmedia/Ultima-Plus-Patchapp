@@ -365,7 +365,7 @@ function updatePreviewImage(selectedValue) {
 
     const pngPath = selectedValue.replace(/\.ips$/i, '.png');
     const previewUrl = `patches/${encodeURIComponent(pngPath)}`;
-    console.log(pngPath);
+    console.log(previewUrl);
 
     fetch(previewUrl, { method: 'HEAD' })
       .then(response => {
