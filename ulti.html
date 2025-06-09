@@ -364,20 +364,19 @@ function updatePreviewImage(selectedValue) {
     }
 
     const pngPath = selectedValue.replace(/\.ips$/i, '.png');
-    const previewUrl = `patches/${pngPath}`;
+    const previewUrl = `patches/${encodeURIComponent(pngPath)}`;
     console.log(pngPath);
 
     fetch(previewUrl, { method: 'HEAD' })
       .then(response => {
-       // if (response.ok) 
-       {
+        if (response.ok) {
           previewImg.src = previewUrl;
           previewImg.style.display = 'block';
           container.style.background = 'transparent';
-        }// else {
-          //previewImg.style.display = 'none';
-          //container.style.background = '#888';
-        //}
+        } else {
+          previewImg.style.display = 'none';
+          container.style.background = '#888';
+        }
       })
       .catch(() => {
         previewImg.style.display = 'none';
