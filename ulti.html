@@ -363,9 +363,14 @@ function updatePreviewImage(selectedValue) {
       return;
     }
 
-    const pngPath = selectedValue.replace(/\.ips$/i, '.png');
-    const previewUrl = `patches/${encodeURIComponent(pngPath)}`;
-    console.log(previewUrl);
+    // Split folder & filename for ironclad URI parsing in vercel
+    const parts = selectedValue.replace(/\.ips$/i, '.png').split('/');
+    const folder = parts.slice(0, -1).join('/');
+    const filename = parts.slice(-1)[0];
+    const safePath = `${folder}/${encodeURIComponent(filename)}`;
+
+    const previewUrl = `patches/${safePath}`;
+    console.log('Preview URL:', previewUrl);
 
     fetch(previewUrl, { method: 'HEAD' })
       .then(response => {
