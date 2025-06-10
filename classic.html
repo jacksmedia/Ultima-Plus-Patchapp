@@ -11,128 +11,10 @@
 	
 	<link rel="icon" type="image/png" href="/favicon.png"/>
 
-	<title>Final Fantasy 4 Ultima Classic Patcher</title>
 	<meta http-equiv="content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<title>Final Fantasy 4 Ultima Classic Patcher</title>
 
-	<!-- Rom Patcher JS needed CSS/JS files -->
-	<link type="text/css" rel="stylesheet" href="./rom-patcher-js/style.css" media="all" />
-	<script type="text/javascript" src="./rom-patcher-js/RomPatcher.webapp.js"></script>
-
-	<!-- Rom Patcher JS initialization for main feature -->
-	<script type="text/javascript">
-		window.addEventListener('load', function (evt) {
-		const FFII_CHECKSUM_V10 = 0x65D0A825 ; // ff2_v1.0.ips
-		const FFII_CHECKSUM_V11 = 0x23084FCD ; // ff2_v1.1.ips
-		const FFIV_CHECKSUM_ET = 0x6CDA700C ; // ffiv_easy.ips
-		const FFIV_CHECKSUM_REV11 = 0xCAA15E97 ; // ffiv_rev1.1).ips
-		const FFII_CHECKSUM_V10_H = 0xE73564DB ; // ff2_v1.0-H.ips
-		const FFII_CHECKSUM_V11_H = 0xA1ED8333 ; // ff2_v1.1-H.ips
-		const FFIV_CHECKSUM_ET_H = 0xEE3FBCF2 ; // ffiv_easy-H.ips
-		const FFIV_CHECKSUM_REV11_H = 0x48449269 ; // ffiv_rev1.1-H.ips
-		// all above are inside of FF4UC.zip
-		const FF2_CHECKSUMS_INVALID = [0x21027C5D] // FFIV rev1 rom, no patch for it at this time
-
-			try {
-				RomPatcherWeb.initialize({
-					language: 'en', //default: en
-					requireValidation: true, // needed for multipatch mode
-					onloadrom: function (romFile) {						
-						// const SMC_HEADER_SIZE=512;
-						// if(romFile.getExtension()==='smc' && ((romFile.fileSize - SMC_HEADER_SIZE) % 0x20000) === 0){
-						// 	romFile.removeLeadingBytes(SMC_HEADER_SIZE);
-						// 	romFile.setExtension('sfc');
-						// 	console.log('removed SMC header');
-						// }
-						const crc32 = romFile.hashCRC32();
-						/* if ROM version = FFII v1.0 */
-						if (crc32 === FFII_CHECKSUM_V10)
-							RomPatcherWeb.pickEmbededFile('ff2 v1.0.ips');
-						/* if ROM version = FFII v1.1 */
-						else if (crc32 === FFII_CHECKSUM_V11)
-							RomPatcherWeb.pickEmbededFile('ff2 v1.1.ips');
-						/* if ROM version = FF IV Easy Type */
-						else if (crc32 === FFIV_CHECKSUM_ET)
-							RomPatcherWeb.pickEmbededFile('ffiv easy.ips');
-						/* if ROM version = FF IV rev1.1 */
-						else if (crc32 === FFIV_CHECKSUM_REV11)
-							RomPatcherWeb.pickEmbededFile('ffiv rev1.1.ips');
-						/* if ROM version = FF IV rev1.1 */
-						else if (crc32 === FFII_CHECKSUM_V10_H)
-							RomPatcherWeb.pickEmbededFile('ff2 v1.0-H.ips');
-						/* if ROM version = FF IV rev1.1 */
-						else if (crc32 === FFII_CHECKSUM_V11_H)
-							RomPatcherWeb.pickEmbededFile('ff2 v1.1-H.ips');
-						/* if ROM version = FF IV rev1.1 */
-						else if (crc32 === FFIV_CHECKSUM_ET_H)
-							RomPatcherWeb.pickEmbededFile('ffiv easy-H.ips');
-						/* if ROM version = FF IV rev1.1 */
-						else if (crc32 === FFIV_CHECKSUM_REV11_H)
-							RomPatcherWeb.pickEmbededFile('ffiv rev1.1-H.ips');
-					},
-					onvalidaterom: function (romFile, isRomValid) {
-						const crc32 = romFile.hashCRC32();
-						/* if ROM is a known (J) version that is incompatible with these patches */
-						if (!isRomValid && FF2_CHECKSUMS_INVALID.indexOf(crc32) !== -1)
-							RomPatcherWeb.setErrorMessage('Please provide a valid FF2 of FFIV rom file.');
-					}
-				}, {
-					file: 'FF4UC.zip',
-					patches: [
-						{
-							file: 'ff2 v1.0.ips',
-							name: 'FF4 Ultima (for FFII v1.0)',
-							description: 'dozens of new weapons, monsters, maps, and challenges',
-							outputName: 'FF4Ultima', //patched ROM name
-						},{
-							file: 'ff2 v1.1.ips',
-							name: 'FF4 Ultima (for FFII v1.1)',
-							description: 'dozens of new weapons, monsters, maps, and challenges',
-							outputName: 'FF4Ultima', //patched ROM name
-						},{
-							file: 'ffiv easy.ips',
-							name: 'FF4 Ultima (for FFIV EasyType)',
-							description: 'dozens of new weapons, monsters, maps, and challenges',
-							outputName: 'FF4Ultima', //patched ROM name
-						},{
-							file: 'ffiv rev1.1.ips',
-							name: 'FF4 Ultima (for FFIV Rev1.1)',
-							description: 'dozens of new weapons, monsters, maps, and challenges',
-							outputName: 'FF4Ultima', //patched ROM name
-						},{
-							file: 'ff2 v1.0-H.ips',
-							name: 'FF4 Ultima (for FFII v1.0 Header)',
-							description: 'dozens of new weapons, monsters, maps, and challenges',
-							outputName: 'FF4Ultima', //patched ROM name
-						},{
-							file: 'ff2 v1.1-H.ips',
-							name: 'FF4 Ultima (for FFII v1.1 Header)',
-							description: 'dozens of new weapons, monsters, maps, and challenges',
-							outputName: 'FF4Ultima', //patched ROM name
-						},{
-							file: 'ffiv easy-H.ips',
-							name: 'FF4 Ultima (for FFIV EasyType Header)',
-							description: 'dozens of new weapons, monsters, maps, and challenges',
-							outputName: 'FF4Ultima', //patched ROM name
-						},{
-							file: 'ffiv rev1.1-H.ips',
-							name: 'FF4 Ultima (for FFIV Rev1.1 Header)',
-							description: 'dozens of new weapons, monsters, maps, and challenges',
-							outputName: 'FF4Ultima', //patched ROM name
-						}
-					]
-				}
-			);} catch (err) {
-				var message = err.message;
-				if (/incompatible browser/i.test(message) || /variable RomPatcherWeb/i.test(message))
-					message = 'Your browser is outdated and it is not compatible with this app.';
-
-				document.getElementById('rom-patcher-container').innerHTML = message;
-				document.getElementById('rom-patcher-container').style.color = 'red';
-			}
-		});
-	</script>
-	
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-VGPQVGX8VD"></script>
 	<script>
@@ -143,195 +25,660 @@
 		gtag('config', 'G-VGPQVGX8VD');
 	</script>
 
+	<style>
+body {
+	font: 1.1rem 'Quattrocento Sans', sans-serif;
+	background: black;
+	font-weight: 400;
+    font-style: normal;
+    color: #e4e4e6;
+}
+h1 {
+    font-family: "Quattrocentro", serif;
+}
+h2 {
+    font-family: "Quattrocentro", serif;
+}
+.file-upload {
+    margin-bottom: 10px;
+    background-color: black;
+    color: white;
+}
+
+/* "Please Wait Donut" animation effect (throbbing annular) */
+
+#spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  visibility: hidden; /* Hidden on load */
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s ease-in-out;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid deepskyblue;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#spinner-overlay.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* button styling */
+
+@keyframes guide-text {
+  0% {color: #80a;}
+  50% {color: #f0f;}
+  100% {color: #80a;}
+}
+.lilytext {
+  color: #80a;
+  animation-name: guide-text;
+  animation-duration: 3s;
+  -moz-animation-duration: 3s;
+  -webkit-animation-duration: 3s;
+  animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+}
+
+
+@keyframes apply-text {
+  0% {color: white;}
+  50% {color: red;}
+  100% {color: white;}
+}
+.lfg-text {
+  animation-name: apply-text;
+  animation-duration: 2.5s;
+  -moz-animation-duration: 2.5s;
+  -webkit-animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  background-color: #408;
+}
+
+#crc-display {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+button {
+  padding: 6px;
+  border-radius: 10px;
+  color: #999;
+  background-color: #333;
+}
+
+input::file-selector-button {
+  color: gold;
+  background-color: #333;
+  padding: 6px;
+  border-radius: 10px;   
+}
+
+.highlight {
+    font-weight: bold;
+    background-color: white;
+    border-radius: 3px;
+    padding: 2px;
+    color: #c0c;
+}
+
+/* adapted from https://stackoverflow.com/questions/23441060/how-to-animate-gradients-using-css */
+#gradient
+{
+    height:100vh;
+    width:100vw;
+    background: linear-gradient(177deg,#55b2d1, #000, #55b2d1);
+    background-size: 200% 200%;
+
+    -webkit-animation: Animation 23s ease infinite;
+    -moz-animation: Animation 23s ease infinite;
+    animation: Animation 23s ease infinite;
+}
+
+@-webkit-keyframes Animation {
+    0%{background-position:10% 0%}
+    50%{background-position:91% 100%}
+    100%{background-position:10% 0%}
+}
+@-moz-keyframes Animation {
+    0%{background-position:10% 0%}
+    50%{background-position:91% 100%}
+    100%{background-position:10% 0%}
+}
+@keyframes Animation { 
+    0%{background-position:10% 0%}
+    50%{background-position:91% 100%}
+    100%{background-position:10% 0%}
+}
+a {
+	color: #c0c;
+}
+	</style>
+
+	<!-- for unzipping archives -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
+
+
 </head>
+	
 
-<body style="font: 1.1rem 'Quattrocento Sans', sans-serif; background: linear-gradient(#55b2d1, #000, #55b2d1);">
-	<header class="container-fluid">
-		<!-- first row, page title -->
-		<div class="row justify-content-center">
-			<!-- begins single column -->
-			<div class="col d-flex justify-content-center">
-				<h1 style="font-family: Quattrocento;">
-					FF4 Ultima Classic Rom Patcher
-				</h1>
-			</div>
-		<!-- ends row -->
-		</div>
-		<!-- 2nd row for, header content -->
-		<div class="row d-flex justify-content-center align-items-center">
-			<!-- begins left column -->
-			<div class="col-12 col-sm-4 d-flex justify-content-center align-items-center mx-auto">		
-				<p style="line-height: 150%; font-size: 111%;">
-					Please upload a copy of <em>'Final Fantasy II (USA)'</em> or <em>'FF IV(J)'.</em>
-					This app can patch it into <span style="color:gold;">Final Fantasy IV Ultima Classic</span> (rev25c).<br/>
-					This tool & patches current as of 9 Jan 2025.
-				</p>
-			</div>
-			<!-- center col, for image of title screen -->
-			<div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">
-				<img style="width: 100%;" src="classicTitle.png" id="preview-Title" />
-			</div>
-			<!-- begins right column -->
-			<div class="col-12 col-sm-4 d-flex-column justify-content-end align-items-center">
-				<h3 style="color:gold;">
-				If you need a copy of FF4 Ultima Plus,</h3>
-				<p>use the</p>
-				<a href="index.html" style="text-decoration:none;">
-					<button class="d-flex justify-content-center align-items-center"
-					style="background: black; padding: 1rem; border-radius: 2rem;">
-						<h4 style="color:#80a;">
-							Ultima Plus Patcher
-						</h4>
-					</button>
-				</a>
-			</div>
-			<!-- ends col -->
-		</div>
-		<!-- ends row -->
-	</header>
+<body id="gradient" style="font: 1rem 'Quattrocento Sans', sans-serif;">
+    <header class="container-fluid">
+    <!-- first row, page title -->
+    <div class="row justify-content-center">
+        <!-- begins single column -->
+        <div class="col d-flex justify-content-center">
+            <h1 style="font-family: Quattrocento;">
+                FF4 Ultima Classic Patcher
+            </h1>
+        </div>
+    </div>
+    </header>
 
-	<!-- messages below the 3-column layout -->
-	<div class="row justify-content-center">
-		<!-- begins single column -->
-		<div class="col d-flex justify-content-center">
-			<h5>
-				Why play FF4 Ultima Classic vs Ultima Plus?<br/>
-				The reason we hear most often is that people want this version's RetroAchievements support,<br/>
-				and Ultima Plus doesn't offer it yet!
-			</h5>
-		<!-- ends col -->
-		</div>
-	<!-- ends row -->
+	<!-- UX element that shows during download then is removed -->
+	<div id="spinner-overlay" class="spinner-overlay">
+		<div class="spinner"></div>
 	</div>
 
-	<!-- main feature container, CSS layout classes -->
-	<div id="rom-patcher-container">
-		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-rom">
-			<div class="text-right">
-				<label for="rom-patcher-input-file-rom" data-localize="yes">
-					ROM file:
-				</label>
-			</div>
-			<div class="rom-patcher-container-input">
-				<input type="file" id="rom-patcher-input-file-rom" class="empty" disabled />
-			</div>
-		</div>
-		<div class="margin-bottom text-selectable text-mono text-muted" id="rom-patcher-rom-info">
-			<div class="rom-patcher-row">
-				<div class="text-right">
-					<h3 class="">
-						CRC32:
-					</h3>
-				</div>
-				<div class="text-truncate">
-					<h2 class="">	
-						<code id="rom-patcher-span-crc32"></code>
-					</h2>
-				</div>
-			</div>
-			<div class="rom-patcher-row" id="rom-patcher-row-info-rom">
-				<div class="text-right">
-					ROM:
-				</div>
-				<div class="text-truncate"><span id="rom-patcher-span-rom-info"></span></div>
-			</div>
-		</div>
-		<!-- BS styling for the 8 CRC32 numbers -->
-		<div class="container-fluid">
-			<div class="row w-100">
-				<div class="col-12 d-flex justify-content-center">
-					<h6>The rom checksums (CRC32s) that work at this time are:<br/>						
-						<span style="color:tomato;">23084fcd</span>, <span style="color:tomato;">65d0a825</span>,
-						<span style="color:blue;">6cda700c</span>, <span style="color:blue;">caa15e97</span>,<br/>
-						<span style="color:tomato;">e73564db</span>, <span style="color:tomato;">a1ed8333</span>,
-						<span style="color:blue;">ee3fbcf2</span>, <span style="color:blue;">48449269</span>
-					</h6>
-				</div>
-			</div>
-		</div> 
-		<!-- end BS styling -->
-		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-patch">
-			<div class="text-right">
-				<label for="rom-patcher-input-file-patch" data-localize="yes">
-					Patch file:
-				</label>
-			</div>
-			<div class="rom-patcher-container-input">
-				<select id="rom-patcher-select-patch"></select>
-			</div>
-		</div>
-		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-patch-description">
-			<div class="text-right text-mono text-muted" data-localize="yes">
-				Description:
-			</div>
-			<div class="" id="rom-patcher-patch-description"></div>
-		</div>
-		<div class="text-center" id="rom-patcher-row-apply">
-			<div id="rom-patcher-row-error-message" class="margin-bottom"><span id="rom-patcher-error-message"></span>
-			</div>
-			<button id="rom-patcher-button-apply" data-localize="yes" disabled>Apply patch</button>
-		</div>
-	</div>
+    <main class="container-fluid">
 
-	<div id="rom-patcher-powered" class="text-center">
-		<a href="https://github.com/marcrobledo/RomPatcher.js" target="_blank">
-			<img src="./rom-patcher-js/assets/powered_by_rom_patcher_js.png" loading="lazy" />
-			Powered by Rom Patcher JS
-		</a>
-	</div>
+		<hr/>
 
-<!-- 3 column links: Guides, Discord, Classic -->
+		<!-- 2nd row, first interaction -->
+		<div class="row mx-auto" style="width: 87vw;">
+			<!-- begins first column -->
+			<div class="col-12 col-sm-6">
 
-	<div class="container-fluid">
-		<!-- only row; all 3 cols stack vertically on <md screens -->
-		<div class="row justify-content-center">
-			<!-- begins 1st column, Ultima Guides link -->
-			<div class="col-sm-4 d-flex align-items-center justify-content-center">
-				<div class="d-flex align-items-center">Game guides available at &nbsp;&nbsp; </div>
-				<!-- black btn styled div -->
-				<a href="guides.html" style="text-decoration:none;">
-				<button class="d-flex justify-content-center align-items-center"
-				style="background: black; padding: 1.2rem; border-radius: 2rem;">
-					<span style="color:fuchsia;">
-						FF4 Ultima Guides
-					</span>
-				</button>
-				</a>		
+                <div class="col g-col-6">
+                    <p>Upload a FFII or FF4J rom and this patcher will change it to FF4 Ultima Classic. If you have any trouble, reach out in the FF4 Ultima Discord!</p>
+                    <!-- ROM Upload -->
+                </div>
+                <div class="file-upload col g-col-6">
+                    <label for="rom">ROM File (.sfc or .smc):</label>
+                    <input type="file" id="romUpload" accept=".sfc,.smc" />
+                </div>
+
+                <div>Valid CRC32 values:
+                    <span class="possible-match">65D0A825</span>,
+                    <span class="possible-match">23084FCD</span>,
+                    <span class="possible-match">6CDA700C</span>,
+                    <span class="possible-match">CAA15E97</span>,
+                    <span class="possible-match">E73564DB</span>,
+                    <span class="possible-match">A1ED8333</span>,
+                    <span class="possible-match">EE3FBCF2</span>,
+                    <span class="possible-match">48449269</span>
+                </div>
+                <div id="crc-display" style="color:gold; font-size:large;">Your rom's CRC: (waiting for upload...)</div>
+                <div class="grid gap-0 column-gap-0">
+                    <!-- dropdown of patches -->
+                    <select id="patch-dropdown" style="display:none;">
+                        <option value="" disabled selected>Select a patch</option>
+                    </select>    
+        
+                    <button id="applyPatch" class="">Apply Patch</button>
+                    <p>&nbsp;</p>
+                    <p>Official version of Ultima Classic is rev25c</p>
+                    <p>
+                        <a target="_blank" href="https://github.com/jacksmedia/Ultima-Plus-Patchapp/blob/main/Final%20Fantasy%20IV%20Ultima%20Plus%20changelog.txt">
+                            View Plus vs Classic changelog
+                        </a>
+                    </p>
+                </div>
+
 			</div>
-			<!-- 2nd col, for Ultima Classic -->
-			<div class="col-sm-4 d-flex align-items-center justify-content-center">
-				If you want to apply some custom graphics and fonts to Ultima Classic, try the style packs:
-				<!-- black btn styled div -->
-				<a href="styles-classic.html" style="text-decoration:none;">
-				<button class="d-flex justify-content-center align-items-center"
-				style="background: black; padding: 1.2rem; border-radius: 2rem;">
-					<span style="color:lightblue; text-decoration:none;">
-						FF4 Ultima Classic Styles
-					</span>
-				</button>
-				</a>
-			</div>
-			<!-- 3rd col, moves below 1st & 2nd on md > screens
-			 for Discord Link -->
-			<div class="col-sm-4 d-flex justify-content-center align-items-center">			
-				<!-- black btn styled link-->
-				<a href="https://discord.gg/PGMASbSnD9" 
-				target="_blank"
-				style="text-decoration:none;">
-				<button class="d-flex justify-content-center align-items-center"
-				style="background: black; padding: 1.2rem; border-radius: 2rem;">
-					<h6 style="color: white;">Join us in
-					<span style="color:#f7dc6f;">
-						Ultima Discord
-					</h6>!
-				</button>
-				</a>
-			<!-- ends col -->
+			<div class="col-12 col-sm-6">
+				<img src="./classicTitle.png" 
+				alt="preview of title screen of Final Fantasy 4 Ultima" 
+				style="width: 100%;"/>
 			</div>
 		</div>
-	</div>
-	<!-- by xJ4cks for Ultima Plus Team, 2024-2025 -->
+
+		<hr/>
+
+		<!-- 3rd row, optionals -->
+        <div class="row">
+            <div class="col-sm-6 d-flex justify-content-space-around align-items-center">
+
+                <h5 style="color:#eff;">
+                    If you want custom <span style="color:aqua;">graphics...</span>
+                </h5>
+                <!-- black btn styled div -->
+                <a href="styles-classic.html" style="text-decoration:none;">
+                    <button class="d-flex justify-content-center align-items-center"
+                    style="background: black; padding: 1rem; border-radius: 2rem;">
+                        <h4 style="color:aqua;">
+                            FF4 Ultima Styles
+                        </h4>
+                    </button>
+                </a>
+            </div>
+
+            
+        <!-- 4th row for Guides, Classic, and Discord link -->
+
+            <div class="col-sm-4 d-flex align-items-center justify-content-center">
+                <!-- black btn styled div -->
+                <a href="guides.html" style="text-decoration:none;">
+                <button class="d-flex justify-content-center align-items-center"
+                style="background: black; padding: 1.2rem; border-radius: 2rem;">
+                    <h4 class="lilytext">
+                        FF4 Ultima Guides
+                    </h4>
+                </button>
+                </a>		
+            </div>
+            
+
+
+            <div class="col-sm-4 d-flex align-items-center justify-content-center">
+                <p>If you want to play Ultima with improvements, find the <span style="color:palegoldenrod;">Plus Edition</span> here:</p>
+                <!-- black btn styled div -->
+                <a href="index.html" style="text-decoration:none;">
+                <button class="d-flex justify-content-center align-items-center"
+                style="background: black; padding: 1.2rem; border-radius: 2rem;">
+                    <span style="color:#c0c; text-decoration:none;">
+                        FF4 Ultima Plus
+                    </span>
+                </button>
+                </a>
+            </div>
+
+
+            <div class="col-sm-4 d-flex justify-content-center align-items-center">			
+                <!-- black btn styled link -->
+                <a href="https://discord.gg/PGMASbSnD9" 
+                target="_blank"
+                style="text-decoration:none;">
+                <button class="d-flex justify-content-center align-items-center"
+                style="background: black; padding: 1rem; border-radius: 2rem;">
+                    <h6 style="color: white;">Join us in
+                    <span style="color:#f7dc6f;">
+                        Ultima Discord
+                    </h6>
+                </button>
+                </a>
+            </div>
+
+        </div>
+
+        <hr/>
+
+		<!-- 5th row, attribution -->
+        <div class="row">
+            <div class="col-sm-6">
+                <p>FF4 Ultima by <a href="http://ff4ultima.com/">8-bit fan</a> and Team Ultima.</p>
+                <p>This webapp coded by <a href="https://jacks.media">xJ4cks</a> & ChatGPT4-t.</p>
+                <p>Final Fantasy IV by Squaresoft, 1991.<br/>Please obey all copyright laws and only use roms<br/>which you own the physical media of.</p>
+            </div>
+
+            <div class="col-sm-6 d-flex justify-content-center align-items-center">
+                <p>You can also 
+                <a href="Final Fantasy 4 Ultima Plus patch archive.zip">download all the patches</a> on this site.</p>
+            </div>
+
+        </div>
+	</main>
+
+
+<script>
+let romData = null; // Stores the uploaded ROM file data
+let zip = null; // Stores the loaded ZIP for later access
+
+// Spinner UX Functions
+function showSpinner() {
+    const spinnerOverlay = document.getElementById('spinner-overlay');
+    spinnerOverlay?.classList.add('show');
+}
+
+function hideSpinner() {
+    const spinnerOverlay = document.getElementById('spinner-overlay');
+    spinnerOverlay?.classList.remove('show');
+}
+
+
+// Accepted CRC32s for existing FF4UP patches
+const romPatchMap = {
+    "65D0A825": "ff2 v1.0.ips",
+    "23084FCD": "ff2 v1.1.ips",
+    "6CDA700C": "ffiv easy.ips",
+    "CAA15E97": "ffiv rev1.1.ips",
+    "E73564DB": "ff2 v1.0-H.ips",
+    "A1ED8333": "ff2 v1.1-H.ips",
+    "EE3FBCF2": "ffiv easy-H.ips",
+    "48449269": "ffiv rev1.1-H.ips"
+};
+
+// Precomputes CRC32 Table (clever work by ChatpGPT4)
+const crcTable = new Uint32Array(256);
+for (let i = 0; i < 256; i++) {
+    let crc = i;
+    for (let j = 0; j < 8; j++) {
+        crc = (crc & 1) ? (0xEDB88320 ^ (crc >>> 1)) : (crc >>> 1);
+    }
+    crcTable[i] = crc;
+}
+
+function computeCRC32(buffer) {
+    let crc = 0xFFFFFFFF;
+    for (let i = 0; i < buffer.length; i++) {
+        let byte = buffer[i];
+        crc = (crc >>> 8) ^ crcTable[(crc ^ byte) & 0xFF];
+    }
+    return (crc ^ 0xFFFFFFFF) >>> 0;
+}
+
+// UI magic, makes "Apply Patch" core-btn text change color when active
+function textChange() {
+    const button = document.getElementById('applyPatch');
+    // Ensures styles are applied only as needed
+    if (!button.classList.contains('lfg-text')) {
+        button.classList.remove('core-btn');
+        void button.offsetWidth; // Forces a repaint to trigger CSS animations
+        button.classList.add('lfg-text');
+        console.log("Apply Patch button activated!"); // Debugging
+    }
+}
+
+
+// --UI magic--
+// highlights entry in romPatchMap on match
+// changes button styling
+// changes display message
+function crcHighlighter(crcHex) {
+    console.log("Checking CRC:", crcHex);
+    
+    const crcElement = document.getElementById('crc-display');
+    const button = document.getElementById('applyPatch');
+    const spans = document.querySelectorAll('.possible-match');
+
+    // general layout test
+    if (!crcElement || !button) {
+        console.error('One or more required UI elements not found.');
+        return;
+    }
+
+    // Update CRC text display
+    crcElement.textContent = `Your rom's CRC: ${crcHex}`;
+
+    let matchFound = false;
+
+    spans.forEach(span => {
+        const spanText = span.textContent.trim().toUpperCase();
+
+        if (spanText === crcHex.toUpperCase()) {
+            console.log("Match found! Applying highlight.");
+            span.classList.remove('highlight'); // Clear previous just in case
+            void span.offsetWidth; // Forces a repaint
+            span.classList.add('highlight');
+
+            button.classList.add('lfg-text'); // Main feature active now
+            matchFound = true;
+        } else {
+            span.classList.remove('highlight');
+        }
+    });
+
+    if (!matchFound) {
+        console.log("CRC not matched. Displaying invalid rom msg.")
+        crcElement.textContent = `This rom won't work with this patcher. Try another!`;
+        button.classList.remove('lfg-text'); // Rolls back activation styling
+    }
+}
+
+// Handles ROM Upload & CRC Calculation
+document.getElementById('romUpload').addEventListener('change', async (event) => {
+    let file = event.target.files[0];
+    if (!file) return;
+
+    let reader = new FileReader();
+    reader.onload = function (e) {
+        romData = new Uint8Array(e.target.result); // Use global `romData`
+        let crc = computeCRC32(romData);
+        let crcHex = crc.toString(16).toUpperCase();
+        console.log("Computed CRC32:", crcHex);
+        crcHighlighter(crcHex); // updates webapp
+
+        // Auto-select matching patch
+        if (romPatchMap[crcHex]) {
+            const patchDropdown = document.getElementById('patch-dropdown');
+            for (let option of patchDropdown.options) {
+                if (option.value === romPatchMap[crcHex]) {
+                    option.selected = true;
+                    console.log(`Auto-selected patch: ${option.value}`);
+                    break;
+                }
+            }
+        }
+    };
+    reader.readAsArrayBuffer(file);
+});
+
+async function applyIpsPatch(romData, ipsData) {
+    const IPS_HEADER = "PATCH";
+    const IPS_FOOTER = "EOF";
+
+    let offset = 0;
+
+    // Shows spinner at the start
+    showSpinner();
+
+    try {
+        // Verifies header
+        const header = new TextDecoder().decode(ipsData.slice(0, 5));
+        if (header !== IPS_HEADER) throw new Error("Invalid IPS file: Incorrect header.");
+        offset += 5;
+
+        while (offset < ipsData.length) {
+            // Checks for footer
+            if (offset + 3 <= ipsData.length) {
+                const footer = new TextDecoder().decode(ipsData.slice(offset, offset + 3));
+                if (footer === IPS_FOOTER) {
+                    // Valid footer, end of process
+                    return romData;
+                }
+            }
+
+            // Reads patch address
+            if (offset + 3 > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data while reading address.");
+            const address = (ipsData[offset] << 16) | (ipsData[offset + 1] << 8) | ipsData[offset + 2];
+            offset += 3;
+
+            // Reads patch size
+            if (offset + 2 > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data while reading size.");
+            const size = (ipsData[offset] << 8) | ipsData[offset + 1];
+            offset += 2;
+
+            if (size === 0) {
+                // RLE (Run Length Encoding)
+                if (offset + 3 > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data in RLE encoding.");
+                const rleSize = (ipsData[offset] << 8) | ipsData[offset + 1];
+                const value = ipsData[offset + 2];
+                offset += 3;
+
+                // Checks and expands ROM size if necessary
+                const endAddress = address + rleSize;
+                if (endAddress > romData.length) {
+                    console.warn(`Expanding ROM size to accommodate address: ${endAddress}`);
+                    const expandedRom = new Uint8Array(endAddress);
+                    expandedRom.set(romData);
+                    romData = expandedRom;
+                }
+
+                // Applies RLE to ROM data
+                for (let i = 0; i < rleSize; i++) {
+                    romData[address + i] = value;
+                }
+            } else {
+                // Normal patch
+                if (offset + size > ipsData.length) throw new Error("Invalid IPS file: Unexpected end of data in normal patch.");
+                const patchData = ipsData.slice(offset, offset + size);
+                offset += size;
+
+                // Checks and expands ROM size if necessary
+                const endAddress = address + size;
+                if (endAddress > romData.length) {
+                    console.warn(`Expanding ROM size to accommodate address: ${endAddress}`);
+                    const expandedRom = new Uint8Array(endAddress);
+                    expandedRom.set(romData);
+                    romData = expandedRom;
+                }
+
+                // Apply patch to ROM data
+                for (let i = 0; i < size; i++) {
+                    romData[address + i] = patchData[i];
+                }
+            }
+        }
+
+        throw new Error("Invalid IPS file: Missing footer.");
+    } finally {
+        // Always hides spinner, whether successful or errored out
+        hideSpinner();
+    }
+}
+
+// Apply the Patch <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+async function applySelectedPatch() {
+    if (!romData) {
+        alert('Please upload a ROM file first!');
+        return;
+    }
+
+    const patchDropdown = document.getElementById('patch-dropdown');
+    const selectedPatch = patchDropdown.value;
+    if (!selectedPatch) {
+        alert('Please select a patch to apply!');
+        return;
+    }
+
+    if (!zip) {
+        alert('Patch archive not loaded yet!');
+        return;
+    }
+
+    try {
+        showSpinner();
+
+        // Fetches the IPS file from ZIP
+        const patchFile = zip.files[selectedPatch];
+        if (!patchFile) {
+            throw new Error('Patch file not found in ZIP!');
+        }
+
+        const patchData = await patchFile.async('uint8array');
+
+        // Employs bytecode changing logic
+        const patchedRom = await applyIpsPatch(romData, patchData);
+        console.log('Patch applied successfully.');
+
+        // Downloads patched ROM
+        downloadPatchedRom(patchedRom, 'FF4 Ultima.sfc');
+    } catch (error) {
+        console.error('Error applying patch:', error);
+        alert(`Error applying patch: ${error.message}`);
+    } finally {
+        hideSpinner();
+    }
+}
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+// Download the patched ROM
+function downloadPatchedRom(data, filename) {
+    const blob = new Blob([data], { type: 'application/octet-stream' });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.click();
+
+    URL.revokeObjectURL(url);
+    console.log('Patched ROM downloaded as:', filename);
+}
+
+// Load IPS Patch ZIP File
+async function loadLocalZip() {
+    const zipFilePath = 'FF4UC.zip';
+    try {
+        const response = await fetch(zipFilePath);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch ZIP file: ${response.statusText}`);
+        }
+
+        const zipBlob = await response.blob();
+        zip = await JSZip.loadAsync(zipBlob);
+
+        console.log('ZIP file loaded successfully:', zip);
+
+        // Extract `.ips` files from ZIP
+        const patchFiles = Object.keys(zip.files).filter(relativePath =>
+            relativePath.endsWith('.ips') && !zip.files[relativePath].dir
+        );
+
+        console.log('Filtered patch files:', patchFiles);
+        populateDropdown(patchFiles);
+    } catch (error) {
+        console.error('Error loading ZIP file:', error);
+    }
+}
+
+// Populate the Dropdown with Patch Files
+function populateDropdown(patchFiles) {
+    const patchDropdown = document.getElementById('patch-dropdown');
+    if (!patchDropdown) {
+        console.error('Dropdown element not found');
+        return;
+    }
+
+    patchDropdown.innerHTML = ''; // Clear previous entries
+
+    patchFiles.forEach(relativePath => {
+        const option = document.createElement("option");
+        option.value = relativePath;
+        option.textContent = relativePath.split('/').pop();
+        patchDropdown.appendChild(option);
+        console.log('Added to dropdown:', relativePath);
+    });
+
+    console.log('Dropdown options populated:', patchDropdown.options.length);
+}
+
+// Initialize WebApp
+document.addEventListener('DOMContentLoaded', () => {
+    loadLocalZip();
+    document.getElementById('applyPatch').addEventListener('click', applySelectedPatch);
+});
+</script>
+        
+
+
 
 </body>
-
+  
 </html>
