@@ -27,7 +27,7 @@
     <link rel="icon" type="image/png" href="/favicon.png"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>FF4 Ultima Plus Style Packs</title>
+	<title>FF4 Ultima Style Packs</title>
 
 	<!-- for unzipping archives -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
@@ -63,7 +63,7 @@
 			<!-- begins single column -->
 			<div class="col d-flex justify-content-center">
 				<h1 style="font-family: Quattrocento;">
-					FF4 Ultima Plus Style Patcher
+					FF4 Ultima Style Patcher
 				</h1>
 			</div>
 			<!-- ends row -->
@@ -75,7 +75,7 @@
 			<!-- begins left column -->
 			<div class="col-12 col-sm-4 d-flex justify-content-center align-items-center mx-auto">		
 				<p style="line-height: 150%; font-size: 111%;">
-					Please upload a copy of 'Final Fantasy 4 Ultima Plus'.
+					Please upload a copy of 'Final Fantasy 4 Ultima'.
 					This app offers alternate graphics,
 				<span style="color:gold;">choose from one of 11 after uploading</span>.
 				<br/><a href="Final Fantasy 4 Ultima Plus patch archive.zip">(Download the full patch archive for custom mixes of these assets.)</a>
@@ -106,7 +106,7 @@
 			</a>
 			<p>
 				This site & patches updated<br/>
-				April 2025
+				June 2025
 			</p>
 			<!-- ends col -->
 			</div>
@@ -130,12 +130,13 @@
 			<div class="col-sm-6">
                 <!-- ROM Upload -->
                 <div class="file-upload col">
-                    <label for="rom">Ultima Plus ROM File:</label>
+                    <label for="rom">Ultima ROM File:</label>
                     <input type="file" id="romUpload" accept=".sfc,.smc" />
                 </div>
 				<div id="crc-display" style="color:gold;">Your rom's CRC: (waiting for upload...)</div>
                 <h6>
-					The CRC32 (checksum) expected is <span class="possible-match">CB329707</span>
+					The Ultima Plus rom has CRC32 (checksum) <span class="possible-match">CB329707</span> 
+					& Ultima Classic has <span class="possible-match">1A13A227</span>
 				</h6>
 				<div class="grid gap-0 column-gap-0">
                     <!-- dropdown of patches -->
@@ -149,7 +150,7 @@
 
 			<div class="col-sm-6 d-flex justify-content-space-around align-items-center">
                 <h5 style="color:#eff;">
-                    If you want custom <span style="color:tomato;">fonts...</span> use the rom you make here at the Fonts patcher.
+                    If you want custom <span style="color:tomato;">fonts...</span> use the rom you make here at the Fonts patcher. (Only supports Ultima Plus.)
                 </h5>
                 <!-- black btn styled div -->
                 <a href="fonts.html" style="text-decoration:none;">
@@ -268,7 +269,8 @@
 	
 	// Only Accepted CRC32s for these patches
 	const romPatchMap = {
-		"CB329707": "2-Mercury-Plus.ips" // Mercury is the default style pack
+		"1A13227": "2-Mercury-Style.ips", // Mercury is the default Classic style pack
+		"CB329707": "10-Neptune-Style.ips" // Neptune is the default Plus style pack
 	};
 	
 	// Precomputes CRC32 Table (clever work by ChatpGPT4)
@@ -710,7 +712,7 @@
 			console.log('Patch applied successfully.');
 	
 			// Downloads patched ROM
-			downloadPatchedRom(patchedRom, `FF4 Ultima Plus ${styleName}.sfc`);
+			downloadPatchedRom(patchedRom, `FF4 Ultima ${styleName}.sfc`);
 		} catch (error) {
 			console.error('Error applying patch:', error);
 			alert(`Error applying patch: ${error.message}`);
