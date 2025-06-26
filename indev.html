@@ -188,7 +188,7 @@
     <div class="d-flex row">
       <div class ="d-flex col justify-content-center">
         <div id="preview-container" 
-        style="min-width: 256px; min-height: 110px; 
+        style="min-width: 256px; min-height: 256px; 
         width: 100%; height: auto;
         max-width: 256px; max-height: 110px;
         background: #888; 
@@ -196,7 +196,7 @@
         display: flex; align-items: center; justify-content: center;">
           <img id="preview-image" src="" alt="Patch preview" 
           style="object-fit: contain; 
-          width: 200%; height: auto; display: none;">
+          width: 100%; height: auto; display: none;">
         </div>
       </div>
     </div>
@@ -378,7 +378,7 @@ function updatePreviewImage(selectedValue) {
     const filename = parts.slice(-1)[0];
     const safePath = `${folder}/${encodeURIComponent(filename)}`;
 
-    const previewUrl = `patches/${safePath}`;
+    const previewUrl = `indev/${safePath}`;
     console.log('Preview URL:', previewUrl);
 
     fetch(previewUrl, { method: 'HEAD' })
