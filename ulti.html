@@ -97,7 +97,7 @@
 }
 
 /* Text color animation */
-    #colorful-text {
+    .colorful-text {
       -webkit-animation: textColorChange 8s ease infinite;
       -moz-animation: textColorChange 8s ease infinite;
       animation: textColorChange 8s ease infinite;
@@ -148,9 +148,16 @@
     <div class="d-flex row">
       <div class="col">
         <h4>by xJ4cks & ChatGPT4-t</h4>
-        <p id="colorful-text" class="card">Upload your FF4 ROM, select some options, then choose "Apply Patches".
+        <p class="card colorful-text">Upload your FF4 ROM, select some options, then choose "Apply Patches".
         <br/>You'll see a manifest of your choices, and a link to download the new ROM to your device.</p>
         <p>This is a demo feature, a work-in-progress. Golbez sprites only work with FF4 Ultima.</p>
+          
+        <!-- ROM Upload -->
+        <div class="file-upload colorful-text card">
+          <label for="rom">ROM File (.sfc):</label>
+          <input type="file" id="rom" accept=".sfc">
+        </div>
+        
       </div>
       <div class="col">
         <p>Some abbreviations used:</p>
@@ -167,14 +174,6 @@
         </ul>
       </div>
       <hr/>
-    </div>
-
-    <!-- ROM Upload -->
-    <div class="d-flex row">
-      <div class="col file-upload">
-        <label for="rom">ROM File (.sfc):</label>
-        <input type="file" id="rom" accept=".sfc">
-      </div>
     </div>
 
 
@@ -500,7 +499,9 @@ window.addEventListener("DOMContentLoaded", () => {
   const selectContainer2 = document.getElementById("select-container2");
   subfolders2.forEach((folder, index) => {
     const label = document.createElement("label");
-    label.textContent = `Style for "${folder}":`;
+    label.textContent = `Style for "${folder}"`;
+
+    const breaker = document.createElement("br");
 
     const select = document.createElement("select");
     select.id = `patch-select-${index}`;
@@ -533,8 +534,13 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     const div = document.createElement("div");
-    div.appendChild(label);
+    div.style.border = 'dotted 1px red';
+    div.style.background = '#6663'
+    div.style.padding = '3px';
+    div.style.marginBottom = '5px';
     div.appendChild(select);
+    div.appendChild(breaker);
+    div.appendChild(label);
     selectContainer2.appendChild(div);
   });
 
@@ -545,6 +551,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const label = document.createElement("label");
     label.textContent = `Style for "${folder}":`;
 
+    const breaker = document.createElement("br");
+
     const select = document.createElement("select");
     select.id = `patch-select-${index}`;
     select.dataset.folder = folder;
@@ -576,8 +584,13 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     const div = document.createElement("div");
-    div.appendChild(label);
+    div.style.border = 'dotted 1px red';
+    div.style.background = '#6663'
+    div.style.padding = '3px';
+    div.style.marginBottom = '5px';
     div.appendChild(select);
+    div.appendChild(breaker);
+    div.appendChild(label);
     selectContainer3.appendChild(div);
   });
 
