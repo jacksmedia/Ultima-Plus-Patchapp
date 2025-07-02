@@ -71,6 +71,25 @@
       padding: 0.5rem;
       border-radius: 1rem;
     }
+
+    .options-scrollzone {
+      overflow: scroll;
+      scrollbar-color: #a2c white;
+      scrollbar-width: thin;
+      height: 65vh;
+      max-height: 65vh;
+      width: 70vw;
+      max-width: 70vw;
+      border: black dotted 1px;
+      margin-left: 15vw;
+    }
+
+/*  inject text over preview image blank deafault  */
+    #preview-container::before {
+      content: "Patch Preview"
+    }
+
+
 /* adapted from https://stackoverflow.com/questions/23441060/how-to-animate-gradients-using-css */
     #gradient {
       height:100vh;
@@ -142,7 +161,7 @@
     <div class="d-flex row">
       <div class="col-6">
         <h1>FF4 Ultima Ulti-Patcher</h1>
-        <h3>Create your own custom version of FF4 Ultima!</h3>
+        <h4>Create your own custom version of FF4 Ultima!</h4>
       </div>
       <div class="col-6 w-46 mt-3 justify-content-center">
         <p id="gimmick"></p>
@@ -150,10 +169,10 @@
     </div>
     <div class="d-flex row">
       <div class="col">
-        <h4>by xJ4cks & ChatGPT4-t</h4>
+
         <p class="card colorful-text">Upload your FF4 ROM, select some options, then choose "Apply Patches".
         <br/>You'll see a manifest of your choices, and a link to download the new ROM to your device.</p>
-        <p>This is a demo feature, a work-in-progress. Golbez sprites only work with FF4 Ultima.</p>
+        <p>This is a demo feature, a work-in-progress. Golbez sprites only work with FF4 Ultima. Please use Landscape view if on mobile for best results</p>
           
         <!-- ROM Upload -->
         <div class="file-upload colorful-text card">
@@ -190,7 +209,7 @@
        <!-- creating one per carousel slide will allow for custom image category sizes -->
     <div class="d-flex row">
       <div class ="d-flex col justify-content-center">
-        <div id="preview-container" 
+        <div id="preview-container"
         style="min-width: 256px; min-height: 110px; 
         width: 100%; height: auto;
         max-width: 256px; max-height: 110px;
@@ -199,32 +218,37 @@
         display: flex; align-items: center; justify-content: center;">
           <img id="preview-image" src="" alt="Patch preview" 
           style="object-fit: contain; 
-          width: 200%; height: auto; display: none;">
+          width: 160%; height: auto; display: none;">
           <!-- object-fit: contain; = top shelf CSS! -->
         </div>
       </div>
     </div>
 
     <!-- curated lists in dropdowns -->
-    <!-- BOOTSTRAP5 CAROUSEL  -->
+    <!-- BOOTSTRAP5 CAROUSEL  ;  3 panels, 3 discrete loops to populate them, per id -->
     <!-- https://getbootstrap.com/docs/5.3/components/carousel/ -->
     <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="false">
 
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="d-block w-100 d-flex flex-column align-items-center justify-content-center " 
+      <div class="carousel-inner options-scrollzone">
+
+        <!-- battle sprites -->
+        <div class="carousel-item active">  
+          <div class="d-block w-100 d-flex flex-column align-items-center justify-content-left"
           id="select-container1"></div>
         </div>
 
-        <div class ="carousel-item">
-          <div class="d-block w-100 d-flex flex-column align-items-center justify-content-center " 
+        <!-- map sprites -->
+        <div class="carousel-item">
+          <div class="d-block w-100 d-flex flex-column align-items-center justify-content-left"
           id="select-container2"></div>
         </div>
       
-        <div class ="carousel-item">
-          <div class="d-block w-100 d-flex flex-column align-items-center justify-content-center " 
+        <!-- menu portraits -->
+        <div class="carousel-item">
+          <div class="d-block w-100 d-flex flex-column align-items-center justify-content-left"
           id="select-container3"></div>
         </div>
+
       </div>
 <!-- arrows to control slides -->
       <button class="carousel-control-prev" data-bs-target="#carouselExample" 
@@ -232,39 +256,26 @@
       style="max-width:10vw; border: 1px dotted black; border-radius:10px; background: rgba(100, 100, 100, 0.3);">
         <span class="carousel-control-prev-icon" aria-hidden="true" style="color:black;"></span>
         <span class="sr-only" style="color:black;">Previous</span>
-    </button>
+      </button>
       <button class="carousel-control-next" data-bs-target="#carouselExample" 
       role="button" data-bs-slide="next"
       style="max-width:10vw; border: 1px dotted black; border-radius:10px; background: rgba(100, 100, 100, 0.3);">
         <span class="carousel-control-next-icon" aria-hidden="true" style="color:black;"></span>
         <span class="sr-only" style="color:black;">Next</span>
-    </button>
+      </button>
 <!-- end carousel -->
     </div>
+
+
+
 <!-- arrow to control slides -->
     <div class="d-flex row">
-      <div class="col-4">
-        <!-- <a class="carousel-control-prev" href="#carouselExampleIndicators" 
-          role="button" data-slide="prev" 
-          style="border: 1px dotted black; border-radius:10px; background: rgba(100, 100, 100, 0.3);">
-          <span class="carousel-control-prev-icon" aria-hidden="true" style="color:black;"></span>
-          <span class="sr-only" style="color:black;">Previous</span>
-        </a> -->
-      </div>
-
+      <div class="col-4"></div>
       <div class="col-4 justify-content-center">
         <!-- Patch Button -->
         <button id="patch">Apply Patches</button>
       </div>
-<!-- arrow to control slides -->
-      <div class="col-4">
-        <!-- <a class="carousel-control-next" href="#carouselExampleIndicators" 
-          role="button" data-slide="next"
-          style="border: 1px dotted black; border-radius:10px; background: rgba(100, 100, 100, 0.3);">
-          <span class="carousel-control-next-icon" aria-hidden="true" style="color:black;"></span>
-          <span class="sr-only" style="color:black;">Next</span>
-        </a> -->
-      </div>
+      <div class="col-4"></div>
 
     </div>
     
@@ -310,6 +321,7 @@
       </div>
       <!-- ends col -->
        <p class="mt-2">Ulti-patcher name coined by Steela Light-- thank you for the great branding</p>
+       <sub>Webapp designed in glorious HTML5 by xJ4cks & ChatGPT4-t</sub>
     </div>
   </body>
 
