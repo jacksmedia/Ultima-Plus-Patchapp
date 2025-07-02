@@ -201,7 +201,8 @@
     <!-- curated lists in dropdowns -->
     <!-- will become BOOTSTRAP CAROUSEL  -->
     <!-- https://getbootstrap.com/docs/4.0/components/carousel/ -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false">
+    <!-- https://getbootstrap.com/docs/4.0/components/carousel/ -->
+    <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="false">
 
       <div class="carousel-inner">
         <div class="carousel-item active">
@@ -220,18 +221,18 @@
         </div>
       </div>
 <!-- arrows to control slides -->
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" 
-      role="button" data-slide="prev" 
-      style="max-width:8vw; border: 1px dotted black; border-radius:10px; background: rgba(100, 100, 100, 0.3);">
+      <button class="carousel-control-prev" data-bs-target="#carouselExample" 
+      role="button" data-bs-slide="prev" 
+      style="max-width:10vw; border: 1px dotted black; border-radius:10px; background: rgba(100, 100, 100, 0.3);">
         <span class="carousel-control-prev-icon" aria-hidden="true" style="color:black;"></span>
-        <span class="sr-only" style="color:black;">Prev.</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" 
-      role="button" data-slide="next"
-      style="max-width:8vw; border: 1px dotted black; border-radius:10px; background: rgba(100, 100, 100, 0.3);">
+        <span class="sr-only" style="color:black;">Previous</span>
+    </button>
+      <button class="carousel-control-next" data-bs-target="#carouselExample" 
+      role="button" data-bs-slide="next"
+      style="max-width:10vw; border: 1px dotted black; border-radius:10px; background: rgba(100, 100, 100, 0.3);">
         <span class="carousel-control-next-icon" aria-hidden="true" style="color:black;"></span>
         <span class="sr-only" style="color:black;">Next</span>
-      </a>
+    </button>
 <!-- end carousel -->
     </div>
 <!-- arrow to control slides -->
