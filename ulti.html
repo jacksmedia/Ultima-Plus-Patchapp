@@ -148,12 +148,17 @@
     <div class="d-flex row">
       <div class="col">
         <h4>by xJ4cks & ChatGPT4-t</h4>
-        <p id="colorful-text" class="card">Upload your FF4 ROM, select some options, then choose "Apply Patches". You'll see a manifest of your choices, and a link to download the new ROM to your device.</p>
+        <p id="colorful-text" class="card">Upload your FF4 ROM, select some options, then choose "Apply Patches".
+        <br/>You'll see a manifest of your choices, and a link to download the new ROM to your device.</p>
         <p>This is a demo feature, a work-in-progress. Golbez sprites only work with FF4 Ultima.</p>
       </div>
       <div class="col">
         <p>Some abbreviations used:</p>
         <ul>
+          <li>Decil = "Dark Knight Cecil"</li>
+          <li>Pecil = "Paladin Cecil"</li>
+          <li>Kydia = "Kid Rydia"</li>
+          <hr/>
           <li>RK = "FF Record Keeper"</li>
           <li>PR = "FFIV Pixel Remaster"</li>
           <li>DS = Nintendo DS "FFIV"</li>
@@ -206,17 +211,17 @@
 
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <div class="d-block w-100 d-flex flex-column align-items-center justify-content-center mx-auto" 
+          <div class="d-block w-100 d-flex flex-column align-items-center justify-content-center " 
           id="select-container1"></div>
         </div>
 
         <div class ="carousel-item">
-          <div class="d-block w-100 d-flex flex-column align-items-center justify-content-center mx-auto" 
+          <div class="d-block w-100 d-flex flex-column align-items-center justify-content-center " 
           id="select-container2"></div>
         </div>
       
         <div class ="carousel-item">
-          <div class="d-block w-100 d-flex flex-column align-items-center justify-content-center mx-auto" 
+          <div class="d-block w-100 d-flex flex-column align-items-center justify-content-center " 
           id="select-container3"></div>
         </div>
       </div>
@@ -446,7 +451,9 @@ window.addEventListener("DOMContentLoaded", () => {
   const selectContainer1 = document.getElementById("select-container1");
   subfolders1.forEach((folder, index) => {
     const label = document.createElement("label");
-    label.textContent = `Style for "${folder}":`;
+    label.textContent = `Style for "${folder}"`;
+
+    const breaker = document.createElement("br");
 
     const select = document.createElement("select");
     select.id = `patch-select-${index}`;
@@ -459,7 +466,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const defaultOption = document.createElement("option");
     defaultOption.value = "";
-    defaultOption.textContent = "(Choose patch) default";
+    defaultOption.textContent = "vanilla graphics";
     select.appendChild(defaultOption);
 
     fetch(`./patches/${folder}/manifest.json`)
@@ -479,8 +486,13 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     const div = document.createElement("div");
-    div.appendChild(label);
+    div.style.border = 'dotted 1px red';
+    div.style.background = '#6663'
+    div.style.padding = '3px';
+    div.style.marginBottom = '5px';
     div.appendChild(select);
+    div.appendChild(breaker);
+    div.appendChild(label);
     selectContainer1.appendChild(div);
   });
 
@@ -502,7 +514,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const defaultOption = document.createElement("option");
     defaultOption.value = "";
-    defaultOption.textContent = "(Choose patch) default";
+    defaultOption.textContent = "vanilla graphics";
     select.appendChild(defaultOption);
 
     fetch(`./patches/${folder}/manifest.json`)
@@ -545,7 +557,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const defaultOption = document.createElement("option");
     defaultOption.value = "";
-    defaultOption.textContent = "(Choose patch) default";
+    defaultOption.textContent = "vanilla graphics";
     select.appendChild(defaultOption);
 
     fetch(`./patches/${folder}/manifest.json`)
