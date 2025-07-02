@@ -56,12 +56,15 @@
       max-width: 60vw;
       padding: 10px;
       border-radius: 10px;
+      border: black dotted 1px;
     }
     #patch {
-      background-color: #c4f;
+      background-color: #a2c;
       color: antiquewhite;
-      padding: 1rem;;
+      padding: 1rem;
       font-family: "Quattrocentro", serif;
+      font-weight: 600;
+      font-size: 125%;
     }
     .card {
       background-color: antiquewhite;
@@ -104,17 +107,17 @@
     }
     @-webkit-keyframes textColorChange {
       0%{color:black}
-      50%{color:red}
+      50%{color:#a2c}
       100%{color:black}
     }
     @-moz-keyframes textColorChange {
       0%{color:black}
-      50%{color:red}
+      50%{color:#a2c}
       100%{color:black}
     }
     @keyframes textColorChange {
       0%{color:black}
-      50%{color:red}
+      50%{color:#a2c}
       100%{color:black}
     }
 
@@ -251,7 +254,7 @@
 
       <div class="col-4 justify-content-center">
         <!-- Patch Button -->
-        <button id="patch">Select These Patches</button>
+        <button id="patch">Apply Patches</button>
       </div>
 <!-- arrow to control slides -->
       <div class="col-4">
@@ -268,7 +271,8 @@
     <!-- Manifest and Download -->
     <div class="row">
       <div class="col">
-        <pre id="manifest"></pre>
+        <h3>Patch Manifest</h3>
+        <pre id="manifest">... choose some patches, then click the Apply button!</pre>
       </div>
     </div>
 
@@ -631,7 +635,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const link = document.createElement("a");
     link.href = url;
     link.download = "FF4 Ultima Plus Custom.sfc";
-    link.textContent = "Download Custom Ultima";
+    link.textContent = "Download your Custom FF4 Ultima ROM";
     link.style.display = "block";
     link.style.color = "#f0f";
     link.style.fontSize = "2rem";
