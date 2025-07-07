@@ -2,25 +2,30 @@ Final Fantasy IV - Ultima Plus Changelog
 ------------
    v2025
 ------------
-v1.09
+v1.0.10
+- item improvement: Gaia Gear now protects against Gradual Petrify status AND Stone status (Description changed to reflect this)
+- UI improvement: Gradual Petrify appears as a Dark Grey Stone icon in equipment menus & Bestiary
+- UI improvement: Curse status icon is displayed correctly as a Dark Grey Skull in equipment menus
+
+v1.0.09
 - bugfix: Fixes back attack bug seen in random encounters that caused soft lock
 
-v1.08
+v1.0.08
 - bugfix: Fixes a bug that caused a soft lock when reviving a character that began the battle KO'ed during a back attack
 - Fabul map improvement: Towers's names adjusted to "1F" vs both as "East Tower"
 - 2 dialog typo fixes in Bosh Rush room; 1 typo in SquishBGone (Sorcerer -> Magus)
 
-v1.07a
+v1.0.07a
 - Training room dialogue updated to reflect new row mechanics in Ultima Plus
 
-v1.07
+v1.0.07
 - bugfix: Edward equipment retained on New Game +
 - Star icon fixed in Load Menu
 
-v1.06b
+v1.0.06b
 - Float icon bugfix in Icon Key
 
-v1.06
+v1.0.06
 - adds new Holy elemental icon (white diamond, matches FF4:TAY icon)
 - improves "Star" icon
 - "Add" becomes the more obvious "With" in Bestiary
@@ -29,14 +34,14 @@ v1.06
 - reverts Bloodsip to VampFang as a result of above
 - recovers the other v1.05 changes (Wind icon, 2 new magic attack items) without bugs
 
-v1.05 (bugged) 
+v1.0.05 (bugged) 
 - New Wind icon (yellow/green whirlwind)
 - Names of 4 magic attack items, "Fangs", were changed to be more distinct
 
-v1.04b
+v1.0.04b
 - Bugfix as suggested by reference docs to address "empty dialog" that can occur at certain moments such as when learning spells
 
-v1.04
+v1.0.04
 - Grammatical correction in a character ability side quest
 - Title screen year changed to 2025
 
@@ -78,19 +83,19 @@ For more info, please reach out to us on the FF4Ultima discord: https://discord.
 --------------
 Changelog 2024
 --------------
-v1.03
+v1.0.03
 - Icon Key menu overhaul by chillyfeez; now includes more stats
 
 ------------------------
 
-v1.02
+v1.0.02
 - Typo correction in Fabul story dialogue
 - Removed stutter from Fabul NPC uttering a character name label
 - VampFang -> Bloodsip
 
 ------------------------
 
-v1.01
+v1.0.01
 - Blind icon display in "Icon Key" menu label fixed by xJ4cks
 
 ------------------------
