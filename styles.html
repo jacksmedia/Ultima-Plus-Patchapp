@@ -41,6 +41,15 @@
 			padding: 6px;
   			border-radius: 10px;
 		}
+		.preview-banner {
+			width:100%;
+			max-width:100%;
+		}
+		/* ample spacing for manifest*/
+		.attribution-section {
+			line-height: 200%;
+			font-size: 1.2rem;
+		}
 	</style>
 </head>
 
@@ -121,12 +130,11 @@
 
 
 	<main class="container-fluid">
-	
 		<hr/>
-
-		<!-- 2nd row, first interaction -->
+		<!-- row -->
 		<div class="row mx-auto" style="width: 87vw; background:#222; border-radius: 1rem; padding: 1rem; margin: 0.5rem;">
-			<!-- begins first column -->
+			
+			<!-- begins 1st column -->
 			<div class="col-sm-6">
                 <!-- ROM Upload -->
                 <div class="file-upload col">
@@ -145,9 +153,8 @@
                     </select>    
                     <button id="applyPatch" class="patch-btn">Apply Patch</button>
                 </div>
-
 			</div>
-
+			<!-- begins 2nd column -->
 			<div class="col-sm-6 d-flex justify-content-space-around align-items-center">
                 <h5 style="color:#eff;">
                     If you like any of the custom <span style="color:tomato;">fonts</span> seen in the preview images, use the rom you make here at the Fonts patcher. (Only supports Ultima Plus.)
@@ -162,53 +169,40 @@
                     </button>
                 </a>
             </div>
-
-
+		<!-- end row -->
 		</div>
-		<div class="row mx-auto" style="width: 87vw;"></div>
-			<div style="display:flex; flex-direction:column; justify-content:center; align-items:center; background:#000; border-radius: 1rem; padding: 1rem; margin: 0.5rem;">
-				<!-- 1st preview, image pngs -->
-				<img style="width:85vw; max-width:85vw; display:none;" src="previews-1-Mercury.png" id="Mercury-preview-png" />
-				<img style="width:85vw; max-width:85vw; display:none;" src="previews-2-Venus.png" id="Venus-preview-png" />
-				<img style="width:85vw; max-width:85vw; display:none;" src="previews-3-Luna.png" id="Luna-preview-png" />
-				<img style="width:85vw; max-width:85vw; display:none;" src="previews-4-Vesta.png" id="Vesta-preview-png" />
-				<img style="width:85vw; max-width:85vw; display:none;" src="previews-5-Ceres.png" id="Ceres-preview-png" />
-				<img style="width:85vw; max-width:85vw; display:none;" src="previews-6-Mars.png" id="Mars-preview-png" />
-				<img style="width:85vw; max-width:85vw; display:none;" src="previews-7-Jupiter.png" id="Jupiter-preview-png" />
-				<img style="width:85vw; max-width:85vw; display:none;" src="previews-8-Saturn.png" id="Saturn-preview-png" />
-				<img style="width:85vw; max-width:85vw; display:none;" src="previews-9-Uranus.png" id="Uranus-preview-png" />
-				<img style="width:85vw; max-width:85vw; display:none;" src="previews-10-Neptune.png" id="Neptune-preview-png" />
-				<img style="width:85vw; max-width:85vw; display:none;" src="previews-11-Pluto.png" id="Pluto-preview-png" />
 
-				<div class="d-flex row" style="width:85vw;">
-					<!-- 2nd preview, animated GIFs -->
-					<div class="col-lg-7">
-
-						<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Mercury.gif" id="Mercury-preview-gif" />
-						<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Venus.gif" id="Venus-preview-gif" />
-						<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Luna.gif" id="Luna-preview-gif" />
-						<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Luna.gif" id="Vesta-preview-gif" />
-						<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Ceres.gif" id="Ceres-preview-gif" />
-						<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Mars.gif" id="Mars-preview-gif" />
-						<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Jupiter.gif" id="Jupiter-preview-gif" />
-						<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Saturn.gif" id="Saturn-preview-gif" />
-						<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Uranus.gif" id="Uranus-preview-gif" />
-						<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Neptune.gif" id="Neptune-preview-gif" />
-						<img style="width:48vw; max-width:48vw; min-width:320px; aspect-ratio:8/7; display:none; padding-top: 3vh;" src="p-Pluto.gif" id="Pluto-preview-gif" />
-					</div>
-						<!-- 3rd preview, credit manifest -->
-					<div class="col-lg-5 mt-3 pl-3">
-						<h3>Patches & Authors</h3>
-						<div id="planet-manifest" class="attribution-section">
-							<!-- Planet attribution text will be displayed here -->
-						</div>
-					</div>
-
-				</div>
+		<!-- row -->
+		<div class="row mx-auto" style="width: 87vw; background:#000; border-radius: 1rem; padding: 1rem; margin: 0.5rem;">
 			
+			<!-- begins 1st column -->
+			<div class="col-sm-6" style="align-items:center; background:#000;">
+				<!-- image pngs -->
+				<img class="preview-banner" style="display:none;" src="1-Mercury-Style.png" id="Mercury-preview-png" />
+				<img class="preview-banner" style="display:none;" src="2-Venus-Style.png" id="Venus-preview-png" />
+				<img class="preview-banner" style="display:none;" src="3-Luna-Style.png" id="Luna-preview-png" />
+				<img class="preview-banner" style="display:none;" src="4-Vesta-Style.png" id="Vesta-preview-png" />
+				<img class="preview-banner" style="display:none;" src="5-Ceres-Style.png" id="Ceres-preview-png" />
+				<img class="preview-banner" style="display:none;" src="6-Mars-Style.png" id="Mars-preview-png" />
+				<img class="preview-banner" style="display:none;" src="7-Jupiter-Style.png" id="Jupiter-preview-png" />
+				<img class="preview-banner" style="display:none;" src="8-Saturn-Style.png" id="Saturn-preview-png" />
+				<img class="preview-banner" style="display:none;" src="9-Uranus-Style.png" id="Uranus-preview-png" />
+				<img class="preview-banner" style="display:none;" src="10-Neptune-Style.png" id="Neptune-preview-png" />
+				<img class="preview-banner" style="display:none;" src="11-Pluto-Style.png" id="Pluto-preview-png" />
 			</div>
+			
+			<!-- begins 2nd column -->
+			<div class="col-sm-6 d-flex flex-column justify-content-space-around align-items-center mt-3">
+				<h3>Patches & Authors</h3>
+				<div id="planet-manifest" class="attribution-section">
+					<!-- Planet attribution text will be displayed here -->
+				</div>
+			</div>
+			
 		</div>
 		<!-- end patcher container -->
+
+
 		<div class="text-center">
 			<h5>Featuring sprite work from:</h5>
 				<span class="badge bg-light text-dark">Nicoc1991</span>
@@ -225,6 +219,8 @@
 				<span class="badge bg-light text-dark">FlamePurge</span>
 				<span class="badge bg-light text-dark">chillyfeez</span>
 		</div>
+
+
 		<!-- link to the WIP custom multi-patcher -->
 		<div class="row">
 			<div class="col-12 col-sm-4 d-flex-column justify-content-end align-items-center">
@@ -249,8 +245,10 @@
 		<!-- ends row -->
 		</div>
 
+	<!-- ends container w main app features -->
 	</main>
-<!-- main app features -->
+
+
 <script type="text/javascript">
 
 	let romData = null; // Stores the uploaded ROM file data
