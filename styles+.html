@@ -72,7 +72,7 @@
 			<!-- begins single column -->
 			<div class="col d-flex justify-content-center">
 				<h1 style="font-family: Quattrocento;">
-					FF4 Ultima Style Patcher
+					FF4 Ultima Community Styles
 				</h1>
 			</div>
 			<!-- ends row -->
@@ -84,9 +84,9 @@
 			<!-- begins left column -->
 			<div class="col-12 col-sm-4 d-flex justify-content-center align-items-center mx-auto">		
 				<p style="line-height: 150%; font-size: 111%;">
-					Please upload a copy of 'Final Fantasy 4 Ultima'.
+					Please upload a copy of 'Final Fantasy 4 Ultima Plus'.
 					This app offers alternate graphics,
-				<span style="color:gold;">choose from one of 11 after uploading</span>.
+				<span style="color:gold;">choose from one of these after uploading</span>.
 				<br/><a href="Final Fantasy 4 Ultima Plus patch archive.zip">(Download the full patch archive for custom mixes of these assets.)</a>
 				</p>
 			<!-- end left column -->
@@ -144,7 +144,6 @@
 				<div id="crc-display" style="color:gold;">Your rom's CRC: (waiting for upload...)</div>
                 <h6>
 					The Ultima Plus rom has CRC32 (checksum) <span class="possible-match">1F373E00</span> 
-					& Ultima Classic has <span class="possible-match">1A13A227</span>
 				</h6>
 				<div class="grid gap-0 column-gap-0">
                     <!-- dropdown of patches -->
@@ -178,17 +177,8 @@
 			<!-- begins 1st column -->
 			<div class="col-sm-6" style="align-items:center; background:#000;">
 				<!-- image pngs -->
-				<img class="preview-banner" style="display:none;" src="1-Mercury-Style.png" id="Mercury-preview-png" />
-				<img class="preview-banner" style="display:none;" src="2-Venus-Style.png" id="Venus-preview-png" />
-				<img class="preview-banner" style="display:none;" src="3-Luna-Style.png" id="Luna-preview-png" />
-				<img class="preview-banner" style="display:none;" src="4-Vesta-Style.png" id="Vesta-preview-png" />
-				<img class="preview-banner" style="display:none;" src="5-Ceres-Style.png" id="Ceres-preview-png" />
-				<img class="preview-banner" style="display:none;" src="6-Mars-Style.png" id="Mars-preview-png" />
-				<img class="preview-banner" style="display:none;" src="7-Jupiter-Style.png" id="Jupiter-preview-png" />
-				<img class="preview-banner" style="display:none;" src="8-Saturn-Style.png" id="Saturn-preview-png" />
-				<img class="preview-banner" style="display:none;" src="9-Uranus-Style.png" id="Uranus-preview-png" />
-				<img class="preview-banner" style="display:none;" src="10-Neptune-Style.png" id="Neptune-preview-png" />
-				<img class="preview-banner" style="display:none;" src="11-Pluto-Style.png" id="Pluto-preview-png" />
+				<img class="preview-banner" style="display:none;" src="A-Fool's-Reckoning-Style.png" id="Fool's-Reckoning-preview-png" />
+				<img class="preview-banner" style="display:none;" src="B-Canon-Style.png" id="Canon-preview-png" />
 			</div>
 			
 			<!-- begins 2nd column -->
@@ -204,7 +194,7 @@
 
 
 		<div class="text-center">
-			<h5>Featuring sprite work from:</h5>
+			<h5>Potentially featuring sprite work from:</h5>
 				<span class="badge bg-light text-dark">Nicoc1991</span>
 				<span class="badge bg-light text-dark">Gedankenschild</span>
 				<span class="badge bg-light text-dark">xJ4cks</span>
@@ -267,8 +257,7 @@
 	
 	// Only Accepted CRC32s for these patches
 	const romPatchMap = {
-		"1A13227": "2-Mercury-Style.ips", // Mercury is the default Classic style pack
-		"1F373E00": "10-Neptune-Style.ips" // Neptune is the default Plus style pack
+		"1F373E00": "B-Canon-Style.ips" // Canon is the default Plus style+ pack
 	};
 	
 	// Precomputes CRC32 Table (clever work by ChatpGPT4)
@@ -475,7 +464,7 @@
 		console.log("Extracted filename:", fileName);
 		
 		// Planet list to match IDs
-		const planets = ['Mercury', 'Venus', 'Luna', 'Vesta', 'Ceres', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
+		const planets = ['Fool\'s-Reckoning', 'Canon'];
 		
 		// Tries to find which planet name is contained in the filename
 		let selectedPlanet = null;
@@ -491,17 +480,8 @@
 		// This handles cases where filenames might be like "1-Moon.ips" or "Style2.ips"
 		if (!selectedPlanet) {
 			const planetNumbers = {
-				'1': 'Mercury',
-				'2': 'Venus',
-				'3': 'Luna',
-				'4': 'Vesta',
-				'5': 'Ceres',
-				'6': 'Mars',
-				'7': 'Jupiter',
-				'8': 'Saturn',
-				'9': 'Uranus',
-				'10': 'Neptune',
-				'11': 'Pluto'
+				'A': 'Fool\'s-Reckoning',
+				'B': 'Canon'
 			};
 			
 			// Checks for numbers in the filename
@@ -572,20 +552,11 @@
 		const fileName = selectedPatch.split('/').pop().replace('.ips', '');
 		
 		// Our planet list with correct capitalization matching your IDs
-		const planets = ['Mercury', 'Venus', 'Luna', 'Vesta', 'Ceres,', 'Mars','Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
+		const planets = ['Fool\'s-Reckoning', 'Canon'];
 		// Planet number mapping
 		const planetNumbers = {
-			'Mercury': '1',
-			'Venus': '2',
-			'Luna': '3',
-			'Vesta': '4',
-			'Ceres':'5',
-			'Mars': '6',
-			'Jupiter': '7',
-			'Saturn': '8',
-			'Uranus': '9',
-			'Neptune': '10',
-			'Pluto': '11'
+			'Fool\'s-Reckoning': 'A',
+			'Canon': 'B'
 		};
 		
 		// Tries to find planet name in filename

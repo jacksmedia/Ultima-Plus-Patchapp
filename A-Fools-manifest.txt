@@ -1,0 +1,40 @@
+_FF4 SR Portraits 1.2.2 Main Patch.ips
+Cid (RK, from T92).ips
+Decil (RK, darkest, by tsushiy).ips
+Edge (RK, better blue, by xJ4cks).ips
+Edward (RK, portrait colors, by xJ4cks).ips
+FF4 Ultima Enemy Graphics 4bpp upgrade v2 (SNES-size enemies), by Gedankenschild.ips
+FF4SR Portraits EX 1.2 B-Chocobo Alt B.ips
+FF4SR Portraits EX 1.2 Cecil-P Alt A.ips
+FF4SR Portraits EX 1.2 Edward Alt A.ips
+FF4SR Portraits EX 1.2 Kain Alt A.ips
+FF4SR Portraits EX 1.2 Toad Alt A.ips
+FF4SR Portraits EX 1.2.1 Namingway Alt A.ips
+FuSoYa (RK, lunar magic, by xJ4cks).ips
+Golbez + Anna (RK, by T92).ips
+Kydia (RK, pink magic, by xJ4cks).ips
+map Decil (PURPLE, closed helmet, by Nicoc1991).ips
+map Edge (T style, by tsushiy).ips
+map Edward (better, by xJ4cks).ips
+map Kain (darker, by xJ4cks).ips
+map Kydia (PR, by MObreck).ips
+map Palom (PR, better, by xJ4cks).ips
+map Pecil (T style, Cosmic, by gvdn).ips
+map Porom (PR, better, by xJ4cks).ips
+map Rosa (PR, by MObreck).ips
+map Rydia (PR, by MObreck).ips
+map Tellah (PR, by xJ4cks).ips
+map Yang (red pants, moustache, by xJ4cks).ips
+Palom (RK, better, by xJ4cks).ips
+Pecil (RK, Cosmic, by T92).ips
+Porom (RK, better, by xJ4cks).ips
+portrait Decil (closed helmet, by Nicoc1991).ips
+portrait Edge (better, by xJ4cks).ips
+portrait Palom (RK, blue, by xJ4cks).ips
+portrait Porom (RK, battle color, by xJ4cks).ips
+portrait Tellah (battle color, by xJ4cks).ips
+portrait Yang (better, by xJ4cks).ips
+Rosa (RK, DS colors + big cape, by T92).ips
+SquishBGone Stick by chillyfeez.ips
+Tellah (RK, from T92).ips
+Yang (RK, from T92).ips
