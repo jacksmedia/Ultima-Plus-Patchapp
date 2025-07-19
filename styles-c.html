@@ -34,7 +34,7 @@
 
 	<style>
 		body {
-			background: linear-gradient(#246, #000, #246);
+			background: linear-gradient(#1c7195, #000, #1c7195);
 			color: #e4e4e6;
 		}
 		.patch-btn {
@@ -44,6 +44,10 @@
 		.preview-banner {
 			width:100%;
 			max-width:100%;
+		}
+		.ital { /* the disclaimer text only seen on this page*/
+			font-style: italic;
+			line-height: 120%;
 		}
 		/* ample spacing for manifest*/
 		.attribution-section {
@@ -82,13 +86,30 @@
 		<!-- 2nd row for, header content -->
 		<div class="row d-flex justify-content-center align-items-center">
 			<!-- begins left column -->
-			<div class="col-12 col-sm-4 d-flex justify-content-center align-items-center mx-auto">		
+			<div class="col-12 col-sm-4 d-flex flex-column justify-content-center align-items-center mx-auto">		
 				<p style="line-height: 150%; font-size: 111%;">
 					Please upload a copy of 'Final Fantasy 4 Ultima Plus'.
 					This app offers alternate graphics,
 				<span style="color:gold;">choose from one of these after uploading</span>.
-				<br/><a href="Final Fantasy 4 Ultima Plus patch archive.zip">(Download the full patch archive for custom mixes of these assets.)</a>
+				<br/><a href="Final Fantasy 4 Ultima Plus patch archive.zip" style="color:red;">(Download the full patch archive for custom mixes of these assets.)</a>
 				</p>
+					<h3 style="color:gold;">
+						Need a copy of FF4 UP?
+					</h3>
+						use the
+					<!-- black btn styled div -->
+					<a href="index.html" style="text-decoration:none;">
+						<button class="d-flex justify-content-center align-items-center"
+						style="background: black; padding: 1rem; border-radius: 2rem;">
+							<h4 style="color:#80a;">
+								FF4 Ultima Plus Patcher
+							</h4>
+						</button>
+					</a>
+					<p>
+						This site & patches updated<br/>
+						July 2025
+					</p>
 			<!-- end left column -->
 			</div>
 
@@ -100,23 +121,9 @@
 
 		<!-- begins right column -->
 		<div class="col-12 col-sm-4 d-flex-column justify-content-end align-items-center">
-			<h3 style="color:gold;">
-				Need a copy of FF4 UP?
-			</h3>
-				use the
-			<!-- black btn styled div -->
-			<a href="index.html" style="text-decoration:none;">
-				<button class="d-flex justify-content-center align-items-center"
-				style="background: black; padding: 1rem; border-radius: 2rem;">
-					<h4 style="color:#80a;">
-						FF4 Ultima Plus Patcher
-					</h4>
-				</button>
-			</a>
-			<p>
-				This site & patches updated<br/>
-				July 2025
-			</p>
+			<p class="ital">These patches were created by the broader community and have not been tested by the FFIV Ultima Plus Developer/Moderation team so potential bugs may present themselves.</p>
+			<p class="ital">Prior to using a community-generated patch, please ensure you've made a backup of your ROM so you're able to revert back to an earlier version.</p>
+			<p class="ital">These patches are provided as is and the Dev team makes no warranty or representation of any kind whatsoever. Any bugs or glitches that are encountered should be addressed with the creator of the patches and not the Ultima Plus team, as we have zero insight to where the code could be conflicting and are unable to accurately troubleshoot.</p>
 			<!-- ends col -->
 			</div>
 		<!-- ends row -->
@@ -179,6 +186,7 @@
 				<!-- image pngs -->
 				<img class="preview-banner" style="display:none;" src="A-Fool's-Reckoning-Style.png" id="Fool's-Reckoning-preview-png" />
 				<img class="preview-banner" style="display:none;" src="B-Canon-Style.png" id="Canon-preview-png" />
+				<img class="preview-banner" style="display:none;" src="c-Fool's-Reckoning-Alt-Style.png" id="Fool's-Reckoning-Alt-preview-png" />
 			</div>
 			
 			<!-- begins 2nd column -->
@@ -464,7 +472,7 @@
 		console.log("Extracted filename:", fileName);
 		
 		// Planet list to match IDs
-		const planets = ['Fool\'s-Reckoning', 'Canon'];
+		const planets = ['Fool\'s-Reckoning', 'Fool\'s-Reckoning-Alt', 'Canon'];
 		
 		// Tries to find which planet name is contained in the filename
 		let selectedPlanet = null;
@@ -481,6 +489,7 @@
 		if (!selectedPlanet) {
 			const planetNumbers = {
 				'A': 'Fool\'s-Reckoning',
+				'c': 'Fool\'s-Reckoning-Alt',
 				'B': 'Canon'
 			};
 			
@@ -552,10 +561,11 @@
 		const fileName = selectedPatch.split('/').pop().replace('.ips', '');
 		
 		// Our planet list with correct capitalization matching your IDs
-		const planets = ['Fool\'s-Reckoning', 'Canon'];
+		const planets = ['Fool\'s-Reckoning', 'Fool\'s-Reckoning-Alt', 'Canon'];
 		// Planet number mapping
 		const planetNumbers = {
 			'Fool\'s-Reckoning': 'A',
+			'Fool\'s-Reckoning-Alt': 'c',
 			'Canon': 'B'
 		};
 		
