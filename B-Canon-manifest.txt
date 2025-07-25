@@ -10,7 +10,7 @@ and his helmet's ear.
 
 Map Sprites :
 1. map Cid (PR, by xJ4cks).ips
-2. map Decil (PR, by xJ4cks).ips
+2. map DKC (PR, by xJ4cks).ips
 3. map Edge (PR, by xJ4cks and red man).ips
    FF4 - Edge map palette 03.ips
 4. map Edward (PR, Blue Scarf by xJ4cks & red man).ips
@@ -18,7 +18,7 @@ Map Sprites :
 6. map Kain (PR, by xJ4cks).ips
 7. map Kydia (PR, by MObreck).ips
 8. map Palom (PR, by MObreck).ips
-9. map Pecil (T style, Cosmic, by gvdn).ips
+9. map PC (T style, Cosmic, by gvdn).ips
 10. map Porom (PR, by MObreck).ips
 11. map Rosa (PR, by MObreck).ips
 12. map Rydia (PR, by MObreck).ips
@@ -28,7 +28,7 @@ Map Sprites :
 
 Battle Sprites :
 1. Cid (RK, from T92).ips
-2. Decil (URK, Closed Helm, by Nicoc1991).ips
+2. DKC (URK, Closed Helm, by Nicoc1991).ips
 3. Edge (RK, from T92).ips
 4. Edward (RK, from T92).ips
 5. FuSoYa (URK, Nicoc1991).ips
@@ -36,7 +36,7 @@ Battle Sprites :
 7. Kain (RK, portrait colors, by xJ4cks).ips
 8. Kydia (RK, from T92).ips
 9. Palom (PR, by MObreck).ips
-10. Pecil (RK, Cosmic w Cape Cheer, by T92).ips
+10. PC (RK, Cosmic w Cape Cheer, by T92).ips
 11. Porom (PR, by MObreck).ips
 12. Rosa (RK, DS colors + big cape, by T92).ips
 13. Rydia (URK, Nicoc1991 & red man).ips

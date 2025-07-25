@@ -1,6 +1,6 @@
 _Golbez (PR battle + map sprites, by MObreck).ips
 Cid (PR, by xJ4cks).ips
-Decil (PR, storm armor, by Nicoc1991).ips
+DKC (PR, storm armor, by Nicoc1991).ips
 Edge (PR, classic colors, by Nicoc1991).ips
 Edward (PR, by xJ4cks).ips
 FF4 Ultima Enemy Graphics 4bpp upgrade v2 (SNES-size enemies), by Gedankenschild.ips
@@ -10,7 +10,7 @@ Golbez (PR+, by Nicoc1991).ips
 Kain (PR, twilight armor, by Nicoc1991).ips
 Kydia (PR, by MObreck and red man).ips
 map Cid (PR, by xJ4cks).ips
-map Decil (closed helmet, by Nicoc1991).ips
+map DKC (closed helmet, by Nicoc1991).ips
 map Edge (better, by xJ4cks).ips
 map Edward (PR, by xJ4cks).ips
 map Kain (darker, by xJ4cks).ips
@@ -22,12 +22,12 @@ map Rydia (PR, by MObreck).ips
 map Tellah (PR, by xJ4cks).ips
 map Yang (PR, by xJ4cks).ips
 Palom (PR, by MObreck).ips
-Pecil (PR, by xJ4cks and redman).ips
+PC (PR, by xJ4cks and redman).ips
 Porom (PR, by MObreck).ips
 portrait Cid (better, by xJ4cks).ips
 portrait Kydia (battle color, by xJ4cks).ips
 portrait Palom (RK, battle color, by xJ4cks).ips
-portrait Pecil (better, by xJ4cks).ips
+portrait PC (better, by xJ4cks).ips
 portrait Porom (RK, battle color, by xJ4cks).ips
 portrait Rosa (PR ponytail, by FlamePurge).ips
 portrait Tellah (battle color, by xJ4cks).ips

@@ -2,13 +2,13 @@ Final Fantasy IV Ultima - Sylph-Bloodfeast Fix.ips
 map Edward (better, by xJ4cks).ips
 map Yang (red pants, moustache, by xJ4cks).ips
 portrait Cid (battle color, by xJ4cks).ips
-portrait Decil (battle color, by xJ4cks).ips
+portrait DKC (battle color, by xJ4cks).ips
 portrait Edge (battle color, by xJ4cks).ips
 portrait Edward (battle color, by xJ4cks).ips
 portrait FuSoYa (battle color, by xJ4cks).ips
 portrait Kain (battle color, by xJ4cks).ips
 portrait Palom (RK, battle color, by xJ4cks).ips
-portrait Pecil (battle color, by xJ4cks).ips
+portrait PC (battle color, by xJ4cks).ips
 portrait Porom (RK, battle color, by xJ4cks).ips
 portrait Rosa (PR ponytail, by FlamePurge).ips
 portrait Rydia (battle color, by xJ4cks).ips
