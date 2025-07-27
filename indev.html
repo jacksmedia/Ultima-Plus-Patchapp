@@ -151,15 +151,15 @@
       </div>
     </div>
     <div class="d-flex row">
+      
       <div class="col">
         <h4>by xJ4cks & ChatGPT4-t</h4>
-        <p id="colorful-text" class="card">Upload your FF4 ROM, select some options, then choose "Apply Patches". You'll see a manifest of your choices, and a link to download the new ROM to your device.</p>
-        <p><em class="emtext">Except for the monster graphics color enhancer</em> these are all in development patches, and are not considered finished. Please share any bug reports with the sprite hackers in the #game-artwork channel in 
-            <a href="https://discord.gg/PGMASbSnD9" 
-                target="_blank"
-                style="text-decoration:none;">the Ultima Discord server!</a>    
-        </p>
+        <p id="colorful-text" class="card">Upload your FF4 ROM, select some options, 
+          then choose "Select These Patches". 
+          You'll see a manifest of your choices, 
+          and a link to download the new ROM to your device.</p>
       </div>
+      
       <div class="col">
         <p>Some abbreviations used:</p>
         <ul>
@@ -170,14 +170,34 @@
           <li>BE = "FF Brave Exvius"</li>
         </ul>
       </div>
+
+      <div class="col-12">
+        <p><em class="emtext">Except for the monster graphics color enhancer</em> 
+          these are all in development patches, and are not considered finished. 
+          Please share any bug reports with the sprite hackers in 
+          the <em class="emtext">#game-artwork</em> channel in
+           <a href="https://discord.gg/PGMASbSnD9" 
+            target="_blank"
+            style="text-decoration:none;">
+            the Ultima Discord server!
+          </a>
+              
+        </p>
+  
+        <p style="font-size: 1.1rem; color: #444; background: antiquewhite; border-radius: 8px; padding: 8px; margin-bottom: 10px;">
+          Not endorsed by Square Enix, and not affiliated with them in any way.
+        </p>
+
       <hr/>
+      </div>
+    
     </div>
 
     <!-- ROM Upload -->
     <div class="d-flex row">
       <div class="col file-upload">
-        <label for="rom">ROM File (.sfc):</label>
-        <input type="file" id="rom" accept=".sfc">
+        <label for="rom">ROM File (.sfc or .smc):</label>
+        <input type="file" id="rom" accept=".sfc, .smc">
       </div>
     </div>
 
@@ -188,8 +208,7 @@
     <!-- options & previews -->
     <!--  -->
     
-      <!-- original preview image, changes per choice -->
-       <!-- creating one per carousel slide will allow for custom image category sizes -->
+    <!-- preview image, changes per choice -->
     <div class="d-flex row">
       <div class ="d-flex col justify-content-center">
         <div id="preview-container" 
@@ -201,79 +220,36 @@
         display: flex; align-items: center; justify-content: center;">
           <img id="preview-image" src="" alt="Patch preview" 
           style="object-fit: contain; 
-          width: 100%; height: auto; display: none;">
+          width: 100%; height: auto; display: none;" />
         </div>
       </div>
+      <hr/>
     </div>
 
-    <!-- curated lists in dropdowns -->
-    <!-- will become BOOTSTRAP CAROUSEL  -->
-    <!-- https://getbootstrap.com/docs/4.0/components/carousel/ -->
-    <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false">
-    
-      <div class="carousel-inner">
-        <div class="carousel-item active"> -->
-        <div class="d-flex row">
-          <div class="w-100 d-flex flex-column col-6 align-items-start" 
-          id="select-container1"></div>
-        </div>
-        <!-- </div>
-
-        <div class ="carousel-item">
-          <div class="d-block w-100 d-flex flex-column align-items-start justify-content-center mx-auto" 
-          id="select-container2"></div>
-        </div>
-      
-        <div class ="carousel-item">
-          <div class="d-block w-100 d-flex flex-column align-items-start justify-content-center mx-auto" 
-          id="select-container3"></div>
-        </div>
-      </div> -->
-<!-- arrows to control slides -->
-      <!-- <a class="carousel-control-prev" href="#carouselExampleIndicators" 
-      role="button" data-slide="prev" 
-      style="max-width:8vw; border: 1px dotted black; border-radius:10px; background: rgba(100, 100, 100, 0.3);">
-        <span class="carousel-control-prev-icon" aria-hidden="true" style="color:black;"></span>
-        <span class="sr-only" style="color:black;">Prev.</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" 
-      role="button" data-slide="next"
-      style="max-width:8vw; border: 1px dotted black; border-radius:10px; background: rgba(100, 100, 100, 0.3);">
-        <span class="carousel-control-next-icon" aria-hidden="true" style="color:black;"></span>
-        <span class="sr-only" style="color:black;">Next</span>
-      </a> -->
-<!-- end carousel -->
-    <!-- </div> -->
-<!-- arrow to control slides -->
+    <!-- options that add to manifest and change preview, in a column -->
     <div class="d-flex row">
-      <div class="col-4">
-        <!-- <a class="carousel-control-prev" href="#carouselExampleIndicators" 
-          role="button" data-slide="prev" 
-          style="border: 1px dotted black; border-radius:10px; background: rgba(100, 100, 100, 0.3);">
-          <span class="carousel-control-prev-icon" aria-hidden="true" style="color:black;"></span>
-          <span class="sr-only" style="color:black;">Previous</span>
-        </a> -->
-      </div>
+      <div class="col-sm-2"></div> <!-- Really hacky spacing; will vanish on mobile -->
+
+      <div class="d-flex flex-column col-8 align-items-start" 
+        id="select-container1"></div>
+
+    </div>
+
+    <!-- Patch Button to download new rom -->
+    <div class="d-flex row">
+      <div class="col-4"></div> <!-- Really hacky spacing of button -->
 
       <div class="col-4 justify-content-center">
-        <!-- Patch Button -->
         <button id="patch">Select These Patches</button>
       </div>
-<!-- arrow to control slides -->
-      <div class="col-4">
-        <!-- <a class="carousel-control-next" href="#carouselExampleIndicators" 
-          role="button" data-slide="next"
-          style="border: 1px dotted black; border-radius:10px; background: rgba(100, 100, 100, 0.3);">
-          <span class="carousel-control-next-icon" aria-hidden="true" style="color:black;"></span>
-          <span class="sr-only" style="color:black;">Next</span>
-        </a> -->
-      </div>
-
+ 
+      <div class="col-4"></div> <!-- Really hacky spacing of button -->
     </div>
     
     <!-- Manifest and Download -->
     <div class="row">
-      <div class="col">
+      <div class="col-sm-2"></div> 
+      <div class="col-10">
         <pre id="manifest"></pre>
       </div>
     </div>
@@ -281,37 +257,43 @@
     <!-- homepage button -->
     <div class="d-flex row">
       <hr/>
+      <!-- 1st column -->
       <div class="col-6 col-sm-4 d-flex-column justify-content-end align-items-center">
         <h3 style="color:black;">
           Return to
         </h3>
         <!-- black btn styled div -->
         <a href="https://ff4ultima.vercel.app/" style="text-decoration: none;">
-            <button class="d-flex justify-content-center align-items-center"
-            style="background: black; padding: 1rem; border-radius: 2rem;">
-                <h4 style="color:#b0f;">
-                  FF4 Ultima Plus Patcher
-                </h4>
-            </button>
-        </a>        
+          <button class="d-flex justify-content-center align-items-center"
+          style="background: black; padding: 1rem; border-radius: 2rem;">
+            <h4 style="color:#b0f;">
+              FF4 Ultima Plus Patcher
+            </h4>
+          </button>
+        </a>
       </div>
       <!-- ends col -->
+      <!-- 2nd column -->
       <div class="col-6 col-sm-4 d-flex-column justify-content-end align-items-center">
         <h3 style="color:black;">
             Premade styles?
         </h3>
         <!-- black btn styled div -->
         <a href="styles.html" style="text-decoration: none;">
-            <button class="d-flex justify-content-center align-items-center"
-            style="background: black; padding: 1rem; border-radius: 2rem;">
-                <h4 style="color:aqua;">
-                  FF4 Ultima Styles
-                </h4>
-            </button>
+          <button class="d-flex justify-content-center align-items-center"
+          style="background: black; padding: 1rem; border-radius: 2rem;">
+            <h4 style="color:aqua;">
+              FF4 Ultima Styles
+            </h4>
+          </button>
         </a>
       </div>
       <!-- ends col -->
-       <p class="mt-2">Special thanks to Gedankenschild for creating these color-exapnding hacks, and to epigonone for cleaning up many of the map sprite palettes!</p>
+
+       <!-- footer message -->
+      <p class="mt-2 mx-4">Special thanks to Gedankenschild for creating these color-expanding<br/> 
+         hacks, and to epigonone for cleaning up the map sprite palettes &<br/>
+         importing new field and battle graphics!</p>
     </div>
   </body>
 
