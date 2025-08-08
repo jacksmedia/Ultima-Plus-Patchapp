@@ -1,0 +1,28 @@
+{
+    "Golbez":
+    {
+        "portrait_start": "$1D0C00",
+        "portrait_pal_start": "$0687C0",
+        "battle_sprites1_start": "$0D7600",
+        "battle_sprites2_start": "$1D0000",
+        "bat_palette":  "80 01 00 00 FF 7F 60 03 3F 2A F9 01 1B 00 15 00 7F 03 BC 02 B5 01 40 7F 40 7E 80 6D 00 5D 00 38",
+        "bat_pal_start": "$0E7EC0",
+        "map_sprites1_start": "$0DCF80",
+        "map_sprites2_start": "$1D0900",
+        "map_pal_index1": "$0680E0",
+        "map_pal_index2": "$068280"
+    },
+    "Anna":
+    {
+        "portrait_start": "$null",
+        "portrait_pal_start": "$null",
+        "battle_sprites1_start": "$0D7960",
+        "battle_sprites2_start": "$null",
+        "bat_palette":  "80 01 00 00 FF 7F BF 36 F9 1D 10 18 9F 51 17 30 00 5D FF 5B FF 03 39 03 73 02 75 0D 0F 6D 49 54",
+        "bat_pal_start": "$0E7EE0",
+        "map_sprites1_start": "$??????",
+        "map_sprites2_start": "~$0DB480",
+        "map_pal_index1": "$0680E0",
+        "map_pal_index2": "$null"
+    }
+}
