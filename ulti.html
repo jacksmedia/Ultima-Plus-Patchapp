@@ -84,11 +84,6 @@
       margin-left: 15vw;
     }
 
-/*  inject text over preview image blank deafault  */
-    #preview-container::before {
-      content: "Preview"
-    }
-
 
 /* adapted from https://stackoverflow.com/questions/23441060/how-to-animate-gradients-using-css */
     #gradient {
@@ -169,25 +164,26 @@
     </div>
     <div class="d-flex row">
       <div class="col">
-
-        <p class="card colorful-text">Upload your FF4 ROM, select some options, then choose "Apply Patches".
-        <br/>You'll see a manifest of your choices, and a link to download the new ROM to your device.</p>
-        <p>This is a demo feature, a work-in-progress. Golbez sprites only work with FF4 Ultima. Please use Landscape view if on mobile for best results</p>
-          
         <!-- ROM Upload -->
         <div class="file-upload colorful-text card">
           <label for="rom">ROM File (.sfc):</label>
           <input type="file" id="rom" accept=".sfc">
         </div>
+        <div>
+          <p>Upload your FF4 ROM, select some options, then choose "Apply Patches".
+          <br/>You'll see a manifest of your choices, and a link to download the new ROM to your device.</p>
+          <p>This is a demo feature, a work-in-progress. Golbez sprites only work with FF4 Ultima. Please use Landscape view if on mobile for best results</p>
+        </div>
         
       </div>
-      <div class="col">
+      <div class="col d-flex row">
         <p>Some abbreviations used:</p>
-        <ul>
+        <ul class="col">
           <li>DKC = "Dark Knight Cecil"</li>
           <li>PC = "Paladin Cecil"</li>
           <li>Kydia = "Kid Rydia"</li>
-          <hr/>
+        </ul>
+        <ul class="col">  
           <li>RK = "FF Record Keeper" style</li>
           <li>URK = "Ultima Record Keeper" style</li>
           <li>PR = "FFIV Pixel Remaster" style</li>
@@ -209,18 +205,24 @@
       <!-- original preview image, changes per choice -->
        <!-- creating one per carousel slide will allow for custom image category sizes -->
     <div class="d-flex row">
-      <div class ="d-flex col justify-content-center">
+      <div class ="d-flex col justify-content-center align-items-center preview-card">
+				<!-- image previews -->
         <div id="preview-container"
         style="min-width: 256px; min-height: 110px; 
         width: 100%; height: auto;
         max-width: 256px; max-height: 110px;
         background: #888; 
         margin-top: 30px; margin-bottom: 50px;
-        display: flex; align-items: center; justify-content: center;">
+        display: flex; align-items: center; justify-content: center; flex-direction: column;
+        z-index: 500;">
           <img id="preview-image" src="" alt="Patch preview" 
           style="object-fit: contain; 
-          width: 160%; height: auto; display: none;">
+          width: 160%; height: auto; display: none;" />
           <!-- object-fit: contain; = top shelf CSS! -->
+
+          <!-- patch name -->
+				  <h4 id="preview-name" src="" alt="Patch preview" style="height: auto;"></h3>        
+        
         </div>
       </div>
     </div>
@@ -399,10 +401,14 @@ function applyIpsPatch(romData, ipsData) {
 // Handles preview image loading
 function updatePreviewImage(selectedValue) {
   const previewImg = document.getElementById('preview-image');
-  const container = document.getElementById('preview-container'); // original version
+  const previewName = document.getElementById('preview-name');
+  const container = document.getElementById('preview-container');
+  const card = document.getElementById('preview-card');
     if (!selectedValue) {
       previewImg.style.display = 'none';
+      previewName.style.display = 'none';
       container.style.background = '#888';
+      card.style.background = 'transparent';
       return;
     }
 
@@ -420,10 +426,13 @@ function updatePreviewImage(selectedValue) {
         if (response.ok) {
           previewImg.src = previewUrl;
           previewImg.style.display = 'block';
+          previewName.innerHTML = filename;
+          previewName.style.display = 'block';
           container.style.background = 'transparent';
         } else {
           previewImg.style.display = 'none';
           container.style.background = '#888';
+          card.style.background = 'transparent';
         }
       })
       .catch(() => {

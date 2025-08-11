@@ -217,10 +217,12 @@
         max-width: 400px;
         background: #888; 
         margin-top: 30px; margin-bottom: 50px;
-        display: flex; align-items: center; justify-content: center;">
+        display: flex; align-items: center; justify-content: center; flex-direction: column;">
           <img id="preview-image" src="" alt="Patch preview" 
           style="object-fit: contain; 
           width: 100%; height: auto; display: none;" />
+          <h4 id="preview-name" src="" alt="Patch preview" 
+          style="height: auto;"></h3>
         </div>
       </div>
       <hr/>
@@ -354,9 +356,11 @@ function applyIpsPatch(romData, ipsData) {
 // Handles preview image loading
 function updatePreviewImage(selectedValue) {
   const previewImg = document.getElementById('preview-image');
+  const previewName = document.getElementById('preview-name');
   const container = document.getElementById('preview-container'); // original version
     if (!selectedValue) {
       previewImg.style.display = 'none';
+      previewName.style.display = 'none';
       container.style.background = '#888';
       return;
     }
@@ -369,12 +373,13 @@ function updatePreviewImage(selectedValue) {
 
     const previewUrl = `indev/${safePath}`;
     console.log('Preview URL:', previewUrl);
-
     fetch(previewUrl, { method: 'HEAD' })
       .then(response => {
         if (response.ok) {
           previewImg.src = previewUrl;
           previewImg.style.display = 'block';
+          previewName.innerHTML = filename;
+          previewName.style.display = 'block';
           container.style.background = 'transparent';
         } else {
           previewImg.style.display = 'none';
@@ -383,6 +388,7 @@ function updatePreviewImage(selectedValue) {
       })
       .catch(() => {
         previewImg.style.display = 'none';
+        previewName.style.display = 'none'
         container.style.background = '#888';
       });
 }
