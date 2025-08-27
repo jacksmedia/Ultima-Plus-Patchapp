@@ -1,5 +1,5 @@
 {
-    "Decil":
+    "DKC":
     {
         "battle_sprites_start": "$0D0000",
         "bat_palette":  "80 01 00 00 FF 7F 3F 2A F9 01 8C 6D 4A 55 1F 00 BD 03 52 7E 7F 03 BC 02 B5 01 15 00 08 45 84 34",
@@ -89,7 +89,7 @@
         "map_sprites_start": "$0D9800",
         "map_pal_index": "$0AB302"
     },
-    "Pecil":
+    "PC":
     {
         "battle_sprites_start": "$0D4800",
         "bat_palette":  "80 01 00 00 FF 7F 3F 32 7A 1D F7 3E 52 7E 1F 21 A0 02 7F 03 17 00 FF 4F 18 7F 6B 1D 00 74 8C 65",
