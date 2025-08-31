@@ -211,28 +211,8 @@
        <!-- creating one per carousel slide will allow for custom image category sizes -->
     <div class="d-flex row">
 
-<!-- first button, 1st col -->
-   <div class="d-flex col-3 flex-column justify-content-center align-items-center">
-        <h3>
-          Check out the
-        </h3>
-        <!-- black btn styled div -->
-        <a href="styles-c.html" style="text-decoration:none;">
-          <button class="d-flex justify-content-center align-items-center"
-          style="background: #222; padding: 1rem; border-radius: 2rem;">
-            <h4 style="color:skyblue;">
-              FF4 Ultima Community Styles
-            </h4>
-          </button>
-        </a>
-        <h3>
-          Made by fans!
-        </h3>
-			</div>
-<!-- end col -->
-
 <!-- center col -->
-      <div class ="d-flex col-6 justify-content-center align-items-center preview-card">
+      <div class ="d-flex col-12 justify-content-center align-items-center preview-card">
 				<!-- image previews -->
         <div id="preview-container"
         style="min-width: 256px; min-height: 110px; 
@@ -251,23 +231,6 @@
 				  <h4 id="preview-name" src="" alt="Patch preview" style="height: auto;"></h3>        
         </div>
 <!-- end col -->
-
-<!-- 3rd col -->
-      <div class="d-flex col flex-column justify-content-center align-items-center">
-        <h3 style="color:black;">
-            The original premade Hero styles?
-        </h3>
-        <!-- black btn styled div -->
-        <a href="styles.html" style="text-decoration: none;">
-          <button class="d-flex justify-content-center align-items-center"
-          style="background: black; padding: 1rem; border-radius: 2rem;">
-            <h4 style="color:aqua;">
-              FF4 Ultima Styles
-            </h4>
-          </button>
-        </a>
-      </div>
-<!-- ends col -->
 
       </div>
     </div>
@@ -338,10 +301,51 @@
     <!-- homepage button -->
     <div class="d-flex row">
       <hr/>
-      <div class="col-6">
+
+      <!-- first button, 1st col -->
+      <div class="d-flex col-4 flex-column justify-content-center align-items-center">
+        <h3>
+          Check out the
+        </h3>
+        <!-- black btn styled div -->
+        <a href="styles-c.html" style="text-decoration:none;">
+          <button class="d-flex justify-content-center align-items-center"
+          style="background: #222; padding: 1rem; border-radius: 2rem;">
+            <h4 style="color:skyblue;">
+              FF4 Ultima Community Styles
+            </h4>
+          </button>
+        </a>
+        <h3>
+          Made by fans!
+        </h3>
+			</div>
+<!-- end col -->
+
+      <div class="col">
         <p class="mt-2">Ulti-patcher name coined by Steela Light-- thank you for the great branding</p>
         <sub>Webapp designed in glorious HTML5 by xJ4cks & ChatGPT4-t</sub>
       </div>
+
+<!-- 3rd col -->
+      <div class="d-flex col flex-column justify-content-center align-items-center">
+        <h3 style="color:black;">
+            The original premade Hero styles?
+        </h3>
+        <!-- black btn styled div -->
+        <a href="styles.html" style="text-decoration: none;">
+          <button class="d-flex justify-content-center align-items-center"
+          style="background: black; padding: 1rem; border-radius: 2rem;">
+            <h4 style="color:aqua;">
+              FF4 Ultima Styles
+            </h4>
+          </button>
+        </a>
+      </div>
+<!-- ends col -->
+
+
+
     </div>
   </body>
 
@@ -464,7 +468,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // random message onLoad, aka "Terraria gimmick"
   const messages = [
   '"Hot sprites in your area"',
-  '"Gimmick shamelessly stolen from Terraria"',
+  '"Gimmick shamelessly stolen from Terraria & Minecraft"',
   '"Now with ???% more jokes"',
   '"Gee, it sure is boring around here"',
   '"Am I really going to monopolize these? – Asked Guysons"',
@@ -475,7 +479,20 @@ window.addEventListener("DOMContentLoaded", () => {
   '"Also listen to Legião Urbana!"',
   '"Join the FF4 Ultima Discord for fresh sprites and stale GIFs"',
   '"Kain is a simp tho, fr"',
-  '"Unofficially endorsed by Dr. Lugae"'
+  '"Unofficially endorsed by Dr. Lugae"',
+  '"Kain? You can trust Kain. He\'s my best friend he wouldn\'t betray anyone!"',
+  '"I bet you have homework due tomorrow"',
+  'Grass grows, Sun shines, birds fly. And brother, I spoil you"',
+  'Oh my Gahhh!!"',
+  'We are the champions"',
+  'By the way, have you listened to... By The Way?"',
+  'Did you know: Most of these don\'t end with a punctuation? Can\'t unsee that now, champ"',
+  'Someone had absolutely nothing interesting to do and wrote these"',
+  'Too many patches. 7.8/10"',
+  'Ranma½ is so peak"',
+  'Happy day!"',
+  'I swear I\'m trying to not make dumb jokes here"',
+  '"Say hello to our little friend!"'
   ];
   function getRandomMessage() {
     const randomIndex = Math.floor(Math.random() * messages.length);
