@@ -108,7 +108,7 @@
 					</a>
 					<p>
 						This site & patches updated<br/>
-						July 2025
+						September 2025
 					</p>
 			<!-- end left column -->
 			</div>
@@ -163,14 +163,14 @@
 			<!-- begins 2nd column -->
 			<div class="col-sm-6 d-flex justify-content-space-around align-items-center">
                 <h5 style="color:#eff;">
-                    Want to try a custom font? Use the rom you make here at the <span style="color:tomato;">Fonts patcher</span>.
+                   These styles are built from custom graphics and fonts, so they are not compatible with patches that change them. If you want to build your own custom style, use the Ulti Patcher!
                 </h5>
                 <!-- black btn styled div -->
                 <a href="fonts.html" style="text-decoration:none;">
                     <button class="d-flex justify-content-center align-items-center"
                     style="background: black; padding: 0.7rem; border-radius: 2rem;">
-                        <h5 style="color:tomato;">
-                            FF4 Ultima Plus Fonts
+                        <h5 style="color:#ff55dd;">
+                            FF4 Ulti Patcher
                         </h5>
                     </button>
                 </a>
@@ -185,7 +185,7 @@
 			<div class="col-sm-6" style="align-items:center; background:#000;">
 				<!-- image pngs -->
 				<img class="preview-banner" style="display:none;" src="A-Fool's-Reckoning-Style.png" id="Fool's-Reckoning-preview-png" />
-				<img class="preview-banner" style="display:none;" src="B-Canon-Style.png" id="Canon-preview-png" />
+				<img class="preview-banner" style="display:none;" src="B-Canon-Remaster-Style.png" id="Canon-Remaster-preview-png" />
 				<img class="preview-banner" style="display:none;" src="c-Fool's-Reckoning-Alt-Style.png" id="Fool's-Reckoning-Alt-preview-png" />
 			</div>
 			
@@ -472,7 +472,7 @@
 		console.log("Extracted filename:", fileName);
 		
 		// Planet list to match IDs
-		const planets = ['Fool\'s-Reckoning', 'Fool\'s-Reckoning-Alt', 'Canon'];
+		const planets = ['Fool\'s-Reckoning', 'Fool\'s-Reckoning-Alt', 'Canon-Remaster'];
 		
 		// Tries to find which planet name is contained in the filename
 		let selectedPlanet = null;
@@ -490,7 +490,7 @@
 			const planetNumbers = {
 				'A': 'Fool\'s-Reckoning',
 				'c': 'Fool\'s-Reckoning-Alt',
-				'B': 'Canon'
+				'B': 'Canon-Remaster'
 			};
 			
 			// Checks for numbers in the filename
@@ -561,12 +561,12 @@
 		const fileName = selectedPatch.split('/').pop().replace('.ips', '');
 		
 		// Our planet list with correct capitalization matching your IDs
-		const planets = ['Fool\'s-Reckoning', 'Fool\'s-Reckoning-Alt', 'Canon'];
+		const planets = ['Fool\'s-Reckoning', 'Fool\'s-Reckoning-Alt', 'Canon-Remaster'];
 		// Planet number mapping
 		const planetNumbers = {
 			'Fool\'s-Reckoning': 'A',
 			'Fool\'s-Reckoning-Alt': 'c',
-			'Canon': 'B'
+			'Canon-Remaster': 'B'
 		};
 		
 		// Tries to find planet name in filename

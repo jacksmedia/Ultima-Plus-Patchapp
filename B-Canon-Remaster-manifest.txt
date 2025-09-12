@@ -1,0 +1,216 @@
+   FINAL FANTASY IV - ULTIMA PLUS
+        Canon Remaster Style
+     by FF4 Ultima Contributors
+
+
+
+
+A. OVERVIEW
+   ========
+
+   A compilation of graphics style patch and Modern Names (Firaga, etc)
+   for FF4 Ultima Plus. Aiming to be as canon as possible
+   (based on multiple sources), while trying to be consistent between the
+   graphical aspects and optimizing all upgrade patches available,
+   within the current SNES limitation of FF4 Ultima Plus.
+
+
+
+
+B. NOTES
+   =====
+
+
+1. This patch is NOT COMPATIBLE WITH ANY GRAPHICS AND FONTS IPS PATCHES.
+   Patch this to a clean FF4 Ultima Plus Rom.
+   Other patches like alternate mechanics are okay.
+
+2. Recommended to be played with MSU-1 Pixel Remaster Music for full
+   remaster experience, or the Synthetic Origins if you prefer an
+   upgraded original music. You can also mix tracks.
+   Patch the msu-1 after implementing this Canon Remaster patch.
+   Guides on FF4 Ultima MSU-1 is also available in this folder.
+
+3. Biggest dilemma is to choose between dark purple or dark gray DK Cecil.
+   We chose dark gray Oni faced DK Cecil, because PSP FMVs can be interpreted
+   as the real live depiction of the characters, while still not far from Amano.
+   Amano's dark purple DK Cecil are also surrealistic, which can be interpreted
+   as an alternate, dreamy, psychedelic form, of DK Cecil.
+   This dark gray decision also makes DK Cecil having distinct colors with 
+   dark purple Kain and black Golbez.
+
+4. If you only want to use a certain aspect of the Canon Remaster Style to make
+   another personal preference mix, or you want to exclude some stuffs like
+   excluding the modern names, there are separate individual patches
+   in this folder. Follow the patching orders if using more than one patches.
+   Share your mix at FF4 Ultima Discord "Optional Patches/Mixes" subsection.
+
+
+
+
+C. CHANGELOG
+   =========
+
+   First Patch.
+
+
+
+
+D. Thanks to
+   =============
+
+- Original FF4 Creators.
+- 8-bit fan, Chillyfeez, FlamePurge,
+  and all the developers of FF4 Ultima and Ultima Plus.
+- Clymax, Cubear, Blade Potato, and FF5 Central Discord.
+  https://discord.gg/A83fHxpK
+- xJ4cks : Spriter/Ripper, FF4 Ultima's Resource/Artworks Manager.
+- Gedankenschild : Creator of all the 4bpp upgrade patches.
+  The main features of this patch.
+- All the contributors and spriters from FF4 Ultima Discord.
+  One of this patch's graphics source.
+- All the contributors from spriters-resource.com.
+  Another one of this patch's graphics source.
+- Tsushiy, Gvdn, and all the developers of FF4 T-Edition.
+  https://jbbs.shitaraba.net/game/55803/
+  Yet another one of this patch's graphics source.
+- Epigonone : Patch compiling, bugs fixing, and custom graphics.
+- The MSU-1 community and https://www.zeldix.net/
+- Testers : xJ4cks, Red Man, Verdelet, Bob Trader.
+- Anderson Viana, Red Man, Guysons667, mrBrawndo, T92, Sarah Shinespark,
+  MObreck, Nicoc1991, AerospaceCoot35, Uraba, TheGreatBen, S34n4e,
+  _Brutapode89_, El Forko, StrikerTheHedgefox, Xevran, Gens,
+  Steela Light, Hakumen99, and everyone from Discord. https://discord.gg/4MqjwJt
+
+
+
+
+E. Full Credits and Patches Used
+   =============================
+
+
+1. Monster Sprites :
+   - FF4 Ultima Enemy Graphics 4bpp upgrade v2
+     (SNES-size enemies), by Gedankenschild.ips
+   - Black Golbez Boss v2.ips
+   - Black Zemus.ips (Black Robe, Purple Skin,)
+     (For this compilation, this one gets some consistency tweaks)
+   - Red Spoiler Boss.ips
+   - FFAtB Goblin, by MObreck.ips
+   - FFAtB Cockatrice Coeurl RedGiant, by MObreck.ips
+
+2. Map Sprites :
+   - FF4UP 4bpp Map Sprites Patch by Gedankenschild.
+   - Pixel Remaster/WonderSwan//Game Boy Advance/Wii/Mobile Hybrids.
+     Tweaked to be as canon as possible from multiple sources.
+   - Pixel Remaster Playable Characters ripped by Spindaboy.
+   - Pixel Remaster Non Playable Characters ripped by xJ4cks.
+   - Restore Dark Elf's unique sprite and Rosa's Guillotine, without reverting
+     their change reasons in FF4 Ultima.
+   - Adds Gvdn's Cosmic Paladin Cecil's hair to the current Paladin Cecil,
+     and Hugging Rosa Cecil Hybrid map sprite.
+   - Adds the Airship Propeller detail from FF4 T-Edition by Tsushiy and Gvdn,
+     to the current original colors Airship.
+   - Custom Field Big Chocobo for extra spaces purposes.
+   - Port the Big Chocobo Sprite from FF4 T-Edition by Tsushiy and Gvdn,
+     as the Big Chocobo in Storage Menu.
+
+3. Menu Portraits :
+   - FF4UP - 4bpp Portraits (Brave Exvius Style) v3.1
+     by Gedankenschild, epigonone, and mrBrawndo.ips
+   - Ripped by DatKofGuy, Volo, and Nazta.
+   - Bunny Namingway Portrait by mrBrawndo and epigonone.
+
+4. Battle Sprites :
+   - _All Characters RK Battle Sprites v1.3, from T92.ips
+     by T92 and mrBrawndo.
+   - PC (RK, Cosmic w Cape Cheer, by T92).ips
+   - FuSoYa (RK, Lunar Magic, by xJ4cks).ips
+   - Rosa (RK, DS, Big Cape, by T92).ips
+   - Palom (PR, by MObreck).ips
+   - Porom (PR, by MObreck).ips
+   - RK Pig Sprite by mrBrawndo.
+   - DKC (RK, Remake, by epigonone).ips
+     resourced from spriters-resource.com, by Syphersephir.
+   - Anna Sprite ported from FF4 T-Edition by Tsushiy and Gvdn.
+   - Adds custom special stance to make Aim makes sense with more weapon types.
+   - Ports Adult Rydia from FF4 T-Edition by Tsushiy and Gvdn.
+   - Adds RK legs to the current battle sprites of Palom and Porom.
+   - Adds their map sprite details to the current battle sprites
+     for Paladin Cecil, Kain, DK Cecil, Golbez, Edge, Yang, and Pig Mini Toad.
+   - Adds their map sprites colors to the current battle sprites
+     for Adult Rydia, Child Rydia, Palom, Porom, Edward, Cid, and Pig Mini Toad.
+   - Fixes the Vanilla palette issue for Golbez Battle Pig Mini Toad.
+   - Hands realign to match weapon animation position which were
+     originally not designed for RK battle sprites.
+
+5. Spell Animations :
+   - GBA style animation port. Some spells are only slightly changed,
+     or not changed at all, due to some limitations and/or it's just like that
+     in the GBA. Best spell to see the difference is Fire3/Firaga.
+
+6. Backgrounds :
+   - FF4UP - GBA Battle BG Reimagined.ips
+   - FF4UP - GBA Field Maps v1.1.ips
+   - FF4UP - GBA World Maps v2.1.ips
+   - All those patches are ported from vanilla WS/GBA, and from FF4 T-Edition
+     by Tsushiy and Gvdn, with manual tweaks by the patch creator
+     to fix many limitation issues.
+   - Adds psp-like palette to the overworld mountains.
+   - Adds unique palette to Tower of Zot, closer to FF4 3D.
+   - Adds consistency tweaks between all background graphics.
+
+7. Font :
+   - window-color-darkteal.ips by xJ4cks
+   - Modern Names v1.4.ips (Slim Font)
+
+
+
+
+F. To-Do List
+   ==========
+   Adds more advanced solutions to all the simple workarounds on this patch,
+   when the compiler learns more about assembly hacking.
+
+
+
+
+"
+These patches were created by the broader community and have not been tested by the FFIV Ultima Plus Developer/Moderation team, so potential bugs may present themselves. 
+
+Prior to using a community-generated patch, please ensure you've made a backup of your ROM so you're able to revert back to an earlier version.
+
+This patch is provided as is and the Dev team makes no warranty or representation of any kind whatsoever. Any bugs or glitches that are encountered should be addressed with the creator of the patch and not the Ultima Plus team, as they might have no insight to where the code could be conflicting and might unable to accurately troubleshoot.
+"
+
+Thank you for your curiosity and understanding.
+
+- FF4 Ultima Plus graphics hacking community, 2025
+
+---------------------------------------------------------
+
+Please join the FF4 Ultima Discord at: https://discord.gg/4MqjwJt
+
+---------------------------------------------------------
+
+More info on FF4 Ultima:
+
+http://www.ff4ultima.com/
+http://romhackwiki.8bitfan.info
+https://www.romhacking.net/hacks/4134/
+https://ff4ultima-plus.vercel.app/index.html
+https://ultima-plus.vercel.app/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
