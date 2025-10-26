@@ -1,0 +1,156 @@
+{
+"DKC": {
+    "battle_sprites_start": "$0D0000",
+    "bat_pal_start": "$0E7D00",
+    "portrait_start": "$0ED3C0",
+    "portrait_pal_start": "$0686D0",
+    "portrait16_start": "$1A8000",
+    "portrait16_pal_start": "$1AA200",
+    "map_sprites_start": "$0D8000",
+    "map_pal_index": "$0AB2FA",
+    "map16_start": "$198000"
+    },
+"Kain": {
+    "battle_sprites_start": "$0D0800",
+    "bat_pal_start": "$0E7D20",
+    "portrait_start": "$0ED540",
+    "portrait_pal_start": "$0686E0",
+    "portrait16_start": "$1A8200",
+    "portrait16_pal_start": "$1AA220",
+    "map_sprites_start": "$0D8300",
+    "map_pal_index": "$0AB2FB",
+    "map16_start": "$198400"
+    },
+"Kydia": {
+    "battle_sprites_start": "$0D1000",
+    "bat_pal_start": "$0E7D40",
+    "portrait_start": "0ED6C0",
+    "portrait_pal_start": "$0686F0",
+    "portrait16_start": "$1A8400",
+    "portrait16_pal_start": "$1AA240",
+    "map_sprites_start": "$0D8600",
+    "map_pal_index": "$0AB2FC",
+    "map16_start": "$198800"
+    },
+"Tellah": {
+    "battle_sprites_start": "$0D1800",
+    "bat_pal_start": "$0E7D60",
+    "portrait_start": "$0ED840",
+    "portrait_pal_start": "$068700",
+    "portrait16_start": "$1A8600",
+    "portrait16_pal_start": "$1AA260",
+    "map_sprites_start": "$0D8900",
+    "map_pal_index": "$0AB2FD",
+    "map16_start": "$198C00"
+    },
+"Edward": {
+    "battle_sprites_start": "$0D2000",
+    "bat_pal_start": "$0E7D80",
+    "portrait_start": "$0ED9C0",
+    "portrait_pal_start": "$068710",
+    "portrait16_start": "$1A8800",
+    "portrait16_pal_start": "$1AA280",
+    "map_sprites_start": "$0D8C00",
+    "map_pal_index": "$0AB2FE",
+    "map16_start": "$199000"
+    },
+"Rosa": {
+    "battle_sprites_start": "$0D2800",
+    "bat_pal_start": "$0E7DA0",
+    "portrait_start": "$0EDB40",
+    "portrait_pal_start": "$068720",
+    "portrait16_start": "$1A8A00",
+    "portrait16_pal_start": "$1AA2A0",
+    "map_sprites_start": "$0D8F00",
+    "map_pal_index": "$0AB2FF",
+    "map16_start": "$199400"
+    },
+"Yang": {
+    "battle_sprites_start": "$0D3000",
+    "bat_pal_start": "$0E7DC0",
+    "portrait_start": "$0EDCC0",
+    "portrait_pal_start": "$068730",
+    "portrait16_start": "$1A8C00",
+    "portrait16_pal_start": "$1AA2C0",
+    "map_sprites_start": "$0D9200",
+    "map_pal_index": "$0AB300",
+    "map16_start": "$199800"
+    },
+"Palom": {
+    "battle_sprites_start": "$0D3800",
+    "bat_pal_start": "$0E7DE0",
+    "portrait_start": "$0EDE40",
+    "portrait_pal_start": "$068740",
+    "portrait16_start": "$1A8E00",
+    "portrait16_pal_start": "$1AA2E0",
+    "map_sprites_start": "$0D9500",
+    "map_pal_index": "$0AB301",
+    "map16_start": "$199C00"
+    },
+"Porom": {
+    "battle_sprites_start": "$0D4000",
+    "bat_pal_start": "$0E7E00",
+    "portrait_start": "$0EDFC0",
+    "portrait_pal_start": "$068750",
+    "portrait16_start": "$1A9000",
+    "portrait16_pal_start": "$1AA300",
+    "map_sprites_start": "$0D9800",
+    "map_pal_index": "$0AB302",
+    "map16_start": "$19A000"
+    },
+"PC": {
+    "battle_sprites_start": "$0D4800",
+    "bat_pal_start": "$0E7E20",
+    "portrait_start": "$0EE140",
+    "portrait_pal_start": "$068760",
+    "portrait16_start": "$1A9200",
+    "portrait16_pal_start": "$1AA320",
+    "map_sprites_start": "$0D9B00",
+    "map_pal_index": "$0AB303",
+    "map16_start": "$19A400"
+    },
+"Cid": {
+    "battle_sprites_start": "$0D5000",
+    "bat_pal_start": "$0E7E40",
+    "portrait_start": "$0EE2C0",
+    "portrait_pal_start": "$068770",
+    "portrait16_start": "$1A9400",
+    "portrait16_pal_start": "$1AA340",
+    "map_sprites_start": "$0D9E00",
+    "map_pal_index": "$0AB304",
+    "map16_start": "$19A800"
+    },
+"Rydia": {
+    "battle_sprites_start": "$0D5800",
+    "bat_pal_start": "$0E7E60",
+    "portrait_start": "$0EE440",
+    "portrait_pal_start": "$068780",
+    "portrait16_start": "$1A9600",
+    "portrait16_pal_start": "$1AA360",
+    "map_sprites_start": "$0DA100",
+    "map_pal_index": "$0AB305",
+    "map16_start": "$19AC00"
+    },
+"Edge": {
+    "battle_sprites_start": "$0D6000",
+    "bat_pal_start": "$0E7E80",
+    "portrait_start": "$0EE5C0",
+    "portrait_pal_start": "$068790",
+    "portrait16_start": "$1A9800",
+    "portrait16_pal_start": "$1AA380",
+    "map_sprites_start": "$0DA400",
+    "map_pal_index": "$0AB306",
+    "map16_start": "$19B000"
+    },
+"FuSoYa": {
+    "battle_sprites_start": "$0D6800",
+    "bat_pal_start": "$0E7EA0",
+    "portrait_start": "$0EE740",
+    "portrait_pal_start": "$0687A0",
+    "portrait16_start": "$1A9A00",
+    "portrait16_pal_start": "$1AA3A0",
+    "map_sprites_start": "$0DA700",
+    "map_pal_index": "$0AB307",
+    "map16_start": "$19B400"
+    }
+}
