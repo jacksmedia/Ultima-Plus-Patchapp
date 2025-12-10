@@ -1,0 +1,38 @@
+A Fool's Reckoning Alt Style by Guysons
+
+● Battle Sprites:
+- Cid (RK, T92)
+- DKC (URK, closed helm, Nicoc1991)
+- Edge (URK, king of Elban, Nicoc1991)
+- Edward (URK, alt cape, Nicoc1991)
+- FuSoYa (URK, Nicoc1991)
+- Kain (RK, portrait colors, evil eyes, Nicoc1991)
+- Kydia (URK, Nicoc1991 and redman)
+- Palom (URK, messy blue, redman and Nicoc1991)
+- PC (URK, cosmic, redman and xJ4cks)
+- Porom (URK, messy red, redman and Nicoc1991)
+- Rosa (URK, Nicoc1991 and redman)
+- Rydia (URK, festival, by redman, Nicoc1991 and xJ4cks)
+- Tellah (URK, Nicoc1991)
+- Yang (URK, Nicoc1991)
+- Golbez & Anna (RK, T92)
+● Map Sprites:
+- Cid (PR, xJ4cks)
+- DKC (PR, xJ4cks)
+- Edge (PR, xJ4cks and redman)
+- Edward (PR, xJ4cks)
+- Kain (PR, xJ4cks)
+- Kydia (PR, MObreck)
+- Palom (PR, blue, xJ4cks)
+- PC (PR, xJ4cks)
+- Porom (PR, better, xJ4cks)
+- Rosa (PR, MObreck)
+- Rydia (PR, MObreck)
+- Tellah (PR, xJ4cks)
+- Yang (PR, xJ4cks)
+- Golbez (PR, MObreck)
+● Portraits:
+- All FF4UP PSP Portraits by tsushiy & Gens
+● Miscellaneous:
+- FF4 Ultima Enemy Graphics 4bpp Upgrade v2 SNES-sized by Gedankenschild
+- Squish B' Gone by Flamepurge - Stick Font by ChillyFee
