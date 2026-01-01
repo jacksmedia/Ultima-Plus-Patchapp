@@ -83,6 +83,9 @@
       border: black dotted 1px;
       margin-left: 15vw;
     }
+    .blocky {
+      image-rendering: pixelated;
+    } 
 
 
 /* adapted from https://stackoverflow.com/questions/23441060/how-to-animate-gradients-using-css */
@@ -223,7 +226,7 @@
         margin-top: 30px; margin-bottom: 50px;
         display: flex; align-items: center; justify-content: center; flex-direction: column;
         z-index: 500;">
-          <img id="preview-image" src="" alt="Patch preview" 
+          <img class="blocky" id="preview-image" src="" alt="Patch preview" 
           style="object-fit: contain; 
           width: 160%; height: auto; display: none;" />
           <!-- object-fit: contain; = top shelf CSS! -->
